@@ -567,12 +567,12 @@ body.idle .nav{opacity:0}
     <h2 class="a" style="--d:1">三個動作，都對龍蝦說</h2>
   </header>
   <div class="moves">
-    <div class="f"><span class="who-lab">動作一＋二 · 建 repo、放上去</span><div class="tg"><p class="bub me">把早上做的黎明辦公室網頁放上 GitHub，repo 叫 liming-office</p></div></div>
+    <div class="f"><span class="who-lab">動作一＋二 · 建 repo、放上去</span><div class="tg"><p class="bub me">把早上做的黎明辦公室網頁放上 GitHub</p></div></div>
     <div class="f"><span class="who-lab">動作三 · 改完再放一次</span><div class="tg"><p class="bub me">我改好了，再放一次：這次把標題改大</p></div></div>
     <div class="f"><span class="who-lab red">改壞了 · 回到上一版</span><div class="tg"><p class="bub me">剛剛那版改壞了，幫我回到上一版</p></div></div>
   </div>
   <p class="lede f">不用打指令，也不用記按鈕。<em>不講分支、不講 merge。</em></p>
-  <aside class="notes">repo 就是一個專案的資料夾。龍蝦在背後用 git 和 GitHub 官方的 gh 工具幫你做，學員只要會說這三句。repo 名稱龍蝦會自動加上你的名字開頭，例如 jason-liming-office。</aside>
+  <aside class="notes">repo 就是一個專案的資料夾。龍蝦在背後用 git 和 GitHub 官方的 gh 工具幫你做，學員只要會說這三句。repo 名稱不用自己取：龍蝦會取好，前面一定加上你的名字，例如 jason-liming-office；名稱被用過會自動加 -2，不會蓋掉別人的。</aside>
 </section>
 
 <!-- ============ 03 教龍蝦 ============ -->
@@ -603,7 +603,7 @@ description: 當使用者說「放上 GitHub」「再放一次」「回到上一
 這台主機只登入一個 GitHub 帳號：主辦方的 **Arnold-leyan**。所有學員的作品都放在 github.com/Arnold-leyan/ 底下，用學員的英文名字當 repo 名稱的開頭來區分。
 
 ## 第一次用
-1. 問使用者的英文名字，轉成英文小寫，只留字母、數字和連字號（例：jason、amy-chang），當作他的「名字開頭」，記在你的記憶裡。之後他的每個 repo 都叫「名字開頭-名稱」（例：jason-liming-office）。
+1. 問使用者的英文名字，轉成英文小寫，只留字母、數字和連字號（例：jason、amy-chang），當作他的「名字開頭」，記在你的記憶裡。之後他的每個 repo 都叫「名字開頭-內容」（例：jason-liming-office）。
 2. 問他早上辦好的 GitHub 帳號名稱（沒有也可以跳過），記起來，放上去之後把他加成那個 repo 的協作者。
 
 ## 每次開始前
@@ -611,11 +611,12 @@ description: 當使用者說「放上 GitHub」「再放一次」「回到上一
 2. 絕對不要執行 `gh auth login`、`gh auth logout`、`gh auth switch`，也不要向使用者要密碼或登入代碼。登入由主辦方處理。
 
 ## 放上去（新的 repo）
-1. 確認要放的資料夾。repo 名稱一定是「名字開頭-名稱」，英文小寫、用連字號。
-2. 用 `gh repo view Arnold-leyan/&lt;repo 名稱&gt;` 確認這個名稱還沒被用過。已經有了，就請使用者換一個名稱，不要覆蓋。
+1. 確認要放的資料夾。repo 名稱由你來取，使用者不用給：「名字開頭-內容的英文短名」（例：jason-liming-office），英文小寫、用連字號。使用者自己指定了名稱，也一樣在前面加上他的名字開頭。
+2. 這個帳號很多人共用，名稱可能撞到。先用 `gh repo view Arnold-leyan/&lt;repo 名稱&gt;` 確認還沒被用過；已經有了，就在後面加 -2、-3……直到找到沒人用過的名稱。絕對不要推到已經存在的 repo。
+   - 記住這個資料夾放到哪個 repo，之後使用者說「再放一次」就用同一個。
 3. 在資料夾裡建立 `.gitignore`，至少寫入 `.env`。
 4. 安全檢查：列出要上傳的檔案。檔名或內容出現 .env、token、password、密碼、身分證、保單，就先停下來告訴使用者，不要上傳。
-5. 用一句話告訴使用者：要上傳哪些檔案，以及「這會公開，任何人都看得到」。使用者說好之前，不要上傳。
+5. 用一句話告訴使用者：要上傳哪些檔案、要放到哪個 repo 名稱，以及「這會公開，任何人都看得到」。使用者說好之前，不要上傳。
 6. `git init`（已經是 repo 就跳過）。只在這個資料夾裡設定作者（不要用 --global）：`git config user.name "&lt;使用者的英文名字&gt;"`；用 `gh api user --jq .id` 取得 id，`git config user.email "&lt;id&gt;+Arnold-leyan@users.noreply.github.com"`。
 7. `git add -A` → `git commit -m "&lt;一句話說明&gt;"` → `gh repo create Arnold-leyan/&lt;repo 名稱&gt; --public --source . --push`。推送時如果要求輸入帳號密碼，停下來請使用者找主辦方。
 8. 使用者給過自己的 GitHub 帳號的話：`gh api -X PUT repos/Arnold-leyan/&lt;repo 名稱&gt;/collaborators/&lt;他的帳號&gt; -f permission=push`，告訴他「GitHub 會寄邀請信給你，按接受就能自己改」。
@@ -673,7 +674,7 @@ description: 當使用者說「放上 GitHub」「再放一次」「回到上一
   <div class="split demo">
     <div class="txt-col">
       <ol class="steps">
-        <li class="f" data-step="0">說哪個資料夾、repo 叫什麼</li>
+        <li class="f" data-step="0">說要放哪一個作品<small>名稱龍蝦會取，不用自己想</small></li>
         <li class="f" data-step="1">它先列出要上傳的檔案，問你可以嗎</li>
         <li class="f" data-step="2"><b>看清楚再說好</b></li>
         <li class="f" data-step="3">拿到網址</li>
@@ -681,8 +682,8 @@ description: 當使用者說「放上 GitHub」「再放一次」「回到上一
     </div>
     <div class="tg big">
       <div class="bar">龍蝦<small>示意</small></div>
-      <p class="bub me f" data-step="0">把早上做的黎明辦公室網頁放上 GitHub，repo 叫 liming-office</p>
-      <p class="bub f" data-step="1">要上傳 8 個檔案：網頁 1 個、照片 7 張，沒有 .env 或客戶資料。這會公開，確定嗎？</p>
+      <p class="bub me f" data-step="0">把早上做的黎明辦公室網頁放上 GitHub</p>
+      <p class="bub f" data-step="1">要上傳 8 個檔案到 jason-liming-office：網頁 1 個、照片 7 張，沒有 .env 或客戶資料。這會公開，確定嗎？</p>
       <p class="bub me f" data-step="2">好</p>
       <p class="bub f" data-step="3">放好了：github.com/Arnold-leyan/jason-liming-office</p>
     </div>
@@ -728,10 +729,10 @@ description: 當使用者說「放上 GitHub」「再放一次」「回到上一
   <ol class="check">
     <li><span class="box a" style="--d:2"></span><div><b>教龍蝦 GitHub 小幫手，傳 /new</b><small>它回「GitHub 小幫手已就緒」</small></div><span class="seal round f stamp">一</span></li>
     <li><span class="box a" style="--d:3"></span><div><b>告訴龍蝦你的英文名字和 GitHub 帳號</b><small>不用登入、不用密碼</small></div><span class="seal round f stamp" style="--rot:8deg">二</span></li>
-    <li><span class="box a" style="--d:4"></span><div><b>「把 ④ 的網頁放上 GitHub，repo 叫 liming-office」</b><small>看完檔案清單再說好</small></div><span class="seal round f stamp" style="--rot:-3deg">三</span></li>
-    <li><span class="box a" style="--d:5"></span><div><b>網址貼到 LINE@</b><small>github.com/Arnold-leyan/你的名字-liming-office</small></div><span class="seal round f stamp" style="--rot:5deg">四</span></li>
+    <li><span class="box a" style="--d:4"></span><div><b>「把 ④ 的網頁放上 GitHub」</b><small>不用取名，看完檔案清單再說好</small></div><span class="seal round f stamp" style="--rot:-3deg">三</span></li>
+    <li><span class="box a" style="--d:5"></span><div><b>網址貼到 LINE@</b><small>github.com/Arnold-leyan/你的名字-…</small></div><span class="seal round f stamp" style="--rot:5deg">四</span></li>
   </ol>
-  <aside class="notes">早上的網頁龍蝦做的、也存在它那裡，直接說「早上做的網頁」就好。15:55 分組後，各組長用同一句話建組的 repo。</aside>
+  <aside class="notes">早上的網頁龍蝦做的、也存在它那裡，直接說「早上做的網頁」就好。15:55 分組後，各組長用同一句話建組的 repo。這個 GitHub 帳號 8 個人共用，所以不讓學員自己指定 repo 名稱，一律由龍蝦取、前面加名字、撞名自動換，避免蓋掉別人的。</aside>
 </section>
 
 <!-- ============ 08 B 開場 ============ -->
