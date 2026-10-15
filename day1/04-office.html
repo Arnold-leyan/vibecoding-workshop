@@ -395,6 +395,14 @@ kbd{display:inline-block;font:600 24px/1.15 var(--f-mono);padding:3px 9px 4px;bo
 .seg.now .t{color:var(--seal)}
 .seg.done{opacity:.45}
 
+.qr-card{align-self:center;justify-self:center;background:#FBFAF6;padding:20px 28px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;
+  border-top:10px solid var(--seal);box-shadow:0 18px 30px -18px rgba(50,42,28,.5);rotate:1deg}
+.qr-card .lab{font-size:22px;letter-spacing:.3em;color:var(--pencil)}
+.qr-card b{font:600 34px/1.2 var(--f-display);letter-spacing:.1em}
+.qr-card .qr{width:270px;height:270px}
+.qr-card .qr svg{display:block;width:100%;height:100%}
+.qr-card .url{font-size:21px;color:var(--pencil);letter-spacing:.02em}
+
 /* ---------- chrome ---------- */
 .nav{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:10;
   display:flex;align-items:center;gap:4px;padding:6px;background:rgba(39,39,36,.86);color:var(--paper);border-radius:4px;
@@ -592,21 +600,21 @@ body.idle .nav{opacity:0}
   <div class="split">
     <div class="txt-col">
       <ol class="steps">
-        <li class="f">請龍蝦把作品傳給你<small>檔名用你的名字開頭</small></li>
+        <li class="f">請龍蝦把作品傳給你<small>檔名用你的名字開頭，例：張家祥-網頁.html</small></li>
         <li class="f">轉傳到「黎明交件」群組<small>長按檔案 → 轉傳</small></li>
         <li class="f">補一句：你是誰、交了什麼</li>
       </ol>
     </div>
     <div class="txt-col">
-      <dl class="idx f" style="rotate:1deg">
-        <div class="fn">Telegram／黎明交件</div>
-        <dt>作品一</dt><dd>張家祥-簡報（或 -影片）</dd>
-        <dt>作品二</dt><dd>張家祥-網頁.html</dd>
-        <dt>一句話</dt><dd>張家祥，簡報＋網頁</dd>
-      </dl>
+      <div class="qr-card f">
+      <span class="lab">掃這個，加入</span>
+      <b>黎明交件</b>
+      <div class="qr"><svg role="img" aria-label="黎明交件群組的 Telegram 邀請 QR code" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" shape-rendering="crispEdges"><path fill="#FBFAF6" d="M0 0h33v33H0z"/><path stroke="#272724" d="M2 2.5h7m2 0h2m1 0h4m1 0h4m1 0h7M2 3.5h1m5 0h1m6 0h5m4 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m1 0h1m3 0h2m1 0h1m6 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h2m1 0h1m2 0h1m1 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m1 0h2m2 0h1m2 0h2m1 0h3m1 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m1 0h1m2 0h2m4 0h2m1 0h1m1 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 9.5h2m2 0h1m1 0h1m1 0h1m1 0h2M2 10.5h1m1 0h5m2 0h2m5 0h1m5 0h5M2 11.5h2m1 0h3m1 0h1m2 0h6m4 0h3m1 0h1m3 0h1M2 12.5h1m2 0h2m1 0h4m2 0h5m1 0h1m3 0h3M2 13.5h1m1 0h1m1 0h2m1 0h1m1 0h2m2 0h1m1 0h1m3 0h2m1 0h4m1 0h1M2 14.5h2m1 0h1m1 0h2m3 0h3m1 0h2m1 0h2m1 0h2m3 0h2M2 15.5h1m2 0h2m2 0h1m1 0h4m2 0h2m3 0h5m3 0h1M3 16.5h2m1 0h3m3 0h2m6 0h1m2 0h6M2 17.5h4m1 0h1m1 0h3m1 0h1m2 0h1m1 0h1m3 0h1m1 0h2m3 0h1M2 18.5h2m2 0h1m1 0h2m1 0h1m1 0h2m3 0h1m8 0h2M2 19.5h3m1 0h2m1 0h2m4 0h3m1 0h1m1 0h6m1 0h1m1 0h1M2 20.5h1m1 0h2m1 0h5m3 0h6m1 0h1m1 0h1m3 0h1M2 21.5h1m3 0h2m4 0h1m1 0h2m1 0h1m2 0h1m1 0h1m2 0h1m3 0h1M2 22.5h1m1 0h1m1 0h3m2 0h2m3 0h2m1 0h1m1 0h6m1 0h3M10 23.5h1m1 0h1m1 0h1m2 0h4m1 0h1m3 0h5M2 24.5h7m5 0h1m4 0h2m1 0h1m1 0h1m1 0h3M2 25.5h1m5 0h1m1 0h2m1 0h2m1 0h1m1 0h1m1 0h3m3 0h1m2 0h2M2 26.5h1m1 0h3m1 0h1m1 0h2m1 0h1m8 0h5m1 0h1m1 0h1M2 27.5h1m1 0h3m1 0h1m1 0h1m2 0h5m1 0h2m6 0h2M2 28.5h1m1 0h3m1 0h1m1 0h3m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m1 0h4M2 29.5h1m5 0h1m3 0h4m1 0h2m1 0h1m5 0h2m1 0h1M2 30.5h7m1 0h1m2 0h2m1 0h1m2 0h1m1 0h1m1 0h6"/></svg></div>
+      <span class="url">t.me/+mvHMdVCpobQ1ZjNl</span>
+    </div>
     </div>
   </div>
-  <aside class="notes">龍蝦不加進群組（早上講過 bot 只認你），所以是龍蝦先把檔案傳給學員，學員自己轉傳到「黎明交件」群組。13:00 ⑤ 由常駐主機的 Telegram 電腦版直接從群組點開播放，全程不換投影，所以一定要在 12:00 前交進去。影片太大龍蝦可能傳不出來（bot 傳檔上限約 50 MB），請它壓小一點。檔名範例用的是名單上的名字，現場可換成任何人。</aside>
+  <aside class="notes">龍蝦不加進群組（早上講過 bot 只認你），所以是龍蝦先把檔案傳給學員，學員自己轉傳到「黎明交件」群組。13:00 ⑤ 由常駐主機的 Telegram 電腦版直接從群組點開播放，全程不換投影，所以一定要在 12:00 前交進去。影片太大龍蝦可能傳不出來（bot 傳檔上限約 50 MB），請它壓小一點。檔名範例用的是名單上的名字，現場可換成任何人。邀請連結：https://t.me/+mvHMdVCpobQ1ZjNl</aside>
 </section>
 
 <!-- ============ 09 12:00 收斂 ============ -->
