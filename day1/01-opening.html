@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>開場・創建帳號・安裝 OpenClaw</title>
+<title>開場・創建帳號・收下龍蝦</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&family=LXGW+WenKai+TC:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=JetBrains+Mono:wght@400;600&display=swap">
@@ -324,6 +324,12 @@ kbd{display:inline-block;font:600 24px/1.15 var(--f-mono);padding:3px 9px 4px;bo
 .pick.tight li .ans{font-size:27px}
 .why.big{font-size:31px;gap:28px}
 .why.big li{line-height:1.5}
+.tag-card{align-self:center;justify-self:center;width:100%;max-width:640px;background:#FBFAF6;padding:44px 48px 40px;rotate:1.5deg;
+  border-top:10px solid var(--seal);box-shadow:0 18px 30px -18px rgba(50,42,28,.5);display:flex;flex-direction:column;gap:14px}
+.tag-card .lab{font-size:24px;letter-spacing:.3em;color:var(--pencil)}
+.tag-card .handle{font:600 52px/1.25 var(--f-display);margin:0}
+.tag-card .link{font-size:30px;color:var(--indigo,#34466B);margin:0;letter-spacing:.02em}
+.tag-card .own{margin:10px 0 0;padding-top:16px;border-top:2px dashed var(--rule);font-size:26px;color:var(--seal)}
 .quote-line{font:600 40px/1.5 var(--f-display)}
 .split.shots-big{grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr)}
 .shot{cursor:zoom-in}
@@ -374,7 +380,7 @@ body.idle .nav{opacity:0}
     <p class="eyebrow a" style="--d:0"><i>Day One · 09:00</i><span>黎明 VibeCoding 工作坊</span></p>
     <h1 class="a" style="--d:1">開場</h1>
     <svg class="under a" style="--d:2" viewBox="0 0 620 30" aria-hidden="true"><path class="draw" pathLength="1" d="M4 20 C 120 6, 260 26, 380 14 S 560 8, 616 18"/></svg>
-    <p class="sub a" style="--d:3">創建帳號 · 安裝 OpenClaw Agent<small>accounts, and a lobster that works for you</small></p>
+    <p class="sub a" style="--d:3">創建帳號 · 收下你的龍蝦<small>accounts, and a lobster that works for you</small></p>
     <p class="meta a" style="--d:4"><i>2026.10.16</i>星期五　干城街　八人</p>
   </div>
   <div class="cover-side">
@@ -391,11 +397,11 @@ body.idle .nav{opacity:0}
     <h2 class="a" style="--d:1">兩天後，你會帶走三件事</h2>
   </header>
   <ol class="three">
-    <li class="f"><span class="num">壹</span><h3>寫出系統性的程式</h3><p>有結構、跑得完、之後還改得動。今天 10:55 做出第一個網頁，明天做出你自己的系統。</p></li>
-    <li class="f"><span class="num">貳</span><h3>養出一個幫你工作的 Agent</h3><p>龍蝦今天上午裝起來，下午就開始用它做事。「養」的意思是，它會愈用愈懂你。</p></li>
+    <li class="f"><span class="num">壹</span><h3>寫出系統性的程式</h3><p>有結構、跑得完、之後還改得動。今天上午做出第一個網頁，明天做出你自己的系統。</p></li>
+    <li class="f"><span class="num">貳</span><h3>養出一個幫你工作的 Agent</h3><p>龍蝦今天上午交到你手上，下午就開始用它做事。「養」的意思是，它會愈用愈懂你。</p></li>
     <li class="f"><span class="num">參</span><h3>把時間省回來</h3><p>你帶來的三件煩事，兩天後至少一件不用再自己做。</p></li>
   </ol>
-  <aside class="notes">三件逐一按出。講到第二件時點一下：龍蝦就是等一下 09:10 要裝的 OpenClaw。</aside>
+  <aside class="notes">三件逐一按出。講到第二件時點一下：龍蝦就是等一下 09:10 要交給每個人的 OpenClaw。</aside>
 </section>
 
 <!-- ============ 02 一句話 ============ -->
@@ -406,7 +412,7 @@ body.idle .nav{opacity:0}
   <p class="sentence a" style="--d:1">原本<span class="blank"><b class="f ink" data-step="0">40</b></span>分鐘，<br>現在<span class="blank"><b class="f ink" data-step="0">5</b></span>分鐘。</p>
   <p class="example f" data-step="0"><i>e.g.</i>整理一週的拜訪紀錄，變成客戶追蹤清單（示意數字）</p>
   <p class="lede f" data-step="1">從你帶來的三件煩事挑一件。<em>還沒寫的，現在拿出手機記一行。</em></p>
-  <aside class="notes">先停在空格讓大家看一下，再按出示意數字。40 → 5 只是示意。② 10:20 找 SKILL 和明天的題目都從這三件煩事來，沒寫的人現在補。</aside>
+  <aside class="notes">先停在空格讓大家看一下，再按出示意數字。40 → 5 只是示意。② 09:35 找 SKILL 和明天的題目都從這三件煩事來，沒寫的人現在補。</aside>
 </section>
 
 <!-- ============ 03 三個專案 ============ -->
@@ -484,35 +490,15 @@ body.idle .nav{opacity:0}
 <section class="sheet chapter" data-row="1">
   <div class="vert a" style="--d:0">備好工具<small>第一段</small></div>
   <div class="body">
-    <p class="time a" style="--d:1">09:10 – 10:10<span>六十分鐘</span></p>
+    <p class="time a" style="--d:1">09:10 – 09:35<span>二十五分鐘</span></p>
     <h2 class="a" style="--d:2">兩件事，照順序做完</h2>
     <ol class="order">
       <li class="f"><span class="n">1</span>GitHub 帳號</li>
-      <li class="f"><span class="arrow">→</span><span class="n">2</span>裝龍蝦，接上 Telegram</li>
+      <li class="f"><span class="arrow">→</span><span class="n">2</span>收下你的龍蝦</li>
     </ol>
-    <p class="judge f">裝好的判準：在 Telegram 傳訊息給你的 bot，它會回你。</p>
+    <p class="judge f">好了的判準：在 Telegram 傳訊息給你的龍蝦，它會回你。</p>
   </div>
-  <aside class="notes">09:10。事前 PPT 已經帶大家走過一遍，這一小時是把 8 個人補到同一個位置。這是今天最容易失控的一段，助教 ×2 加技術窗口就位。學員要先在電腦上裝好 Telegram 並登入。</aside>
-</section>
-
-<!-- ============ 08 你停在第幾步 ============ -->
-<section class="sheet" data-row="1">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Check-in</i><span>事前五步</span></p>
-    <h2 class="a" style="--d:1">先舉手：你停在第幾步？</h2>
-  </header>
-  <ol class="ladder a" style="--d:2">
-    <li><div class="blk" style="--h:70px">1</div><p>Claude 訂閱開通<br><span class="dim">US$20，公司補助</span></p></li>
-    <li><div class="blk" style="--h:115px">2</div><p>Claude 裝好<br>並登入</p></li>
-    <li><div class="blk" style="--h:160px;--c:#A9A396">3</div><p>驗證任務跑通<br><span class="dim">數出資料夾有幾個檔案</span></p></li>
-    <li><div class="blk" style="--h:205px;--c:var(--indigo)">4</div><p>GitHub 帳號、Telegram 電腦版</p></li>
-    <li><div class="blk" style="--h:250px;--c:var(--seal)">5</div><p>龍蝦裝好<br><span class="dim">Telegram 回得了話</span></p></li>
-  </ol>
-  <div class="callouts">
-    <p class="f">做到第 5 步：<b>你今天是小助教</b>，坐到還卡著的人旁邊</p>
-    <p class="f">第 3 步以前：<b>舉手</b>，助教先去找你</p>
-  </div>
-  <aside class="notes">請大家用手指比數字。做完的人分散坐。助教照機型分工：Windows 一位、Mac 一位。</aside>
+  <aside class="notes">09:10。龍蝦主辦方已經裝好、接好了，每人一個 Telegram bot，今天不教安裝。這 25 分鐘只做兩件事：還沒有 GitHub 帳號的人現在辦，然後每個人收下自己的 bot、傳第一句話。學員要先在手機或電腦裝好 Telegram 並登入。</aside>
 </section>
 
 <!-- ============ 09 GitHub ============ -->
@@ -540,7 +526,7 @@ body.idle .nav{opacity:0}
     </ol>
   </div>
   <div class="see f"><span class="seal ring">你應該看到</span>登入後，右上角出現你的頭像。</div>
-  <aside class="notes">約 3 分鐘。Username 之後會出現在每個專案的網址上，建議用英文名，工作上看得懂的。</aside>
+  <aside class="notes">約 3 分鐘。事前已經辦好的人，登入確認右上角有頭像就好，接著先去收龍蝦。Username 之後會出現在每個專案的網址上，建議用英文名，工作上看得懂的。</aside>
 </section>
 
 <!-- ============ 10 認識龍蝦 ============ -->
@@ -554,258 +540,107 @@ body.idle .nav{opacity:0}
   </div>
   <div class="compare">
     <div class="card plain f"><span class="who">聊天的 AI</span><p class="say">你問一句，<br>它回一句。</p><p class="ex">回答寫得再好，最後還是你自己去做。</p></div>
-    <div class="card agent f"><span class="who">Agent · 龍蝦</span><p class="say">你交代一件事，<br>它自己動手做完。</p><p class="ex">它住在你的電腦裡，會開檔案、跑指令。接上 Telegram 之後，出門在外也能用手機交代它。</p></div>
+    <div class="card agent f"><span class="who">Agent · 龍蝦</span><p class="say">你交代一件事，<br>它自己動手做完。</p><p class="ex">它住在主辦方準備好的主機上，24 小時開著，會開檔案、跑指令。你只要用 Telegram 交代它，手機、電腦都行。</p></div>
   </div>
   <aside class="notes">一句話講清楚差別就好，不講原理。「養」的意思：它會記得你的習慣。</aside>
 </section>
 
-<!-- ============ 11 只連自己的 ============ -->
+<!-- ============ 11 只用自己的 ============ -->
 <section class="sheet" data-row="1">
   <header class="hd">
     <p class="eyebrow a" style="--d:0"><i>One rule</i><span>今天的規矩</span></p>
   </header>
   <div class="only">
-    <p class="huge a" style="--d:1">只連<br><em>自己的。</em></p>
+    <p class="huge a" style="--d:1">只用<br><em>自己的。</em></p>
     <div class="side">
-      <p class="f">今天把龍蝦接上 Telegram，用的是你等一下自己建的 bot。</p>
-      <p class="f">工作 LINE、公司信箱今天都不連。14:30 資安課講完規矩，再決定要不要連。</p>
-      <p class="skip f">配對碼就是門鎖：<em>只有你核准的帳號</em>，才能跟它說話。</p>
+      <p class="f">每個人一隻龍蝦，各有各的 Telegram bot，只聽你一個人的。</p>
+      <p class="f">bot 的連結不要轉給別人，也不要把它拉進群組。</p>
+      <p class="skip f">工作 LINE、公司信箱今天都不連。<em>14:30 資安課講完規矩</em>，再決定要不要連。</p>
     </div>
   </div>
-  <aside class="notes">今天會連 Telegram，但只連每個人自己新建的 bot，不碰工作帳號。配對（pairing）是預設的門鎖，第 8 步會實際做一次。</aside>
+  <aside class="notes">bot 主辦方已經設好，只認發給的那個人的 Telegram 帳號。陌生人傳訊息給它，它不會理。</aside>
 </section>
 
-<!-- ============ 12 安裝 1：交給 Claude ============ -->
+<!-- ============ 12 收下龍蝦 ============ -->
 <section class="sheet" data-row="2">
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Install · 1 / 8</i><span>Windows</span></p>
-    <h2 class="a" style="--d:1">交給 Claude 安裝</h2>
-  </header>
-  <div class="split">
-    <div class="txt-col">
-      <p class="f">在 Claude Desktop 的 Code 分頁開新對話，貼上這段：</p>
-      <div class="code prompt f"><span class="txt">請幫我在這台 Windows 電腦安裝 OpenClaw：
-1. 用官方安裝腳本，並跳過設定精靈：
-   &amp; ([scriptblock]::Create((iwr -useb https://openclaw.ai/install.ps1))) -NoOnboard
-2. 裝好後執行 openclaw --version 確認
-3. 遇到錯誤自己排除，每一步用一句話告訴我在做什麼</span><button class="copy" type="button">複製</button></div>
-      <p class="small f">它問「允許嗎？」按允許。跳出 Windows 的系統管理員視窗，按「是」。</p>
-    </div>
-    <div class="collage">
-      <figure class="shot f" style="left:0;top:20px;width:100%;rotate:-.6deg"><img src="slides-img/win/01-claude-done.png" alt="Claude 回報 OpenClaw 已裝好，openclaw --version 顯示 2026.9.8"></figure>
-      <div class="see f" style="position:absolute;left:0;right:0;bottom:0"><span class="seal ring">你應該看到</span><span>回報 <span class="mono">OpenClaw 2026.9.8</span> 之類的版本號。</span></div>
-    </div>
-  </div>
-  <aside class="notes">錄製時 Claude 發現 iwr | iex 這種寫法會讓腳本參數驗證報錯，所以改用 scriptblock 寫法，提示詞已經直接寫成那個版本。電腦上的 Node.js 太舊時，它會用 winget 自動升級，期間會跳系統管理員授權。Mac 的同學把「Windows」改成「Mac」，Claude 會自己換成 Mac 的指令。</aside>
-</section>
-
-<!-- ============ 13 安裝 2：開新的 PowerShell ============ -->
-<section class="sheet" data-row="2">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Install · 2 / 8</i><span>Windows</span></p>
-    <h2 class="a" style="--d:1">開一個新的 PowerShell</h2>
-  </header>
-  <div class="split shots-big">
-    <div class="txt-col">
-      <p class="f">按<kbd>⊞ Win</kbd>，輸入 <b>PowerShell</b>，按<kbd>Enter</kbd><small>一定要開新的，剛裝好的指令才找得到</small></p>
-      <div class="code f"><span class="pr">PS&gt;</span><span class="type">openclaw onboard --install-daemon</span><button class="copy" type="button">複製</button></div>
-      <p class="f">出現龍蝦圖案，選 <b>Quick start (recommended)</b>，按<kbd>Enter</kbd>。</p>
-    </div>
-    <div class="collage">
-      <figure class="shot f" style="left:0;top:0;rotate:-1.4deg;z-index:1;width:710px"><img src="slides-img/win/02-search-powershell.png" alt="開始功能表搜尋 PowerShell"></figure>
-      <figure class="shot f" style="right:0;bottom:0;rotate:1deg;z-index:2;width:829px"><img src="slides-img/win/03-quickstart.png" alt="設定精靈第一個畫面，選 Quick start"></figure>
-    </div>
-  </div>
-  <aside class="notes">--install-daemon 會把龍蝦裝成背景服務，電腦開機它就在。Claude 最後建議的指令可能只寫 openclaw onboard，請以這頁為準。上下鍵移動，Enter 確認。</aside>
-</section>
-
-<!-- ============ 14 安裝 3：選 AI ============ -->
-<section class="sheet" data-row="2">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Install · 3 / 8</i><span>Windows</span></p>
-    <h2 class="a" style="--d:1">選要用哪個 AI</h2>
-  </header>
-  <div class="split shots-big">
-    <ul class="pick one f">
-      <li><i>a</i><span class="q">What would you like to create?</span><span class="ans"><em>One agent</em></span></li>
-      <li><i>b</i><span class="q">Use which detected AI?</span><span class="ans"><em>Try Claude Code</em>，用你的 Claude 訂閱</span></li>
-      <li><i>c</i><span class="q">出現 Inference ready</span><span class="ans">AI 接上了，往下走</span></li>
-    </ul>
-    <div class="collage">
-      <figure class="shot f" style="left:0;top:0;rotate:-.8deg;z-index:1;width:829px"><img src="slides-img/win/05-claude-code.png" alt="選 Try Claude Code"></figure>
-      <figure class="shot f" style="right:0;bottom:0;rotate:1.1deg;z-index:2;width:829px"><img src="slides-img/win/06-inference.png" alt="Inference verified: anthropic/claude-opus-5-5"></figure>
-    </div>
-  </div>
-  <aside class="notes">它會自動偵測電腦上已經有的 AI。學員都裝了 Claude，所以選 Claude Code，不需要 API 金鑰。錄製的電腦上還有 Codex，學員畫面可能只會看到 Claude Code 一項。</aside>
-</section>
-
-<!-- ============ 15 安裝 4：建 bot ============ -->
-<section class="sheet" data-row="2">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Install · 4 / 8</i><span>Telegram 電腦版</span></p>
-    <h2 class="a" style="--d:1">在 Telegram 建一個 bot</h2>
-  </header>
-  <div class="split narrow-shot">
-    <div class="txt-col">
-      <ol class="steps">
-        <li class="f">搜尋 <b>@BotFather</b>，打開對話</li>
-        <li class="f">傳 <span class="mono red">/newbot</span></li>
-        <li class="f">取名稱<small>例：黎明小龍蝦，中文可以</small></li>
-        <li class="f">取帳號，結尾一定要是 <b>bot</b><small>例：liming_lobster_bot</small></li>
-        <li class="f">複製紅框裡那一長串 <b>token</b></li>
-      </ol>
-      <p class="warn f">token 就是這個 bot 的鑰匙。不貼進 AI 對話，不傳給別人。</p>
-    </div>
-    <div class="collage">
-      <figure class="shot f" style="right:30px;top:0;height:100%;rotate:1deg"><img src="slides-img/win/07-botfather.png" alt="BotFather 對話：/newbot、取名稱、取帳號、拿到 token（已遮蔽）" style="height:100%;width:auto"></figure>
-    </div>
-  </div>
-  <aside class="notes">設定精靈先停在原地不用關，切到 Telegram 建 bot。截圖裡的 token 已經打上馬賽克。帳號名稱被用過時 BotFather 會要你換一個。</aside>
-</section>
-
-<!-- ============ 16 安裝 5：貼 token ============ -->
-<section class="sheet" data-row="2">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Install · 5 / 8</i><span>Windows</span></p>
-    <h2 class="a" style="--d:1">把 token 交給精靈</h2>
-  </header>
-  <div class="split shots-big">
-    <ul class="pick one">
-      <li class="f"><i>a</i><span class="q">Select channel</span><span class="ans">直接打字 <span class="mono red">tele</span>，選 <em>Telegram (Bot API)</em></span></li>
-      <li class="f"><i>b</i><span class="q">How do you want to provide this token?</span><span class="ans"><em>Enter Telegram bot token</em></span></li>
-      <li class="f"><i>c</i><span class="q">Enter Telegram bot token</span><span class="ans">按滑鼠右鍵貼上 token，按 Enter</span></li>
-    </ul>
-    <div class="collage">
-      <figure class="shot f" style="left:0;top:0;rotate:-1.2deg;z-index:1;width:691px"><img src="slides-img/win/08-channel-search.png" alt="Select channel 清單，可以打字搜尋"></figure>
-      <figure class="shot f" style="right:0;bottom:0;rotate:.9deg;z-index:2;width:829px"><img src="slides-img/win/09-telegram-token.png" alt="Enter Telegram bot token 輸入欄"></figure>
-    </div>
-  </div>
-  <aside class="notes">清單很長，直接打字搜尋最快。PowerShell 裡按滑鼠右鍵就是貼上。</aside>
-</section>
-
-<!-- ============ 17 安裝 6：其他問題 ============ -->
-<section class="sheet" data-row="3">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Install · 6 / 8</i><span>Windows</span></p>
-    <h2 class="a" style="--d:1">其他問題這樣選</h2>
+    <p class="eyebrow a" style="--d:0"><i>Step 2 of 2</i><span>收下你的龍蝦</span></p>
+    <h2 class="a" style="--d:1">打開 Telegram，跟它說第一句話</h2>
   </header>
   <div class="split wide-left">
     <ul class="pick one tight">
-      <li class="f"><i>a</i><span class="q">Set up administration from your own chat account?</span><span class="ans"><em>Skip for now</em></span></li>
-      <li class="f"><i>b</i><span class="q">Import these memories?</span><span class="ans"><em>Yes</em>，把 Claude 記得的事帶過來</span></li>
-      <li class="f"><i>c</i><span class="q">Search provider</span><span class="ans"><em>DuckDuckGo</em>，免金鑰</span></li>
-      <li class="f"><i>d</i><span class="q">Install DuckDuckGo plugin?</span><span class="ans"><em>Download from npm</em></span></li>
-      <li class="f"><i>e</i><span class="q">Install missing skill dependencies</span><span class="ans"><em>Skip for now</em></span></li>
+      <li class="f"><i>a</i><span class="q">手機或電腦都可以</span><span class="ans">打開 <em>Telegram</em>，確認已經登入</span></li>
+      <li class="f"><i>b</i><span class="q">每人一個，助教會發給你</span><span class="ans">點<em>你的 bot 連結</em></span></li>
+      <li class="f"><i>c</i><span class="q">畫面最下方那顆按鈕</span><span class="ans">按 <em>開始</em>（Start）</span></li>
+      <li class="f"><i>d</i><span class="q">隨便一句都行</span><span class="ans">傳 <em>「你好」</em></span></li>
     </ul>
-    <div class="collage">
-      <figure class="shot f" style="left:0;top:0;rotate:-.8deg;z-index:1;width:593px"><img src="slides-img/win/10-skip-admin.png" alt="Set up administration：選 Skip for now"></figure>
-      <figure class="shot f" style="right:0;top:200px;rotate:.9deg;z-index:2;width:593px"><img src="slides-img/win/11-duckduckgo.png" alt="Install DuckDuckGo plugin：選 Download from npm"></figure>
-      <p class="alt f" style="position:absolute;left:0;bottom:0">沒列到的問題：按 Enter 用預設值。</p>
+    <div class="tag-card f">
+      <span class="lab">你的龍蝦</span>
+      <p class="handle">@＿＿＿＿＿_bot</p>
+      <p class="link">t.me/＿＿＿＿＿_bot</p>
+      <p class="own">只給你一個人用</p>
     </div>
   </div>
-  <aside class="notes">a 選 Skip：管理員帳號要另外查自己的 Telegram user ID，今天用配對就夠了。e 的技能依賴之後需要再裝。若問到「Help make OpenClaw better?」選 No thanks。</aside>
-</section>
-
-<!-- ============ 18 安裝 7：等它裝完 ============ -->
-<section class="sheet" data-row="3">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Install · 7 / 8</i><span>Windows</span></p>
-    <h2 class="a" style="--d:1">等它裝完，紅字先別慌</h2>
-  </header>
-  <div class="split shots-big">
-    <ul class="why big">
-      <li class="f">看到 <span class="mono">Gateway service installed.</span>，背景服務就裝好了</li>
-      <li class="f">下一行紅字 <span class="mono red">Health check failed</span>：服務剛啟動還在暖機，先不用管</li>
-      <li class="f">最後畫面出現 <span class="mono">gateway connected</span>，就是好了</li>
-    </ul>
-    <div class="collage">
-      <figure class="shot f" style="left:0;top:0;rotate:-.7deg;z-index:1;width:829px"><img src="slides-img/win/12-health-failed.png" alt="Gateway service installed，接著 Health check failed"></figure>
-      <figure class="shot f" style="right:0;top:210px;rotate:1deg;z-index:2;width:829px"><img src="slides-img/win/13-tui-connected.png" alt="openclaw tui 顯示 gateway connected"></figure>
-    </div>
-  </div>
-  <aside class="notes">錄製時就出現了 Health check failed，等幾秒後介面自己連上了。超過一分鐘還沒 connected，就開新的 PowerShell 打 openclaw gateway status。這個視窗之後可以直接跟龍蝦打字聊天。</aside>
-</section>
-
-<!-- ============ 19 安裝 8：配對 ============ -->
-<section class="sheet" data-row="3">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Install · 8 / 8</i><span>Telegram ＋ PowerShell</span></p>
-    <h2 class="a" style="--d:1">跟你的 bot 配對</h2>
-  </header>
-  <div class="split shots-big">
-    <div class="txt-col">
-      <ol class="steps">
-        <li class="f">在 Telegram 搜尋你的 bot 帳號，按 <b>Start</b></li>
-        <li class="f">它回一組配對碼，點下面那行指令就能複製</li>
-        <li class="f">再開一個 PowerShell 分頁，貼上、按 Enter<small>原本那個視窗正在跑龍蝦，不要關</small></li>
-      </ol>
-      <div class="code f"><span class="pr">PS&gt;</span><span class="type">openclaw pairing approve telegram XXXXXXXX</span><button class="copy" type="button">複製</button></div>
-    </div>
-    <div class="collage">
-      <figure class="shot f" style="left:0;top:0;rotate:-1.2deg;z-index:1;width:703px"><img src="slides-img/win/14-pairing-code.png" alt="bot 回覆配對碼與核准指令（user id 已遮蔽）"></figure>
-      <figure class="shot f" style="right:0;bottom:0;rotate:.8deg;z-index:2;width:829px"><img src="slides-img/win/15-approve.png" alt="PowerShell 顯示 Approved telegram sender（已遮蔽）"></figure>
-    </div>
-  </div>
-  <aside class="notes">配對碼一小時內有效。看到綠色的 Approved 就成功了。截圖裡的 user id 已遮蔽。</aside>
+  <aside class="notes">bot 連結照主辦方準備的方式一人一份發下去（私訊或紙條），不要貼在全體群組。學員點連結後在 Telegram 按「開始」。如果 bot 回的是一組配對碼而不是打招呼，把碼給助教，由主辦方在主機上核准。</aside>
 </section>
 
 <!-- ============ 20 它回你了 ============ -->
-<section class="sheet" data-row="3">
+<section class="sheet" data-row="2">
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Done</i><span>裝好的判準</span></p>
+    <p class="eyebrow a" style="--d:0"><i>Done</i><span>好了的判準</span></p>
     <h2 class="a" style="--d:1">傳一句 hi，它回你了</h2>
   </header>
   <div class="split narrow-shot">
     <div class="txt-col">
-      <p class="f">它會先問你要叫它什麼名字。取好之後，順便跟它說：</p>
+      <p class="f">它可能會先問你要叫它什麼名字。取好之後，順便跟它說：</p>
       <p class="quote-line f">「以後請用繁體中文回答我。」</p>
-      <p class="f dim">這就是今天的判準：龍蝦跑得起來，而且聽得到你。</p>
+      <p class="f dim">這就是今天的判準：你的龍蝦聽得到你。</p>
       <span class="seal round f stamp" style="--rot:-10deg">好</span>
     </div>
     <div class="collage">
       <figure class="shot f" style="right:30px;top:0;height:100%;rotate:-1deg"><img src="slides-img/win/16-bot-reply.png" alt="bot 自我介紹、取名、改用繁體中文回答" style="height:100%;width:auto"></figure>
     </div>
   </div>
-  <aside class="notes">筆電闔上或睡眠，bot 就不會回。下午團隊實作會開始用它做事。</aside>
+  <aside class="notes">龍蝦在主辦方的主機上 24 小時開著，學員的電腦闔上、關機都不影響。右邊截圖是主辦方實測時的畫面，名字和開場白每個人會不一樣。下午團隊實作會開始用它做事。</aside>
 </section>
 
 <!-- ============ 21 卡住了 ============ -->
-<section class="sheet" data-row="3">
+<section class="sheet" data-row="2">
   <header class="hd">
     <p class="eyebrow a" style="--d:0"><i>If stuck</i><span>卡住了怎麼辦</span></p>
-    <h2 class="a" style="--d:1">紅字不可怕，先別關視窗</h2>
+    <h2 class="a" style="--d:1">它沒回你，先看這四個</h2>
   </header>
   <div class="trouble">
-    <div class="f"><span class="who">開新視窗就好</span><p class="sym"><span class="mono">'openclaw' 不是內部或外部命令</span></p><p class="fix">關掉 PowerShell，開一個新的再試。</p></div>
-    <div class="f"><span class="who">精靈開了兩個</span><p class="sym"><span class="mono">Another onboarding/config operation is running</span></p><p class="fix">把舊的 PowerShell 視窗關掉，再跑一次。</p></div>
-    <div class="f"><span class="who">等一下</span><p class="sym"><span class="mono">Health check failed</span></p><p class="fix">等一分鐘。還是沒 connected，打 <span class="mono">openclaw gateway status</span>。</p></div>
-    <div class="f"><span class="who">bot 不回話</span><p class="sym">傳了訊息，bot 沒反應</p><p class="fix">確認已經配對；筆電要開著、不能睡眠。</p></div>
+    <div class="f"><span class="who">找不到 bot</span><p class="sym">搜尋不到名字</p><p class="fix">直接點助教給的連結，不要自己打名字。</p></div>
+    <div class="f"><span class="who">沒有「開始」按鈕</span><p class="sym">畫面只有輸入框</p><p class="fix">直接傳 <span class="mono">/start</span> 也一樣。</p></div>
+    <div class="f"><span class="who">它回一串配對碼</span><p class="sym"><span class="mono">Pairing code: ＿＿＿＿</span></p><p class="fix">把碼給助教，主辦方核准後再傳一次。</p></div>
+    <div class="f"><span class="who">等很久沒回</span><p class="sym">傳了訊息沒反應</p><p class="fix">等 30 秒再傳一次；還是不行就舉手。</p></div>
   </div>
-  <aside class="notes">前兩個錄製時真的遇到過。10 分鐘內解不掉的就先併桌，不要讓一台機器卡住全場。休息 10:10 時技術窗口再處理。</aside>
+  <aside class="notes">主機那邊的問題由技術窗口處理，學員這邊能做的就是這四個。超過 5 分鐘解不掉，先跟隔壁的人一起看他的龍蝦，繼續往下走。</aside>
 </section>
 
-<!-- ============ 23 10:00 收斂 ============ -->
-<section class="sheet" data-row="3">
+<!-- ============ 23 09:30 收斂 ============ -->
+<section class="sheet" data-row="2">
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>10:00</i><span>收斂</span></p>
+    <p class="eyebrow a" style="--d:0"><i>09:30</i><span>收斂</span></p>
     <h2 class="a" style="--d:1">一個帳號，一隻龍蝦</h2>
   </header>
   <ol class="check">
     <li><span class="box a" style="--d:2"></span><div><b>GitHub 登入中</b><small>右上角有頭像</small></div><span class="seal round f stamp">好</span></li>
-    <li><span class="box a" style="--d:3"></span><div><b>Telegram bot 回你話</b><small>配對完成，傳 hi 有回應</small></div><span class="seal round f stamp" style="--rot:8deg">好</span></li>
+    <li><span class="box a" style="--d:3"></span><div><b>你的龍蝦回你話</b><small>在 Telegram 傳「你好」有回應</small></div><span class="seal round f stamp" style="--rot:8deg">好</span></li>
   </ol>
-  <aside class="notes">10:00 逐一確認兩件，每個人都要問到。bot 回不了話的人，10:20 用不了 Skill Finder，休息時間優先處理。</aside>
+  <aside class="notes">09:30 逐一確認兩件，每個人都要問到。龍蝦回不了話的人，09:35 用不了 Skill Finder，技術窗口優先處理。</aside>
 </section>
 
-<!-- ============ 19 休息 ============ -->
-<section class="sheet end" data-row="3">
-  <div class="vert a" style="--d:0">休息十分鐘</div>
+<!-- ============ 24 下一段 ============ -->
+<section class="sheet end" data-row="2">
+  <div class="vert a" style="--d:0">接下來</div>
   <div class="body">
-    <p class="time a" style="--d:1">10:10 – 10:20</p>
-    <p class="next a" style="--d:2">回來之後：認識 SKILL，<br>用 Skill Finder 找到你要的。</p>
+    <p class="time a" style="--d:1">09:35 – 10:05</p>
+    <p class="next a" style="--d:2">認識 SKILL，<br>用 Skill Finder 找到你要的。</p>
     <p class="bring f">把你寫下的三件煩事拿出來，等一下拿它當關鍵字。</p>
   </div>
-  <aside class="notes">10:10 休息。10:20 準時回來。休息時間技術窗口處理還沒裝好的人。</aside>
+  <aside class="notes">不休息，直接接 ②。上午的休息改到 10:20（③ 示範之後）。</aside>
 </section>
 
 </div>
@@ -855,7 +690,7 @@ body.idle .nav{opacity:0}
     s.style.left=(p.x-W0/2)+'px'; s.style.top=(p.y-H0/2)+'px';
     s.style.transform='rotate('+p.r+'deg)';
     var f=document.createElement('div'); f.className='folio';
-    f.innerHTML='<span>'+(i<7?'開場':'第一段 · 創建帳號與安裝')+'</span><span><i>'+String(i+1).padStart(2,'0')+'</i> / '+N+'</span>';
+    f.innerHTML='<span>'+(i<7?'開場':'第一段 · 帳號與龍蝦')+'</span><span><i>'+String(i+1).padStart(2,'0')+'</i> / '+N+'</span>';
     s.appendChild(f);
     if(i%3!==1){var t=document.createElement('div');t.className='tape'+(i%2?' blue':'');
       t.style.setProperty('--tx',(240+(i*97)%980)+'px');t.style.setProperty('--tr',(((i*41)%11)-5)+'deg');s.appendChild(t);}

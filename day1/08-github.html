@@ -561,7 +561,7 @@ body.idle .nav{opacity:0}
     <h2 class="a" style="--d:1">三個動作，都對龍蝦說</h2>
   </header>
   <div class="moves">
-    <div class="f"><span class="who-lab">動作一＋二 · 建 repo、放上去</span><div class="tg"><p class="bub me">把桌面上的「黎明辦公室」資料夾放上 GitHub，repo 叫 liming-office</p></div></div>
+    <div class="f"><span class="who-lab">動作一＋二 · 建 repo、放上去</span><div class="tg"><p class="bub me">把早上做的黎明辦公室網頁放上 GitHub，repo 叫 liming-office</p></div></div>
     <div class="f"><span class="who-lab">動作三 · 改完再放一次</span><div class="tg"><p class="bub me">我改好了，再放一次：這次把標題改大</p></div></div>
     <div class="f"><span class="who-lab red">改壞了 · 回到上一版</span><div class="tg"><p class="bub me">剛剛那版改壞了，幫我回到上一版</p></div></div>
   </div>
@@ -596,14 +596,13 @@ description: 當使用者說「放上 GitHub」「再放一次」「回到上一
 
 ## 每次開始前
 1. 先確認 git 和 gh 都在：執行 `git --version` 和 `gh --version`。
-   - 缺哪個就裝哪個：`winget install --id Git.Git -e`、`winget install --id GitHub.cli -e`。跳出系統管理員視窗時，請使用者按「是」。
-   - 剛裝好可能還找不到指令：到 `C:\Program Files\Git\cmd`、`C:\Program Files\GitHub CLI`、`%LOCALAPPDATA%\Microsoft\WinGet\Links` 找完整路徑來用；都找不到，就請使用者在 PowerShell 輸入 `openclaw gateway restart` 後再試。
-   - 裝好後回報兩個版本號。
+   - 這台主機由主辦方管理，git 和 gh 應該已經裝好。缺任何一個，不要自己安裝，告訴使用者「主機上還沒有 git／gh，請找主辦方」，然後停下來。
 2. 執行 `gh auth status` 確認有沒有登入。還沒登入時：
    - 在背景執行 `gh auth login --web --git-protocol https`。
    - 把畫面上的 8 碼代碼和網址 https://github.com/login/device 傳給使用者，請他自己在瀏覽器登入 GitHub、輸入代碼、按 Authorize，完成後跟你說。
    - 絕對不要向使用者要密碼，也不要代替他登入。
    - 使用者說好了，用 `gh auth status` 確認，再執行 `gh auth setup-git`，回報登入的帳號名稱。
+   - 已經登入時，先問使用者「現在登入的是 &lt;帳號&gt;，是你的嗎？」。不是他本人的帳號就停下來，不要用別人的帳號上傳。
 3. `git config --global user.name` 是空的：用 `gh api user --jq .login` 和 `gh api user --jq .id` 取得帳號與 id，把 user.name 設成帳號，user.email 設成 `&lt;id&gt;+&lt;帳號&gt;@users.noreply.github.com`。
 
 ## 放上去（新的 repo）
@@ -631,35 +630,10 @@ description: 當使用者說「放上 GitHub」「再放一次」「回到上一
   <aside class="notes">小幫手規定龍蝦：上傳前先列檔案、等你說好；不上傳 .env 和客戶資料；不刪 repo、不 force push。原始檔在工作坊資料夾 skills/github-helper/。</aside>
 </section>
 
-<!-- ============ 04a 裝 git 和 gh ============ -->
-<section class="sheet" data-row="0">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>A · Setup 2</i><span>只做一次</span></p>
-    <h2 class="a" style="--d:1">請龍蝦裝好 git 和 gh</h2>
-  </header>
-  <div class="split demo">
-    <div class="txt-col">
-      <ol class="steps">
-        <li class="f" data-step="0">對龍蝦說一句話</li>
-        <li class="f" data-step="1">電腦跳出系統管理員視窗，按「是」</li>
-        <li class="f" data-step="2">它回報兩個版本號，就好了</li>
-      </ol>
-      <p class="f dim" style="font-size:24px" data-step="3">git 負責記住每一版，gh 是 GitHub 官方的工具。龍蝦靠這兩個幫你放上 GitHub。</p>
-    </div>
-    <div class="tg big">
-      <div class="bar">龍蝦<small>示意</small></div>
-      <p class="bub me f" data-step="0">幫我檢查電腦有沒有 git 和 gh，沒有就幫我裝</p>
-      <p class="bub f" data-step="1">git 已經有了。gh 還沒有，我用 winget 幫你裝。電腦上會跳出系統管理員視窗，請按「是」。</p>
-      <p class="bub f" data-step="2">裝好了：git 2.53、gh 2.97。</p>
-    </div>
-  </div>
-  <aside class="notes">龍蝦用 winget 安裝，套件名稱已確認：Git.Git、GitHub.cli。剛裝好龍蝦可能一時找不到指令，小幫手會自己去找完整路徑；還是不行，請學員在 PowerShell 輸入 openclaw gateway restart 再試。版本號只是示意。</aside>
-</section>
-
 <!-- ============ 04b 登入 ============ -->
 <section class="sheet" data-row="0">
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>A · Setup 3</i><span>只做一次</span></p>
+    <p class="eyebrow a" style="--d:0"><i>A · Setup 2</i><span>只做一次</span></p>
     <h2 class="a" style="--d:1">登入 GitHub：龍蝦給代碼，你自己登入</h2>
   </header>
   <div class="split demo">
@@ -700,7 +674,7 @@ description: 當使用者說「放上 GitHub」「再放一次」「回到上一
     </div>
     <div class="tg big">
       <div class="bar">龍蝦<small>示意</small></div>
-      <p class="bub me f" data-step="0">把桌面上的「黎明辦公室」資料夾放上 GitHub，repo 叫 liming-office</p>
+      <p class="bub me f" data-step="0">把早上做的黎明辦公室網頁放上 GitHub，repo 叫 liming-office</p>
       <p class="bub f" data-step="1">要上傳 8 個檔案：網頁 1 個、照片 7 張。沒有 .env 或客戶資料。這會公開，任何人都看得到，確定嗎？</p>
       <p class="bub me f" data-step="2">好</p>
       <p class="bub f" data-step="3">放好了：github.com/你的帳號/liming-office</p>
@@ -746,7 +720,7 @@ description: 當使用者說「放上 GitHub」「再放一次」「回到上一
   </header>
   <ol class="check">
     <li><span class="box a" style="--d:2"></span><div><b>教龍蝦 GitHub 小幫手，傳 /new</b><small>它回「GitHub 小幫手已就緒」</small></div><span class="seal round f stamp">一</span></li>
-    <li><span class="box a" style="--d:3"></span><div><b>請龍蝦裝好 git、gh，幫你登入 GitHub</b><small>密碼自己在瀏覽器輸入</small></div><span class="seal round f stamp" style="--rot:8deg">二</span></li>
+    <li><span class="box a" style="--d:3"></span><div><b>請龍蝦幫你登入 GitHub</b><small>密碼自己在瀏覽器輸入</small></div><span class="seal round f stamp" style="--rot:8deg">二</span></li>
     <li><span class="box a" style="--d:4"></span><div><b>「把 ④ 的網頁放上 GitHub，repo 叫 liming-office」</b><small>看完檔案清單再說好</small></div><span class="seal round f stamp" style="--rot:-3deg">三</span></li>
     <li><span class="box a" style="--d:5"></span><div><b>網址貼到 LINE@</b><small>github.com/你的帳號/liming-office</small></div><span class="seal round f stamp" style="--rot:5deg">四</span></li>
   </ol>
