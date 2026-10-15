@@ -1,0 +1,1092 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>GitHub 與 vibe coding 基本功</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&family=LXGW+WenKai+TC:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: recycled-paper sheets laid on a desk; a camera glides from sheet to sheet, content builds in per click */
+:root{
+  --desk:#D3CFC5;
+  --paper:#F4F2EC;
+  --ink:#272724;
+  --pencil:#85827A;
+  --rule:#D9D4C8;
+  --seal:#B03A27;
+  --indigo:#2F4C66;
+  --moss:#5B6A45;
+  --code-bg:#2A2A26;
+  --code-fg:#EEEADF;
+  --code-dim:#8F8A7C;
+
+  --f-display:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  --f-hand:"LXGW WenKai TC","Kaiti TC","DFKai-SB","BiauKai",serif;
+  --f-latin:"Cormorant Garamond","Times New Roman",serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+
+  --noise:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .32  0 0 0 0 .29  0 0 0 0 .24  0 0 0 .10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  color-scheme:light;
+}
+html,body{height:100%;margin:0;overflow:hidden}
+body{background:var(--desk) var(--noise);color:var(--ink);font-family:var(--f-hand);-webkit-font-smoothing:antialiased}
+body.idle{cursor:none}
+
+#viewport{position:fixed;inset:0;overflow:hidden;touch-action:none}
+#world{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+
+/* ---------- sheet ---------- */
+.sheet{
+  position:absolute;width:1600px;height:900px;box-sizing:border-box;
+  padding:112px 120px 104px;
+  background:var(--paper) var(--noise);
+  box-shadow:0 1px 0 rgba(60,50,30,.05),0 22px 44px -20px rgba(50,42,28,.42),0 2px 6px rgba(50,42,28,.08);
+  display:flex;flex-direction:column;gap:40px;
+  transition:opacity .7s ease;
+  font-size:32px;line-height:1.6;
+}
+body:not(.overview) .sheet:not(.current){opacity:.5}
+body.overview .sheet{cursor:pointer}
+body.overview .sheet:hover{outline:6px solid var(--seal);outline-offset:6px}
+.notes{display:none}
+
+.folio{position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;
+  font:400 20px/1 var(--f-hand);letter-spacing:.24em;color:var(--pencil);pointer-events:none}
+.folio i{font:italic 500 26px/1 var(--f-latin);letter-spacing:0;color:var(--seal)}
+.tape{position:absolute;top:-20px;left:var(--tx);width:190px;height:46px;transform:rotate(var(--tr));
+  background:rgba(176,58,39,.17);box-shadow:inset 0 0 0 1px rgba(176,58,39,.05);pointer-events:none}
+.tape.blue{background:rgba(47,76,102,.16)}
+
+/* ---------- type ---------- */
+.eyebrow{margin:0;display:flex;align-items:baseline;gap:22px}
+.eyebrow i{font:italic 500 34px/1 var(--f-latin);color:var(--seal)}
+.eyebrow span{font:400 24px/1 var(--f-hand);letter-spacing:.3em;color:var(--pencil)}
+.hd{display:flex;flex-direction:column;gap:18px}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance}
+h2{font-weight:900;font-size:68px;line-height:1.25;letter-spacing:.03em}
+h3{font-weight:600;font-size:40px;line-height:1.35;letter-spacing:.02em}
+p{margin:0}
+.dim{color:var(--pencil)}
+.red{color:var(--seal)}
+.lede{font-size:34px;max-width:30em}
+em{font-style:normal;color:var(--seal)}
+.mono{font-family:var(--f-mono)}
+
+/* ---------- seals ---------- */
+.seal{display:inline-flex;align-items:center;justify-content:center;writing-mode:vertical-rl;
+  font:900 40px/1.05 var(--f-display);letter-spacing:.05em;color:var(--paper);background:var(--seal);
+  padding:16px 12px;border-radius:5px;box-shadow:inset 0 0 0 3px rgba(244,242,236,.22)}
+.seal.ring{background:transparent;color:var(--seal);box-shadow:inset 0 0 0 4px var(--seal);writing-mode:horizontal-tb;padding:10px 18px;font-size:34px}
+.seal.round{border-radius:50%;width:92px;height:92px;padding:0;writing-mode:horizontal-tb;font-size:46px}
+
+/* ---------- build animations ---------- */
+.sheet.pre .a{opacity:0}
+.sheet.enter .a{animation:rise .95s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:calc(var(--d,0) * 130ms + 120ms)}
+@keyframes rise{from{opacity:0;transform:translateY(26px);filter:blur(5px)}}
+.sheet.enter .a .draw,.sheet.enter .a.draw{animation:draw 1.4s cubic-bezier(.6,.1,.2,1) backwards;animation-delay:calc(var(--d,0) * 130ms + 380ms)}
+@keyframes draw{from{stroke-dashoffset:1}}
+.draw{stroke-dasharray:1;stroke-dashoffset:0}
+.sheet.enter .a.stampin{animation:stampin .5s cubic-bezier(.3,1.6,.5,1) backwards;animation-delay:calc(var(--d,0) * 130ms + 120ms)}
+@keyframes stampin{from{opacity:0;transform:scale(1.9) rotate(-16deg)}}
+
+.f{opacity:0;transform:translateY(22px);filter:blur(4px);
+  transition:opacity .7s ease,transform .85s cubic-bezier(.2,.7,.2,1),filter .7s ease}
+.f.on{opacity:1;transform:none;filter:none}
+.f.ink{opacity:1;transform:none;filter:none;clip-path:inset(-10% 100% -10% 0);transition:clip-path 1.05s cubic-bezier(.6,.1,.2,1)}
+.f.ink.on{clip-path:inset(-10% -2% -10% 0)}
+.f.stamp{filter:none;transform:scale(1.9) rotate(-16deg);transition:transform .45s cubic-bezier(.3,1.6,.5,1),opacity .18s ease}
+.f.stamp.on{transform:rotate(var(--rot,-7deg));opacity:.93}
+.f .draw{stroke-dashoffset:1;transition:stroke-dashoffset 1.2s cubic-bezier(.6,.1,.2,1) .25s}
+.f.on .draw{stroke-dashoffset:0}
+body.overview .f{opacity:1;transform:none;filter:none;clip-path:none;transition:none}
+body.overview .f.stamp{transform:rotate(var(--rot,-7deg))}
+body.overview .f .draw{stroke-dashoffset:0}
+
+/* ---------- cover ---------- */
+.cover{flex-direction:row;gap:0;padding-right:96px}
+.cover-main{flex:1;display:flex;flex-direction:column;justify-content:center;gap:34px;min-width:0}
+.cover h1{font-weight:900;font-size:230px;line-height:1;letter-spacing:.06em}
+.cover .sub{font:600 60px/1.3 var(--f-display);letter-spacing:.04em}
+.cover .sub small{display:block;font:italic 500 40px/1.2 var(--f-latin);letter-spacing:.02em;color:var(--pencil);margin-top:10px}
+.cover .meta{display:flex;gap:36px;align-items:baseline;font-size:28px;color:var(--pencil);letter-spacing:.12em}
+.cover .meta i{font:italic 500 36px/1 var(--f-latin);color:var(--ink);letter-spacing:0}
+.under{width:620px;height:30px;overflow:visible}
+.under path{fill:none;stroke:var(--seal);stroke-width:5;stroke-linecap:round}
+/* 稿紙: one character per square, columns read right to left */
+.manuscript{display:flex;flex-direction:row-reverse;gap:12px}
+.manuscript .col{display:flex;flex-direction:column;border:2px solid rgba(176,58,39,.45)}
+.manuscript .c{width:54px;height:54px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;
+  writing-mode:vertical-rl;font:400 34px/1 var(--f-hand);color:var(--ink)}
+.manuscript .c + .c{border-top:1px solid rgba(176,58,39,.35)}
+.manuscript .col.sub .c{font-size:29px;color:var(--pencil)}
+.cover-side{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:40px;margin-left:72px}
+.cover-side .seal{font-size:52px;padding:18px 14px}
+
+/* ---------- three takeaways ---------- */
+.three{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:64px;flex:1}
+.three li{display:flex;flex-direction:column;gap:20px;border-top:2px solid var(--ink);padding-top:28px;min-width:0}
+.three .num{font:900 64px/1 var(--f-display);color:var(--seal)}
+.three p{font-size:30px;color:var(--ink)}
+
+/* ---------- one sentence ---------- */
+.sentence{font:600 92px/1.55 var(--f-display);letter-spacing:.04em}
+.blank{display:inline-block;position:relative;width:210px;height:1em;vertical-align:-.12em;border-bottom:4px solid var(--ink);margin:0 .2em}
+.blank b{position:absolute;inset:auto 0 .02em 0;text-align:center;font:700 110px/1 var(--f-hand);color:var(--seal)}
+.example{font-size:30px;color:var(--seal);display:flex;gap:14px;align-items:baseline}
+.example i{font:italic 500 34px/1 var(--f-latin)}
+
+/* ---------- projects ---------- */
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:56px;flex:1;align-items:start;position:relative}
+.slip{position:relative;display:flex;flex-direction:column;gap:14px;padding:30px 32px 36px;background:#FBFAF6;
+  box-shadow:0 10px 22px -14px rgba(50,42,28,.45);min-width:0}
+.slip:nth-child(1){transform:rotate(-1.2deg)}
+.slip:nth-child(2){transform:rotate(.8deg);margin-top:28px}
+.slip:nth-child(3){transform:rotate(-.5deg);background:var(--ink);color:var(--paper)}
+.slip.f.on:nth-child(1){transform:rotate(-1.2deg)}
+.slip.f.on:nth-child(2){transform:rotate(.8deg)}
+.slip.f.on:nth-child(3){transform:rotate(-.5deg)}
+.slip .when{font-size:24px;letter-spacing:.24em;color:var(--pencil)}
+.slip:nth-child(3) .when{color:#B9B4A6}
+.slip p{font-size:28px}
+.slip .kind{font-size:24px;color:var(--pencil);letter-spacing:.12em}
+.slip:nth-child(3) .kind{color:#E7A58F}
+.projects .seal.ring{position:absolute;right:-6px;bottom:-34px;--rot:-9deg;background:var(--paper);font-size:40px;padding:12px 22px}
+
+/* ---------- score ---------- */
+.score{display:grid;grid-template-columns:repeat(10,1fr);border:2px solid rgba(176,58,39,.45)}
+.grp{display:grid;grid-template-columns:repeat(var(--n),1fr);grid-template-rows:120px auto;grid-column:span var(--n)}
+.grp + .grp{border-left:2px solid rgba(176,58,39,.45)}
+.cell{position:relative;background:var(--c);box-shadow:inset -1px 0 0 rgba(244,242,236,.35)}
+.cell::after{content:attr(data-k);position:absolute;left:10px;top:6px;font:italic 500 22px/1 var(--f-latin);color:rgba(244,242,236,.75)}
+.grp .lab{grid-column:1/-1;padding:16px 14px 18px;border-top:2px solid rgba(176,58,39,.45);display:flex;flex-direction:column;gap:2px}
+.grp .lab b{font:600 30px/1.3 var(--f-display)}
+.grp .lab span{font:italic 500 40px/1 var(--f-latin);color:var(--c)}
+.score-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:6px 56px;font-size:26px;color:var(--pencil);list-style:none;margin:0;padding:0}
+.legend b{color:var(--ink);font-weight:700;margin-right:12px}
+
+/* ---------- voting ---------- */
+.two{display:grid;grid-template-columns:1fr 1.15fr;gap:80px;flex:1;align-items:center}
+.two > *{min-width:0}
+.rules{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.rules li{padding:18px 0;border-bottom:2px dotted var(--rule);font-size:34px}
+.rules li:first-child{border-top:2px dotted var(--rule)}
+.quote{position:relative;padding:92px 72px 64px;background:#FBFAF6;box-shadow:0 12px 26px -16px rgba(50,42,28,.5);transform:rotate(.6deg)}
+.quote.f.on{transform:rotate(.6deg)}
+/* 「」 drawn as corner brackets in the padding, clear of the text */
+.quote::before,.quote::after{content:"";position:absolute;width:30px;height:38px;border:0 solid var(--seal)}
+.quote::before{left:30px;top:30px;border-top-width:5px;border-left-width:5px}
+.quote::after{right:30px;bottom:26px;border-bottom-width:5px;border-right-width:5px}
+.quote p{font:600 50px/1.55 var(--f-display);letter-spacing:.03em}
+.quote small{display:block;margin-top:24px;font-size:24px;color:var(--pencil);letter-spacing:.18em}
+
+/* ---------- prize ---------- */
+.prize{flex:1;display:flex;align-items:center;gap:80px}
+.prize .big{font:900 150px/1 var(--f-display);letter-spacing:.02em;display:flex;align-items:center;gap:40px}
+.prize .big span{font:italic 500 170px/1 var(--f-latin)}
+.prize .big .plus{font:300 110px/1 var(--f-latin);color:var(--seal)}
+
+/* ---------- chapter ---------- */
+.chapter{flex-direction:row;gap:96px;align-items:stretch}
+.chapter .vert{writing-mode:vertical-rl;font:900 150px/1.1 var(--f-display);letter-spacing:.12em;display:flex;gap:24px;align-items:flex-start}
+.chapter .vert small{font:400 40px/1 var(--f-hand);letter-spacing:.3em;color:var(--pencil);margin-top:12px}
+.chapter .body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:40px;min-width:0}
+.time{font:italic 500 64px/1 var(--f-latin);color:var(--seal)}
+.time span{font:400 30px/1 var(--f-hand);color:var(--pencil);margin-left:20px;letter-spacing:.2em;font-style:normal}
+.order{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.order li{display:flex;align-items:center;gap:20px;font:600 46px/1.3 var(--f-display)}
+.order li .n{font:italic 500 46px/1 var(--f-latin);color:var(--seal)}
+.order .arrow{font:300 46px/1 var(--f-latin);color:var(--pencil)}
+.judge{font-size:30px;padding:20px 28px;border:2px dashed var(--pencil);align-self:flex-start}
+
+/* ---------- ladder ---------- */
+.ladder{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:22px;align-items:end;flex:1}
+.ladder li{display:flex;flex-direction:column;gap:14px;min-width:0}
+.ladder .blk{height:var(--h);background:var(--c,#CFC9BB);display:flex;align-items:flex-start;padding:14px 18px;
+  font:italic 500 64px/1 var(--f-latin);color:var(--paper)}
+.ladder li p{font-size:26px;line-height:1.45}
+.callouts{display:flex;gap:48px}
+.callouts p{font-size:30px;padding:14px 24px;background:#FBFAF6;box-shadow:0 8px 18px -12px rgba(50,42,28,.45)}
+.callouts p b{color:var(--seal)}
+
+/* ---------- account / steps ---------- */
+.acct{display:grid;grid-template-columns:.85fr 1.15fr;gap:80px;flex:1;min-height:0}
+.acct > *{min-width:0}
+.acct .left{display:flex;flex-direction:column;gap:30px}
+.url{font:600 40px/1.2 var(--f-mono);color:var(--indigo);padding-bottom:14px;border-bottom:3px solid var(--indigo);align-self:flex-start;word-break:break-all}
+.why{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;font-size:29px}
+.why li{padding-left:34px;position:relative}
+.why li::before{content:"";position:absolute;left:4px;top:.72em;width:14px;height:2px;background:var(--seal)}
+ol.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+ol.steps li{counter-increment:s;position:relative;padding:10px 0 10px 62px;border-bottom:2px dotted var(--rule);font-size:30px;line-height:1.45}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:9px;font:italic 500 44px/1 var(--f-latin);color:var(--seal)}
+ol.steps li small{display:block;font-size:24px;color:var(--pencil);line-height:1.4}
+.see{display:flex;align-items:center;gap:26px;padding-top:22px;border-top:2px dashed var(--pencil);font-size:31px}
+.see .seal.ring{font-size:24px;padding:6px 12px;letter-spacing:.1em;--rot:-4deg;flex:none}
+.note-pw{font-size:26px;color:var(--pencil)}
+
+/* ---------- lobster ---------- */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:56px;flex:1;align-items:stretch}
+.card{padding:40px 44px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.card.plain{border:2px solid var(--rule)}
+.card.agent{background:var(--ink);color:var(--paper)}
+.card .who{font-size:24px;letter-spacing:.26em;color:var(--pencil)}
+.card.agent .who{color:#B9B4A6}
+.card p.say{font:600 44px/1.45 var(--f-display)}
+.card p.ex{font-size:28px;color:var(--pencil)}
+.card.agent p.ex{color:#CFCABD}
+.lob-hd{display:flex;justify-content:space-between;align-items:flex-start;gap:40px}
+.raise{font-size:30px;align-self:flex-start}
+.raise b{color:var(--seal)}
+
+.only{flex:1;display:flex;align-items:center;gap:90px}
+.only .huge{font:900 170px/1.12 var(--f-display);letter-spacing:.04em;white-space:nowrap}
+.only .huge em{color:var(--seal)}
+.only .side{display:flex;flex-direction:column;gap:26px;font-size:32px;max-width:15em}
+.only .side .skip{padding:18px 24px;background:#FBFAF6;box-shadow:0 8px 18px -12px rgba(50,42,28,.45)}
+
+/* ---------- install ---------- */
+.plat{display:grid;grid-template-columns:1fr 1fr;gap:64px;flex:1;align-content:start}
+.plat > div{display:flex;flex-direction:column;gap:22px;min-width:0}
+.tag{align-self:flex-start;font:600 24px/1 var(--f-display);letter-spacing:.14em;color:var(--paper);background:var(--indigo);padding:9px 16px 10px}
+.tag.mac{background:var(--moss)}
+.plat p{font-size:31px}
+.plat p small{display:block;font-size:24px;color:var(--pencil)}
+kbd{display:inline-block;font:600 24px/1.15 var(--f-mono);padding:3px 9px 4px;border:2px solid var(--ink);border-bottom-width:4px;border-radius:5px;background:#FBFAF6;margin:3px 4px;white-space:nowrap;vertical-align:1px}
+.code{position:relative;background:var(--code-bg);color:var(--code-fg);font:400 25px/1.55 var(--f-mono);
+  padding:22px 112px 22px 26px;border-radius:3px;overflow-wrap:anywhere;white-space:pre-wrap;cursor:text}
+.code .pr{color:var(--code-dim);user-select:none;margin-right:12px}
+.code .type.typing::after{content:"▍";color:#E7A58F;animation:blink .8s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.copy{position:absolute;right:12px;top:12px;font:400 20px/1 var(--f-hand);letter-spacing:.1em;color:var(--code-fg);
+  background:transparent;border:1px solid #5D5A51;padding:8px 12px;cursor:pointer;border-radius:3px}
+.copy:hover{border-color:var(--code-fg)}
+.copy:focus-visible,.nav button:focus-visible{outline:3px solid var(--seal);outline-offset:2px}
+.pick{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:18px 48px}
+.pick li{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;align-items:baseline;padding:16px 0;border-bottom:2px dotted var(--rule)}
+.pick li b{font:600 30px/1.3 var(--f-display);grid-column:2}
+.pick li .q{font-size:24px;color:var(--pencil);grid-column:2}
+.pick li i{grid-row:1/3;font:italic 500 40px/1 var(--f-latin);color:var(--seal)}
+.pick li .ans{grid-column:2;font-size:30px}
+.pick li .ans em{font-weight:700}
+.alt{font-size:26px;color:var(--pencil)}
+
+.verify{display:flex;flex-direction:column;gap:22px;flex:1}
+.vrow{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:40px;align-items:center}
+.vrow .res{font-size:31px;display:flex;align-items:center;gap:18px}
+.vrow .res::before{content:"→";font:300 40px/1 var(--f-latin);color:var(--seal)}
+.vrow .res code{font:600 27px/1 var(--f-mono);color:var(--moss)}
+
+.trouble{display:grid;grid-template-columns:1fr 1fr;gap:28px 48px;flex:1}
+.trouble > div{padding:24px 0 0;border-top:2px solid var(--ink);display:flex;flex-direction:column;gap:10px;min-width:0}
+.trouble .sym{font:600 32px/1.4 var(--f-display)}
+.trouble .sym .mono{font-size:26px;font-weight:600;color:var(--seal)}
+.trouble .fix{font-size:29px;color:var(--ink)}
+.trouble .who{font-size:22px;letter-spacing:.2em;color:var(--pencil)}
+
+/* ---------- checklist ---------- */
+.check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;flex:1}
+.check li{display:grid;grid-template-columns:96px 1fr 120px;align-items:center;gap:28px;padding:22px 0;border-bottom:2px dotted var(--rule)}
+.check .box{width:56px;height:56px;border:3px solid var(--ink)}
+.check b{font:600 40px/1.3 var(--f-display);display:block}
+.check small{font-size:26px;color:var(--pencil)}
+.check .seal.round{--rot:-12deg}
+.warn{font-size:30px;padding:16px 24px;border-left:6px solid var(--seal);background:#FBFAF6}
+
+/* ---------- end ---------- */
+.end{flex-direction:row;align-items:center;gap:100px}
+.end .vert{writing-mode:vertical-rl;font:900 170px/1.1 var(--f-display);letter-spacing:.14em}
+.end .body{display:flex;flex-direction:column;gap:36px;min-width:0}
+.end .next{font:600 50px/1.4 var(--f-display)}
+.end .bring{font-size:32px;padding:20px 28px;background:#FBFAF6;box-shadow:0 8px 18px -12px rgba(50,42,28,.45);align-self:flex-start}
+
+/* ---------- screenshots ---------- */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);grid-template-rows:minmax(0,1fr);gap:56px;flex:1;min-height:0}
+.txt-col ol.steps li{font-size:28px;padding-block:7px}
+.txt-col .code{font-size:22px}
+.split.narrow-shot{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}
+.split.wide-left{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
+.txt-col{display:flex;flex-direction:column;gap:22px;min-width:0}
+.txt-col > p{font-size:30px}
+.txt-col p small{display:block;font-size:24px;color:var(--pencil);margin-top:6px}
+.txt-col .small{font-size:24px;color:var(--pencil)}
+.code.prompt{font-size:19px;line-height:1.6;word-break:break-word}
+.collage{position:relative;min-height:0;min-width:0}
+.shot{position:absolute;margin:0;box-sizing:border-box;background:#fff;padding:8px;
+  box-shadow:0 18px 30px -18px rgba(50,42,28,.6),0 1px 3px rgba(50,42,28,.14)}
+.shot img{display:block;width:100%;height:auto}
+.pick.one{grid-template-columns:1fr;gap:0;align-content:start}
+.pick.tight li{padding:9px 0}
+.pick.tight li .q{font-size:21px;line-height:1.35}
+.pick.tight li .ans{font-size:27px}
+.why.big{font-size:31px;gap:28px}
+.why.big li{line-height:1.5}
+.quote-line{font:600 40px/1.5 var(--f-display)}
+.split.shots-big{grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr)}
+.shot{cursor:zoom-in}
+.shot::after{content:"點圖放大";position:absolute;right:10px;bottom:10px;font:400 16px/1 var(--f-hand);letter-spacing:.1em;
+  color:var(--paper);background:rgba(39,39,36,.75);padding:6px 10px;border-radius:3px;opacity:0;transition:opacity .25s}
+.shot:hover::after{opacity:1}
+#zoom[hidden]{display:none}
+#zoom{position:fixed;inset:0;z-index:30;display:grid;place-items:center;background:rgba(24,24,22,.9);cursor:zoom-out;padding:16px}
+#zoom img{max-width:min(96vw,100%);max-height:92vh;background:#fff;padding:8px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+
+
+/* ---------- deck 2: chat mock, index card, chips ---------- */
+.who-lab{font:600 26px/1 var(--f-display);letter-spacing:.14em;color:var(--pencil)}
+.who-lab.red{color:var(--seal)}
+.tg{background:#DCE4CC var(--noise);border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;gap:12px;
+  box-shadow:0 14px 28px -18px rgba(50,42,28,.5);min-width:0}
+.tg .bar{font:600 22px/1 var(--f-display);display:flex;justify-content:space-between;align-items:baseline;padding-bottom:10px;border-bottom:1px solid rgba(39,39,36,.14)}
+.tg .bar small{font:400 18px/1 var(--f-hand);color:var(--pencil)}
+.bub{max-width:86%;padding:10px 16px;border-radius:14px 14px 14px 4px;font:400 25px/1.5 var(--f-hand);background:#FBFAF6;align-self:flex-start;box-shadow:0 1px 1px rgba(0,0,0,.07)}
+.bub.me{align-self:flex-end;background:#EEF6DF;border-radius:14px 14px 4px 14px}
+.bub ol{margin:4px 0;padding-left:1.4em}
+.tg.big .bub{font-size:27px}
+.split.demo{grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr)}
+.idx{margin:0;background:#FBFAF6;padding:26px 36px 30px;border-top:6px solid var(--seal);
+  background-image:repeating-linear-gradient(to bottom,transparent 0 45px,rgba(47,76,102,.16) 45px 46px);
+  box-shadow:0 16px 30px -18px rgba(50,42,28,.55)}
+.idx .fn{font:400 19px/1 var(--f-mono);color:var(--pencil);margin-bottom:18px}
+.idx dt{font:italic 500 24px/1 var(--f-latin);color:var(--seal);margin-top:12px}
+.idx dd{margin:6px 0 0;font-size:29px;line-height:1.55}
+.code.msg{font-size:18px;line-height:1.55;align-self:start;max-height:100%;overflow:auto;overscroll-behavior:contain}
+.chips{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
+.chip{font:600 26px/1 var(--f-mono);padding:10px 18px;border:2px solid var(--seal);color:var(--seal);rotate:var(--r,0deg);background:#FBFAF6}
+
+.txt-col > p{font-size:34px}
+.txt-col ol.steps li{font-size:32px;padding-block:10px}
+.why.big{font-size:34px}
+.bub{font-size:29px}
+.tg.big .bub{font-size:30px}
+.idx dd{font-size:33px}
+.trouble .sym{font-size:38px}
+.trouble .fix{font-size:32px}
+.chip{font-size:30px}
+
+/* ---------- deck 3 ---------- */
+.check li{padding:14px 0}
+.flow3{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;align-items:start}
+.flow3 .slip h3{font-size:38px}
+.flow3 .slip p{font-size:28px}
+.ask-wrap{flex:1;display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:center}
+.ask{font:900 104px/1.3 var(--f-display);letter-spacing:.03em}
+.ask em{color:var(--seal)}
+.blanks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:34px}
+.blanks li{display:flex;align-items:flex-end;gap:22px}
+.blanks span{font:italic 500 60px/1 var(--f-latin);color:var(--seal)}
+.blanks i{flex:1;height:64px;border-bottom:3px solid var(--ink)}
+.bub.photo{width:280px;height:170px;padding:0;display:grid;place-items:center;font-size:24px;letter-spacing:.2em;color:var(--ink-soft,#5d5a51);
+  background:repeating-linear-gradient(45deg,#CFC9BA 0 12px,#DAD5C8 12px 24px)}
+
+/* ---------- deck 4 ---------- */
+.flow3.two-up{grid-template-columns:1fr 1fr;gap:64px}
+.tl4{display:grid;grid-template-columns:20fr 25fr 15fr 9fr;gap:12px;align-items:stretch}
+.seg{background:#FBFAF6;border-top:10px solid var(--rule);padding:24px 22px 26px;display:flex;flex-direction:column;gap:12px;min-width:0;min-height:300px;
+  box-shadow:0 12px 24px -16px rgba(50,42,28,.45);transition:transform .6s,opacity .6s,border-color .6s}
+.seg .t{font:italic 500 42px/1 var(--f-latin);color:var(--pencil)}
+.seg b{font:600 38px/1.25 var(--f-display)}
+.seg small{font-size:23px;color:var(--pencil);line-height:1.4}
+.seg .left{margin-top:auto;font:600 30px/1.25 var(--f-display);color:var(--seal)}
+.seg.now{border-top-color:var(--seal);background:#fff;transform:translateY(-10px)}
+.seg.now .t{color:var(--seal)}
+.seg.done{opacity:.45}
+
+/* ---------- deck 5 ---------- */
+.three.two-col{grid-template-columns:1fr 1fr}
+.timer-wrap{flex:1;display:grid;grid-template-columns:1.35fr .65fr;gap:56px;min-height:0;align-items:start}
+.timer-main{display:flex;flex-direction:column;gap:6px;min-width:0}
+.now-lab{font-size:24px;letter-spacing:.3em;color:var(--pencil)}
+.now-name{font:900 76px/1.15 var(--f-display)}
+.clock-big{font:600 220px/1 var(--f-mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em;color:var(--ink);margin:8px 0}
+.clock-big.warn{color:var(--seal)}
+.clock-big.over{color:var(--seal);animation:blink 1s steps(1) infinite}
+.tm-state{font-size:28px;color:var(--pencil)}
+.ctrls{display:flex;gap:14px;margin-top:16px;flex-wrap:wrap}
+.ctrls button{font:600 24px/1 var(--f-display);letter-spacing:.08em;padding:14px 24px;border:2px solid var(--ink);background:#FBFAF6;color:var(--ink);cursor:pointer;border-radius:3px}
+.ctrls button:first-child{background:var(--ink);color:var(--paper)}
+.ctrls button:focus-visible{outline:3px solid var(--seal);outline-offset:2px}
+.order{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.order li{display:flex;gap:16px;align-items:baseline;padding:6px 0;border-bottom:2px dotted var(--rule);font:600 27px/1.3 var(--f-display);cursor:pointer;color:var(--ink)}
+.order li span{font:italic 500 27px/1 var(--f-latin);color:var(--pencil);min-width:28px}
+.order li.cur,.order li.cur span{color:var(--seal)}
+.order li.done{color:var(--pencil);opacity:.6}
+
+/* ---------- deck 6 ---------- */
+.pipe{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:16px;align-items:center}
+.pcard{background:#FBFAF6;padding:22px 22px 26px;display:flex;flex-direction:column;gap:8px;min-width:0;box-shadow:0 10px 22px -14px rgba(50,42,28,.45)}
+.pcard .when{font-size:21px;letter-spacing:.24em;color:var(--pencil)}
+.pcard h3{font-size:36px}
+.pcard p{font-size:24px;line-height:1.5}
+.pcard.last{background:var(--ink);color:var(--paper)}
+.pcard.last .when{color:#B9B4A6}
+.pipe-arrow{font:300 56px/1 var(--f-latin);color:var(--seal)}
+.summary{flex:1;display:grid;grid-template-columns:1.1fr 1fr;gap:56px;min-height:0}
+.bars{background:#FBFAF6;padding:22px 28px 24px;display:flex;flex-direction:column;gap:9px;box-shadow:0 12px 26px -16px rgba(50,42,28,.5);align-self:start}
+.bars-hd{font:600 26px/1.2 var(--f-display);display:flex;gap:14px;align-items:center;margin-bottom:6px}
+.bar-row{display:grid;grid-template-columns:110px 1fr 36px;gap:14px;align-items:center;font-size:23px}
+.bar-row i{display:block;height:22px;background:var(--seal);width:calc(var(--v) / 5 * 100%)}
+.bar-row b{font:600 23px/1 var(--f-mono);text-align:right}
+.bars-ft{font-size:20px;color:var(--pencil);margin-top:6px}
+.five{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);border:2px solid var(--ink)}
+.five li{padding:26px 22px;border-left:2px solid var(--ink);display:flex;flex-direction:column;gap:12px;min-height:210px;min-width:0}
+.five li:first-child{border-left:0}
+.five li span{font-size:22px;letter-spacing:.2em;color:var(--pencil)}
+.five li b{font:600 32px/1.4 var(--f-display)}
+.five li.hot{background:var(--seal);color:var(--paper)}
+.five li.hot span{color:#F2D6CF}
+
+/* ---------- deck 7: security ---------- */
+.agenda{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.agenda li{display:grid;grid-template-columns:72px 1fr auto;align-items:baseline;padding:16px 0;border-bottom:2px dotted var(--rule)}
+.agenda .n{font:italic 500 46px/1 var(--f-latin);color:var(--seal)}
+.agenda b{font:600 40px/1.3 var(--f-display)}
+.agenda i{font-style:normal;font-size:26px;color:var(--pencil)}
+.agenda li.hot b,.agenda li.hot i{color:var(--seal)}
+.buckets{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;align-items:stretch}
+.bucket{background:#FBFAF6;border-top:10px solid var(--rule);padding:26px 28px 30px;display:flex;flex-direction:column;gap:14px;min-width:0;box-shadow:0 12px 24px -16px rgba(50,42,28,.45)}
+.bucket.ok{border-top-color:var(--moss)}.bucket.mid{border-top-color:var(--indigo)}.bucket.no{border-top-color:var(--seal)}
+.bucket .bk{font-size:22px;letter-spacing:.24em;color:var(--pencil)}
+.bucket h3{font-size:40px}
+.bucket.no h3{color:var(--seal)}
+.bucket p{font-size:28px;line-height:1.6}
+.sort{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card-q{position:relative;background:#FBFAF6;padding:20px 24px 58px;min-height:140px;box-shadow:0 10px 22px -14px rgba(50,42,28,.45);min-width:0}
+.card-q p{font:600 30px/1.35 var(--f-display)}
+.card-q small{display:block;font:400 22px/1.4 var(--f-hand);color:var(--pencil);margin-top:4px}
+.ans{position:absolute;right:16px;bottom:14px;font:900 26px/1 var(--f-display);padding:8px 14px;border:4px solid currentColor;background:var(--paper);letter-spacing:.06em}
+.ans.ok{color:var(--moss)}.ans.mid{color:var(--indigo)}.ans.no{color:var(--seal)}
+.deid{display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:center}
+.deid > div{display:flex;flex-direction:column;gap:12px;min-width:0}
+.raw{background:#FBFAF6;padding:24px 28px;font:400 31px/1.7 var(--f-hand);box-shadow:0 10px 22px -14px rgba(50,42,28,.45)}
+.raw.clean{border-left:6px solid var(--moss)}
+.perm{background:#FBFAF6;border:2px solid var(--ink);border-radius:10px;padding:26px 30px;display:flex;flex-direction:column;gap:18px;align-self:start;box-shadow:0 16px 30px -18px rgba(50,42,28,.55);min-width:0}
+.perm-hd{font:600 28px/1.3 var(--f-display)}
+.perm-cmd{background:var(--code-bg);color:var(--code-fg);padding:14px 18px;font-size:22px;border-radius:4px;overflow-wrap:anywhere}
+.perm-btns{display:flex;gap:14px;justify-content:flex-end}
+.perm-btns span{padding:10px 24px;border:2px solid var(--ink);font:600 24px/1 var(--f-display);border-radius:6px}
+.perm-btns .yes{background:var(--ink);color:var(--paper)}
+.split.blast{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}
+.radius{width:100%;height:auto;max-height:500px}
+.radius .ring-out{fill:rgba(176,58,39,.07);stroke:var(--seal);stroke-width:2;stroke-dasharray:6 6}
+.radius .spoke{stroke:var(--seal);stroke-width:1.5;opacity:.5}
+.radius .lab-out{font:600 24px var(--f-display);fill:var(--seal);text-anchor:middle}
+.radius .ring-in{fill:#E6E9DC;stroke:var(--moss);stroke-width:2}
+.radius .lab-in{font:400 22px var(--f-hand);fill:var(--moss);text-anchor:middle}
+.radius .core{fill:var(--ink)}
+.radius .lab-core{font:900 34px var(--f-display);fill:var(--paper);text-anchor:middle}
+.ask-wrap.one{grid-template-columns:1fr}
+
+/* ---------- deck 8: github ---------- */
+.five.three-steps{grid-template-columns:repeat(3,1fr)}
+.five.three-steps li b{font-size:40px}
+.ba{display:flex;flex-direction:column;gap:14px;min-width:0}
+.tg.bad{opacity:.72;filter:grayscale(.7)}
+.chapter .vert{writing-mode:vertical-rl;font:900 140px/1.1 var(--f-display);letter-spacing:.1em;display:flex;flex-direction:column;gap:20px;align-items:flex-start}
+
+.moves{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;align-items:start}
+.moves > div{display:flex;flex-direction:column;gap:14px;min-width:0}
+.txt-col ol.steps.tight li{font-size:27px;padding-block:6px}
+.txt-col ol.steps.tight li small{font-size:21px}
+
+/* ---------- chrome ---------- */
+.nav{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:10;
+  display:flex;align-items:center;gap:4px;padding:6px;background:rgba(39,39,36,.86);color:var(--paper);border-radius:4px;
+  font:400 16px/1 var(--f-hand);transition:opacity .5s}
+body.idle .nav{opacity:0}
+.nav button{font:inherit;color:inherit;background:transparent;border:0;padding:9px 11px;cursor:pointer;border-radius:3px;letter-spacing:.08em}
+.nav button:hover{background:rgba(244,242,236,.12)}
+.nav .count{padding:0 10px;font:italic 500 19px/1 var(--f-latin);font-variant-numeric:tabular-nums;min-width:62px;text-align:center}
+.nav .clock{padding:0 10px 0 12px;border-left:1px solid rgba(244,242,236,.2);font:500 16px/1 var(--f-mono);font-variant-numeric:tabular-nums;color:#CFCABD}
+.thread{position:fixed;left:0;bottom:0;height:3px;background:var(--seal);z-index:9;transition:width .9s cubic-bezier(.6,.1,.2,1)}
+#notes{position:fixed;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:10;
+  width:min(560px,calc(100vw - 32px));max-height:40vh;overflow:auto;box-sizing:border-box;padding:18px 22px 20px;
+  background:rgba(39,39,36,.94);color:var(--paper);font:400 18px/1.7 var(--f-hand);border-radius:4px}
+#notes h4{margin:0 0 6px;font:italic 500 18px/1 var(--f-latin);color:#E7A58F;letter-spacing:.04em}
+.hint{position:fixed;left:50%;top:calc(16px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:10;
+  font:400 16px/1 var(--f-hand);letter-spacing:.12em;color:var(--ink);background:rgba(244,242,236,.92);padding:10px 16px;border-radius:3px;
+  transition:opacity .8s;white-space:nowrap;max-width:calc(100vw - 32px);overflow:hidden;text-overflow:ellipsis}
+.hint.gone{opacity:0;pointer-events:none}
+
+@media (max-width:640px){
+  .nav .clock,.nav .lbl{display:none}
+  .hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .sheet.enter .a,.sheet.enter .a .draw,.sheet.enter .a.draw,.sheet.enter .a.stampin{animation:none}
+  .f,.f.ink,.f.stamp,.f .draw,.sheet,.thread{transition:none}
+}
+</style>
+</head>
+<body>
+<div id="viewport">
+<div id="world">
+<!-- ============ 00 封面 ============ -->
+<section class="sheet cover" data-row="0">
+  <div class="cover-main">
+    <p class="eyebrow a" style="--d:0"><i>Day One · 15:10</i><span>黎明 VibeCoding 工作坊</span></p>
+    <h1 class="a" style="--d:1">放好</h1>
+    <svg class="under a" style="--d:2" viewBox="0 0 620 30" aria-hidden="true"><path class="draw" pathLength="1" d="M4 18 C 140 8, 250 26, 390 15 S 560 9, 616 19"/></svg>
+    <p class="sub a" style="--d:3">GitHub 基本用法<br>＋ vibe coding 基本功<small>keep it, and ask it well</small></p>
+    <p class="meta a" style="--d:4"><i>15:10 – 15:50</i>前 20 分鐘 GitHub　後 20 分鐘五個習慣</p>
+  </div>
+  <div class="cover-side">
+    <div class="manuscript a" style="--d:2" data-rows="9" aria-label="改壞了回得去，同事拿得到"><span class="col" data-text="改壞了回得去，"></span><span class="col sub" data-text="同事拿得到。"></span></div>
+    <div class="seal a stampin" style="--d:6;transform:rotate(-6deg)">黎明</div>
+  </div>
+  <aside class="notes">15:10。放在這裡是刻意的：剛才 ⑤ 聽了 8 個人講「我怎麼問的」，後半段就是把那 8 種做法收斂成幾條共通原則，接著 15:50 進團隊實作馬上用。</aside>
+</section>
+
+<!-- ============ 01 為什麼 ============ -->
+<section class="sheet" data-row="0">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>A · Why</i><span>GitHub · 20 分鐘</span></p>
+    <h2 class="a" style="--d:1">為什麼要放上 GitHub</h2>
+  </header>
+  <div class="flow3">
+    <div class="slip f"><span class="when">一</span><h3>有地方放</h3><p>不再散在桌面、隨身碟和 LINE 對話裡。</p></div>
+    <div class="slip f"><span class="when">二</span><h3>改壞了回得去</h3><p>每放一次就留一版。AI 改壞了，點回上一版就好。</p></div>
+    <div class="slip f"><span class="when">三</span><h3>同事拿得到</h3><p>給一個網址就好。明天交換測試，就是這樣交出去的。</p></div>
+  </div>
+  <aside class="notes">第三點最重要：明天交換測試直接給 GitHub 網址，不用傳檔案。早上 ① 辦好的帳號現在派上用場。</aside>
+</section>
+
+<!-- ============ 02 三個動作 ============ -->
+<section class="sheet" data-row="0">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>A · Three moves</i><span>今天只學這些</span></p>
+    <h2 class="a" style="--d:1">三個動作，都對龍蝦說</h2>
+  </header>
+  <div class="moves">
+    <div class="f"><span class="who-lab">動作一＋二 · 建 repo、放上去</span><div class="tg"><p class="bub me">把桌面上的「黎明辦公室」資料夾放上 GitHub，repo 叫 liming-office</p></div></div>
+    <div class="f"><span class="who-lab">動作三 · 改完再放一次</span><div class="tg"><p class="bub me">我改好了，再放一次：這次把標題改大</p></div></div>
+    <div class="f"><span class="who-lab red">改壞了 · 回到上一版</span><div class="tg"><p class="bub me">剛剛那版改壞了，幫我回到上一版</p></div></div>
+  </div>
+  <p class="lede f">不用打指令，也不用記按鈕。<em>不講分支、不講 merge。</em></p>
+  <aside class="notes">repo 就是一個專案的資料夾。龍蝦在背後用 git 和 GitHub 官方的 gh 工具幫你做，學員只要會說這三句。</aside>
+</section>
+
+<!-- ============ 03 教龍蝦 ============ -->
+<section class="sheet" data-row="0">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>A · Setup 1</i><span>只做一次</span></p>
+    <h2 class="a" style="--d:1">先教龍蝦：GitHub 小幫手</h2>
+  </header>
+  <div class="split">
+    <div class="txt-col">
+      <ol class="steps">
+        <li class="f">按右邊的「複製全文」</li>
+        <li class="f">在 Telegram 貼給你的龍蝦</li>
+        <li class="f">等它回「GitHub 小幫手已就緒」</li>
+        <li class="f">傳 <span class="mono red">/new</span> 開一個新對話</li>
+      </ol>
+      <p class="f dim" style="font-size:24px">跟早上教 Skill Finder 一模一樣。</p>
+    </div>
+    <div class="code prompt f msg"><span class="txt">請幫我建立一個新的 skill：在你的 workspace 裡建立 skills/github-helper/SKILL.md，內容照下面這段一字不改。建好之後回覆我「GitHub 小幫手已就緒」。
+
+---
+name: github-helper
+description: 當使用者說「放上 GitHub」「再放一次」「回到上一版」「給我 GitHub 網址」時，用 git 和 gh 幫他管理自己的 repo。
+---
+
+# GitHub 小幫手
+
+## 每次開始前
+1. 先確認 git 和 gh 都在：執行 `git --version` 和 `gh --version`。
+   - 缺哪個就裝哪個：`winget install --id Git.Git -e`、`winget install --id GitHub.cli -e`。跳出系統管理員視窗時，請使用者按「是」。
+   - 剛裝好可能還找不到指令：到 `C:\Program Files\Git\cmd`、`C:\Program Files\GitHub CLI`、`%LOCALAPPDATA%\Microsoft\WinGet\Links` 找完整路徑來用；都找不到，就請使用者在 PowerShell 輸入 `openclaw gateway restart` 後再試。
+   - 裝好後回報兩個版本號。
+2. 執行 `gh auth status` 確認有沒有登入。還沒登入時：
+   - 在背景執行 `gh auth login --web --git-protocol https`。
+   - 把畫面上的 8 碼代碼和網址 https://github.com/login/device 傳給使用者，請他自己在瀏覽器登入 GitHub、輸入代碼、按 Authorize，完成後跟你說。
+   - 絕對不要向使用者要密碼，也不要代替他登入。
+   - 使用者說好了，用 `gh auth status` 確認，再執行 `gh auth setup-git`，回報登入的帳號名稱。
+3. `git config --global user.name` 是空的：用 `gh api user --jq .login` 和 `gh api user --jq .id` 取得帳號與 id，把 user.name 設成帳號，user.email 設成 `&lt;id&gt;+&lt;帳號&gt;@users.noreply.github.com`。
+
+## 放上去（新的 repo）
+1. 確認資料夾路徑和 repo 名稱（英文小寫，用連字號，例：liming-office）。
+2. 在資料夾裡建立 `.gitignore`，至少寫入 `.env`。
+3. 安全檢查：列出要上傳的檔案。檔名或內容出現 .env、token、password、密碼、身分證、保單，就先停下來告訴使用者，不要上傳。
+4. 用一句話告訴使用者：要上傳哪些檔案，以及「這會公開，任何人都看得到」。使用者說好之前，不要上傳。
+5. `git init`（已經是 repo 就跳過）→ `git add -A` → `git commit -m "&lt;一句話說明&gt;"` → `gh repo create &lt;名稱&gt; --public --source . --push`。
+6. 回覆 repo 網址（`gh repo view --json url --jq .url`）。
+
+## 再放一次
+1. 到同一個資料夾，用 `git status` 看改了哪些檔案，列給使用者。
+2. 做同樣的安全檢查。
+3. `git add -A` → `git commit -m "&lt;使用者說的這次改了什麼&gt;"` → `git push`。
+
+## 回到上一版
+1. 用 `git log --oneline -5` 列出最近幾版，用白話說明每一版改了什麼。
+2. 使用者選好要回到哪一版後，用 `git revert --no-edit &lt;那一版&gt;..HEAD`，再 `git push`。保留紀錄，不要用 reset。
+
+## 絕對不做
+- 不刪除任何 repo，不動使用者沒指定的 repo，不把 private 改成 public。
+- 不在對話裡顯示 token。
+- 不用 `git push --force`。</span><button class="copy" type="button">複製全文</button></div>
+  </div>
+  <aside class="notes">小幫手規定龍蝦：上傳前先列檔案、等你說好；不上傳 .env 和客戶資料；不刪 repo、不 force push。原始檔在工作坊資料夾 skills/github-helper/。</aside>
+</section>
+
+<!-- ============ 04a 裝 git 和 gh ============ -->
+<section class="sheet" data-row="0">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>A · Setup 2</i><span>只做一次</span></p>
+    <h2 class="a" style="--d:1">請龍蝦裝好 git 和 gh</h2>
+  </header>
+  <div class="split demo">
+    <div class="txt-col">
+      <ol class="steps">
+        <li class="f" data-step="0">對龍蝦說一句話</li>
+        <li class="f" data-step="1">電腦跳出系統管理員視窗，按「是」</li>
+        <li class="f" data-step="2">它回報兩個版本號，就好了</li>
+      </ol>
+      <p class="f dim" style="font-size:24px" data-step="3">git 負責記住每一版，gh 是 GitHub 官方的工具。龍蝦靠這兩個幫你放上 GitHub。</p>
+    </div>
+    <div class="tg big">
+      <div class="bar">龍蝦<small>示意</small></div>
+      <p class="bub me f" data-step="0">幫我檢查電腦有沒有 git 和 gh，沒有就幫我裝</p>
+      <p class="bub f" data-step="1">git 已經有了。gh 還沒有，我用 winget 幫你裝。電腦上會跳出系統管理員視窗，請按「是」。</p>
+      <p class="bub f" data-step="2">裝好了：git 2.53、gh 2.97。</p>
+    </div>
+  </div>
+  <aside class="notes">龍蝦用 winget 安裝，套件名稱已確認：Git.Git、GitHub.cli。剛裝好龍蝦可能一時找不到指令，小幫手會自己去找完整路徑；還是不行，請學員在 PowerShell 輸入 openclaw gateway restart 再試。版本號只是示意。</aside>
+</section>
+
+<!-- ============ 04b 登入 ============ -->
+<section class="sheet" data-row="0">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>A · Setup 3</i><span>只做一次</span></p>
+    <h2 class="a" style="--d:1">登入 GitHub：龍蝦給代碼，你自己登入</h2>
+  </header>
+  <div class="split demo">
+    <div class="txt-col">
+      <ol class="steps tight">
+        <li class="f" data-step="0">對龍蝦說「幫我登入 GitHub」</li>
+        <li class="f" data-step="1">它傳來一個網址和一組 8 碼代碼</li>
+        <li class="f" data-step="2">在瀏覽器打開網址，<b>自己登入</b>、貼代碼、按 Authorize</li>
+        <li class="f" data-step="3">回 Telegram 說「好了」</li>
+      </ol>
+      <p class="warn f" data-step="4" style="font-size:26px;padding:12px 20px">密碼只在 GitHub 網頁上輸入，不傳給龍蝦。</p>
+    </div>
+    <div class="tg big">
+      <div class="bar">龍蝦<small>示意</small></div>
+      <p class="bub me f" data-step="0">幫我登入 GitHub</p>
+      <p class="bub f" data-step="1">請打開 github.com/login/device，登入後輸入這組代碼：ABCD-1234。完成後跟我說。</p>
+      <p class="bub me f" data-step="3">好了</p>
+      <p class="bub f" data-step="3">登入成功，帳號是：你的帳號。</p>
+    </div>
+  </div>
+  <aside class="notes">這是龍蝦連上的第二個帳號。gh 預設登入權限是 repo、read:org、gist，只能管你的 repo，沒有刪除 repo 的權限，正好是資安課講的最小權限。代碼 15 分鐘內有效，畫面上的代碼是示意。</aside>
+</section>
+
+<!-- ============ 05 放上去 ============ -->
+<section class="sheet" data-row="1">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>A · Move 1 + 2</i><span>建 repo、放上去</span></p>
+    <h2 class="a" style="--d:1">一句話，建好也放好</h2>
+  </header>
+  <div class="split demo">
+    <div class="txt-col">
+      <ol class="steps">
+        <li class="f" data-step="0">說哪個資料夾、repo 叫什麼</li>
+        <li class="f" data-step="1">它先列出要上傳的檔案，問你可以嗎</li>
+        <li class="f" data-step="2"><b>看清楚再說好</b></li>
+        <li class="f" data-step="3">拿到網址</li>
+      </ol>
+    </div>
+    <div class="tg big">
+      <div class="bar">龍蝦<small>示意</small></div>
+      <p class="bub me f" data-step="0">把桌面上的「黎明辦公室」資料夾放上 GitHub，repo 叫 liming-office</p>
+      <p class="bub f" data-step="1">要上傳 8 個檔案：網頁 1 個、照片 7 張。沒有 .env 或客戶資料。這會公開，任何人都看得到，確定嗎？</p>
+      <p class="bub me f" data-step="2">好</p>
+      <p class="bub f" data-step="3">放好了：github.com/你的帳號/liming-office</p>
+    </div>
+  </div>
+  <aside class="notes">第 2 步是煞車：龍蝦被規定上傳前一定先列檔案、等你說好。學員要真的看那份清單，不要反射性回「好」。</aside>
+</section>
+
+<!-- ============ 06 公開就是公開 ============ -->
+<section class="sheet" data-row="1">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>A · Before upload</i><span>剛剛資安課講的</span></p>
+  </header>
+  <div class="only">
+    <p class="huge a" style="--d:1">Public，<br><em>就是公開。</em></p>
+    <div class="side">
+      <p class="f">龍蝦列出檔案清單時，看一眼裡面有什麼。</p>
+      <p class="f">這三種東西，<b>一個都不能放上去</b>：</p>
+      <div class="chips f"><span class="chip" style="--r:-2deg">.env</span><span class="chip" style="--r:1.5deg">任何 token</span><span class="chip" style="--r:-1deg">客戶資料</span></div>
+    </div>
+  </div>
+  <aside class="notes">接資安課第二條「金鑰只放 .env，不放上 GitHub」。小幫手會自動把 .env 排除在外，但客戶資料它不一定認得出來，最後一關是人。放錯了不能只是刪檔，舊版本還查得到：token 要立刻到 BotFather 換一把。</aside>
+</section>
+
+<!-- ============ 07 再放一次、回上一版 ============ -->
+<section class="sheet" data-row="1">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>A · Move 3</i><span>改完、改壞</span></p>
+    <h2 class="a" style="--d:1">改好了再放，改壞了回去</h2>
+  </header>
+  <div class="compare">
+    <div class="f ba"><span class="who-lab">改好了</span><div class="tg"><p class="bub me">我改好了，再放一次：這次把標題改大</p><p class="bub">改了 1 個檔案：index.html。已經放上去了。</p></div><p class="dim" style="font-size:24px">那一句「這次改了什麼」，就是這一版的名字。</p></div>
+    <div class="f ba"><span class="who-lab red">改壞了</span><div class="tg"><p class="bub me">剛剛那版改壞了，幫我回到上一版</p><p class="bub">最近三版是：……要回到哪一版？</p></div><p class="dim" style="font-size:24px">每一版都留著，回得去，所以可以放心讓 AI 大膽改。</p></div>
+  </div>
+  <aside class="notes">「改壞了回得去」是 vibe coding 的安全網。小幫手用的是保留紀錄的回復方式（10/8 已在本機測過），舊版本不會消失。對話內容是示意。</aside>
+</section>
+
+<!-- ============ 08 練一次 ============ -->
+<section class="sheet" data-row="1">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>A · Try it</i><span>現在練一次</span></p>
+    <h2 class="a" style="--d:1">把早上的網頁放上去</h2>
+  </header>
+  <ol class="check">
+    <li><span class="box a" style="--d:2"></span><div><b>教龍蝦 GitHub 小幫手，傳 /new</b><small>它回「GitHub 小幫手已就緒」</small></div><span class="seal round f stamp">一</span></li>
+    <li><span class="box a" style="--d:3"></span><div><b>請龍蝦裝好 git、gh，幫你登入 GitHub</b><small>密碼自己在瀏覽器輸入</small></div><span class="seal round f stamp" style="--rot:8deg">二</span></li>
+    <li><span class="box a" style="--d:4"></span><div><b>「把 ④ 的網頁放上 GitHub，repo 叫 liming-office」</b><small>看完檔案清單再說好</small></div><span class="seal round f stamp" style="--rot:-3deg">三</span></li>
+    <li><span class="box a" style="--d:5"></span><div><b>網址貼到 LINE@</b><small>github.com/你的帳號/liming-office</small></div><span class="seal round f stamp" style="--rot:5deg">四</span></li>
+  </ol>
+  <aside class="notes">早上的網頁在 NAS 上自己的資料夾裡，跟龍蝦說資料夾在哪就好。15:55 分組後，各組長用同一句話建組的 repo。</aside>
+</section>
+
+<!-- ============ 08 B 開場 ============ -->
+<section class="sheet chapter" data-row="2">
+  <div class="vert a" style="--d:0">五個習慣<small>後半段</small></div>
+  <div class="body">
+    <p class="time a" style="--d:1">15:30 – 15:50<span>二十分鐘</span></p>
+    <h2 class="a" style="--d:2">vibe coding 基本功</h2>
+    <p class="lede f">剛剛 ⑤ 八個人講了「我怎麼問的」。<br>把大家都用得上的，收成五條。</p>
+  </div>
+  <aside class="notes">每一條都用「這樣講 → 改成這樣」對照，盡量引用 ⑤ 裡學員真的講過的例子。</aside>
+</section>
+
+<!-- ============ 09 習慣一 ============ -->
+<section class="sheet" data-row="2">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>Habit 1</i><span>五個習慣</span></p>
+    <h2 class="a" style="--d:1">先講結果，再講限制</h2>
+  </header>
+  <div class="compare">
+    <div class="f ba"><span class="who-lab">✗ 教它怎麼做</span><div class="tg bad"><p class="bub me">先用 HTML 做一個框，裡面放標題，再加一個 CSS 讓它置中……</p></div></div>
+    <div class="f ba"><span class="who-lab red">✓ 說你要什麼</span><div class="tg"><p class="bub me">我要一頁介紹黎明辦公室的網頁，手機看也要正常，三段以內</p></div></div>
+  </div>
+  <p class="lede f">說要什麼、有什麼條件。<em>怎麼做，交給它。</em></p>
+  <aside class="notes">非工程背景的人反而常犯左邊的錯：以為要講得很技術。不用，講結果和條件就好。</aside>
+</section>
+
+<!-- ============ 10 習慣二 ============ -->
+<section class="sheet" data-row="2">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>Habit 2</i><span>五個習慣</span></p>
+    <h2 class="a" style="--d:1">告訴它怎樣算做完</h2>
+  </header>
+  <div class="compare">
+    <div class="f ba"><span class="who-lab">✗ 只說要做什麼</span><div class="tg bad"><p class="bub me">幫我做一個黎明辦公室的網頁</p></div></div>
+    <div class="f ba"><span class="who-lab red">✓ 連終點一起說</span><div class="tg"><p class="bub me">幫我做一個黎明辦公室的網頁。做完要：手機打得開、7 張照片都有出現、錯字自己檢查一遍，然後放上 GitHub 給我網址</p></div></div>
+  </div>
+  <p class="lede f">Agent 會自己拆步驟、一口氣做完。<em>你要講清楚的是終點。</em></p>
+  <aside class="notes">現在的 agent 不用一小步一小步餵，一次交代整件事它會自己規劃、做完。真正會出問題的是沒說「怎樣算做完」：它會停在它覺得夠了的地方。驗收條件講清楚，它也能自己檢查。</aside>
+</section>
+
+<!-- ============ 11 習慣三 ============ -->
+<section class="sheet" data-row="2">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>Habit 3</i><span>五個習慣</span></p>
+    <h2 class="a" style="--d:1">卡住就換句話說</h2>
+  </header>
+  <div class="compare">
+    <div class="f ba"><span class="who-lab">✗ 重複同一句</span><div class="tg bad"><p class="bub me">不對，再做一次</p><p class="bub me">還是不對，再做一次</p></div></div>
+    <div class="f ba"><span class="who-lab red">✓ 說它做了什麼、你要什麼</span><div class="tg"><p class="bub me">你把照片放在最上面，我要的是放在第二段下面</p></div></div>
+  </div>
+  <p class="lede f">公式：<em>「它做了 X，我要的是 Y」</em>。</p>
+  <aside class="notes">這條幾乎每個人在 ⑤ 都講到了。把它變成一句可以背的公式。</aside>
+</section>
+
+<!-- ============ 12 習慣四 ============ -->
+<section class="sheet" data-row="2">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>Habit 4</i><span>五個習慣</span></p>
+    <h2 class="a" style="--d:1">大改之前，先叫它講計畫</h2>
+  </header>
+  <div class="split demo">
+    <div class="txt-col">
+      <p class="f">要改很多地方、或要刪東西之前，先看它打算怎麼做。</p>
+      <p class="f">計畫不對，這時候改最便宜。</p>
+    </div>
+    <div class="tg big">
+      <div class="bar">龍蝦<small>例句</small></div>
+      <p class="bub me f">我想把整個網頁改成兩種語言。先告訴我你打算怎麼改，我說好再動手</p>
+      <p class="bub f">我打算：一、……二、……三、……可以嗎？</p>
+      <p class="bub me f">第二點不要，其他可以</p>
+    </div>
+  </div>
+  <aside class="notes">這也是資安課「權限提示是煞車」的延伸：讓它先說，你再決定。</aside>
+</section>
+
+<!-- ============ 13 習慣五 ============ -->
+<section class="sheet" data-row="2">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>Habit 5</i><span>五個習慣</span></p>
+  </header>
+  <div class="only">
+    <p class="huge a" style="--d:1">一定要，<br><em>自己驗。</em></p>
+    <div class="side">
+      <p class="f">早上 ③ 那張照片，龍蝦寫的說明講得很順，但是錯的。</p>
+      <p class="f">數字、名字、日期，用之前自己對一次。</p>
+      <p class="skip f">它講得很順，<em>不代表是對的</em>。</p>
+    </div>
+  </div>
+  <aside class="notes">學員的工作都碰得到客戶資料和數字，這條最要緊。明天交換測試，別人會實際跑你的東西，驗沒驗過一跑就知道。</aside>
+</section>
+
+<!-- ============ 14 五條上牆 ============ -->
+<section class="sheet" data-row="3">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>On the wall</i><span>貼上牆</span></p>
+    <h2 class="a" style="--d:1">五個習慣</h2>
+  </header>
+  <ol class="agenda">
+    <li class="f"><span class="n">1</span><b>先講結果，再講限制</b><i></i></li>
+    <li class="f"><span class="n">2</span><b>告訴它怎樣算做完</b><i></i></li>
+    <li class="f"><span class="n">3</span><b>卡住就換句話說：它做了 X，我要的是 Y</b><i></i></li>
+    <li class="f"><span class="n">4</span><b>大改之前，先叫它講計畫</b><i></i></li>
+    <li class="f hot"><span class="n">5</span><b>一定要自己驗</b><i></i></li>
+  </ol>
+  <aside class="notes">這五條做成海報上牆，跟資安三條放在一起。接下來的團隊實作和明天的個人專案都會用到。</aside>
+</section>
+
+<!-- ============ 15 下一段 ============ -->
+<section class="sheet end" data-row="3">
+  <div class="vert a" style="--d:0">分組</div>
+  <div class="body">
+    <p class="time a" style="--d:1">15:50 – 17:45</p>
+    <p class="next a" style="--d:2">分組專案：<br>3／3／2 人，共 3 組。</p>
+    <p class="bring f">站起來自己找人。組長建好組的 repo，網址貼到 LINE@。</p>
+  </div>
+  <aside class="notes">15:50 自由分組 5 分鐘；15:55 各組選題並建 repo；16:15 分工開做；17:00 推上 GitHub；17:25 各組 3 分鐘展示。</aside>
+</section>
+
+</div>
+</div>
+
+<div class="thread" id="thread"></div>
+<div class="hint" id="hint">→ / 點擊　下一步　·　O　總覽　·　N　講者備忘　·　F　全螢幕</div>
+<div id="zoom" hidden><img alt=""></div>
+<div id="notes" hidden><h4 id="notesHd"></h4><div id="notesBody"></div></div>
+<nav class="nav" aria-label="簡報控制">
+  <button type="button" id="bPrev" aria-label="上一步">‹</button>
+  <span class="count" id="count">1 / 20</span>
+  <button type="button" id="bNext" aria-label="下一步">›</button>
+  <button type="button" id="bOver"><span class="lbl">總覽</span><span aria-hidden="true" style="display:none">▦</span></button>
+  <button type="button" id="bNotes"><span class="lbl">備忘</span></button>
+  <button type="button" id="bFull"><span class="lbl">全螢幕</span></button>
+  <span class="clock" id="clock">--:--</span>
+</nav>
+
+<script>
+(function(){
+  var world=document.getElementById('world'), vp=document.getElementById('viewport');
+  var sheets=[].slice.call(world.querySelectorAll('.sheet'));
+  var N=sheets.length, W0=1600, H0=900, GX=1880, GY=1240;
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- 稿紙 columns: split text into fixed-height squares ---- */
+  [].forEach.call(document.querySelectorAll('.manuscript'),function(m){
+    var rows=+m.dataset.rows||10;
+    [].forEach.call(m.querySelectorAll('.col'),function(col){
+      var ch=Array.from(col.dataset.text), html='';
+      for(var i=0;i<rows;i++) html+='<span class="c" aria-hidden="true">'+(ch[i]&&ch[i]!=='　'?ch[i]:'')+'</span>';
+      col.innerHTML=html;
+    });
+  });
+
+  /* ---- lay sheets on the desk: rows snake left-right ---- */
+  var col=0, dir=1, row=+sheets[0].dataset.row;
+  var pos=sheets.map(function(s,i){
+    var r=+s.dataset.row;
+    if(i>0){ if(r!==row){dir=-dir;row=r;} else col+=dir; }
+    var jx=((i*53)%9-4)*14, jy=((i*29)%7-3)*22, rot=((i*37)%9-4)*.34;
+    return {x:col*GX+jx, y:r*GY+jy, r:rot};
+  });
+  sheets.forEach(function(s,i){
+    var p=pos[i];
+    s.style.left=(p.x-W0/2)+'px'; s.style.top=(p.y-H0/2)+'px';
+    s.style.transform='rotate('+p.r+'deg)';
+    var f=document.createElement('div'); f.className='folio';
+    f.innerHTML='<span>'+'下半場 · GitHub 與基本功'+'</span><span><i>'+String(i+1).padStart(2,'0')+'</i> / '+N+'</span>';
+    s.appendChild(f);
+    if(i%3!==1){var t=document.createElement('div');t.className='tape'+(i%2?' blue':'');
+      t.style.setProperty('--tx',(240+(i*97)%980)+'px');t.style.setProperty('--tr',(((i*41)%11)-5)+'deg');s.appendChild(t);}
+    var auto=0, fr=[].slice.call(s.querySelectorAll('.f'));
+    fr.forEach(function(el){ el._step = el.dataset.step!=null ? +el.dataset.step : auto++; });
+    var steps=[]; fr.forEach(function(el){ if(steps.indexOf(el._step)<0) steps.push(el._step); });
+    steps.sort(function(a,b){return a-b});
+    s._frags=fr; s._steps=steps; s._at=steps.length;
+  });
+  [].forEach.call(document.querySelectorAll('.type'),function(c){c.dataset.text=c.textContent;});
+
+  /* ---- typing ---- */
+  function fullText(c){clearInterval(c._iv);c.classList.remove('typing');c.textContent=c.dataset.text;}
+  function typeIn(el){
+    var cs=el.classList.contains('type')?[el]:[].slice.call(el.querySelectorAll('.type'));
+    cs.forEach(function(c){
+      if(reduce){fullText(c);return;}
+      var full=c.dataset.text,k=0; clearInterval(c._iv); c.textContent=''; c.classList.add('typing');
+      c._iv=setInterval(function(){k++;c.textContent=full.slice(0,k);
+        if(k>=full.length){clearInterval(c._iv);setTimeout(function(){c.classList.remove('typing')},700);}},28);
+    });
+  }
+  function setStep(s,k,animate){
+    s._at=k;
+    s._frags.forEach(function(el){
+      var on=s._steps.indexOf(el._step)<k, was=el.classList.contains('on');
+      el.classList.toggle('on',on);
+      if(on&&!was&&animate) typeIn(el);
+      else [].forEach.call(el.querySelectorAll('.type'),fullText);
+    });
+  }
+
+  /* ---- camera ---- */
+  var cam={x:0,y:0,s:1,r:0}, fit=1, raf=0, cur=0, overview=false, enterT=0;
+  function computeFit(){fit=Math.min(innerWidth/W0,innerHeight/H0)*.95;}
+  function apply(c){
+    world.style.transform='translate('+innerWidth/2+'px,'+innerHeight/2+'px) scale('+(fit*c.s)+') rotate('+(-c.r)+'deg) translate('+(-c.x)+'px,'+(-c.y)+'px)';
+  }
+  function ease(u){return u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2;}
+  function flyTo(t,dur){
+    cancelAnimationFrame(raf);
+    var a={x:cam.x,y:cam.y,s:cam.s,r:cam.r};
+    if(reduce||!dur){cam=t;apply(cam);return;}
+    var dist=Math.hypot(t.x-a.x,t.y-a.y), dip=Math.min(.3,Math.max(.03,dist/7000)), t0=performance.now();
+    (function step(now){
+      var u=Math.min(1,(now-t0)/dur), e=ease(u);
+      cam={x:a.x+(t.x-a.x)*e, y:a.y+(t.y-a.y)*e, r:a.r+(t.r-a.r)*e, s:(a.s+(t.s-a.s)*e)*(1-dip*Math.sin(Math.PI*u))};
+      apply(cam);
+      if(u<1) raf=requestAnimationFrame(step);
+    })(t0);
+  }
+  function durFor(p){var d=Math.hypot(p.x-cam.x,p.y-cam.y);return Math.round(950+Math.min(650,d/4));}
+
+  /* ---- navigation ---- */
+  var thread=document.getElementById('thread'), count=document.getElementById('count');
+  function ui(){
+    count.textContent=(cur+1)+' / '+N;
+    thread.style.width=((cur+1)/N*100)+'%';
+    var n=sheets[cur].querySelector('.notes');
+    document.getElementById('notesHd').textContent='p.'+(cur+1)+' · '+(sheets[cur].querySelector('h1,h2,.vert')||{}).textContent;
+    document.getElementById('notesBody').textContent=n?n.textContent:'';
+    try{history.replaceState(null,'','#p'+(cur+1));}catch(e){}
+  }
+  function go(i,opt){
+    opt=opt||{};
+    i=Math.max(0,Math.min(N-1,i));
+    if(overview){overview=false;document.body.classList.remove('overview');}
+    cur=i; var s=sheets[i];
+    sheets.forEach(function(x){x.classList.toggle('current',x===s);});
+    setStep(s,opt.back?s._steps.length:0,false);
+    var p=pos[i], dur=opt.instant?0:durFor(p);
+    flyTo({x:p.x,y:p.y,r:p.r,s:1},dur);
+    clearTimeout(enterT);
+    sheets.forEach(function(x){x.classList.remove('enter','pre');});
+    if(!opt.back&&!reduce){
+      s.classList.add('pre');
+      enterT=setTimeout(function(){s.classList.remove('pre');void s.offsetWidth;s.classList.add('enter');},opt.instant?120:dur*.42);
+    }
+    ui();
+  }
+  function next(){
+    if(overview){go(cur);return;}
+    var s=sheets[cur];
+    if(s._at<s._steps.length) setStep(s,s._at+1,true);
+    else if(cur<N-1) go(cur+1);
+  }
+  function prev(){
+    if(overview){go(cur);return;}
+    var s=sheets[cur];
+    if(s._at>0) setStep(s,s._at-1,false);
+    else if(cur>0) go(cur-1,{back:true});
+  }
+  function showOverview(instant){
+    overview=true; document.body.classList.add('overview');
+    var xs=pos.map(function(p){return p.x}), ys=pos.map(function(p){return p.y});
+    var minX=Math.min.apply(0,xs)-W0/2-80, maxX=Math.max.apply(0,xs)+W0/2+80,
+        minY=Math.min.apply(0,ys)-H0/2-80, maxY=Math.max.apply(0,ys)+H0/2+80;
+    var s=Math.min(innerWidth/(maxX-minX),innerHeight/(maxY-minY))/fit;
+    flyTo({x:(minX+maxX)/2,y:(minY+maxY)/2,r:0,s:s},instant?0:1300);
+  }
+  function toggleOverview(){ if(overview) go(cur,{back:sheets[cur]._at>0}); else showOverview(); }
+  function toggleNotes(){var n=document.getElementById('notes');n.hidden=!n.hidden;}
+  function fullscreen(){
+    var d=document, el=d.documentElement;
+    try{
+      if(d.fullscreenElement){d.exitFullscreen&&d.exitFullscreen();}
+      else if(el.requestFullscreen){var p=el.requestFullscreen();if(p&&p.catch)p.catch(function(){});}
+    }catch(e){}
+  }
+
+  /* ---- input ---- */
+  var zoom=document.getElementById('zoom'), zoomImg=zoom.querySelector('img');
+  zoom.addEventListener('click',function(e){e.stopPropagation();zoom.hidden=true;});
+  document.addEventListener('keydown',function(e){
+    if(e.metaKey||e.ctrlKey||e.altKey) return;
+    if(!zoom.hidden){e.preventDefault();zoom.hidden=true;return;}
+    var k=e.key;
+    if(k==='ArrowRight'||k==='ArrowDown'||k==='PageDown'||k===' '||k==='Enter'){ if(e.target.closest&&e.target.closest('button')&&k!=='ArrowRight'&&k!=='PageDown'&&k!=='ArrowDown') return; e.preventDefault();next();}
+    else if(k==='ArrowLeft'||k==='ArrowUp'||k==='PageUp'||k==='Backspace'){e.preventDefault();prev();}
+    else if(k==='Home'){go(0);}
+    else if(k==='End'){go(N-1,{back:true});}
+    else if(k==='o'||k==='O'||k==='Escape'){ if(k==='Escape'&&!overview) return; toggleOverview();}
+    else if(k==='n'||k==='N'){toggleNotes();}
+    else if(k==='f'||k==='F'){fullscreen();}
+    hint.classList.add('gone');
+  });
+  var swiped=false, tx=0, ty=0;
+  vp.addEventListener('touchstart',function(e){var t=e.touches[0];tx=t.clientX;ty=t.clientY;swiped=false;},{passive:true});
+  vp.addEventListener('touchend',function(e){var t=e.changedTouches[0],dx=t.clientX-tx,dy=t.clientY-ty;
+    if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){swiped=true;dx<0?next():prev();}},{passive:true});
+  vp.addEventListener('click',function(e){
+    if(swiped){swiped=false;return;}
+    if(overview){var s=e.target.closest('.sheet');if(s)go(sheets.indexOf(s));return;}
+    var sh=e.target.closest('.shot'); if(sh){var im=sh.querySelector('img');zoomImg.src=im.src;zoomImg.alt=im.alt;zoom.hidden=false;return;}
+    if(e.target.closest('button,a,.code')) return;
+    if(window.getSelection&&String(getSelection()).length) return;
+    next(); hint.classList.add('gone');
+  });
+  [].forEach.call(document.querySelectorAll('.copy'),function(b){
+    b.addEventListener('click',function(e){
+      e.stopPropagation();
+      var c=b.parentNode.querySelector('.type,.txt'), txt=c.dataset.text||c.textContent;
+      function done(){b.textContent='已複製';setTimeout(function(){b.textContent='複製'},1600);}
+      function fallback(){if(c.classList.contains('type'))fullText(c);var r=document.createRange();r.selectNodeContents(c);var sel=getSelection();sel.removeAllRanges();sel.addRange(r);b.textContent='已選取，按 Ctrl+C';setTimeout(function(){b.textContent='複製'},2200);}
+      try{navigator.clipboard.writeText(txt).then(done,fallback);}catch(err){fallback();}
+    });
+  });
+  document.getElementById('bPrev').onclick=prev;
+  document.getElementById('bNext').onclick=next;
+  document.getElementById('bOver').onclick=toggleOverview;
+  document.getElementById('bNotes').onclick=toggleNotes;
+  document.getElementById('bFull').onclick=fullscreen;
+
+  var hint=document.getElementById('hint'), idleT=0;
+  setTimeout(function(){hint.classList.add('gone')},6000);
+  function wake(){document.body.classList.remove('idle');clearTimeout(idleT);idleT=setTimeout(function(){document.body.classList.add('idle')},2600);}
+  document.addEventListener('mousemove',wake); wake();
+
+  function tick(){var d=new Date();document.getElementById('clock').textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');}
+  tick(); setInterval(tick,15000);
+
+  addEventListener('resize',function(){computeFit(); if(overview) showOverview(true); else apply(cam);});
+
+  /* ---- start ---- */
+  computeFit();
+  var m=/^#p(\d+)$/.exec(location.hash||''), start=m?Math.min(N,Math.max(1,+m[1]))-1:0;
+  cam={x:pos[start].x,y:pos[start].y,s:1,r:pos[start].r};
+  go(start,{instant:true});
+})();
+</script>
+</body>
+</html>
