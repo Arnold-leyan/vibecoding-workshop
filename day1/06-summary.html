@@ -428,7 +428,7 @@ kbd{display:inline-block;font:600 24px/1.15 var(--f-mono);padding:3px 9px 4px;bo
 .bars{background:#FBFAF6;padding:22px 28px 24px;display:flex;flex-direction:column;gap:9px;box-shadow:0 12px 26px -16px rgba(50,42,28,.5);align-self:start}
 .bars-hd{font:600 26px/1.2 var(--f-display);display:flex;gap:14px;align-items:center;margin-bottom:6px}
 .bar-row{display:grid;grid-template-columns:110px 1fr 36px;gap:14px;align-items:center;font-size:23px}
-.bar-row i{display:block;height:22px;background:var(--seal);width:calc(var(--v) / 5 * 100%)}
+.bar-row i{display:block;height:22px;background:var(--seal);width:calc(var(--v) / 3 * 100%)}
 .bar-row b{font:600 23px/1 var(--f-mono);text-align:right}
 .bars-ft{font-size:20px;color:var(--pencil);margin-top:6px}
 .five{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);border:2px solid var(--ink)}
@@ -511,7 +511,7 @@ body.idle .nav{opacity:0}
   <div class="pipe">
     <div class="pcard f"><span class="when">放進去</span><h3>8 份作品</h3><p>NAS 上今天的資料夾</p></div>
     <span class="pipe-arrow f">＋</span>
-    <div class="pcard f"><span class="when">放進去</span><h3>投票結果</h3><p>LINE@ 投票的截圖</p></div>
+    <div class="pcard f"><span class="when">放進去</span><h3>投票結果</h3><p>投票網站存下的結果檔</p></div>
     <span class="pipe-arrow f">→</span>
     <div class="pcard f"><span class="when">龍蝦</span><h3>整理</h3><p>每人一句、票數、共通的好方法</p></div>
     <span class="pipe-arrow f">→</span>
@@ -529,7 +529,7 @@ body.idle .nav{opacity:0}
   <div class="split demo">
     <div class="txt-col">
       <ol class="steps">
-        <li class="f" data-step="0">傳投票結果的截圖</li>
+        <li class="f" data-step="0">告訴它投票結果檔在哪</li>
         <li class="f" data-step="1">請它讀 NAS 上 8 個人的作品</li>
         <li class="f" data-step="2">做成一頁摘要，順便寫好要貼 LINE@ 的文字</li>
       </ol>
@@ -537,13 +537,13 @@ body.idle .nav{opacity:0}
     </div>
     <div class="tg big">
       <div class="bar">龍蝦<small>示意</small></div>
-      <div class="bub me photo f" data-step="0"><span>投票截圖</span></div>
-      <p class="bub me f" data-step="1">讀 NAS 今天資料夾裡 8 個人的作品，配上這張投票結果，做一頁全場摘要：每人一句話說他怎麼做的、票數排行、三個大家共通的好方法。做好用瀏覽器打開。</p>
+      <p class="bub me f" data-step="0">投票結果在桌面的「投票網站otes\day1.json」</p>
+      <p class="bub me f" data-step="1">讀 NAS 今天資料夾裡 8 個人的作品，配上這份投票結果，做一頁全場摘要：每人一句話說他怎麼做的、票數排行、三個大家共通的好方法。做好用瀏覽器打開。</p>
       <p class="bub me f" data-step="2">再給我一段可以直接貼到 LINE@ 的文字</p>
       <p class="bub f" data-step="2">做好了，已經打開。LINE@ 的文字在下面⋯⋯</p>
     </div>
   </div>
-  <aside class="notes">失敗備案：改成主講口頭總結，摘要隔天補發到 LINE@。T-3 要先確認龍蝦讀得到 NAS 上的資料夾，以及簡報、影片檔它能讀到什麼程度。</aside>
+  <aside class="notes">失敗備案：改成主講口頭總結，摘要隔天補發到 LINE@。投票網站和龍蝦要在同一台電腦上，龍蝦才讀得到結果檔；資料夾路徑照實際位置改。T-3 要先確認龍蝦讀得到 NAS 上的資料夾，以及簡報、影片檔它能讀到什麼程度。</aside>
 </section>
 
 <!-- ============ 04 摘要長相 ============ -->
@@ -555,15 +555,15 @@ body.idle .nav{opacity:0}
   <div class="summary">
     <div class="bars f">
       <p class="bars-hd">票數 <span class="seal ring" style="font-size:18px;padding:4px 10px">示意數字</span></p>
-      <div class="bar-row" style="--v:5"><span>學員 A</span><i></i><b>5</b></div>
-      <div class="bar-row" style="--v:4"><span>學員 B</span><i></i><b>4</b></div>
-      <div class="bar-row" style="--v:4"><span>學員 C</span><i></i><b>4</b></div>
-      <div class="bar-row" style="--v:3"><span>學員 D</span><i></i><b>3</b></div>
-      <div class="bar-row" style="--v:3"><span>學員 E</span><i></i><b>3</b></div>
-      <div class="bar-row" style="--v:2"><span>學員 F</span><i></i><b>2</b></div>
-      <div class="bar-row" style="--v:2"><span>學員 G</span><i></i><b>2</b></div>
-      <div class="bar-row" style="--v:1"><span>學員 H</span><i></i><b>1</b></div>
-      <p class="bars-ft">8 人 × 3 票 ＝ 24 票</p>
+      <div class="bar-row" style="--v:3"><span>學員 A</span><i></i><b>3</b></div>
+      <div class="bar-row" style="--v:2"><span>學員 B</span><i></i><b>2</b></div>
+      <div class="bar-row" style="--v:1"><span>學員 C</span><i></i><b>1</b></div>
+      <div class="bar-row" style="--v:1"><span>學員 D</span><i></i><b>1</b></div>
+      <div class="bar-row" style="--v:1"><span>學員 E</span><i></i><b>1</b></div>
+      <div class="bar-row" style="--v:0"><span>學員 F</span><i></i><b>0</b></div>
+      <div class="bar-row" style="--v:0"><span>學員 G</span><i></i><b>0</b></div>
+      <div class="bar-row" style="--v:0"><span>學員 H</span><i></i><b>0</b></div>
+      <p class="bars-ft">8 人 × 1 票 ＝ 8 票</p>
     </div>
     <div class="txt-col">
       <p class="f" style="font-size:26px;color:var(--pencil);letter-spacing:.2em">三個大家共通的好方法</p>
@@ -585,7 +585,7 @@ body.idle .nav{opacity:0}
   </header>
   <ol class="five">
     <li class="f"><span>觸發</span><b>投票結束</b></li>
-    <li class="f"><span>取得資料</span><b>NAS 作品＋投票截圖</b></li>
+    <li class="f"><span>取得資料</span><b>NAS 作品＋投票結果檔</b></li>
     <li class="f hot"><span>AI 處理</span><b>整理成摘要</b></li>
     <li class="f"><span>產出</span><b>一頁網頁</b></li>
     <li class="f"><span>交給誰</span><b>LINE@ 群組</b></li>
