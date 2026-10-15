@@ -555,7 +555,7 @@ body.idle .nav{opacity:0}
   <div class="flow3">
     <div class="slip f"><span class="when">一</span><h3>有地方放</h3><p>不再散在桌面、隨身碟和 LINE 對話裡。</p></div>
     <div class="slip f"><span class="when">二</span><h3>改壞了回得去</h3><p>每放一次就留一版。AI 改壞了，點回上一版就好。</p></div>
-    <div class="slip f"><span class="when">三</span><h3>同事拿得到</h3><p>給一個網址就好。明天交換測試，就是這樣交出去的。</p></div>
+    <div class="slip f"><span class="when">三</span><h3>變成一個公開網頁</h3><p>給一個網址，手機就打得開。明天交換測試，就是這樣交出去的。</p></div>
   </div>
   <aside class="notes">第三點最重要：明天交換測試直接給 GitHub 網址，不用傳檔案。早上 ① 辦好的帳號現在派上用場：龍蝦放好之後會邀請你一起管。</aside>
 </section>
@@ -567,7 +567,7 @@ body.idle .nav{opacity:0}
     <h2 class="a" style="--d:1">三個動作，都對龍蝦說</h2>
   </header>
   <div class="moves">
-    <div class="f"><span class="who-lab">動作一＋二 · 建 repo、放上去</span><div class="tg"><p class="bub me">把早上做的黎明辦公室網頁放上 GitHub</p></div></div>
+    <div class="f"><span class="who-lab">動作一＋二 · 放上去、變成網頁</span><div class="tg"><p class="bub me">把早上做的黎明辦公室網頁放上 GitHub，做成公開網頁</p></div></div>
     <div class="f"><span class="who-lab">動作三 · 改完再放一次</span><div class="tg"><p class="bub me">我改好了，再放一次：這次把標題改大</p></div></div>
     <div class="f"><span class="who-lab red">改壞了 · 回到上一版</span><div class="tg"><p class="bub me">剛剛那版改壞了，幫我回到上一版</p></div></div>
   </div>
@@ -595,7 +595,7 @@ body.idle .nav{opacity:0}
 
 ---
 name: github-helper
-description: 當使用者說「放上 GitHub」「再放一次」「回到上一版」「給我 GitHub 網址」時，用 git 和 gh 把他的作品放到工作坊的 GitHub（Arnold-leyan）底下。
+description: 當使用者說「放上 GitHub」「做成公開網頁」「再放一次」「回到上一版」「給我網址」時，用 git 和 gh 把他的作品放到工作坊的 GitHub（Arnold-leyan）底下，並打開 GitHub Pages 給他一個公開網頁網址。
 ---
 
 # GitHub 小幫手
@@ -614,18 +614,22 @@ description: 當使用者說「放上 GitHub」「再放一次」「回到上一
 1. 確認要放的資料夾。repo 名稱由你來取，使用者不用給：「名字開頭-內容的英文短名」（例：jason-liming-office），英文小寫、用連字號。使用者自己指定了名稱，也一樣在前面加上他的名字開頭。
 2. 這個帳號很多人共用，名稱可能撞到。先用 `gh repo view Arnold-leyan/&lt;repo 名稱&gt;` 確認還沒被用過；已經有了，就在後面加 -2、-3……直到找到沒人用過的名稱。絕對不要推到已經存在的 repo。
    - 記住這個資料夾放到哪個 repo，之後使用者說「再放一次」就用同一個。
-3. 在資料夾裡建立 `.gitignore`，至少寫入 `.env`。
+3. 在資料夾裡建立 `.gitignore`，至少寫入 `.env`。網頁的主檔要叫 `index.html`、放在資料夾最上層；不是的話先改名，網頁裡照片的路徑也要跟著對。
 4. 安全檢查：列出要上傳的檔案。檔名或內容出現 .env、token、password、密碼、身分證、保單，就先停下來告訴使用者，不要上傳。
 5. 用一句話告訴使用者：要上傳哪些檔案、要放到哪個 repo 名稱，以及「這會公開，任何人都看得到」。使用者說好之前，不要上傳。
 6. `git init`（已經是 repo 就跳過）。只在這個資料夾裡設定作者（不要用 --global）：`git config user.name "&lt;使用者的英文名字&gt;"`；用 `gh api user --jq .id` 取得 id，`git config user.email "&lt;id&gt;+Arnold-leyan@users.noreply.github.com"`。
 7. `git add -A` → `git commit -m "&lt;一句話說明&gt;"` → `gh repo create Arnold-leyan/&lt;repo 名稱&gt; --public --source . --push`。推送時如果要求輸入帳號密碼，停下來請使用者找主辦方。
-8. 使用者給過自己的 GitHub 帳號的話：`gh api -X PUT repos/Arnold-leyan/&lt;repo 名稱&gt;/collaborators/&lt;他的帳號&gt; -f permission=push`，告訴他「GitHub 會寄邀請信給你，按接受就能自己改」。
-9. 回覆 repo 網址：https://github.com/Arnold-leyan/&lt;repo 名稱&gt;
+8. 打開公開網頁（GitHub Pages）：用 `git branch --show-current` 取得分支名稱，執行 `gh api -X POST repos/Arnold-leyan/&lt;repo 名稱&gt;/pages -f "source[branch]=&lt;分支名稱&gt;" -f "source[path]=/"`。等大約 1 分鐘，用 `gh api repos/Arnold-leyan/&lt;repo 名稱&gt;/pages --jq .status` 確認變成 `built`。
+9. 使用者給過自己的 GitHub 帳號的話：`gh api -X PUT repos/Arnold-leyan/&lt;repo 名稱&gt;/collaborators/&lt;他的帳號&gt; -f permission=push`，告訴他「GitHub 會寄邀請信給你，按接受就能自己改」。
+10. 回覆兩個網址：
+   - 公開網頁：https://arnold-leyan.github.io/&lt;repo 名稱&gt;/ （手機、電腦都打得開，給別人看就給這個）
+   - 程式碼：https://github.com/Arnold-leyan/&lt;repo 名稱&gt;
 
 ## 再放一次
 1. 到同一個資料夾，用 `git remote get-url origin` 確認這是 Arnold-leyan/「這位使用者的名字開頭-…」的 repo。不是就停下來。
 2. 用 `git status` 看改了哪些檔案，列給使用者，做同樣的安全檢查。
 3. `git add -A` → `git commit -m "&lt;使用者說的這次改了什麼&gt;"` → `git push`。
+4. 告訴使用者：公開網頁大約 1 分鐘後更新，網址不變。
 
 ## 回到上一版
 1. 一樣先確認 repo 是這位使用者的。
@@ -669,7 +673,7 @@ description: 當使用者說「放上 GitHub」「再放一次」「回到上一
 <section class="sheet" data-row="1">
   <header class="hd">
     <p class="eyebrow a" style="--d:0"><i>A · Move 1 + 2</i><span>建 repo、放上去</span></p>
-    <h2 class="a" style="--d:1">一句話，建好也放好</h2>
+    <h2 class="a" style="--d:1">一句話，放上去也變成網頁</h2>
   </header>
   <div class="split demo">
     <div class="txt-col">
@@ -677,15 +681,15 @@ description: 當使用者說「放上 GitHub」「再放一次」「回到上一
         <li class="f" data-step="0">說要放哪一個作品<small>名稱龍蝦會取，不用自己想</small></li>
         <li class="f" data-step="1">它先列出要上傳的檔案，問你可以嗎</li>
         <li class="f" data-step="2"><b>看清楚再說好</b></li>
-        <li class="f" data-step="3">拿到網址</li>
+        <li class="f" data-step="3">拿到公開網頁的網址<small>手機打開看看</small></li>
       </ol>
     </div>
     <div class="tg big">
       <div class="bar">龍蝦<small>示意</small></div>
-      <p class="bub me f" data-step="0">把早上做的黎明辦公室網頁放上 GitHub</p>
-      <p class="bub f" data-step="1">要上傳 8 個檔案到 jason-liming-office：網頁 1 個、照片 7 張，沒有 .env 或客戶資料。這會公開，確定嗎？</p>
+      <p class="bub me f" data-step="0">把早上做的網頁放上 GitHub，做成公開網頁</p>
+      <p class="bub f" data-step="1">要把 8 個檔案（網頁 1、照片 7）放到 jason-liming-office，沒有 .env 或客戶資料。會公開，確定嗎？</p>
       <p class="bub me f" data-step="2">好</p>
-      <p class="bub f" data-step="3">放好了：github.com/Arnold-leyan/jason-liming-office</p>
+      <p class="bub f" data-step="3">放好了：arnold-leyan.github.io/jason-liming-office</p>
     </div>
   </div>
   <aside class="notes">第 2 步是煞車：龍蝦被規定上傳前一定先列檔案、等你說好。學員要真的看那份清單，不要反射性回「好」。</aside>
@@ -714,7 +718,7 @@ description: 當使用者說「放上 GitHub」「再放一次」「回到上一
     <h2 class="a" style="--d:1">改好了再放，改壞了回去</h2>
   </header>
   <div class="compare">
-    <div class="f ba"><span class="who-lab">改好了</span><div class="tg"><p class="bub me">我改好了，再放一次：這次把標題改大</p><p class="bub">改了 1 個檔案：index.html。已經放上去了。</p></div><p class="dim" style="font-size:24px">那一句「這次改了什麼」，就是這一版的名字。</p></div>
+    <div class="f ba"><span class="who-lab">改好了</span><div class="tg"><p class="bub me">我改好了，再放一次：這次把標題改大</p><p class="bub">改了 1 個檔案：index.html。已經放上去，網頁約 1 分鐘後更新。</p></div><p class="dim" style="font-size:24px">那一句「這次改了什麼」，就是這一版的名字。</p></div>
     <div class="f ba"><span class="who-lab red">改壞了</span><div class="tg"><p class="bub me">剛剛那版改壞了，幫我回到上一版</p><p class="bub">最近三版是：……要回到哪一版？</p></div><p class="dim" style="font-size:24px">每一版都留著，回得去，所以可以放心讓 AI 大膽改。</p></div>
   </div>
   <aside class="notes">「改壞了回得去」是 vibe coding 的安全網。小幫手用的是保留紀錄的回復方式（10/8 已在本機測過），舊版本不會消失。對話內容是示意。</aside>
@@ -730,7 +734,7 @@ description: 當使用者說「放上 GitHub」「再放一次」「回到上一
     <li><span class="box a" style="--d:2"></span><div><b>教龍蝦 GitHub 小幫手，傳 /new</b><small>它回「GitHub 小幫手已就緒」</small></div><span class="seal round f stamp">一</span></li>
     <li><span class="box a" style="--d:3"></span><div><b>告訴龍蝦你的英文名字和 GitHub 帳號</b><small>不用登入、不用密碼</small></div><span class="seal round f stamp" style="--rot:8deg">二</span></li>
     <li><span class="box a" style="--d:4"></span><div><b>「把 ④ 的網頁放上 GitHub」</b><small>不用取名，看完檔案清單再說好</small></div><span class="seal round f stamp" style="--rot:-3deg">三</span></li>
-    <li><span class="box a" style="--d:5"></span><div><b>網址貼到 LINE@</b><small>github.com/Arnold-leyan/你的名字-…</small></div><span class="seal round f stamp" style="--rot:5deg">四</span></li>
+    <li><span class="box a" style="--d:5"></span><div><b>網頁網址貼到 LINE@</b><small>arnold-leyan.github.io/你的名字-…</small></div><span class="seal round f stamp" style="--rot:5deg">四</span></li>
   </ol>
   <aside class="notes">早上的網頁龍蝦做的、也存在它那裡，直接說「早上做的網頁」就好。15:55 分組後，各組長用同一句話建組的 repo。這個 GitHub 帳號 8 個人共用，所以不讓學員自己指定 repo 名稱，一律由龍蝦取、前面加名字、撞名自動換，避免蓋掉別人的。</aside>
 </section>
@@ -847,7 +851,7 @@ description: 當使用者說「放上 GitHub」「再放一次」「回到上一
   <div class="body">
     <p class="time a" style="--d:1">15:50 – 17:45</p>
     <p class="next a" style="--d:2">分組專案：<br>3／3／2 人，共 3 組。</p>
-    <p class="bring f">站起來自己找人。組長建好組的 repo，網址貼到 LINE@。</p>
+    <p class="bring f">站起來自己找人。組長建好組的 repo，網頁網址貼到 LINE@。</p>
   </div>
   <aside class="notes">15:50 自由分組 5 分鐘；15:55 各組選題並建 repo；16:15 分工開做；17:00 推上 GitHub；17:25 各組 3 分鐘展示。</aside>
 </section>
