@@ -353,7 +353,7 @@ kbd{display:inline-block;font:600 24px/1.15 var(--f-mono);padding:3px 9px 4px;bo
 .idx .fn{font:400 19px/1 var(--f-mono);color:var(--pencil);margin-bottom:18px}
 .idx dt{font:italic 500 24px/1 var(--f-latin);color:var(--seal);margin-top:12px}
 .idx dd{margin:6px 0 0;font-size:29px;line-height:1.55}
-.code.msg{font-size:18px;line-height:1.55;align-self:start;max-height:100%;overflow:auto;overscroll-behavior:contain}
+.code.msg{font-size:18px;line-height:1.55;align-self:start;box-sizing:border-box;max-height:min(100%,500px);overflow:auto;overscroll-behavior:contain}
 .chips{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
 .chip{font:600 26px/1 var(--f-mono);padding:10px 18px;border:2px solid var(--seal);color:var(--seal);rotate:var(--r,0deg);background:#FBFAF6}
 
@@ -557,7 +557,7 @@ body.idle .nav{opacity:0}
     <div class="slip f"><span class="when">二</span><h3>改壞了回得去</h3><p>每放一次就留一版。AI 改壞了，點回上一版就好。</p></div>
     <div class="slip f"><span class="when">三</span><h3>同事拿得到</h3><p>給一個網址就好。明天交換測試，就是這樣交出去的。</p></div>
   </div>
-  <aside class="notes">第三點最重要：明天交換測試直接給 GitHub 網址，不用傳檔案。早上 ① 辦好的帳號現在派上用場。</aside>
+  <aside class="notes">第三點最重要：明天交換測試直接給 GitHub 網址，不用傳檔案。早上 ① 辦好的帳號現在派上用場：龍蝦放好之後會邀請你一起管。</aside>
 </section>
 
 <!-- ============ 02 三個動作 ============ -->
@@ -572,7 +572,7 @@ body.idle .nav{opacity:0}
     <div class="f"><span class="who-lab red">改壞了 · 回到上一版</span><div class="tg"><p class="bub me">剛剛那版改壞了，幫我回到上一版</p></div></div>
   </div>
   <p class="lede f">不用打指令，也不用記按鈕。<em>不講分支、不講 merge。</em></p>
-  <aside class="notes">repo 就是一個專案的資料夾。龍蝦在背後用 git 和 GitHub 官方的 gh 工具幫你做，學員只要會說這三句。</aside>
+  <aside class="notes">repo 就是一個專案的資料夾。龍蝦在背後用 git 和 GitHub 官方的 gh 工具幫你做，學員只要會說這三句。repo 名稱龍蝦會自動加上你的名字開頭，例如 jason-liming-office。</aside>
 </section>
 
 <!-- ============ 03 教龍蝦 ============ -->
@@ -595,72 +595,73 @@ body.idle .nav{opacity:0}
 
 ---
 name: github-helper
-description: 當使用者說「放上 GitHub」「再放一次」「回到上一版」「給我 GitHub 網址」時，用 git 和 gh 幫他管理自己的 repo。
+description: 當使用者說「放上 GitHub」「再放一次」「回到上一版」「給我 GitHub 網址」時，用 git 和 gh 把他的作品放到工作坊的 GitHub（Arnold-leyan）底下。
 ---
 
 # GitHub 小幫手
 
+這台主機只登入一個 GitHub 帳號：主辦方的 **Arnold-leyan**。所有學員的作品都放在 github.com/Arnold-leyan/ 底下，用學員的英文名字當 repo 名稱的開頭來區分。
+
+## 第一次用
+1. 問使用者的英文名字，轉成英文小寫，只留字母、數字和連字號（例：jason、amy-chang），當作他的「名字開頭」，記在你的記憶裡。之後他的每個 repo 都叫「名字開頭-名稱」（例：jason-liming-office）。
+2. 問他早上辦好的 GitHub 帳號名稱（沒有也可以跳過），記起來，放上去之後把他加成那個 repo 的協作者。
+
 ## 每次開始前
-1. 先確認 git 和 gh 都在：執行 `git --version` 和 `gh --version`。
-   - 這台主機由主辦方管理，git 和 gh 應該已經裝好。缺任何一個，不要自己安裝，告訴使用者「主機上還沒有 git／gh，請找主辦方」，然後停下來。
-2. 執行 `gh auth status` 確認有沒有登入。還沒登入時：
-   - 在背景執行 `gh auth login --web --git-protocol https`。
-   - 把畫面上的 8 碼代碼和網址 https://github.com/login/device 傳給使用者，請他自己在瀏覽器登入 GitHub、輸入代碼、按 Authorize，完成後跟你說。
-   - 絕對不要向使用者要密碼，也不要代替他登入。
-   - 使用者說好了，用 `gh auth status` 確認，再執行 `gh auth setup-git`，回報登入的帳號名稱。
-   - 已經登入時，先問使用者「現在登入的是 &lt;帳號&gt;，是你的嗎？」。不是他本人的帳號就停下來，不要用別人的帳號上傳。
-3. `git config --global user.name` 是空的：用 `gh api user --jq .login` 和 `gh api user --jq .id` 取得帳號與 id，把 user.name 設成帳號，user.email 設成 `&lt;id&gt;+&lt;帳號&gt;@users.noreply.github.com`。
+1. 執行 `gh api user --jq .login`，結果必須是 `Arnold-leyan`。不是、或顯示沒登入，就停下來告訴使用者「主機的 GitHub 登入有問題，請找主辦方」。
+2. 絕對不要執行 `gh auth login`、`gh auth logout`、`gh auth switch`，也不要向使用者要密碼或登入代碼。登入由主辦方處理。
 
 ## 放上去（新的 repo）
-1. 確認資料夾路徑和 repo 名稱（英文小寫，用連字號，例：liming-office）。
-2. 在資料夾裡建立 `.gitignore`，至少寫入 `.env`。
-3. 安全檢查：列出要上傳的檔案。檔名或內容出現 .env、token、password、密碼、身分證、保單，就先停下來告訴使用者，不要上傳。
-4. 用一句話告訴使用者：要上傳哪些檔案，以及「這會公開，任何人都看得到」。使用者說好之前，不要上傳。
-5. `git init`（已經是 repo 就跳過）→ `git add -A` → `git commit -m "&lt;一句話說明&gt;"` → `gh repo create &lt;名稱&gt; --public --source . --push`。
-6. 回覆 repo 網址（`gh repo view --json url --jq .url`）。
+1. 確認要放的資料夾。repo 名稱一定是「名字開頭-名稱」，英文小寫、用連字號。
+2. 用 `gh repo view Arnold-leyan/&lt;repo 名稱&gt;` 確認這個名稱還沒被用過。已經有了，就請使用者換一個名稱，不要覆蓋。
+3. 在資料夾裡建立 `.gitignore`，至少寫入 `.env`。
+4. 安全檢查：列出要上傳的檔案。檔名或內容出現 .env、token、password、密碼、身分證、保單，就先停下來告訴使用者，不要上傳。
+5. 用一句話告訴使用者：要上傳哪些檔案，以及「這會公開，任何人都看得到」。使用者說好之前，不要上傳。
+6. `git init`（已經是 repo 就跳過）。只在這個資料夾裡設定作者（不要用 --global）：`git config user.name "&lt;使用者的英文名字&gt;"`；用 `gh api user --jq .id` 取得 id，`git config user.email "&lt;id&gt;+Arnold-leyan@users.noreply.github.com"`。
+7. `git add -A` → `git commit -m "&lt;一句話說明&gt;"` → `gh repo create Arnold-leyan/&lt;repo 名稱&gt; --public --source . --push`。推送時如果要求輸入帳號密碼，停下來請使用者找主辦方。
+8. 使用者給過自己的 GitHub 帳號的話：`gh api -X PUT repos/Arnold-leyan/&lt;repo 名稱&gt;/collaborators/&lt;他的帳號&gt; -f permission=push`，告訴他「GitHub 會寄邀請信給你，按接受就能自己改」。
+9. 回覆 repo 網址：https://github.com/Arnold-leyan/&lt;repo 名稱&gt;
 
 ## 再放一次
-1. 到同一個資料夾，用 `git status` 看改了哪些檔案，列給使用者。
-2. 做同樣的安全檢查。
+1. 到同一個資料夾，用 `git remote get-url origin` 確認這是 Arnold-leyan/「這位使用者的名字開頭-…」的 repo。不是就停下來。
+2. 用 `git status` 看改了哪些檔案，列給使用者，做同樣的安全檢查。
 3. `git add -A` → `git commit -m "&lt;使用者說的這次改了什麼&gt;"` → `git push`。
 
 ## 回到上一版
-1. 用 `git log --oneline -5` 列出最近幾版，用白話說明每一版改了什麼。
-2. 使用者選好要回到哪一版後，用 `git revert --no-edit &lt;那一版&gt;..HEAD`，再 `git push`。保留紀錄，不要用 reset。
+1. 一樣先確認 repo 是這位使用者的。
+2. 用 `git log --oneline -5` 列出最近幾版，用白話說明每一版改了什麼。
+3. 使用者選好要回到哪一版後，用 `git revert --no-edit &lt;那一版&gt;..HEAD`，再 `git push`。保留紀錄，不要用 reset。
 
 ## 絕對不做
-- 不刪除任何 repo，不動使用者沒指定的 repo，不把 private 改成 public。
-- 不在對話裡顯示 token。
+- 只動名稱以這位使用者「名字開頭」開頭的 repo。別的學員的 repo、Arnold-leyan 原本就有的 repo，一個都不碰。
+- 不刪除任何 repo，不把 public 改成 private 或反過來。
+- 不執行 `gh auth login`、`logout`、`switch`，不在對話裡顯示 token。
 - 不用 `git push --force`。</span><button class="copy" type="button">複製全文</button></div>
   </div>
-  <aside class="notes">小幫手規定龍蝦：上傳前先列檔案、等你說好；不上傳 .env 和客戶資料；不刪 repo、不 force push。原始檔在工作坊資料夾 skills/github-helper/。</aside>
+  <aside class="notes">小幫手規定龍蝦：只用主機上主辦方的帳號、不讓學員登入；只動自己名字開頭的 repo；上傳前先列檔案、等你說好；不上傳 .env 和客戶資料；不刪 repo、不 force push。原始檔在工作坊資料夾 skills/github-helper/。</aside>
 </section>
 
-<!-- ============ 04b 登入 ============ -->
+<!-- ============ 04b 告訴龍蝦你是誰 ============ -->
 <section class="sheet" data-row="0">
   <header class="hd">
     <p class="eyebrow a" style="--d:0"><i>A · Setup 2</i><span>只做一次</span></p>
-    <h2 class="a" style="--d:1">登入 GitHub：龍蝦給代碼，你自己登入</h2>
+    <h2 class="a" style="--d:1">告訴龍蝦你是誰，不用登入</h2>
   </header>
   <div class="split demo">
     <div class="txt-col">
       <ol class="steps tight">
-        <li class="f" data-step="0">對龍蝦說「幫我登入 GitHub」</li>
-        <li class="f" data-step="1">它傳來一個網址和一組 8 碼代碼</li>
-        <li class="f" data-step="2">在瀏覽器打開網址，<b>自己登入</b>、貼代碼、按 Authorize</li>
-        <li class="f" data-step="3">回 Telegram 說「好了」</li>
+        <li class="f" data-step="0">對龍蝦說：我要開始用 GitHub 小幫手</li>
+        <li class="f" data-step="0">一起給它你的英文名字、早上辦好的 GitHub 帳號</li>
+        <li class="f" data-step="1">之後你的 repo 都用你的名字開頭</li>
       </ol>
-      <p class="warn f" data-step="4" style="font-size:26px;padding:12px 20px">密碼只在 GitHub 網頁上輸入，不傳給龍蝦。</p>
+      <p class="warn f" data-step="2" style="font-size:26px;padding:12px 20px">不用登入、不用給密碼：主機已經登入主辦方的帳號。</p>
     </div>
     <div class="tg big">
       <div class="bar">龍蝦<small>示意</small></div>
-      <p class="bub me f" data-step="0">幫我登入 GitHub</p>
-      <p class="bub f" data-step="1">請打開 github.com/login/device，登入後輸入這組代碼：ABCD-1234。完成後跟我說。</p>
-      <p class="bub me f" data-step="3">好了</p>
-      <p class="bub f" data-step="3">登入成功，帳號是：你的帳號。</p>
+      <p class="bub me f" data-step="0">我要開始用 GitHub 小幫手。我叫 jason，GitHub 帳號是 jason-liming</p>
+      <p class="bub f" data-step="1">記住了：你的 repo 都會叫 jason-＿＿＿，放好之後會邀請 jason-liming 一起管。</p>
     </div>
   </div>
-  <aside class="notes">這是龍蝦連上的第二個帳號。gh 預設登入權限是 repo、read:org、gist，只能管你的 repo，沒有刪除 repo 的權限，正好是資安課講的最小權限。代碼 15 分鐘內有效，畫面上的代碼是示意。</aside>
+  <aside class="notes">主機只登入主辦方的 Arnold-leyan 一個帳號，8 隻龍蝦共用。10/16 實測過：同一台主機上多人各自登入 GitHub 會互相蓋掉，所以學員不登入。學員作品都放在 github.com/Arnold-leyan/ 底下，用英文名字開頭區分；學員自己的帳號會被邀請成協作者，之後可以自己改。主辦方的 token 只有 repo、read:org、gist 權限，沒有刪 repo 的權限。</aside>
 </section>
 
 <!-- ============ 05 放上去 ============ -->
@@ -681,9 +682,9 @@ description: 當使用者說「放上 GitHub」「再放一次」「回到上一
     <div class="tg big">
       <div class="bar">龍蝦<small>示意</small></div>
       <p class="bub me f" data-step="0">把早上做的黎明辦公室網頁放上 GitHub，repo 叫 liming-office</p>
-      <p class="bub f" data-step="1">要上傳 8 個檔案：網頁 1 個、照片 7 張。沒有 .env 或客戶資料。這會公開，任何人都看得到，確定嗎？</p>
+      <p class="bub f" data-step="1">要上傳 8 個檔案：網頁 1 個、照片 7 張，沒有 .env 或客戶資料。這會公開，確定嗎？</p>
       <p class="bub me f" data-step="2">好</p>
-      <p class="bub f" data-step="3">放好了：github.com/你的帳號/liming-office</p>
+      <p class="bub f" data-step="3">放好了：github.com/Arnold-leyan/jason-liming-office</p>
     </div>
   </div>
   <aside class="notes">第 2 步是煞車：龍蝦被規定上傳前一定先列檔案、等你說好。學員要真的看那份清單，不要反射性回「好」。</aside>
@@ -726,9 +727,9 @@ description: 當使用者說「放上 GitHub」「再放一次」「回到上一
   </header>
   <ol class="check">
     <li><span class="box a" style="--d:2"></span><div><b>教龍蝦 GitHub 小幫手，傳 /new</b><small>它回「GitHub 小幫手已就緒」</small></div><span class="seal round f stamp">一</span></li>
-    <li><span class="box a" style="--d:3"></span><div><b>請龍蝦幫你登入 GitHub</b><small>密碼自己在瀏覽器輸入</small></div><span class="seal round f stamp" style="--rot:8deg">二</span></li>
+    <li><span class="box a" style="--d:3"></span><div><b>告訴龍蝦你的英文名字和 GitHub 帳號</b><small>不用登入、不用密碼</small></div><span class="seal round f stamp" style="--rot:8deg">二</span></li>
     <li><span class="box a" style="--d:4"></span><div><b>「把 ④ 的網頁放上 GitHub，repo 叫 liming-office」</b><small>看完檔案清單再說好</small></div><span class="seal round f stamp" style="--rot:-3deg">三</span></li>
-    <li><span class="box a" style="--d:5"></span><div><b>網址貼到 LINE@</b><small>github.com/你的帳號/liming-office</small></div><span class="seal round f stamp" style="--rot:5deg">四</span></li>
+    <li><span class="box a" style="--d:5"></span><div><b>網址貼到 LINE@</b><small>github.com/Arnold-leyan/你的名字-liming-office</small></div><span class="seal round f stamp" style="--rot:5deg">四</span></li>
   </ol>
   <aside class="notes">早上的網頁在 NAS 上自己的資料夾裡，跟龍蝦說資料夾在哪就好。15:55 分組後，各組長用同一句話建組的 repo。</aside>
 </section>
