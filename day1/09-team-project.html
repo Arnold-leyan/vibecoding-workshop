@@ -528,6 +528,12 @@ body.idle .nav{opacity:0}
   .f,.f.ink,.f.stamp,.f .draw,.sheet,.thread{transition:none}
 }
 </style>
+<style>
+.nav .toc{color:inherit;text-decoration:none;padding:9px 12px;margin-right:4px;border-right:1px solid rgba(244,242,236,.2);
+  letter-spacing:.08em;white-space:nowrap;border-radius:3px 0 0 3px}
+.nav .toc:hover{background:rgba(244,242,236,.12)}
+.nav .toc:focus-visible{outline:3px solid var(--seal);outline-offset:2px}
+</style>
 </head>
 <body>
 <div id="viewport">
@@ -847,6 +853,7 @@ body.idle .nav{opacity:0}
 <div id="zoom" hidden><img alt=""></div>
 <div id="notes" hidden><h4 id="notesHd"></h4><div id="notesBody"></div></div>
 <nav class="nav" aria-label="簡報控制">
+  <a class="toc" href="./" aria-label="返回 Day 1 目錄">← 目錄</a>
   <button type="button" id="bPrev" aria-label="上一步">‹</button>
   <span class="count" id="count">1 / 20</span>
   <button type="button" id="bNext" aria-label="下一步">›</button>
