@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>交換測試</title>
+<title>前端與後端</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&family=LXGW+WenKai+TC:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=JetBrains+Mono:wght@400;600&display=swap">
@@ -552,7 +552,19 @@ kbd{display:inline-block;font:600 24px/1.15 var(--f-mono);padding:3px 9px 4px;bo
 .sbt-ctl{display:flex;gap:14px;align-items:center;margin-top:10px;font-size:20px;color:var(--pencil)}
 .sbt-ctl button{font:600 20px/1 var(--f-display);padding:10px 18px;border:2px solid var(--ink);background:#FBFAF6;color:var(--ink);cursor:pointer;border-radius:3px}
 
-
+.codebit{font:500 26px/1.5 var(--f-mono);background:#272724;color:#F4F2EC;padding:12px 16px;border-radius:4px;margin:6px 0 0;white-space:pre-wrap}
+.json{font:500 30px/1.6 var(--f-mono);background:#272724;color:#F4F2EC;padding:24px 30px;border-radius:4px;margin:0;white-space:pre}
+.json i{font-style:normal;color:#E7A58F}
+.yesno{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.yesno li{display:grid;grid-template-columns:minmax(0,1fr) 150px;align-items:baseline;gap:20px;padding:9px 4px;border-bottom:2px dotted var(--rule);font:600 29px/1.35 var(--f-display)}
+.yesno li span{font:italic 500 28px/1 var(--f-latin);color:var(--seal);text-align:right}
+.map5{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;flex:1;align-content:start}
+.map5 li{background:#FBFAF6;border-top:10px solid var(--rule);padding:22px 22px 26px;display:flex;flex-direction:column;gap:10px;min-width:0;box-shadow:0 12px 24px -18px rgba(50,42,28,.5)}
+.map5 li.fe{border-top-color:var(--indigo,#34466B)}
+.map5 li.be{border-top-color:var(--seal)}
+.map5 li span{font-size:21px;letter-spacing:.2em;color:var(--pencil)}
+.map5 li b{font:600 31px/1.35 var(--f-display)}
+.map5 li small{font-size:23px;line-height:1.5;color:var(--pencil)}
 /* ---------- chrome ---------- */
 .nav{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:10;
   display:flex;align-items:center;gap:4px;padding:6px;background:rgba(39,39,36,.86);color:var(--paper);border-radius:4px;
@@ -595,221 +607,240 @@ body.idle .nav{opacity:0}
 <section class="sheet cover" data-row="0">
   <div class="cover-main">
     <p class="eyebrow a" style="--d:0"><i>Day Two · 14:40</i><span>黎明 VibeCoding 工作坊</span></p>
-    <h1 class="a" style="--d:1">交換測試</h1>
+    <h1 class="a" style="--d:1">前後端</h1>
     <svg class="under a" style="--d:2" viewBox="0 0 620 30" aria-hidden="true"><path class="draw" pathLength="1" d="M4 18 C 140 6, 270 26, 400 14 S 560 8, 616 18"/></svg>
-    <p class="sub a" style="--d:3">別人拿得走嗎<small>can a stranger run it from your doc?</small></p>
-    <p class="meta a" style="--d:4"><i>14:40 – 15:25</i>四十五分鐘　評分關卡</p>
+    <p class="sub a" style="--d:3">前端與後端<br>你做的東西，到底跑在哪裡<small>front of house, back of house</small></p>
+    <p class="meta a" style="--d:4"><i>14:40 – 15:25</i>四十五分鐘　主講講解</p>
   </div>
   <div class="cover-side">
-    <div class="manuscript a" style="--d:2" data-rows="9" aria-label="作者不在旁邊，它還跑得動嗎。"><span class="col" data-text="作者不在旁邊，"></span><span class="col sub" data-text="它還跑得動嗎。"></span></div>
+    <div class="manuscript a" style="--d:2" data-rows="9" aria-label="看得到的在前面，看不到的在後面"><span class="col" data-text="看得到的在前面，"></span><span class="col sub" data-text="看不到的在後面。"></span></div>
     <div class="seal a stampin" style="--d:6;transform:rotate(-6deg)">黎明</div>
   </div>
-  <aside class="notes">14:40。全場最關鍵的 45 分鐘，直接對應評分主軸：工作流能不能給其他人用。</aside>
+  <aside class="notes">14:40。兩天下來大家做了網頁、用了龍蝦、投了票，這 45 分鐘把背後的道理講清楚。不寫程式，只講觀念：懂一點，跟 AI 講話時就知道要什麼、什麼東西不能放哪裡。</aside>
 </section>
 
-<!-- ============ 01 作者不准說話 ============ -->
+<!-- ============ 01 為什麼 ============ -->
 <section class="sheet" data-row="0">
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>One rule</i><span>最重要的規矩</span></p>
+    <p class="eyebrow a" style="--d:0"><i>Why</i><span>為什麼要懂一點</span></p>
+    <h2 class="a" style="--d:1">兩天下來，你已經用過前端和後端</h2>
   </header>
-  <div class="only">
-    <p class="huge a" style="--d:1">作者<br><em>不准說話。</em></p>
-    <div class="side">
-      <p class="f">工作坊結束後，你不會站在同事旁邊。</p>
-      <p class="f">作者只要開口補一句「喔那個要先按這裡」，這題就沒意義了。</p>
-      <p class="skip f">作者全程只能看。測試者<em>只照文件</em>操作。</p>
-    </div>
+  <div class="flow3">
+    <div class="slip f"><span class="when">昨天上午</span><h3>做了一頁網頁</h3><p>手機打開看得到、點得到。</p></div>
+    <div class="slip f"><span class="when">兩天都在用</span><h3>跟龍蝦講話</h3><p>你在 Telegram 打字，事情在別台電腦上做完。</p></div>
+    <div class="slip f"><span class="when">今天下午</span><h3>用手機投票</h3><p>8 個人投，大螢幕看到同一份結果。</p></div>
   </div>
-  <aside class="notes">這條規則讓「可移轉」從形容詞變成當場量得出來的數字，也是之後共學判定「有沒有第二個人在用」的基準線。</aside>
+  <p class="lede f">懂一點前後端，跟 AI 講話時<em>就知道要什麼、什麼東西不能放哪裡</em>。</p>
+  <aside class="notes">今天不寫程式，也不背名詞。目標只有兩個：聽得懂 AI 回你的話；知道金鑰、資料該放哪裡。</aside>
 </section>
 
-<!-- ============ 02 配對 ============ -->
+<!-- ============ 02 一句話分清楚 ============ -->
 <section class="sheet" data-row="0">
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Pairs</i><span>環狀配對 · 每個人測下一位</span></p>
-    <h2 class="a" style="--d:1">誰測誰</h2>
+    <p class="eyebrow a" style="--d:0"><i>In one line</i><span>一句話分清楚</span></p>
+    <h2 class="a" style="--d:1">看得到的在前面，看不到的在後面</h2>
   </header>
-  <ol class="ring">
-    <li class="f"><i>1</i><b>李建德</b><span class="to">→</span><em>張家祥</em></li>
-    <li class="f"><i>2</i><b>張家祥</b><span class="to">→</span><em>張靖欣</em></li>
-    <li class="f"><i>3</i><b>張靖欣</b><span class="to">→</span><em>連于萱</em></li>
-    <li class="f"><i>4</i><b>連于萱</b><span class="to">→</span><em>黃雯琪</em></li>
-    <li class="f"><i>5</i><b>黃雯琪</b><span class="to">→</span><em>韋懿慈</em></li>
-    <li class="f"><i>6</i><b>韋懿慈</b><span class="to">→</span><em>蘇詠哲</em></li>
-    <li class="f"><i>7</i><b>蘇詠哲</b><span class="to">→</span><em>黃敬淳</em></li>
-    <li class="f"><i>8</i><b>黃敬淳</b><span class="to">→</span><em>李建德</em></li>
-  </ol>
-  <aside class="notes">左邊的人測右邊那個人的專案。這是照名單排的預設，場控要先調整：刻意避開昨天同組的人，他們對彼此的題目太熟，測不出「陌生人拿得走嗎」。要改順序跟 Claude 說。</aside>
+  <div class="compare">
+    <div class="card plain f"><span class="who">前端 · Frontend</span><p class="say">你看得到、<br>點得到的。</p><p class="ex">在<b>你的</b>瀏覽器、手機裡跑。網頁長什麼樣、按鈕按下去會怎樣。</p></div>
+    <div class="card agent f"><span class="who">後端 · Backend</span><p class="say">你看不到、<br>在別台電腦上的。</p><p class="ex">存資料、算東西、保管金鑰、讓大家看到同一份。</p></div>
+  </div>
+  <aside class="notes">分辨的方法：這件事是發生在我手上這台機器，還是發生在某台我看不到的電腦？</aside>
 </section>
 
-<!-- ============ 03 怎麼測 ============ -->
+<!-- ============ 03 餐廳 ============ -->
 <section class="sheet" data-row="0">
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>How</i><span>測試者照這樣做</span></p>
-    <h2 class="a" style="--d:1">只用網址和文件，10 分鐘</h2>
+    <p class="eyebrow a" style="--d:0"><i>A restaurant</i><span>用餐廳想像</span></p>
+    <h2 class="a" style="--d:1">前場、點單、廚房、倉庫</h2>
+  </header>
+  <div class="pipe">
+    <div class="pcard f"><span class="when">前端</span><h3>前場</h3><p>菜單、桌子、服務生。你看得到的。</p></div>
+    <span class="pipe-arrow f">→</span>
+    <div class="pcard f"><span class="when">請求</span><h3>點單</h3><p>「一份牛肉麵」，照固定格式寫。</p></div>
+    <span class="pipe-arrow f">→</span>
+    <div class="pcard f"><span class="when">後端</span><h3>廚房</h3><p>照單做菜。客人看不到。</p></div>
+    <span class="pipe-arrow f">→</span>
+    <div class="pcard last f"><span class="when">資料庫</span><h3>倉庫</h3><p>食材都放這裡，記得剩多少。</p></div>
+  </div>
+  <p class="lede f">菜做好再端回前場，叫做<em>回應</em>。</p>
+  <aside class="notes">接下來的名詞都對得回這張圖：前端＝前場，API＝點單的格式（菜單上有哪些能點），後端＝廚房，資料庫＝倉庫。</aside>
+</section>
+
+<!-- ============ 04 前端三兄弟 ============ -->
+<section class="sheet" data-row="1">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>Frontend</i><span>你昨天那頁網頁，就是這三樣</span></p>
+    <h2 class="a" style="--d:1">前端三兄弟：骨架、衣服、動作</h2>
+  </header>
+  <div class="flow3">
+    <div class="slip f"><span class="when">HTML · 骨架</span><h3>有什麼</h3><p>標題、段落、照片、按鈕。</p><p class="codebit">&lt;h1&gt;黎明辦公室&lt;/h1&gt;</p></div>
+    <div class="slip f"><span class="when">CSS · 衣服</span><h3>長怎樣</h3><p>顏色、字體、排版。</p><p class="codebit">h1 { color: 墨綠 }</p></div>
+    <div class="slip f"><span class="when">JavaScript · 動作</span><h3>會做什麼</h3><p>按下去換照片、算數字。</p><p class="codebit">按鈕.被點 → 換下一張</p></div>
+  </div>
+  <aside class="notes">昨天說「整頁改成復古報紙風格」，龍蝦改的主要就是 CSS；說「加一個按鈕可以換照片」，改的是 JavaScript。程式碼是示意寫法，不是真的語法。</aside>
+</section>
+
+<!-- ============ 05 後端做什麼 ============ -->
+<section class="sheet" data-row="1">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>Backend</i><span>廚房在忙什麼</span></p>
+    <h2 class="a" style="--d:1">後端做的四件事</h2>
+  </header>
+  <div class="trouble">
+    <div class="f"><span class="who">存資料</span><p class="sym">放進資料庫</p><p class="fix">報名名單、訂單、投票結果，關掉網頁也還在。</p></div>
+    <div class="f"><span class="who">大家看同一份</span><p class="sym">多人共用</p><p class="fix">8 個人投票，大螢幕看到的是同一份結果。</p></div>
+    <div class="f"><span class="who">知道你是誰</span><p class="sym">登入</p><p class="fix">帳號密碼要在後端檢查，不能交給前端。</p></div>
+    <div class="f"><span class="who">保管秘密</span><p class="sym">金鑰放這裡</p><p class="fix">呼叫 AI、寄信的金鑰，只放後端。</p></div>
+  </div>
+  <aside class="notes">前端做不到這四件，因為前端在每個人自己的手機裡跑：你手機裡存的東西，別人看不到；放在前端的東西，任何人都拿得到。</aside>
+</section>
+
+<!-- ============ 06 怎麼說話 ============ -->
+<section class="sheet" data-row="1">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>Request &amp; response</i><span>前端怎麼跟後端說話</span></p>
+    <h2 class="a" style="--d:1">網址是地址，API 是菜單，JSON 是點單</h2>
   </header>
   <div class="split">
     <div class="txt-col">
       <ol class="steps">
-        <li class="f">打開對方的 GitHub 網址<small>交件群組裡找得到</small></li>
-        <li class="f">只照他的操作文件做</li>
-        <li class="f">卡住了不問作者，記下卡在第幾步</li>
-        <li class="f">10 分鐘到，停</li>
+        <li class="f">前端照<b>網址</b>找到後端</li>
+        <li class="f">照 <b>API</b> 能點的項目，送出一個<b>請求</b></li>
+        <li class="f">後端做完，送回一個<b>回應</b></li>
+        <li class="f">雙方都用 <b>JSON</b> 這種格式寫</li>
       </ol>
     </div>
-    <div class="txt-col">
-      <p class="f">可以用你自己的龍蝦照著文件跑，也可以手動照做。</p>
-      <p class="f dim">直接給 GitHub 網址，不用傳檔案：昨天建 repo 的好處在這裡兌現。</p>
-    </div>
+    <pre class="json f">{
+  "姓名": "<i>張家祥</i>",
+  "投給": "<i>黃敬淳</i>"
+}</pre>
   </div>
-  <aside class="notes">測試者需要的資料（樣本）應該寫在文件「先準備什麼」裡。文件沒寫，就算卡住。</aside>
+  <aside class="notes">右邊就是剛剛手機投票時，你的手機送給後端的那一張「點單」的樣子（示意）。AI 回你的話裡出現 API、JSON、請求、回應，就對得回這一頁。</aside>
 </section>
 
-<!-- ============ 04 計分 ============ -->
+<!-- ============ 07 投票網站拆開 ============ -->
 <section class="sheet" data-row="1">
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Score</i><span>可移轉性 · 3 分</span></p>
-    <h2 class="a" style="--d:1">三種結果，三種分數</h2>
+    <p class="eyebrow a" style="--d:0"><i>Take it apart</i><span>剛剛用過的投票網站</span></p>
+    <h2 class="a" style="--d:1">投票網站，拆開來看</h2>
   </header>
-  <div class="pts">
-    <div class="f top"><b>3</b><h3>跑得動</h3><p>10 分鐘內，只照文件就跑出結果。</p></div>
-    <div class="f"><b>1.5</b><h3>要問作者</h3><p>卡住了，作者開口才過得去。</p></div>
-    <div class="f"><b>0</b><h3>跑不動</h3><p>10 分鐘內跑不出來。</p></div>
-  </div>
-  <aside class="notes">這 3 分是客觀分，可以抵銷「簡報做得好看」的加成。</aside>
+  <ol class="map5">
+    <li class="fe f"><span>前端</span><b>你手機上的投票頁</b><small>點名字、按確定</small></li>
+    <li class="fe f"><span>前端</span><b>大螢幕的主講畫面</b><small>QR code、長條圖</small></li>
+    <li class="be f"><span>後端</span><b>主講電腦上的小程式</b><small>收票、擋重複投、算分數</small></li>
+    <li class="be f"><span>資料</span><b>day2.json</b><small>票存在這個檔案裡</small></li>
+  </ol>
+  <p class="lede f">不能投自己、一支手機只能投一個名字：<em>這些規則都要寫在後端</em>，寫在前端的話，誰都改得掉。</p>
+  <aside class="notes">投票網站還多一條 Cloudflare 臨時通道：讓用 4G 的手機也連得進主講電腦。後端放在哪台電腦、外面怎麼連進來，叫做「部署」。</aside>
 </section>
 
-<!-- ============ 05 時間表 ============ -->
-<section class="sheet" data-row="1">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Timeline</i><span>45 分鐘</span></p>
-    <h2 class="a" style="--d:1">測、填、聽、收</h2>
-  </header>
-  <div class="tl4 tlx a" style="--d:2;grid-template-columns:5fr 10fr 5fr 15fr 10fr" id="tlD">
-    <div class="seg" data-start="14:40" data-end="14:45"><span class="t">14:40</span><b>說明</b><small>規則＋配對</small><span class="left"></span></div>
-    <div class="seg" data-start="14:45" data-end="14:55"><span class="t">14:45</span><b>測試</b><small>10 分 · 作者不說話</small><span class="left"></span></div>
-    <div class="seg" data-start="14:55" data-end="15:00"><span class="t">14:55</span><b>填卡點單</b><small>5 分</small><span class="left"></span></div>
-    <div class="seg" data-start="15:00" data-end="15:15"><span class="t">15:00</span><b>對一次</b><small>作者現在可以說話了</small><span class="left"></span></div>
-    <div class="seg" data-start="15:15" data-end="15:25"><span class="t">15:15</span><b>收分數</b><small>場控彙整</small><span class="left"></span></div>
-  </div>
-  <aside class="notes">15:00 之後作者可以開口了：跟測試者一起看卡點，大部分卡點是文件問題，16:25「帶得走」那段要拿來修文件。</aside>
-</section>
-
-<!-- ============ 06 計時 ============ -->
-<section class="sheet" data-row="1">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>14:45 · 10 min</i><span>全場同時測</span></p>
-  </header>
-  <div class="timer-wrap">
-    <div class="timer-main">
-      <p class="now-lab" id="txLab">上台中</p>
-      <p class="now-name" id="txName">—</p>
-      <p class="clock-big" id="txClock">10:00</p>
-      <p class="tm-state" id="txState">按「開始」計時</p>
-      <div class="ctrls">
-        <button type="button" id="txStart">開始</button>
-        <button type="button" id="txReset">重來</button>
-        <button type="button" id="txNext">下一位 →</button>
-      </div>
-    </div>
-    <ol class="order" id="txOrder"></ol>
-  </div>
-  <aside class="notes">全場同時開始、同時結束。剩 1 分鐘會嗶一聲，時間到嗶兩聲。</aside>
-</section>
-
-<!-- ============ 07 卡點單 ============ -->
+<!-- ============ 08 龍蝦也是 ============ -->
 <section class="sheet" data-row="2">
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>14:55 · 5 min</i><span>測試者填，傳到交件群組</span></p>
-    <h2 class="a" style="--d:1">卡點單：一句話就好</h2>
+    <p class="eyebrow a" style="--d:0"><i>Your lobster</i><span>龍蝦也是這樣</span></p>
+    <h2 class="a" style="--d:1">龍蝦：前端是 Telegram，後端在主機上</h2>
   </header>
-  <div class="split">
-    <div class="txt-col">
-      <dl class="idx f" style="rotate:-.6deg">
-        <div class="fn">傳到「黎明交件」群組</div>
-        <dt>我測的是</dt><dd>＿＿＿ 的專案</dd>
-        <dt>結果</dt><dd>3 跑得動／1.5 要問作者／0 跑不動</dd>
-        <dt>卡在</dt><dd>第 ＿ 步，因為 ＿＿＿＿</dd>
-      </dl>
-    </div>
-    <div class="tg big">
-      <div class="bar">黎明交件<small>例</small></div>
-      <p class="bub me f">我測的是張家祥的專案：1.5 分。卡在第 2 步，文件沒寫口述要先轉成文字。</p>
+  <div class="pipe" style="grid-template-columns:1fr auto 1fr auto 1fr">
+    <div class="pcard f"><span class="when">前端</span><h3>Telegram</h3><p>你打字、傳照片的地方。</p></div>
+    <span class="pipe-arrow f">→</span>
+    <div class="pcard f"><span class="when">後端</span><h3>主機上的 OpenClaw</h3><p>收到訊息、跑 skill、存檔案。</p></div>
+    <span class="pipe-arrow f">→</span>
+    <div class="pcard last f"><span class="when">另一個服務</span><h3>AI 模型</h3><p>後端再去問 AI，答案送回來給你。</p></div>
+  </div>
+  <p class="lede f">所以你的電腦關機，龍蝦照樣在做事：<em>它的後端不在你身上</em>。</p>
+  <aside class="notes">後端還可以再去叫別的後端，這就是為什麼一個服務要用到好幾把金鑰：每一把都代表「可以去叫某個服務」。</aside>
+</section>
+
+<!-- ============ 09 你今天的網頁 ============ -->
+<section class="sheet" data-row="2">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>GitHub Pages</i><span>你今天放上去的網頁</span></p>
+    <h2 class="a" style="--d:1">GitHub Pages：只有前端的網站</h2>
+  </header>
+  <div class="compare">
+    <div class="card plain f"><span class="who">做得到</span><p class="say">檔案放上去，<br>誰來看都一樣。</p><p class="ex">介紹頁、說明文件、計算機、互動小工具、只給自己用的清單（存在自己的瀏覽器）。</p></div>
+    <div class="card agent f"><span class="who">做不到</span><p class="say">要記住大家的事，<br>就需要後端。</p><p class="ex">收大家填的資料、登入、多人共用一份、藏金鑰。</p></div>
+  </div>
+  <aside class="notes">只有前端的網站叫「靜態網站」：免費、不用管機器、也不容易被攻擊。大部分學員今天的作品放這裡就夠了。</aside>
+</section>
+
+<!-- ============ 10 什麼時候需要後端 ============ -->
+<section class="sheet" data-row="2">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>Do I need one?</i><span>四個問題</span></p>
+    <h2 class="a" style="--d:1">有一題答「要」，就需要後端</h2>
+  </header>
+  <ol class="yesno">
+    <li class="f">要把別人填的資料存起來嗎？<span>要 → 後端</span></li>
+    <li class="f">要讓很多人看到同一份、即時更新嗎？<span>要 → 後端</span></li>
+    <li class="f">要知道是誰在用、需要登入嗎？<span>要 → 後端</span></li>
+    <li class="f">要用金鑰去叫別的服務嗎？<span>要 → 後端</span></li>
+  </ol>
+  <p class="lede f">需要後端，也不一定要自己寫：<em>Google 表單＋試算表</em>就是現成的後端。</p>
+  <aside class="notes">非工程背景最省力的路：前端自己做（龍蝦幫你），後端先借現成的服務。真的要自己架後端，再請 AI 一起規劃，並且先過資安三條。</aside>
+</section>
+
+<!-- ============ 11 金鑰不放前端 ============ -->
+<section class="sheet" data-row="3">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>The one rule</i><span>今天最重要的一條</span></p>
+  </header>
+  <div class="only">
+    <p class="huge a" style="--d:1;font-size:132px">前端的東西，<br><em>誰都看得到。</em></p>
+    <div class="side">
+      <p class="f">網頁裡寫了什麼，任何人按一下 F12 就看得到，包括金鑰。</p>
+      <p class="f">金鑰、密碼、客戶資料，<b>一律不放前端</b>，也不放上 GitHub。</p>
+      <p class="skip f">帶得走那段的資安複查，第一條查的就是這個。</p>
     </div>
   </div>
-  <aside class="notes">一個人一則，場控從群組收分數。作者也會在群組看到自己的卡點，16:25 拿來修文件。</aside>
+  <aside class="notes">現場可以示範：打開任何一頁網頁按 F12，原始碼和送出去的請求都看得到。AI 為了讓你「快點能動」，常常把金鑰直接寫進網頁，這是最常見的漏洞。</aside>
+</section>
+
+<!-- ============ 12 跟 AI 講 ============ -->
+<section class="sheet" data-row="3">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>Say it to AI</i><span>學了就用得上</span></p>
+    <h2 class="a" style="--d:1">跟龍蝦講的時候，加上這幾句</h2>
+  </header>
+  <div class="compare">
+    <div class="tg f">
+      <p class="bub me">做成純前端的網頁，放 GitHub Pages 就好</p>
+      <p class="bub me">資料先存在瀏覽器裡，只有我自己用</p>
+    </div>
+    <div class="tg f">
+      <p class="bub me">要收大家填的資料，用 Google 試算表當後端</p>
+      <p class="bub me">金鑰放後端，不要寫在網頁裡</p>
+    </div>
+  </div>
+  <aside class="notes">講清楚「前端就好」還是「需要後端」，AI 給你的做法會差很多，也比較不會自作主張把金鑰塞進網頁。</aside>
+</section>
+
+<!-- ============ 13 快問快答 ============ -->
+<section class="sheet" data-row="3">
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>Quick quiz</i><span>前端就好，還是要後端？</span></p>
+    <h2 class="a" style="--d:1">快問快答</h2>
+  </header>
+  <div class="trouble">
+    <div><span class="who f">一</span><p class="sym f">算保費的試算小工具</p><p class="fix f">前端就好：輸入數字、算出結果，不用記住誰。</p></div>
+    <div><span class="who f">二</span><p class="sym f">讓客戶線上報名活動</p><p class="fix f">要後端：要把大家的報名存起來（可以用 Google 表單）。</p></div>
+    <div><span class="who f">三</span><p class="sym f">網頁裡直接呼叫 AI，金鑰寫在網頁裡</p><p class="fix f">不行：金鑰要放後端，網頁去問後端。</p></div>
+    <div><span class="who f">四</span><p class="sym f">只有自己用的每日待辦清單</p><p class="fix f">前端就好：存在自己的瀏覽器裡。</p></div>
+  </div>
+  <aside class="notes">一題一題問全場，先讓大家喊答案，再按出解答。第二題可以接著問：那報名資料裡有客戶電話，要注意什麼？（資安三條）</aside>
 </section>
 
 <!-- ============ 下一段 ============ -->
-<section class="sheet end" data-row="2">
+<section class="sheet end" data-row="3">
   <div class="vert a" style="--d:0">接下來</div>
   <div class="body">
     <p class="time a" style="--d:1">15:25 – 16:25</p>
     <p class="next a" style="--d:2">評審合議、分數彙整，<br>然後頒獎。</p>
-    <p class="bring f">作者：先看一眼你的卡點，等一下修文件用得到。</p>
+    <p class="bring f">回頭看一眼你的作品：有沒有東西放錯在前端？</p>
   </div>
   <aside class="notes">15:25 評審合議，同時主講用龍蝦做全場摘要。</aside>
 </section>
 
-<script>
-(function(){
-  var segs=[].slice.call(document.querySelectorAll('#tlD .seg'));
-  function mins(s){var p=s.split(':');return +p[0]*60+ +p[1];}
-  function tick(){
-    var d=new Date(), m=d.getHours()*60+d.getMinutes()+d.getSeconds()/60;
-    segs.forEach(function(s){
-      var a=mins(s.dataset.start), b=mins(s.dataset.end), on=m>=a&&m<b;
-      s.classList.toggle('now',on);
-      s.classList.toggle('done',m>=b&&m<b+150);
-      s.querySelector('.left').textContent=on?('還剩 '+Math.ceil(b-m)+' 分'):'';
-    });
-  }
-  tick(); setInterval(tick,15000);
-})();
-</script>
-<script>
-(function(){
-  var P="tx", names=["全場同時測"], phases=[["測試中", 600]];
-  var $=function(s){return document.getElementById(P+s)};
-  var clock=$('Clock'); if(!clock) return;
-  var state=$('State'), nameEl=$('Name'), lab=$('Lab'), order=$('Order'), startBtn=$('Start');
-  var cur=0, ph=0, left=phases[0][1], endAt=0, running=false, warned=false, ended=false, iv=0, ac=null;
-  order.innerHTML=names.map(function(n,i){return '<li data-i="'+i+'"><span>'+(i+1)+'</span>'+n+'</li>'}).join('');
-  if(names.length<2){order.style.display='none';$('Next').style.display='none';}
-  function beep(f,ms){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator(),g=ac.createGain();o.frequency.value=f;o.connect(g);g.connect(ac.destination);g.gain.setValueAtTime(.15,ac.currentTime);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+ms/1000);o.start();o.stop(ac.currentTime+ms/1000);}catch(e){}}
-  function fmt(s){s=Math.max(0,Math.ceil(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}
-  function paint(){
-    clock.textContent=fmt(left);
-    clock.classList.toggle('warn',left<=60&&left>0);
-    clock.classList.toggle('over',left<=0);
-    nameEl.textContent=names[cur]||'—';
-    lab.textContent=phases[ph][0];
-    [].forEach.call(order.children,function(li,i){li.classList.toggle('cur',i===cur);li.classList.toggle('done',i<cur);});
-    var nextPh=phases[ph+1], nx=names[cur+1];
-    state.textContent= left<=0 ? (nextPh?('時間到，按「開始」進入'+nextPh[0]):'時間到') : running ? (nextPh?('接著：'+nextPh[0]):(names.length>1?('下一位：'+(nx||'最後一位')):'計時中')) : (left===phases[ph][1]?'按「開始」計時':'暫停中');
-    startBtn.textContent=running?'暫停':'開始';
-  }
-  function setPhase(i){ph=i;left=phases[ph][1];warned=false;ended=false;}
-  function step(){
-    left=(endAt-Date.now())/1000;
-    if(left<=60&&!warned&&phases[ph][1]>90){warned=true;beep(660,350);}
-    if(left<=0){left=0;running=false;clearInterval(iv);if(!ended){ended=true;beep(520,700);setTimeout(function(){beep(520,700)},800);}}
-    paint();
-  }
-  startBtn.onclick=function(e){
-    e.stopPropagation();
-    if(left<=0){ if(phases[ph+1]){setPhase(ph+1);} else return; }
-    if(running){running=false;clearInterval(iv);left=(endAt-Date.now())/1000;}
-    else{running=true;endAt=Date.now()+left*1000;clearInterval(iv);iv=setInterval(step,250);}
-    paint();
-  };
-  function reset(){running=false;clearInterval(iv);setPhase(0);paint();}
-  $('Reset').onclick=function(e){e.stopPropagation();reset();};
-  $('Next').onclick=function(e){e.stopPropagation();if(cur<names.length-1)cur++;reset();};
-  order.onclick=function(e){e.stopPropagation();var li=e.target.closest('li');if(li){cur=+li.dataset.i;reset();}};
-  paint();
-})();
-</script>
 
 </div>
 </div>
@@ -859,7 +890,7 @@ body.idle .nav{opacity:0}
     s.style.left=(p.x-W0/2)+'px'; s.style.top=(p.y-H0/2)+'px';
     s.style.transform='rotate('+p.r+'deg)';
     var f=document.createElement('div'); f.className='folio';
-    f.innerHTML='<span>'+'Day 2 · 交換測試'+'</span><span><i>'+String(i+1).padStart(2,'0')+'</i> / '+N+'</span>';
+    f.innerHTML='<span>'+'Day 2 · 前端與後端'+'</span><span><i>'+String(i+1).padStart(2,'0')+'</i> / '+N+'</span>';
     s.appendChild(f);
     if(i%3!==1){var t=document.createElement('div');t.className='tape'+(i%2?' blue':'');
       t.style.setProperty('--tx',(240+(i*97)%980)+'px');t.style.setProperty('--tr',(((i*41)%11)-5)+'deg');s.appendChild(t);}
