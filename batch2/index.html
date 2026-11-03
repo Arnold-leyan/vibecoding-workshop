@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="黎明 VibeCoding 工作坊第二梯次 11/13–11/14 兩日現場流程表">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128340;</text></svg>">
+<style>
+:root{color-scheme:light dark}
+*{box-sizing:border-box}
+body{margin:0;font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans TC",sans-serif;
+  background:#fafaf9;color:#111}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>黎明兩日流程表 · 第二梯次</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700;900&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --ink:#131A26; --ink-2:#394454; --ink-3:#6A7688;
+  --ground:#F3F6FA; --surface:#FFFFFF; --surface-2:#E7EDF5;
+  --line:#D2DBE6; --line-strong:#AEBBCB;
+  --accent:#2F4A9C; --accent-soft:#E2E9F8;
+  --warn:#8C5A0B; --warn-soft:#F9EDD5;
+  --good:#0E5B4E; --good-soft:#D6EAE5;
+  --risk:#932F1A; --risk-soft:#F8DFD9;
+  --bar-bg:#131A26; --bar-fg:#F3F6FA;
+  --serif:"Noto Serif TC",Georgia,"Songti TC",serif;
+  --sans:"Noto Sans TC",-apple-system,"Segoe UI","Microsoft JhengHei",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --rail:118px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#E8EDF4; --ink-2:#B0BCCB; --ink-3:#7D8B9D;
+    --ground:#0D131C; --surface:#151D28; --surface-2:#1F2937;
+    --line:#293544; --line-strong:#3B4A5C;
+    --accent:#95ACEC; --accent-soft:#1B2740;
+    --warn:#E3B664; --warn-soft:#302610;
+    --good:#6BC8B4; --good-soft:#0D2924;
+    --risk:#E48D75; --risk-soft:#311610;
+    --bar-bg:#1F2937; --bar-fg:#E8EDF4;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#E8EDF4; --ink-2:#B0BCCB; --ink-3:#7D8B9D;
+  --ground:#0D131C; --surface:#151D28; --surface-2:#1F2937;
+  --line:#293544; --line-strong:#3B4A5C;
+  --accent:#95ACEC; --accent-soft:#1B2740;
+  --warn:#E3B664; --warn-soft:#302610;
+  --good:#6BC8B4; --good-soft:#0D2924;
+  --risk:#E48D75; --risk-soft:#311610;
+  --bar-bg:#1F2937; --bar-fg:#E8EDF4;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding:0 20px 80px}
+h1,h2,h3,h4{font-family:var(--serif);margin:0;text-wrap:balance}
+p{margin:0}
+
+/* masthead */
+.mast{padding:34px 0 20px}
+.kick{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.mast h1{font-size:clamp(27px,4.6vw,40px);font-weight:900;line-height:1.14;letter-spacing:-.01em}
+.strip{display:flex;flex-wrap:wrap;gap:0;margin-top:20px;border:1px solid var(--line);
+  background:var(--line)}
+.strip div{background:var(--surface);padding:9px 14px;flex:1 1 148px;min-width:0}
+.strip dt{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3)}
+.strip dd{margin:2px 0 0;font-size:14px;font-weight:500;font-variant-numeric:tabular-nums}
+
+/* tabs */
+.tabs{position:sticky;top:0;z-index:20;background:var(--ground);
+  padding:10px 0 9px;margin-bottom:4px;border-bottom:1px solid var(--line);
+  display:flex;gap:7px;flex-wrap:wrap}
+.tabs button{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.04em;
+  padding:7px 16px;border:1px solid var(--line-strong);background:var(--surface);
+  color:var(--ink-2);cursor:pointer;border-radius:2px}
+.tabs button:hover{border-color:var(--accent);color:var(--accent)}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--ground);
+  border-color:var(--ink)}
+:root[data-theme="dark"] .tabs button[aria-pressed="true"],
+.tabs button[aria-pressed="true"]{background:var(--bar-bg);color:var(--bar-fg);border-color:var(--bar-bg)}
+.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* daybar */
+.daybar{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  background:var(--bar-bg);color:var(--bar-fg);padding:13px 18px;margin-top:22px}
+.daybar .dnum{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.16em;opacity:.72}
+.daybar .dttl{font-family:var(--serif);font-size:19px;font-weight:700}
+.daybar .dmeta{margin-left:auto;font-family:var(--mono);font-size:11.5px;opacity:.72;
+  max-width:56ch;line-height:1.5}
+
+/* run rows */
+.run{border-top:2px solid var(--ink)}
+.blk{display:grid;grid-template-columns:var(--rail) 1fr;gap:0 22px;
+  border-bottom:1px solid var(--line);padding:16px 0 16px 2px;position:relative}
+.blk:hover{background:var(--surface)}
+.blk .t{border-right:1px solid var(--line);padding-right:16px;text-align:right}
+.blk .t .hm{display:block;font-family:var(--mono);font-size:21px;font-weight:700;
+  letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1.15}
+.blk .t .dur{display:block;font-family:var(--mono);font-size:11.5px;font-weight:500;
+  color:var(--ink-3);margin-top:3px;font-variant-numeric:tabular-nums}
+.blk .b h4{font-size:17px;font-weight:700;font-family:var(--sans);margin-bottom:6px;
+  line-height:1.4}
+.blk .b .d{font-size:14px;color:var(--ink-2)}
+.blk .b ul{font-size:14px;color:var(--ink-2);margin:5px 0 0;padding-left:1.25em}
+.blk .b ol{font-size:14px;color:var(--ink-2);margin:6px 0 0;padding-left:1.55em}
+.blk .b ol li{margin:5px 0}
+.blk .b ol li::marker{font-family:var(--mono);font-weight:600;color:var(--accent)}
+.blk .b li{margin:3px 0}
+.blk .b li::marker{color:var(--ink-3)}
+.blk .b strong{font-weight:700;color:var(--ink)}
+
+/* tables inside blocks */
+.blk .b .tw{overflow-x:auto;border:1px solid var(--line);background:var(--surface);margin-top:8px}
+.blk .b table{border-collapse:collapse;width:100%;font-size:13px;min-width:400px}
+.blk .b th{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;text-align:left;color:var(--ink-3);padding:7px 10px;
+  border-bottom:1px solid var(--line-strong);white-space:nowrap;background:var(--surface-2)}
+.blk .b td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+.blk .b tbody tr:last-child td{border-bottom:none}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.meta span{font-family:var(--mono);font-size:11px;padding:2px 8px;
+  border:1px solid var(--line-strong);color:var(--ink-2);background:var(--surface)}
+.meta span.out{border-color:var(--good);color:var(--good);background:var(--good-soft);font-weight:500}
+.meta span.own{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.blk.brk{padding:8px 0 8px 2px;background:var(--surface-2)}
+.blk.brk .t .hm{font-size:14px;font-weight:500;color:var(--ink-3)}
+.blk.brk .t .dur{display:none}
+.blk.brk .b h4{font-family:var(--mono);font-size:12.5px;font-weight:500;
+  letter-spacing:.05em;color:var(--ink-3);margin:0}
+.tag{display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:600;
+  letter-spacing:.09em;text-transform:uppercase;padding:2px 7px;vertical-align:2px}
+.tag.w{background:var(--warn-soft);color:var(--warn);border:1px solid var(--warn)}
+.tag.g{background:var(--good-soft);color:var(--good);border:1px solid var(--good)}
+.tag.r{background:var(--risk-soft);color:var(--risk);border:1px solid var(--risk)}
+.tag.a{background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent)}
+
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);margin-top:16px}
+.rules div{background:var(--surface);padding:12px 15px;font-size:13.5px;color:var(--ink-2)}
+.rules b{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+
+footer{margin-top:44px;padding-top:16px;border-top:2px solid var(--ink);
+  font-family:var(--mono);font-size:11.5px;color:var(--ink-3);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+@media (max-width:620px){
+  :root{--rail:74px}
+  .blk{gap:0 13px}
+  .blk .t{padding-right:10px}
+  .blk .t .hm{font-size:16px}
+  .daybar .dmeta{margin-left:0;flex-basis:100%}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  .tabs{display:none}
+  .day{display:block!important}
+  .day[hidden]{display:block!important}
+  body{background:#fff;color:#000;font-size:11pt}
+  .wrap{max-width:none;padding:0}
+  .blk{break-inside:avoid;page-break-inside:avoid}
+  table{break-inside:avoid;page-break-inside:avoid}
+  .daybar{break-before:page;page-break-before:always;background:#000;color:#fff;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .day:first-of-type .daybar{break-before:auto;page-break-before:auto}
+  .mast{padding-top:0}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header class="mast">
+  <div class="kick">當日流程 · 現場用</div>
+  <h1>黎明兩日流程表 · 第二梯次</h1>
+  <dl class="strip">
+    <div><dt>日期</dt><dd>11/13（五）–11/14（六）</dd></div>
+    <div><dt>時間</dt><dd>D1 09:00–18:00 · D2 08:30–17:00</dd></div>
+    <div><dt>地點</dt><dd>一樓報到</dd></div>
+    <div><dt>人數</dt><dd>10 人 · 4 組（助教補位）</dd></div>
+    <div><dt>主工具</dt><dd>手機 · 龍蝦（Telegram）</dd></div>
+    <div><dt>佈場完成</dt><dd>D1 08:30 · D2 08:15</dd></div>
+  </dl>
+</header>
+
+<div class="tabs">
+  <button type="button" data-day="1" aria-pressed="true">DAY 1 · 11/13</button>
+  <button type="button" data-day="2" aria-pressed="false">DAY 2 · 11/14</button>
+  <button type="button" data-day="all" aria-pressed="false">兩天都看</button>
+</div>
+
+<section class="day" data-day="1">
+<div class="daybar">
+    <span class="dnum">DAY 1</span>
+    <span class="dttl">11/13（五）· 學會怎麼做＋團隊專案</span>
+    <span class="dmeta">上午 帳號與龍蝦 → AI Agent → SKILL → 分組 · 中午 外拍＋午餐 · 下午 團隊製作 → 挑戰卡 → 發表 → 工作流拆解</span>
+  </div>
+
+  <div class="run">
+    <div class="blk"><div class="t"><span class="hm">08:40</span><span class="dur">20 min</span></div>
+      <div class="b"><h4>報到</h4>
+        <p class="d">自由入座。報到桌放 TG 群組的 QR code，先到的人先掃。</p>
+        <div class="meta"><span class="own">助教</span></div>
+      </div></div>
+
+    <div class="blk"><div class="t"><span class="hm">09:00</span><span class="dur">15 min</span></div>
+      <div class="b"><h4>① 掃 QR code 加入 TG 群組 · 開場</h4>
+        <ul>
+          <li>還沒掃的人當場掃，<strong>10 人都進群組</strong>才往下走——之後交件、發連結都在這個群組</li>
+          <li>開場 5 分鐘：兩天帶走什麼、怎麼評分、獎品（第一名獎品＋每人一支 24hr AI 工作助理）</li>
+        </ul>
+        <div class="meta"><span class="own">主講＋助教</span><span class="out">10 人在群組</span></div>
+      </div></div>
+
+    <div class="blk"><div class="t"><span class="hm">09:15</span><span class="dur">45 min</span></div>
+      <div class="b"><h4>② 建 GitHub 帳號 · 建自己的 TG Bot · 主講串起龍蝦</h4>
+        <ol>
+          <li><strong>GitHub 帳號</strong>：還沒有的人當場申請（報名表上有 4 人還沒有）</li>
+          <li><strong>建 TG Bot</strong>：在 Telegram 找 @BotFather → /newbot → 取名字 → 拿到 bot token</li>
+          <li><strong>主講串龍蝦</strong>：學員把 token 交給主講，主講接上主機的龍蝦，學員傳第一句話確認會回</li>
+        </ol>
+        <ul>
+          <li><strong>token 等於鑰匙</strong>：只私訊給主講，不要貼在群組</li>
+          <li>9:50 收斂：還沒串好的人先跟隊友共用，主講在主機處理</li>
+        </ul>
+        <div class="meta"><span class="own">主講＋助教 ×2</span><span class="out">10 個 GitHub · 10 隻龍蝦會回話</span></div>
+      </div></div>
+
+    <div class="blk"><div class="t"><span class="hm">10:00</span><span class="dur">30 min</span></div>
+      <div class="b"><h4>③ AI Agent 基礎知識</h4>
+        <ul>
+          <li>聊天 AI 和 Agent 差在哪：Agent 會自己拆步驟、動手做、做完回報</li>
+          <li>剛才串好的龍蝦就是一個 Agent：它能做什麼、不能做什麼</li>
+          <li>怎麼跟 Agent 講話：先講結果、講清楚怎樣算做完、卡住換句話說、一定自己驗</li>
+          <li><strong>資安三條</strong>：客戶資料不貼、金鑰不進對話、今天只連測試帳號</li>
+        </ul>
+        <div class="meta"><span class="own">主講</span></div>
+      </div></div>
+
+    <div class="blk brk"><div class="t"><span class="hm">10:30</span></div>
+      <div class="b"><h4>休息 10 min</h4></div></div>
+
+    <div class="blk"><div class="t"><span class="hm">10:40</span><span class="dur">35 min</span></div>
+      <div class="b"><h4>④ SKILL 用法</h4>
+        <ul>
+          <li>什麼是 SKILL：講過一次的做法存起來，下次一句話再跑</li>
+          <li>用 Skill Finder 找一個現成的、裝起來、跑一次</li>
+          <li>「學起來」：看到好用的做法，叫龍蝦整理成自己的 SKILL</li>
+        </ul>
+        <div class="meta"><span class="own">主講示範 → 助教巡場</span><span class="out">每人 1 個跑得動的 SKILL</span></div>
+      </div></div>
+
+    <div class="blk"><div class="t"><span class="hm">11:15</span><span class="dur">15 min</span></div>
+      <div class="b"><h4>⑤ 分組</h4>
+        <p class="d">依報名表的小測驗事先分好（角色互補、跨部門），現場公布、換座位。10 人分 4 組：3／3／2＋助教／2＋助教。各組決定誰做<strong>影片、網頁、遊戲</strong>。</p>
+        <div class="meta"><span class="own">主講</span><span class="out">4 組＋分工</span></div>
+      </div></div>
+
+    <div class="blk"><div class="t"><span class="hm">11:30</span><span class="dur">90 min</span></div>
+      <div class="b"><h4>⑥ 抽景點＋外拍＋午餐</h4>
+        <p class="d">各組抽一個辦公室周邊景點，出發拍照、拍影片，在附近吃午餐。素材當場傳給龍蝦。<strong>13:00 回座。</strong></p>
+        <div class="meta"><span class="own">各組自主</span><span class="out">各組素材</span></div>
+      </div></div>
+
+    <div class="blk"><div class="t"><span class="hm">13:00</span><span class="dur">100 min</span></div>
+      <div class="b"><h4>⑦ 團隊製作：一個景點、三種成品</h4>
+        <ul>
+          <li>13:00 主講 5 分鐘示範：一句話 → 影片／網頁／小遊戲各一個</li>
+          <li>13:05 各自做自己負責的媒材。影片用 AI 生成，失敗就改手機拍＋剪輯</li>
+          <li>14:00 巡場：三件都有第一版了嗎？沒有的組當場縮小範圍</li>
+          <li>14:00–14:40 網頁負責人把影片和遊戲放進網頁，<strong>一個網址看完整組成果</strong></li>
+        </ul>
+        <div class="meta"><span class="own">助教巡場</span><span class="out">各組一個網址</span></div>
+      </div></div>
+
+    <div class="blk brk"><div class="t"><span class="hm">14:40</span></div>
+      <div class="b"><h4>休息 10 min</h4></div></div>
+
+    <div class="blk"><div class="t"><span class="hm">14:50</span><span class="dur">40 min</span></div>
+      <div class="b"><h4>⑧ 挑戰卡</h4>
+        <p class="d">每組抽 3 張、至少完成 1 張：</p>
+        <ul>
+          <li>網頁加英文版切換</li>
+          <li>遊戲過關畫面放上影片裡的一句台詞</li>
+          <li>做一張 QR code 海報，路人掃了就能玩遊戲</li>
+          <li>讓龍蝦把三件成品寫成一篇能直接發到群組的貼文</li>
+          <li>找出成品裡一個 AI 寫錯的事實並修正</li>
+        </ul>
+        <div class="meta"><span class="own">助教</span></div>
+      </div></div>
+
+    <div class="blk"><div class="t"><span class="hm">15:30</span><span class="dur">35 min</span></div>
+      <div class="b"><h4>⑨ 各組發表＋投票</h4>
+        <p class="d">每組 6 分鐘：放成品網址、組員各講 1 分鐘「我怎麼跟 AI 對話」、一件最卡的事。4 組發完立刻手機投票（不投自己組）。</p>
+        <div class="meta"><span class="own">主講＋場控計時</span><span class="out">Day 1 得票</span></div>
+      </div></div>
+
+    <div class="blk brk"><div class="t"><span class="hm">16:05</span></div>
+      <div class="b"><h4>休息 10 min</h4></div></div>
+
+    <div class="blk"><div class="t"><span class="hm">16:15</span><span class="dur">30 min</span></div>
+      <div class="b"><h4>⑩ 示範工作流程拆解</h4>
+        <p class="d">主講拿一個真實工作現場跑一次，拆成五格：<strong>觸發 → 取得資料 → AI 處理 → 產出 → 交給誰</strong>。重點：不是叫 AI 做完整件事，是讓它做中間最花時間的那一格。講「原本幾分鐘、現在幾分鐘」。</p>
+        <div class="meta"><span class="own">主講</span></div>
+      </div></div>
+
+    <div class="blk"><div class="t"><span class="hm">16:45</span><span class="dur">55 min</span></div>
+      <div class="b"><h4>⑪ 想自己的工作流</h4>
+        <ul>
+          <li>從報名時寫的煩事挑一件，照剛才的五格拆開</li>
+          <li>寫下「哪一格可以交給 AI、打算怎麼做」，<strong>明天一早提出來</strong></li>
+          <li>煩事寫得太模糊的人，助教先過去陪他講具體</li>
+          <li>今晚功課：準備兩份真的樣本（客戶名改代號）</li>
+        </ul>
+        <div class="meta"><span class="own">助教巡場</span><span class="out">每人一個題目＋五格</span></div>
+      </div></div>
+
+    <div class="blk"><div class="t"><span class="hm">17:40</span><span class="dur">20 min</span></div>
+      <div class="b"><h4>收尾</h4>
+        <p class="d">公布 Day 1 得票第一的組。提醒明天 <strong>08:30 開始</strong>。</p>
+        <div class="meta"><span class="own">主講</span></div>
+      </div></div>
+
+    <div class="blk brk"><div class="t"><span class="hm">18:00</span></div>
+      <div class="b"><h4>Day 1 結束</h4></div></div>
+  </div>
+</section>
+
+<section class="day" data-day="2" hidden>
+<div class="daybar">
+    <span class="dnum">DAY 2</span>
+    <span class="dttl">11/14（六）· 個人專案：一個屬於你自己的工作流優化</span>
+    <span class="dmeta">上午 衝刺 → 寫文件交件 · 下午 發表 → 投票 → 前後端 → 助理開通 → 頒獎 · 16:30 收、拍照</span>
+  </div>
+
+  <div class="run">
+    <div class="blk"><div class="t"><span class="hm">08:30</span><span class="dur">15 min</span></div>
+      <div class="b"><h4>早安 · 每人提出今天的題目</h4>
+        <ul>
+          <li>本週 AI 時事 3 則（3 min，前一晚龍蝦整理、主講審過）</li>
+          <li>每人 1 分鐘：昨天想好的工作流、<strong>打算交給 AI 的是哪一格、怎麼做</strong>。題目太大的當場縮小</li>
+        </ul>
+        <div class="meta"><span class="own">主講</span><span class="out">10 個題目定案</span></div>
+      </div></div>
+
+    <div class="blk"><div class="t"><span class="hm">08:45</span><span class="dur">90 min</span></div>
+      <div class="b"><h4>衝刺一 · 先把「AI 處理」那一格做到會跑</h4>
+        <ol>
+          <li>準備一份真的樣本（客戶姓名改代號）</li>
+          <li>跟龍蝦講你要的結果和欄位，不要教它怎麼做</li>
+          <li>跑一次，看哪裡不對，換句話說再跑</li>
+          <li>對得上了，存成 SKILL</li>
+          <li>換第二份樣本再跑——<strong>兩份都對才算會跑</strong></li>
+        </ol>
+        <ul>
+          <li>09:30 巡場：跑得動了嗎？跑不動就把題目縮小</li>
+          <li>10:15 檢核：第二份樣本跑對</li>
+        </ul>
+        <div class="meta"><span class="own">助教 ×2 巡場</span><span class="out">兩份樣本跑對</span></div>
+      </div></div>
+
+    <div class="blk brk"><div class="t"><span class="hm">10:15</span></div>
+      <div class="b"><h4>休息 10 min</h4></div></div>
+
+    <div class="blk"><div class="t"><span class="hm">10:25</span><span class="dur">60 min</span></div>
+      <div class="b"><h4>衝刺二 · 串起五格</h4>
+        <p class="d">把手動的格子盡量交給龍蝦（固定時間觸發、自動把產出傳到群組）。<strong>11:25 一定停手</strong>，剩下的時間寫文件——文件沒寫完，可移轉性 3 分直接 0 分。</p>
+        <div class="meta"><span class="own">助教 ×2</span></div>
+      </div></div>
+
+    <div class="blk"><div class="t"><span class="hm">11:25</span><span class="dur">25 min</span></div>
+      <div class="b"><h4>寫文件＋自我檢查＋交件</h4>
+        <ul>
+          <li>操作文件一頁四段，第一行：「這是給＿＿在＿＿時候用的。」</li>
+          <li>量時間：原本幾分鐘、現在幾分鐘（下午發表一定要講）</li>
+          <li>資安三條自查：客戶資料、金鑰、連的是不是測試帳號</li>
+          <li>龍蝦推上 GitHub，成品與專案卡轉傳交件群組</li>
+        </ul>
+        <div class="meta"><span class="own">助教</span><span class="out">四件交齊</span></div>
+      </div></div>
+
+    <div class="blk brk"><div class="t"><span class="hm">11:50</span></div>
+      <div class="b"><h4>午餐 60 min · 評審午餐時先看操作文件</h4></div></div>
+
+    <div class="blk"><div class="t"><span class="hm">12:50</span><span class="dur">70 min</span></div>
+      <div class="b"><h4>成果發表</h4>
+        <p class="d">每人 <strong>4 分＋提問 1 分</strong>，10 人分兩輪各 5 人。必講四件：<strong>原本怎麼做／現在怎麼做／省下幾分鐘／資料走去哪</strong>。計時器硬切。</p>
+        <ul>
+          <li>12:50 第一輪 5 人（25 min）</li>
+          <li>13:15 伸展換場（5 min）</li>
+          <li>13:20 第二輪 5 人（25 min），13:45 起留給補充提問與緩衝</li>
+        </ul>
+        <div class="meta"><span class="own">主講＋場控計時</span><span class="out">10 份發表</span></div>
+      </div></div>
+
+    <div class="blk"><div class="t"><span class="hm">14:00</span><span class="dur">10 min</span></div>
+      <div class="b"><h4>手機投票 <span class="tag a">評分關卡</span></h4>
+        <p class="d">每人 1 票、不投自己。判準 30 秒重講：<strong>「投給你明天就想拿去用的那一個」</strong>。</p>
+        <div class="meta"><span class="own">場控</span><span class="out">得票數 → 互評 3 分</span></div>
+      </div></div>
+
+    <div class="blk brk"><div class="t"><span class="hm">14:10</span></div>
+      <div class="b"><h4>休息 10 min</h4></div></div>
+
+    <div class="blk"><div class="t"><span class="hm">14:20</span><span class="dur">30 min</span></div>
+      <div class="b"><h4>前端與後端：你做的東西跑在哪裡</h4>
+        <p class="d">例子直接用兩天的東西：投票網站、龍蝦、GitHub Pages。最重要的一條：<strong>金鑰、密碼、客戶資料一律不放前端</strong>。評審同時照操作文件打可移轉性。</p>
+        <div class="meta"><span class="own">主講</span><span class="out">10 份可移轉性分數</span></div>
+      </div></div>
+
+    <div class="blk"><div class="t"><span class="hm">14:50</span><span class="dur">40 min</span></div>
+      <div class="b"><h4>帶得走 · 你的 24hr AI 工作助理開通</h4>
+        <ul>
+          <li>幫龍蝦設第一個<strong>每天自動跑</strong>的工作（就是今天做的工作流）</li>
+          <li>說明規格：<strong>在職期間都有、費用公司付</strong>；第一個月不設上限，之後依用量訂每月上限</li>
+          <li><strong>連公司帳號要主管核准</strong>：說明申請方式；核准前只連測試與個人帳號</li>
+          <li>出事找誰：技術窗口聯絡方式寫進每隻龍蝦的自我介紹</li>
+        </ul>
+        <div class="meta"><span class="own">助教 ×2＋技術窗口</span><span class="out">10 隻助理開通</span></div>
+      </div></div>
+
+    <div class="blk"><div class="t"><span class="hm">15:30</span><span class="dur">20 min</span></div>
+      <div class="b"><h4>評審合議＋全場 AI 摘要</h4>
+        <p class="d">合議同時，學員手機填<strong>回饋問卷</strong>（3 min）；大螢幕放全場摘要（省下的總時數）與三方分數表。</p>
+        <div class="meta"><span class="own">主講＋評審</span></div>
+      </div></div>
+
+    <div class="blk"><div class="t"><span class="hm">15:50</span><span class="dur">25 min</span></div>
+      <div class="b"><h4>頒獎</h4>
+        <p class="d">頒第一名獎品，<strong>唸出三項分數</strong>（投票／可移轉性／評審）讓規則透明。接著全員「助理開通證書」。</p>
+        <div class="meta"><span class="own">主講＋主管</span></div>
+      </div></div>
+
+    <div class="blk"><div class="t"><span class="hm">16:15</span><span class="dur">15 min</span></div>
+      <div class="b"><h4>後續共學說明＋收尾</h4>
+        <p class="d">共學時每人要能展示、講「原本／現在／省幾分鐘」。邀請 1–2 位有意願的人當下一梯次助教。</p>
+        <div class="meta"><span class="own">主講</span></div>
+      </div></div>
+
+    <div class="blk"><div class="t"><span class="hm">16:30</span><span class="dur">30 min</span></div>
+      <div class="b"><h4>合照 · 17:00 前散場</h4>
+        <p class="d"><strong>16:30 一定收</strong>，合照有完整 30 分鐘。</p>
+        <div class="meta"><span class="own">場控</span></div>
+      </div></div>
+
+    <div class="blk brk"><div class="t"><span class="hm">17:00</span></div>
+      <div class="b"><h4>Day 2 結束</h4></div></div>
+  </div>
+</section>
+
+<div class="rules">
+  <div><b>計時</b>Day 1 各組發表 6 分鐘、Day 2 個人 4＋1 分鐘，計時器<strong>硬性切斷</strong>。Day 2 16:30 一定收。</div>
+  <div><b>Bot token</b>學員建好 bot 後，token <strong>只私訊給主講</strong>，不貼群組、不截圖外傳。</div>
+  <div><b>龍蝦</b>② 的 <strong>9:50 收斂</strong>：還沒串好的人先跟隊友共用，主講在主機處理，不要卡在原地。</div>
+  <div><b>資料</b>不碰客戶真實資料。工作坊兩天只連自己建的 bot 與測試帳號；結業後連公司帳號要主管核准。</div>
+  <div><b>助教</b>2 位助教各下場補一組（只引導、不計分），同時負責巡場、幫卡住的人。</div>
+  <div><b>影片</b>AI 影片生成失敗或額度用完，立刻改手機拍＋剪輯 App，不要等。</div>
+</div>
+
+<footer>
+  <span>黎明 VibeCoding 工作坊 · 第二梯次</span>
+  <span>規劃細節見「第二梯次規劃草案」</span>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var btns = document.querySelectorAll('.tabs button');
+  var days = document.querySelectorAll('.day');
+  function show(which){
+    btns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.day === which)); });
+    days.forEach(function(d){ d.hidden = !(which === 'all' || d.dataset.day === which); });
+  }
+  btns.forEach(function(b){ b.addEventListener('click', function(){ show(b.dataset.day); }); });
+})();
+</script>
+</body>
+</html>
