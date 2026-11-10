@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>VibeCoding 課綱 · 第二梯次</title>
+<meta name="description" content="黎明 VibeCoding 工作坊第二梯次（11/13–11/14）課綱與大致時間">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128221;</text></svg>">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;900&family=LXGW+WenKai+TC:wght@400;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap">
+<style>
+/* Layout: one sheet of recycled paper on a desk, set like a printed course outline */
+:root{
+  --desk:#D3CFC5; --paper:#F4F2EC; --card:#FBFAF6; --ink:#272724; --pencil:#6F6C64; --rule:#D9D4C8;
+  --seal:#B03A27; --indigo:#2F4C66; --moss:#5B6A45;
+  --f-display:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  --f-hand:"LXGW WenKai TC","Kaiti TC","DFKai-SB","BiauKai",serif;
+  --f-latin:"Cormorant Garamond","Times New Roman",serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--desk)}
+body{margin:0;min-height:100vh;background:var(--desk);color:var(--ink);font-family:var(--f-hand);font-size:17px;line-height:1.7;
+  padding:clamp(16px,5vw,64px) 16px;display:flex;justify-content:center}
+.sheet{width:100%;max-width:1000px;background:var(--paper);padding:clamp(28px,6vw,72px) clamp(20px,6vw,80px) clamp(32px,5vw,56px);
+  box-shadow:0 22px 44px -20px rgba(50,42,28,.42),0 2px 6px rgba(50,42,28,.08);position:relative}
+.sheet::before{content:"";position:absolute;top:-16px;left:clamp(40px,30%,320px);width:150px;height:38px;background:rgba(176,58,39,.17);transform:rotate(-3deg)}
+.kick{margin:0;display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
+.kick i{font:italic 500 clamp(20px,2.4vw,28px)/1 var(--f-latin);color:var(--seal)}
+.kick span{font-size:clamp(14px,1.6vw,17px);letter-spacing:.3em;color:var(--pencil)}
+h1{font:900 clamp(40px,7vw,80px)/1.1 var(--f-display);letter-spacing:.08em;margin:18px 0 6px}
+h2{font:600 clamp(24px,3vw,32px)/1.3 var(--f-display);letter-spacing:.04em;margin:0 0 18px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+h2 i{font:italic 500 .8em/1 var(--f-latin);color:var(--seal);letter-spacing:0}
+h2 small{font:400 15px/1 var(--f-hand);color:var(--pencil);letter-spacing:.12em}
+h3{font:600 20px/1.4 var(--f-display);margin:0}
+p{margin:0}
+.sub{margin:0 0 clamp(24px,4vw,36px);font-size:clamp(16px,1.9vw,20px);color:var(--pencil);letter-spacing:.06em}
+.seal{position:absolute;right:clamp(20px,6vw,72px);top:clamp(28px,6vw,64px);writing-mode:vertical-rl;
+  font:900 clamp(22px,3vw,34px)/1.05 var(--f-display);color:var(--paper);background:var(--seal);padding:12px 9px;border-radius:4px;transform:rotate(-6deg)}
+section{margin-top:clamp(36px,5vw,52px)}
+em{font-style:normal;color:var(--seal)}
+a{color:var(--seal)}
+a:focus-visible{outline:3px solid var(--seal);outline-offset:2px}
+
+/* facts */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;border-top:2px solid var(--ink);margin:0}
+.facts div{padding:12px 14px 14px 0;border-bottom:1px dotted var(--rule)}
+.facts dt{font-size:13px;letter-spacing:.25em;color:var(--pencil)}
+.facts dd{margin:2px 0 0;font:600 18px/1.45 var(--f-display)}
+
+/* goals */
+.goals{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+.goals li{border-top:2px solid var(--ink);padding-top:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.goals .n{font:900 34px/1 var(--f-display);color:var(--seal)}
+.goals p{color:var(--ink)}
+
+/* prep */
+.prep{list-style:none;margin:0;padding:0;counter-reset:p}
+.prep li{counter-increment:p;position:relative;padding:10px 0 10px 46px;border-bottom:1px dotted var(--rule)}
+.prep li::before{content:counter(p);position:absolute;left:0;top:6px;font:italic 500 30px/1 var(--f-latin);color:var(--seal)}
+.prep small{display:block;color:var(--pencil);font-size:15px}
+
+/* schedule */
+.day{background:var(--card);box-shadow:0 12px 26px -18px rgba(50,42,28,.5);padding:clamp(18px,3vw,28px) clamp(16px,3vw,30px) clamp(10px,2vw,16px)}
+.day + .day{margin-top:28px}
+.day-hd{display:flex;justify-content:space-between;align-items:baseline;gap:10px 20px;flex-wrap:wrap;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.day-hd b{font:900 clamp(22px,3vw,28px)/1.2 var(--f-display);letter-spacing:.04em}
+.day-hd span{color:var(--pencil);font-size:15px;letter-spacing:.08em}
+.day-hd a{font-size:15px;letter-spacing:.08em;white-space:nowrap}
+.sched{list-style:none;margin:0;padding:0}
+.sched li{display:grid;grid-template-columns:9.5em minmax(0,1fr) minmax(0,.9fr);gap:4px 20px;padding:12px 0;border-bottom:1px dotted var(--rule);align-items:baseline}
+.sched .tm{font:italic 500 19px/1.3 var(--f-latin);color:var(--seal);font-variant-numeric:tabular-nums;white-space:nowrap}
+.sched .tm small{display:block;font:400 13px/1.3 var(--f-hand);color:var(--pencil);letter-spacing:.08em}
+.sched .what h3 .no{color:var(--seal);margin-right:4px}
+.sched .what p{font-size:15.5px;color:var(--pencil);line-height:1.6;margin-top:2px}
+.sched .out{font-size:15.5px;line-height:1.6;color:var(--indigo)}
+.sched .out::before{content:"產出　";font-size:12px;letter-spacing:.2em;color:var(--pencil)}
+.sched li.brk{grid-template-columns:9.5em 1fr;padding:7px 0;color:var(--pencil)}
+.sched li.brk .tm{color:var(--pencil)}
+.sched li.brk .what{font-size:15px;letter-spacing:.12em}
+.note{margin-top:14px;font-size:15px;color:var(--pencil)}
+
+/* score */
+.score{display:grid;grid-template-columns:3fr 3fr 4fr;border:2px solid rgba(176,58,39,.45)}
+.score div{padding:14px 16px 16px;border-right:2px solid rgba(176,58,39,.25);min-width:0}
+.score div:last-child{border-right:0}
+.score b{display:block;font:italic 500 44px/1 var(--f-latin);color:var(--c)}
+.score h3{margin:6px 0 4px}
+.score p{font-size:15px;color:var(--pencil);line-height:1.6}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.box{background:var(--card);padding:18px 20px;border-top:6px solid var(--c,var(--seal));box-shadow:0 10px 22px -16px rgba(50,42,28,.5)}
+.box ul{margin:8px 0 0;padding-left:1.2em}
+.box li{margin:4px 0}
+.foot{margin-top:clamp(36px,5vw,48px);padding-top:16px;border-top:2px solid var(--ink);display:flex;justify-content:space-between;gap:10px 24px;flex-wrap:wrap;font-size:15px;color:var(--pencil)}
+
+@media (max-width:720px){
+  .sched li,.sched li.brk{grid-template-columns:1fr;gap:2px}
+  .sched .tm small{display:inline;margin-left:8px}
+  .score{grid-template-columns:1fr}
+  .score div{border-right:0;border-bottom:2px solid rgba(176,58,39,.25)}
+  .score div:last-child{border-bottom:0}
+  .two{grid-template-columns:1fr}
+  .seal{display:none}
+}
+@media print{
+  html,body{background:#fff;padding:0}
+  .sheet{box-shadow:none;max-width:none}
+  .sheet::before{display:none}
+  .day{box-shadow:none;border:1px solid var(--rule);break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<main class="sheet">
+  <p class="kick"><i>Syllabus · 11.13 – 11.14</i><span>黎明 VibeCoding 工作坊 · 第二梯次</span></p>
+  <h1>課綱</h1>
+  <p class="sub">兩天，一隻龍蝦：從會用 AI，到讓 AI 幫你做事</p>
+  <span class="seal" aria-hidden="true">黎明</span>
+
+  <dl class="facts">
+    <div><dt>日期</dt><dd>11/13（五）– 11/14（六）</dd></div>
+    <div><dt>時間</dt><dd>Day 1　09:00 – 18:00<br>Day 2　08:30 – 17:00</dd></div>
+    <div><dt>對象</dt><dd>跨部門，不需要寫程式的背景</dd></div>
+    <div><dt>主要工具</dt><dd>手機＋龍蝦<br><small style="font:400 14px/1.4 var(--f-hand);color:var(--pencil)">（Telegram 上的 AI Agent）</small></dd></div>
+    <div><dt>形式</dt><dd>Day 1 分組練習<br>Day 2 個人專案</dd></div>
+  </dl>
+
+  <section aria-labelledby="g">
+    <h2 id="g"><i>Goals</i>兩天後，你會帶走三件事</h2>
+    <ol class="goals">
+      <li><span class="n">壹</span><h3>做出看得到的成品</h3><p>Day 1 一組做出影片、網頁、小遊戲；Day 2 做出自己的工作流。</p></li>
+      <li><span class="n">貳</span><h3>養出一個幫你工作的 Agent</h3><p>自己建 bot、接上龍蝦，結業後變成你的 24 小時 AI 工作助理。</p></li>
+      <li><span class="n">參</span><h3>做出原本做不了的事</h3><p>三件想做、但缺人力、知識或時間的事，兩天後至少一件做得出來。</p></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="p">
+    <h2 id="p"><i>Before</i>課前準備</h2>
+    <ol class="prep">
+      <li>手機裝好 <em>Telegram</em> 並登入<small>兩天的龍蝦、交件、投票都在手機上</small></li>
+      <li>申請 <em>GitHub</em> 帳號<small>還沒有的人，Day 1 早上現場辦也可以</small></li>
+      <li>想好 <em>三件想做、但目前做不了的事</em><small>卡在缺人力、缺知識、或沒時間都算；寫下「自己做大概要多久」</small></li>
+      <li>Day 1 晚上：準備 <em>兩份真實資料</em><small>Day 2 題目會用到的；客戶、人名一律先改代號</small></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="s">
+    <h2 id="s"><i>Schedule</i>課程與大致時間<small>現場依進度微調</small></h2>
+
+    <div class="day">
+      <div class="day-hd"><b>Day 1 · 11/13（五）</b><span>學會怎麼做＋團隊專案</span><a href="day1/">Day 1 簡報 →</a></div>
+      <ol class="sched">
+        <li class="brk"><span class="tm">08:40</span><span class="what">報到 · 掃 QR code 加入交件群組</span></li>
+        <li><span class="tm">09:00 – 09:15<small>15 分</small></span><div class="what"><h3><span class="no">①</span>開場</h3><p>兩天帶走什麼、怎麼評分、獎品</p></div><p class="out">全員進交件群組</p></li>
+        <li><span class="tm">09:15 – 10:00<small>45 分</small></span><div class="what"><h3><span class="no">②</span>帳號與龍蝦</h3><p>GitHub 帳號、跟 BotFather 建自己的 bot、主講接上龍蝦</p></div><p class="out">每人一隻會回話的龍蝦</p></li>
+        <li><span class="tm">10:00 – 10:30<small>30 分</small></span><div class="what"><h3><span class="no">③</span>AI Agent 基礎知識</h3><p>聊天 AI 和 Agent 差在哪、跟 Agent 講話的四個習慣、資安三條</p></div><p class="out">四個習慣＋三條底線上牆</p></li>
+        <li class="brk"><span class="tm">10:30</span><span class="what">休息 10 分</span></li>
+        <li><span class="tm">10:40 – 11:15<small>35 分</small></span><div class="what"><h3><span class="no">④</span>SKILL 用法</h3><p>用 Skill Finder 找現成的 skill；「學起來」把好做法存成自己的</p></div><p class="out">每人一個跑得動的 SKILL</p></li>
+        <li><span class="tm">11:15 – 11:30<small>15 分</small></span><div class="what"><h3><span class="no">⑤</span>分組與分工</h3><p>組內認領影片、網頁、小遊戲</p></div><p class="out">各組成形</p></li>
+        <li><span class="tm">11:30 – 13:00<small>90 分</small></span><div class="what"><h3><span class="no">⑥</span>抽景點、外拍、午餐</h3><p>各組抽一個周邊景點，拍照、拍片段、問故事，當場傳給龍蝦</p></div><p class="out">一組一份素材</p></li>
+        <li><span class="tm">13:00 – 14:40<small>100 分</small></span><div class="what"><h3><span class="no">⑦</span>團隊製作：一個景點、三種成品</h3><p>主講示範一句話做出三種成品；各做各的，再由網頁把影片和遊戲串起來</p></div><p class="out">一組一個網址</p></li>
+        <li class="brk"><span class="tm">14:40</span><span class="what">休息 10 分</span></li>
+        <li><span class="tm">14:50 – 15:30<small>40 分</small></span><div class="what"><h3><span class="no">⑧</span>挑戰卡</h3><p>每組抽 3 張、至少完成 1 張：英文版、QR 海報、找出 AI 寫錯的事實⋯⋯</p></div><p class="out">加碼的成品</p></li>
+        <li><span class="tm">15:30 – 16:05<small>35 分</small></span><div class="what"><h3><span class="no">⑨</span>各組發表＋手機投票</h3><p>每組 6 分鐘：放網址、每人講「我怎麼跟 AI 對話」、最卡的一件事</p></div><p class="out">Day 1 得票結果</p></li>
+        <li class="brk"><span class="tm">16:05</span><span class="what">休息 10 分</span></li>
+        <li><span class="tm">16:15 – 16:45<small>30 分</small></span><div class="what"><h3><span class="no">⑩</span>工作流拆解示範</h3><p>主講現場跑一個工作流，拆成五格：觸發 → 取得資料 → AI 處理 → 產出 → 交給誰</p></div><p class="out">看懂五格</p></li>
+        <li><span class="tm">16:45 – 17:40<small>55 分</small></span><div class="what"><h3><span class="no">⑪</span>拆你自己的工作流</h3><p>從三件想做的事挑一件，套進五格；寫下哪一格交給 AI、打算怎麼做</p></div><p class="out">每人一張五格卡（明天的題目）</p></li>
+        <li><span class="tm">17:40 – 18:00<small>20 分</small></span><div class="what"><h3>收尾</h3><p>公布 Day 1 得票第一；今晚功課：兩份真實資料</p></div><p class="out">—</p></li>
+      </ol>
+    </div>
+
+    <div class="day">
+      <div class="day-hd"><b>Day 2 · 11/14（六）</b><span>個人專案：一個你自己的工作流</span><a href="day2/">Day 2 簡報 →</a></div>
+      <ol class="sched">
+        <li><span class="tm">08:30 – 08:45<small>15 分</small></span><div class="what"><h3>早安</h3><p>本週 AI 時事三則；每人 1 分鐘講自己的題目，太大的當場縮小</p></div><p class="out">每人的題目定案</p></li>
+        <li><span class="tm">08:45 – 10:15<small>90 分</small></span><div class="what"><h3>衝刺一：做出會跑的一格</h3><p>先把「AI 處理」那一格做到會跑，存成 SKILL；換第二份資料再跑一次</p></div><p class="out">兩份資料都跑對</p></li>
+        <li class="brk"><span class="tm">10:15</span><span class="what">休息 10 分</span></li>
+        <li><span class="tm">10:25 – 11:25<small>60 分</small></span><div class="what"><h3>衝刺二：串起五格</h3><p>把手動的格子交給龍蝦，例如固定時間自動跑、做完傳給你</p></div><p class="out">能串的格子都串上</p></li>
+        <li><span class="tm">11:25 – 11:50<small>25 分</small></span><div class="what"><h3>寫文件、自我檢查、交件</h3><p>一頁操作文件（第一行：這是給誰在什麼時候用的）、量時間、資安自查</p></div><p class="out">四件交付物</p></li>
+        <li class="brk"><span class="tm">11:50</span><span class="what">午餐 60 分 · 評審先看操作文件</span></li>
+        <li><span class="tm">12:50 – 14:00<small>70 分</small></span><div class="what"><h3>成果發表</h3><p>每人 4 分鐘＋提問 1 分鐘，分兩輪；必講：原本為什麼做不了、現在怎麼做、省下幾分鐘、資料走去哪</p></div><p class="out">每人一場發表</p></li>
+        <li><span class="tm">14:00 – 14:10<small>10 分</small></span><div class="what"><h3>手機投票</h3><p>每人一票、不投自己：投給你明天就想拿去用的那一個</p></div><p class="out">互評分數</p></li>
+        <li class="brk"><span class="tm">14:10</span><span class="what">休息 10 分</span></li>
+        <li><span class="tm">14:20 – 14:50<small>30 分</small></span><div class="what"><h3>前端與後端</h3><p>用兩天做過的東西拆給你看：你做的東西跑在哪裡、金鑰為什麼不能放前端</p></div><p class="out">看得懂 AI 回你的話</p></li>
+        <li><span class="tm">14:50 – 15:30<small>40 分</small></span><div class="what"><h3>帶得走：24hr AI 工作助理開通</h3><p>設第一個每天自動跑的工作；規格、公司帳號申請方式、出事找誰</p></div><p class="out">每人一隻開通的助理</p></li>
+        <li><span class="tm">15:30 – 15:50<small>20 分</small></span><div class="what"><h3>評審合議</h3><p>學員填回饋問卷；大螢幕放全場摘要與三方分數表</p></div><p class="out">—</p></li>
+        <li><span class="tm">15:50 – 16:15<small>25 分</small></span><div class="what"><h3>頒獎</h3><p>唸出三項分數；全員領助理開通證書</p></div><p class="out">—</p></li>
+        <li><span class="tm">16:15 – 16:30<small>15 分</small></span><div class="what"><h3>後續共學說明</h3><p>每月一場共學，每人上台展示；邀請下一梯次助教</p></div><p class="out">—</p></li>
+        <li class="brk"><span class="tm">16:30 – 17:00</span><span class="what">合照 · 17:00 前散場</span></li>
+      </ol>
+    </div>
+    <p class="note">計時器硬切：Day 1 各組發表 6 分鐘、Day 2 個人發表 4＋1 分鐘。</p>
+  </section>
+
+  <section aria-labelledby="sc">
+    <h2 id="sc"><i>Scoring</i>評分：只算 Day 2 個人專案，滿分 10 分</h2>
+    <div class="score">
+      <div style="--c:var(--seal)"><b>3</b><h3>全場投票</h3><p>每人一票、不投自己，得票數 ÷ 最高票 × 3。</p></div>
+      <div style="--c:var(--indigo)"><b>3</b><h3>可移轉性</h3><p>評審照你的操作文件跑：跑得動 3、要問作者 1.5、跑不動 0。</p></div>
+      <div style="--c:var(--ink)"><b>4</b><h3>評審</h3><p>省下的時間、實用性、資安。</p></div>
+    </div>
+    <p class="note">Day 1 的團隊投票會公布第一名，但不算進這 10 分。同分時，全場投票高的人勝。</p>
+  </section>
+
+  <section aria-labelledby="d">
+    <h2 id="d"><i>Take away</i>交付物與獎品</h2>
+    <div class="two">
+      <div class="box" style="--c:var(--indigo)">
+        <h3>每人交四件</h3>
+        <ul>
+          <li>一頁專案卡</li>
+          <li>可運作的成品（公開網址或可直接用的檔案）</li>
+          <li>一個你在用的 SKILL</li>
+          <li>一頁操作文件</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>獎品</h3>
+        <ul>
+          <li><em>第一名</em>：等值 US$100 的 AI 服務帳號，自己選</li>
+          <li><em>每個人</em>：一個 24 小時 AI 工作助理（就是兩天養的龍蝦），在職期間都有、費用公司付</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="r">
+    <h2 id="r"><i>Rules</i>資安三條</h2>
+    <ol class="prep">
+      <li>客戶資料不貼<small>姓名、電話、保單號碼一律不貼進對話，要用先改代號</small></li>
+      <li>金鑰不進對話<small>token、密碼、API key 不貼給 AI，也不放上 GitHub</small></li>
+      <li>工作坊期間只連測試帳號<small>結業後要連公司帳號，先經主管核准</small></li>
+    </ol>
+  </section>
+
+  <div class="foot">
+    <p>黎明 VibeCoding 工作坊 · 第二梯次</p>
+    <p><a href="./">流程表</a>　·　<a href="day1/">Day 1 簡報</a>　·　<a href="day2/">Day 2 簡報</a></p>
+  </div>
+</main>
+</body>
+</html>
