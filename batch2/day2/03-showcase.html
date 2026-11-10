@@ -598,7 +598,7 @@ body.idle .nav{opacity:0}
     <h1 class="a" style="--d:1">發表</h1>
     <svg class="under a" style="--d:2" viewBox="0 0 620 30" aria-hidden="true"><path class="draw" pathLength="1" d="M4 18 C 140 6, 270 26, 400 14 S 560 8, 616 18"/></svg>
     <p class="sub a" style="--d:3">成果發表＋全場投票<small>four minutes, one number that matters</small></p>
-    <p class="meta a" style="--d:4"><i>12:50 – 14:10</i>每人 4＋1 分鐘　十人兩輪</p>
+    <p class="meta a" style="--d:4"><i>12:50 – 14:10</i>每人 4＋1 分鐘　分兩輪</p>
   </div>
   <div class="cover-side">
     <div class="manuscript a" style="--d:2" data-rows="9" aria-label="原本幾分鐘，現在幾分鐘。"><span class="col" data-text="原本幾分鐘，"></span><span class="col sub" data-text="現在幾分鐘。"></span></div>
@@ -616,7 +616,7 @@ body.idle .nav{opacity:0}
   <div class="two">
     <ul class="rules">
       <li class="f">發表 <b>4 分鐘</b>，台下提問 <b>1 分鐘</b></li>
-      <li class="f">10 人分兩輪，每輪 5 人，中間伸展 5 分鐘</li>
+      <li class="f">全場分兩輪，中間伸展 5 分鐘</li>
       <li class="f">計時器到了就切斷，<em>不延長</em></li>
       <li class="f">作品已在交件群組，常駐主機直接點開</li>
     </ul>
@@ -648,9 +648,9 @@ body.idle .nav{opacity:0}
     <h2 class="a" style="--d:1">兩輪發表，接著投票</h2>
   </header>
   <div class="tl4 tlx a" style="--d:2;grid-template-columns:25fr 5fr 25fr 15fr 10fr" id="tlC">
-    <div class="seg" data-start="12:50" data-end="13:15"><span class="t">12:50</span><b>第一輪</b><small>5 人</small><span class="left"></span></div>
+    <div class="seg" data-start="12:50" data-end="13:15"><span class="t">12:50</span><b>第一輪</b><small>前半</small><span class="left"></span></div>
     <div class="seg" data-start="13:15" data-end="13:20"><span class="t">13:15</span><b>伸展</b><small>5 分</small><span class="left"></span></div>
-    <div class="seg" data-start="13:20" data-end="13:45"><span class="t">13:20</span><b>第二輪</b><small>5 人</small><span class="left"></span></div>
+    <div class="seg" data-start="13:20" data-end="13:45"><span class="t">13:20</span><b>第二輪</b><small>後半</small><span class="left"></span></div>
     <div class="seg" data-start="13:45" data-end="14:00"><span class="t">13:45</span><b>補充提問</b><small>緩衝</small><span class="left"></span></div>
     <div class="seg" data-start="14:00" data-end="14:10"><span class="t">14:00</span><b>全場投票</b><small>10 分</small><span class="left"></span></div>
   </div>
@@ -672,11 +672,12 @@ body.idle .nav{opacity:0}
         <button type="button" id="tmStart">開始</button>
         <button type="button" id="tmReset">重來</button>
         <button type="button" id="tmNext">下一位 →</button>
+        <button type="button" id="tmList">名單</button>
       </div>
     </div>
     <ol class="order" id="tmOrder"></ol>
   </div>
-  <aside class="notes">場控操作：按「開始」計發表 4 分鐘；時間到會嗶兩聲，再按「開始」就進入 1 分鐘提問；提問結束按「下一位」。剩 1 分鐘變紅並嗶一聲。上台順序照名單排，要改順序點右邊名字。第二梯次的名單上課前要填進程式裡的 names（目前是「學員 1–10」）。</aside>
+  <aside class="notes">場控操作：按「開始」計發表 4 分鐘；時間到會嗶兩聲，再按「開始」就進入 1 分鐘提問；提問結束按「下一位」。剩 1 分鐘變紅並嗶一聲。按「名單」輸入上台順序（一行一位），存在這台電腦的瀏覽器；點右邊名字可以跳到那一位。一人 4＋1 分鐘，兩輪加上 13:45 的緩衝，最多大約 13 人；人更多時，提問改成每輪結束統一問。</aside>
 </section>
 
 <!-- ============ 05 投票 ============ -->
@@ -694,7 +695,7 @@ body.idle .nav{opacity:0}
     </ul>
     <blockquote class="quote f" style="margin:0"><p>投給你明天就想拿去用的那一個，不是最好看的那一個。</p><small>投票前唸一次</small></blockquote>
   </div>
-  <aside class="notes">投票網站：在投影那台電腦雙擊「投票網站／開投票.bat」，在主講畫面切到「Day 2 正式」，等 QR code 出現再按「開始投票」。10 格都蓋上「已投」就按「截止投票」→「公布結果」，畫面會直接算好換算分數（得票數 ÷ 最高票 × 3）。結果檔在「投票網站／votes／day2.json」，15:30 要傳給龍蝦。names.txt 上課前要換成第二梯次 10 人。</aside>
+  <aside class="notes">投票網站：在投影那台電腦雙擊「投票網站／開投票.bat」，在主講畫面切到「Day 2 正式」，等 QR code 出現再按「開始投票」。全部的人都蓋上「已投」就按「截止投票」→「公布結果」，畫面會直接算好換算分數（得票數 ÷ 最高票 × 3）。結果檔在「投票網站／votes／day2.json」，15:30 要傳給龍蝦。names.txt 上課前要換成第二梯次當天的名單。</aside>
 </section>
 
 <!-- ============ 06 換算 ============ -->
@@ -740,7 +741,7 @@ body.idle .nav{opacity:0}
 </script>
 <script>
 (function(){
-  var P="tm", names=["學員 1", "學員 2", "學員 3", "學員 4", "學員 5", "學員 6", "學員 7", "學員 8", "學員 9", "學員 10"], phases=[["發表中", 240], ["提問", 60]];
+  var P="tm", names=(function(){try{return JSON.parse(localStorage.getItem('liming-batch2-d2-order'))||[];}catch(e){return [];}})(), phases=[["發表中", 240], ["提問", 60]];
   var $=function(s){return document.getElementById(P+s)};
   var clock=$('Clock'); if(!clock) return;
   var state=$('State'), nameEl=$('Name'), lab=$('Lab'), order=$('Order'), startBtn=$('Start');
@@ -778,6 +779,7 @@ body.idle .nav{opacity:0}
   $('Reset').onclick=function(e){e.stopPropagation();reset();};
   $('Next').onclick=function(e){e.stopPropagation();if(cur<names.length-1)cur++;reset();};
   order.onclick=function(e){e.stopPropagation();var li=e.target.closest('li');if(li){cur=+li.dataset.i;reset();}};
+  $('List').onclick=function(e){e.stopPropagation();var s=prompt('上台順序：一行一位，或用逗號分隔',names.join('、'));if(s==null)return;names=s.split(/[\n,，、]+/).map(function(x){return x.trim();}).filter(Boolean);try{localStorage.setItem('liming-batch2-d2-order',JSON.stringify(names));}catch(err){}location.reload();};
   paint();
 })();
 </script>

@@ -460,13 +460,13 @@ body.idle .nav{opacity:0}
     <h1 class="a" style="--d:1">怎麼問的</h1>
     <svg class="under a" style="--d:2" viewBox="0 0 620 30" aria-hidden="true"><path class="draw" pathLength="1" d="M4 15 C 130 25, 270 7, 400 18 S 560 23, 616 12"/></svg>
     <p class="sub a" style="--d:3">⑨ 各組發表<br>每組 6 分鐘，講你們怎麼問的<small>one place, three things, many ways to ask</small></p>
-    <p class="meta a" style="--d:4"><i>15:30 – 16:05</i>四組上台　手機投票</p>
+    <p class="meta a" style="--d:4"><i>15:30 – 16:05</i>各組上台　手機投票</p>
   </div>
   <div class="cover-side">
     <div class="manuscript a" style="--d:2" data-rows="9" aria-label="別人的一句話，可能解掉你的卡關"><span class="col" data-text="別人的一句話，"></span><span class="col sub" data-text="可能解掉你的卡關。"></span></div>
     <div class="seal a stampin" style="--d:6;transform:rotate(-6deg)">黎明</div>
   </div>
-  <aside class="notes">15:30。4 組各 6 分鐘，發完立刻手機投票（不投自己組），16:05 休息。別人的一句話很可能直接解掉你卡了半小時的問題。成品網址都在「黎明交件」群組，常駐主機的 Telegram 直接點開，全程不換投影。</aside>
+  <aside class="notes">15:30。每組 6 分鐘，發完立刻手機投票（不投自己組），16:05 休息。別人的一句話很可能直接解掉你卡了半小時的問題。成品網址都在「黎明交件」群組，常駐主機的 Telegram 直接點開，全程不換投影。</aside>
 </section>
 
 <!-- ============ 01 講兩件事 ============ -->
@@ -494,11 +494,11 @@ body.idle .nav{opacity:0}
       <li class="f">每組 <b>6 分鐘</b>：先放網址，再每人講 <b>1 分鐘</b></li>
       <li class="f">計時器到了就切斷，<em>不延長</em></li>
       <li class="f">網址已在交件群組，常駐主機直接點開，<b>不用換投影</b></li>
-      <li class="f">照組別順序，第一組先上</li>
+      <li class="f">照組別順序上台</li>
     </ul>
     <blockquote class="quote f" style="margin:0"><p>台下的人：聽到一句好用的話，馬上記下來。</p><small>發表完馬上投票</small></blockquote>
   </div>
-  <aside class="notes">硬性切斷是明天 Day 2 個人發表（4＋1 分鐘）的預演。4 組 × 6 分鐘＋換組，約 15:58 講完，接著投票。</aside>
+  <aside class="notes">硬性切斷是明天 Day 2 個人發表（4＋1 分鐘）的預演。組數多、時間不夠時，每組縮成 5 分鐘，16:00 前要開始投票。</aside>
 </section>
 
 <!-- ============ 03 計時看板 ============ -->
@@ -516,11 +516,12 @@ body.idle .nav{opacity:0}
         <button type="button" id="tmStart">開始</button>
         <button type="button" id="tmReset">重來</button>
         <button type="button" id="tmNext">下一組 →</button>
+        <button type="button" id="tmList">名單</button>
       </div>
     </div>
     <ol class="order" id="tmOrder"></ol>
   </div>
-  <aside class="notes">場控用滑鼠點按鈕：開始／暫停、重來（回到 6:00）、下一組（換下一組，回到 6:00）。剩 1 分鐘變紅並嗶一聲，時間到再嗶一次並閃爍。上台順序照組別；要顯示隊名，改這頁程式裡的 names。</aside>
+  <aside class="notes">場控用滑鼠點按鈕：開始／暫停、重來（回到 6:00）、下一組（換下一組，回到 6:00）。剩 1 分鐘變紅並嗶一聲，時間到再嗶一次並閃爍。上台順序按「名單」輸入（一行一組，可以用隊名），存在這台電腦的瀏覽器，重新整理也還在。</aside>
 </section>
 
 <!-- ============ 04 投票 ============ -->
@@ -538,7 +539,7 @@ body.idle .nav{opacity:0}
     </ul>
     <blockquote class="quote f" style="margin:0"><p>投給你最想學的那個做法，不是最好看的那一個。</p><small>投票前唸一次</small></blockquote>
   </div>
-  <aside class="notes">投票網站：在投影那台電腦雙擊「投票網站／開投票.bat」，切到自動打開的主講畫面，等 QR code 出現（約 30 秒）再按「開始投票」。手機有網路就能投，不用連會場 Wi-Fi。5 分鐘內投完就按「截止投票」，17:40 收尾時再按「公布結果」。注意：投票網站是「每個名字一票、不投自己」，今天要投組，names.txt 怎麼設（列 10 個人再按組加總，或改成投組的版本）要在 T-3 演練時先決定。順便讓大家熟悉明天怎麼投，判準講在前面：投的是做法，不是誰的成品最好看。</aside>
+  <aside class="notes">投票網站：在投影那台電腦雙擊「投票網站／開投票.bat」，切到自動打開的主講畫面，等 QR code 出現（約 30 秒）再按「開始投票」。手機有網路就能投，不用連會場 Wi-Fi。5 分鐘內投完就按「截止投票」，17:40 收尾時再按「公布結果」。注意：投票網站是「每個名字一票、不投自己」，今天要投組，names.txt 怎麼設（列出每個人再按組加總，或改成投組的版本）要在 T-3 演練時先決定。順便讓大家熟悉明天怎麼投，判準講在前面：投的是做法，不是誰的成品最好看。</aside>
 </section>
 
 <!-- ============ 05 下一段 ============ -->
@@ -555,7 +556,8 @@ body.idle .nav{opacity:0}
 <script>
 (function(){
   /* 上台順序：照名單；現場要改就改這裡 */
-  var names=['第一組','第二組','第三組','第四組'];
+  var LKEY='liming-batch2-d1-order', names=[];
+  try{names=JSON.parse(localStorage.getItem(LKEY))||[];}catch(e){}
   var DUR=6*60, cur=0, left=DUR, endAt=0, running=false, warned=false, ended=false, iv=0, ac=null;
   var $=function(id){return document.getElementById(id)};
   var clock=$('tmClock'), state=$('tmState'), nameEl=$('tmName'), order=$('tmOrder'), startBtn=$('tmStart');
@@ -589,6 +591,7 @@ body.idle .nav{opacity:0}
   $('tmReset').onclick=reset;
   $('tmNext').onclick=function(){if(cur<names.length-1)cur++;reset();};
   order.onclick=function(e){e.stopPropagation();var li=e.target.closest('li');if(li){cur=+li.dataset.i;reset();}};
+  $('tmList').onclick=function(e){e.stopPropagation();var s=prompt('上台順序：一行一組，或用逗號分隔',names.join('、'));if(s==null)return;names=s.split(/[\n,，、]+/).map(function(x){return x.trim();}).filter(Boolean);try{localStorage.setItem(LKEY,JSON.stringify(names));}catch(err){}location.reload();};
   paint();
 })();
 </script>
