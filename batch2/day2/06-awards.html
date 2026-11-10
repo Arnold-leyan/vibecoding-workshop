@@ -598,14 +598,14 @@ body.idle .nav{opacity:0}
     <p class="eyebrow a" style="--d:0"><i>Day Two · 15:30</i><span>黎明 VibeCoding 工作坊</span></p>
     <h1 class="a" style="--d:1">頒獎</h1>
     <svg class="under a" style="--d:2" viewBox="0 0 620 30" aria-hidden="true"><path class="draw" pathLength="1" d="M4 18 C 140 6, 270 26, 400 14 S 560 8, 616 18"/></svg>
-    <p class="sub a" style="--d:3">評審合議、頒獎、共學說明<small>three scores, read out loud</small></p>
-    <p class="meta a" style="--d:4"><i>15:30 – 17:00</i>唸出三項分數　16:30 合照</p>
+    <p class="sub a" style="--d:3">評審合議、頒獎、共學說明<small>two scores, read out loud</small></p>
+    <p class="meta a" style="--d:4"><i>15:30 – 17:00</i>唸出兩項分數　16:30 合照</p>
   </div>
   <div class="cover-side">
-    <div class="manuscript a" style="--d:2" data-rows="9" aria-label="三項分數，全部唸出來。"><span class="col" data-text="三項分數，"></span><span class="col sub" data-text="全部唸出來。"></span></div>
+    <div class="manuscript a" style="--d:2" data-rows="9" aria-label="兩項分數，全部唸出來。"><span class="col" data-text="兩項分數，"></span><span class="col sub" data-text="全部唸出來。"></span></div>
     <div class="seal a stampin" style="--d:6;transform:rotate(-6deg)">黎明</div>
   </div>
-  <aside class="notes">15:30 評審合議，同時學員手機填回饋問卷（3 分鐘），大螢幕放全場摘要與三方分數表。15:50 頒獎，16:15 共學說明，16:30 一定收、合照，17:00 前散場。</aside>
+  <aside class="notes">15:30 評審合議，同時學員手機填回饋問卷（3 分鐘），大螢幕放全場摘要與分數表。15:50 頒獎，16:15 共學說明，16:30 一定收、合照，17:00 前散場。</aside>
 </section>
 
 <!-- ============ 01 時間表 ============ -->
@@ -628,33 +628,32 @@ body.idle .nav{opacity:0}
 <section class="sheet" data-row="0">
   <header class="hd">
     <p class="eyebrow a" style="--d:0"><i>10 points</i><span>開場就公布的評分表</span></p>
-    <h2 class="a" style="--d:1">三方分數，加起來 10 分</h2>
+    <h2 class="a" style="--d:1">兩項分數，加起來 10 分</h2>
   </header>
   <div class="pts">
-    <div class="f top"><b>3</b><h3>全場投票</h3><p>14:00 的手機投票，換算成 3 分。</p></div>
-    <div class="f top"><b>3</b><h3>可移轉性</h3><p>評審照你的操作文件跑：別人拿得走嗎。</p></div>
-    <div class="f"><b>4</b><h3>評審</h3><p>省下的時間、實用性、資安。</p></div>
+    <div class="f top"><b>5</b><h3>全體投票</h3><p>14:00 的手機投票，得票數 ÷ 最高票 × 5。</p></div>
+    <div class="f top"><b>5</b><h3>評審</h3><p>省下的時間、實用性、資安；也會照你的操作文件跑一次。</p></div>
   </div>
   <p class="lede f">同分時，<em>全場投票高的人勝</em>。</p>
-  <aside class="notes">可移轉性：照著做就跑得動＝3，要問作者＝1.5，看了還是不知道怎麼跑＝0。投票 3 分完全由全場決定。</aside>
+  <aside class="notes">投票 5 分完全由全場決定；評審 5 分由評審合議，0–5、可以給 0.5。</aside>
 </section>
 
 <!-- ============ 03 分數表 ============ -->
 <section class="sheet" data-row="0">
   <header class="hd">
     <p class="eyebrow a" style="--d:0"><i>Scoreboard</i><span>場控填 · 自動加總</span></p>
-    <h2 class="a" style="--d:1">三方分數表</h2>
+    <h2 class="a" style="--d:1">分數表</h2>
   </header>
   <div id="scoreWrap" style="max-height:560px;overflow:auto">
     <table class="sbt">
-      <thead><tr><th>姓名</th><th>得票數</th><th>投票分</th><th>可移轉性</th><th>評審</th><th>總分</th></tr></thead>
+      <thead><tr><th>姓名</th><th>得票數</th><th>投票分</th><th>評審</th><th>總分</th></tr></thead>
       <tbody id="scoreBody">
 
       </tbody>
     </table>
     <div class="sbt-ctl"><button type="button" id="scoreAdd">＋ 加一列</button><button type="button" id="scoreSort">依總分排序</button><button type="button" id="scoreClear">清空</button><span>第一名會標 ★；資料只存在這台電腦的瀏覽器</span></div>
   </div>
-  <aside class="notes">姓名直接在表格裡打，人數不夠按「＋ 加一列」，空白列不影響排名。得票數照投票網站公布的結果填，投票分自動算（得票數 ÷ 最高票 × 3）。可移轉性 3／1.5／0，評審分 0–4。按「依總分排序」，同分時投票分高的排前面。資料存在這台電腦的瀏覽器，換電腦要重填。</aside>
+  <aside class="notes">姓名直接在表格裡打，人數不夠按「＋ 加一列」，空白列不影響排名。得票數照投票網站公布的結果填，投票分自動算（得票數 ÷ 最高票 × 5）。評審分 0–5。按「依總分排序」，同分時投票分高的排前面。資料存在這台電腦的瀏覽器，換電腦要重填。</aside>
 </section>
 
 <!-- ============ 04 全場摘要 ============ -->
@@ -686,13 +685,13 @@ body.idle .nav{opacity:0}
 <section class="sheet" data-row="1">
   <header class="hd">
     <p class="eyebrow a" style="--d:0"><i>15:50</i><span>頒獎</span></p>
-    <h2 class="a" style="--d:1">頒獎時，唸出三項分數</h2>
+    <h2 class="a" style="--d:1">頒獎時，唸出兩項分數</h2>
   </header>
   <div class="prize">
     <p class="big f"><span>US$100</span><b class="plus">+</b><span>24hr</span></p>
   </div>
-  <p class="lede f">第一名：等值 US$100 的 AI 服務帳號，自己選。接著<em>每個人</em>領一張助理開通證書。</p>
-  <aside class="notes">主管一起上台。投票、可移轉性、評審三個數字都唸出來，規則透明。得獎者頒獎後告知要哪個服務，主辦方代購或核銷。</aside>
+  <p class="lede f"><b>第一名</b>　US$100 AI 訂閱，為期 6 個月<br><b>參加獎</b>　每人一支 24HR 運作的 AI Agent</p>
+  <aside class="notes">主管一起上台。投票、評審兩個數字都唸出來，規則透明。第一名頒獎後告知要訂閱哪個 AI 服務，主辦方代購或核銷 6 個月。接著每個人領參加獎（助理開通證書）。</aside>
 </section>
 
 <!-- ============ 06 第一名 ============ -->
@@ -701,12 +700,11 @@ body.idle .nav{opacity:0}
     <p class="eyebrow a" style="--d:0"><i>Award</i><span>第一名</span></p>
   </header>
   <div class="winner">
-    <p class="gift f">US$100<small>等值 AI 服務帳號，得獎者自選</small></p>
+    <p class="gift f">US$100<small>AI 訂閱，為期 6 個月</small></p>
     <dl class="f">
       <dt>得主</dt><dd>&nbsp;</dd>
       <dt>投票</dt><dd>&nbsp;</dd>
-      <dt>可移轉性</dt><dd>&nbsp;</dd>
-      <dt>評審</dt><dd>&nbsp;</dd>
+            <dt>評審</dt><dd>&nbsp;</dd>
     </dl>
   </div>
   <aside class="notes">右邊留白，主講照分數表唸出來就好。</aside>
@@ -715,7 +713,7 @@ body.idle .nav{opacity:0}
 <!-- ============ 07 全員證書 ============ -->
 <section class="sheet" data-row="1">
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Everyone</i><span>助理開通證書</span></p>
+    <p class="eyebrow a" style="--d:0"><i>Everyone</i><span>參加獎 · 24HR 運作的 AI Agent</span></p>
   </header>
   <div class="only">
     <p class="huge a" style="--d:1">每個人，<br><em>都有一隻。</em></p>
@@ -811,12 +809,11 @@ body.idle .nav{opacity:0}
 <script>
 (function(){
   var body=document.getElementById('scoreBody'); if(!body) return;
-  var KEY='liming-batch2-d2-scores-v2', wrap=document.getElementById('scoreWrap');
+  var KEY='liming-batch2-d2-scores-v3', wrap=document.getElementById('scoreWrap');
   ['click','keydown','pointerdown','wheel'].forEach(function(t){wrap.addEventListener(t,function(e){e.stopPropagation();});});
   var CELLS='<td class="nm"><input type="text" data-k="n" placeholder="姓名" aria-label="姓名" style="width:7.5em;font-family:var(--f-display)"></td>'+
     '<td><input type="number" min="0" step="1" data-k="v" aria-label="得票數"></td><td class="num" data-o="vs">—</td>'+
-    '<td><select data-k="x" aria-label="可移轉性"><option value="">—</option><option>3</option><option>1.5</option><option>0</option></select></td>'+
-    '<td><input type="number" min="0" max="4" step="0.5" data-k="j" aria-label="評審分"></td><td class="tot" data-o="t">—</td>';
+        '<td><input type="number" min="0" max="5" step="0.5" data-k="j" aria-label="評審分"></td><td class="tot" data-o="t">—</td>';
   function addRow(d){var tr=document.createElement('tr');tr.innerHTML=CELLS;
     if(d)[].forEach.call(tr.querySelectorAll('[data-k]'),function(el){if(d[el.dataset.k]!=null)el.value=d[el.dataset.k];});
     body.appendChild(tr);return tr;}
@@ -830,10 +827,10 @@ body.idle .nav{opacity:0}
     rows.forEach(function(tr){var o={};[].forEach.call(tr.querySelectorAll('[data-k]'),function(el){o[el.dataset.k]=el.value;});tr._o=o;d.push(o);var v=num(o.v);if(v!=null&&v>max)max=v;});
     save(d);
     var res=rows.map(function(tr){
-      var o=tr._o, v=num(o.v), x=num(o.x), j=num(o.j);
-      var vs=(v!=null&&max>0)?Math.round(v/max*30)/10:(v!=null?0:null);
+      var o=tr._o, v=num(o.v), j=num(o.j);
+      var vs=(v!=null&&max>0)?Math.round(v/max*50)/10:(v!=null?0:null);
       tr.querySelector('[data-o="vs"]').textContent=vs==null?'—':vs.toFixed(1);
-      var t=(vs||0)+(x||0)+(j||0), any=vs!=null||x!=null||j!=null;
+      var t=(vs||0)+(j||0), any=vs!=null||j!=null;
       tr.querySelector('[data-o="t"]').textContent=any?t.toFixed(1):'—';
       return {tr:tr,t:any?t:-1,vs:vs||0};
     });
