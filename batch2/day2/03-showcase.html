@@ -884,7 +884,7 @@ body.idle .nav{opacity:0}
       if(u<1) raf=requestAnimationFrame(step);
     })(t0);
   }
-  function durFor(p){var d=Math.hypot(p.x-cam.x,p.y-cam.y);return Math.round(950+Math.min(650,d/4));}
+  function durFor(p){var d=Math.hypot(p.x-cam.x,p.y-cam.y);return Math.round(450+Math.min(250,d/10));}
 
   /* ---- navigation ---- */
   var thread=document.getElementById('thread'), count=document.getElementById('count');
@@ -909,7 +909,7 @@ body.idle .nav{opacity:0}
     sheets.forEach(function(x){x.classList.remove('enter','pre');});
     if(!opt.back&&!reduce){
       s.classList.add('pre');
-      enterT=setTimeout(function(){s.classList.remove('pre');void s.offsetWidth;s.classList.add('enter');},opt.instant?120:dur*.42);
+      enterT=setTimeout(function(){s.classList.remove('pre');void s.offsetWidth;s.classList.add('enter');},opt.instant?120:dur*.3);
     }
     ui();
   }
