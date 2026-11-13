@@ -544,7 +544,7 @@ body.idle .nav{opacity:0}
     <div class="manuscript a" style="--d:2" data-rows="9" aria-label="你交代，它動手。做完回報給你"><span class="col" data-text="你交代，它動手。"></span><span class="col sub" data-text="做完回報給你"></span></div>
     <div class="seal a stampin" style="--d:6;transform:rotate(-6deg)">黎明</div>
   </div>
-  <aside class="notes">10:00，30 分鐘。三件事：Agent 跟聊天 AI 差在哪、怎麼跟它講話（四個習慣）、資安三條。講完 10:30 休息。還沒串好龍蝦的人，主講可以在 10:25 的練習時間去主機處理。</aside>
+  <aside class="notes">10:00，30 分鐘。三件事：Agent 跟聊天 AI 差在哪、怎麼跟它講話（三個習慣）、資安三條。講完 10:30 休息。還沒串好龍蝦的人，主講可以在 10:25 的練習時間去主機處理。</aside>
 </section>
 
 <!-- ============ 01 聊天 vs Agent ============ -->
@@ -574,34 +574,50 @@ body.idle .nav{opacity:0}
     <div class="slip f"><span class="when">二 · 動手做</span><h3>真的去做</h3><p>開檔案、寫程式、上網查。不是給你建議，是直接做出來。</p></div>
     <div class="slip f"><span class="when">三 · 回報</span><h3>做完告訴你</h3><p>成品傳回來，說它做了什麼、哪裡沒把握。</p></div>
   </div>
-  <aside class="notes">所以跟 Agent 講話的重點，不是一步一步教，而是把「要什麼、怎樣算做完」講清楚——等一下四個習慣就是在講這個。</aside>
+  <aside class="notes">所以跟 Agent 講話的重點，不是一步一步教，而是把「要什麼、怎樣算做完」講清楚——等一下三個習慣就是在講這個。</aside>
 </section>
 
-<!-- ============ 03 能做 / 不該做 ============ -->
+<!-- ============ 02b 訊息怎麼跑 ============ -->
 <section class="sheet" data-row="0">
+  <style>
+    .flow8{display:grid;grid-template-columns:1fr 46px 1fr 46px 1fr 46px 1fr;grid-template-rows:auto 54px auto;
+      grid-template-areas:"a p b q c r d" ". . . . . . v" "h x g y f z e";align-items:stretch;flex:1;min-height:0}
+    .flow8 .nd{background:#FBFAF6;border-top:8px solid var(--rule);padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;
+      box-shadow:0 10px 22px -16px rgba(50,42,28,.5);min-width:0}
+    .flow8 .nd .k{font:italic 500 30px/1 var(--f-latin);color:var(--seal)}
+    .flow8 .nd b{font:600 29px/1.3 var(--f-display)}
+    .flow8 .nd small{font-size:22px;line-height:1.45;color:var(--pencil)}
+    .flow8 .nd.you{border-top-color:var(--seal)}
+    .flow8 .nd.tg{border-top-color:#5B8DB8}
+    .flow8 .nd.host{border-top-color:var(--ink)}
+    .flow8 .nd.model{border-top-color:var(--indigo);background:#EEF1F5}
+    .flow8 .nd.opt{border-top-style:dashed;border-top-color:var(--moss)}
+    .flow8 .nd.chk{border-top-color:var(--moss)}
+    .flow8 .ar{display:flex;align-items:center;justify-content:center;font:300 40px/1 var(--f-latin);color:var(--pencil)}
+  </style>
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Can &amp; can't</i><span>你的龍蝦</span></p>
-    <h2 class="a" style="--d:1">做得到的，和不該交給它的</h2>
+    <p class="eyebrow a" style="--d:0"><i>Behind the chat</i><span>一則訊息怎麼跑</span></p>
+    <h2 class="a" style="--d:1">你傳一句話，背後跑了這一圈</h2>
   </header>
-  <div class="compare">
-    <div class="card agent f"><span class="who">做得到</span>
-      <ul class="why">
-        <li>做網頁、小遊戲、寫影片腳本</li>
-        <li>整理文字、做表格、翻譯</li>
-        <li>找現成的 SKILL 裝起來用</li>
-        <li>固定時間自動跑一件事</li>
-      </ul>
-    </div>
-    <div class="card plain f"><span class="who">做不到 · 不該交給它</span>
-      <ul class="why">
-        <li>看到你沒給它的資料——它不會讀心</li>
-        <li>保證每個事實都對——它會講得很順但錯</li>
-        <li>登入你的公司帳號——今天只連測試的</li>
-        <li>替你按下寄出、付款、刪除</li>
-      </ul>
-    </div>
+  <div class="flow8">
+    <div class="nd you f" data-step="0" style="grid-area:a"><span class="k">1</span><b>你</b><small>傳訊息給 bot</small></div>
+    <span class="ar f" data-step="1" style="grid-area:p">→</span>
+    <div class="nd tg f" data-step="1" style="grid-area:b"><span class="k">2</span><b>Telegram Bot API</b><small>幫你轉送訊息</small></div>
+    <span class="ar f" data-step="2" style="grid-area:q">→</span>
+    <div class="nd host f" data-step="2" style="grid-area:c"><span class="k">3</span><b>裝龍蝦的主機</b><small>收到你的訊息</small></div>
+    <span class="ar f" data-step="3" style="grid-area:r">→</span>
+    <div class="nd model f" data-step="3" style="grid-area:d"><span class="k">4</span><b>模型商</b><small>AI 在這裡想答案</small></div>
+    <span class="ar f" data-step="4" style="grid-area:v">↓</span>
+    <div class="nd host f" data-step="4" style="grid-area:e"><span class="k">5</span><b>裝龍蝦的主機</b><small>拿到答案</small></div>
+    <span class="ar f" data-step="5" style="grid-area:z">←</span>
+    <div class="nd opt f" data-step="5" style="grid-area:f"><span class="k">6</span><b>操作裝龍蝦的主機</b><small>需要時才動手</small></div>
+    <span class="ar f" data-step="6" style="grid-area:y">←</span>
+    <div class="nd chk f" data-step="6" style="grid-area:g"><span class="k">7</span><b>驗證對不對</b><small>檢查做得對不對</small></div>
+    <span class="ar f" data-step="7" style="grid-area:x">←</span>
+    <div class="nd tg f" data-step="7" style="grid-area:h"><span class="k">8</span><b>回覆給你</b><small>透過 Telegram 傳回來</small></div>
   </div>
-  <aside class="notes">左邊每一項今天兩天都會用到：下午做網頁、遊戲、影片腳本；④ 找 SKILL；明天下午設每天自動跑的工作。右邊第二點接到「一定要自己驗」，第三、四點接到資安三條。</aside>
+  <p class="lede f" data-step="8">訊息會經過 Telegram 和模型商，<em>所以金鑰和隱私資料不要送</em>。</p>
+  <aside class="notes">一格一格按出來，講白話就好：Telegram 是門口，模型商負責想，龍蝦主機負責做。事情越複雜，第 4 到 7 步會來回越多次，所以要等比較久。訊息會經過別家公司，這就是等一下資安三條的理由。</aside>
 </section>
 
 <!-- ============ 04 習慣一 ============ -->
@@ -646,22 +662,6 @@ body.idle .nav{opacity:0}
   <aside class="notes">把它變成一句可以背的公式。下午 ⑨ 各組發表要講「我怎麼跟 AI 對話」，這條一定會被講到。</aside>
 </section>
 
-<!-- ============ 07 習慣四 ============ -->
-<section class="sheet" data-row="1">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Habit 4</i><span>怎麼跟它講話</span></p>
-  </header>
-  <div class="only">
-    <p class="huge a" style="--d:1">一定要，<br><em>自己驗。</em></p>
-    <div class="side">
-      <p class="f">它講得很順，<em>不代表是對的</em>。</p>
-      <p class="f">店名、營業時間、年份、人名，用之前自己對一次。</p>
-      <p class="skip f">下午有一張挑戰卡：找出成品裡一個 AI 寫錯的事實。現在就開始練。</p>
-    </div>
-  </div>
-  <aside class="notes">學員工作都碰得到客戶資料和數字，這條最要緊。明天評審照你的操作文件跑，驗沒驗過一跑就知道。</aside>
-</section>
-
 <!-- ============ 08 試一句 ============ -->
 <section class="sheet" data-row="1">
   <header class="hd">
@@ -678,11 +678,11 @@ body.idle .nav{opacity:0}
     </div>
     <div class="tg big">
       <div class="bar">龍蝦<small>例句</small></div>
-      <p class="bub me f" data-step="0">幫我找黎明辦公室走路 15 分鐘內，三個適合拍照的地方。每個寫一句特色和地址，列成清單，最後告訴我你最沒把握的是哪一個</p>
+      <p class="bub me f" data-step="0">幫我找台中市南屯區干城街 115 巷 4 弄 16 號走路 15 分鐘內，三個適合拍照的地方。每個寫一句特色和地址，列成清單，最後告訴我你最沒把握的是哪一個</p>
       <p class="bub f" data-step="1">1. ……　2. ……　3. ……<br>第 3 個的營業時間我不確定，建議你自己查一下。</p>
     </div>
   </div>
-  <aside class="notes">約 5 分鐘。這一題順便暖身 11:30 的外拍。重點是最後那句「告訴我你最沒把握的」：讓它自己標出要驗的地方。還沒串好龍蝦的人看隔壁的畫面。</aside>
+  <aside class="notes">約 5 分鐘。這一題順便暖身 11:30 的外拍。直接給地址：只說「黎明辦公室」，AI 不知道在哪裡——這也是「講清楚」的一部分。重點是最後那句「告訴我你最沒把握的」：讓它自己標出要驗的地方。還沒串好龍蝦的人看隔壁的畫面。</aside>
 </section>
 
 <!-- ============ 09 資安三條 ============ -->
@@ -692,26 +692,49 @@ body.idle .nav{opacity:0}
     <h2 class="a" style="--d:1">黎明三條，貼上牆</h2>
   </header>
   <ol class="three">
-    <li class="f"><span class="num">壹</span><h3>客戶資料不貼</h3><p>姓名、電話、保單號碼，一律不貼進對話。要用，先改成代號。</p></li>
-    <li class="f"><span class="num">貳</span><h3>金鑰不進對話</h3><p>token、密碼、API key 不貼給 AI。剛剛 bot token 只私訊主講，就是這條。</p></li>
-    <li class="f"><span class="num">參</span><h3>今天只連測試帳號</h3><p>不連工作 LINE、公司信箱。結業後要連公司帳號，先經主管核准。</p></li>
+    <li class="f"><span class="num">壹</span><h3>不要貼金鑰給陌生人</h3><p>token、密碼、API key 只交給信任的人。剛剛 bot token 只私訊主講，就是這條。</p></li>
+    <li class="f"><span class="num">貳</span><h3>任何隱私資料不要送</h3><p>客戶姓名、電話、身分證、保單號碼，不管傳給 AI 還是別人，要用先改成代號。</p></li>
+    <li class="f"><span class="num">參</span><h3>涉及真實金錢交易的事情不要叫它做</h3><p>付款、轉帳、下單、買東西，一律自己來，不交給龍蝦。</p></li>
   </ol>
-  <aside class="notes">三條逐一按出。第一條：明天要準備真的樣本，客戶名一定先改代號。第三條：明天 14:50 開通 24hr 助理時會講公司帳號的申請方式。外拍會拍到路人和店家：放上網之前，臉和店名照片先問過、或避開。</aside>
+  <aside class="notes">三條逐一按出。第一條：陌生的網站、bot、群組要你貼金鑰，一律不給。第二條：客戶姓名、電話、證號這類資料不要送給它，要用就先改代號。第三條：AI 會講得很順，但錢的事一按下去就收不回來。外拍會拍到路人和店家：放上網之前，臉和店名照片先問過、或避開。</aside>
 </section>
 
 <!-- ============ 10 牆上 ============ -->
 <section class="sheet" data-row="2">
   <header class="hd">
     <p class="eyebrow a" style="--d:0"><i>On the wall</i><span>貼上牆</span></p>
-    <h2 class="a" style="--d:1">跟 Agent 講話，四個習慣</h2>
+    <h2 class="a" style="--d:1">跟 Agent 講話，三個習慣</h2>
   </header>
   <ol class="agenda">
     <li class="f"><span class="n">1</span><b>先講結果，再講限制</b><i></i></li>
     <li class="f"><span class="n">2</span><b>講清楚怎樣算做完</b><i></i></li>
-    <li class="f"><span class="n">3</span><b>卡住就換句話說：它做了 X，我要的是 Y</b><i></i></li>
-    <li class="f hot"><span class="n">4</span><b>一定要自己驗</b><i></i></li>
+    <li class="f hot"><span class="n">3</span><b>卡住就換句話說：它做了 X，我要的是 Y</b><i></i></li>
   </ol>
-  <aside class="notes">這四條和資安三條做成海報，放在一起上牆。下午團隊製作、明天個人專案都會用到。</aside>
+  <aside class="notes">這三條和資安三條做成海報，放在一起上牆。下午團隊製作、明天個人專案都會用到。</aside>
+</section>
+
+<!-- ============ 10b 為什麼選龍蝦 ============ -->
+<section class="sheet" data-row="2">
+  <style>
+    .why6{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:26px 40px;flex:1;align-content:start}
+    .why6 li{border-top:2px solid var(--ink);padding-top:16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+    .why6 .n{font:900 34px/1 var(--f-display);color:var(--seal)}
+    .why6 b{font:600 34px/1.3 var(--f-display)}
+    .why6 small{font-size:25px;line-height:1.5;color:var(--pencil)}
+  </style>
+  <header class="hd">
+    <p class="eyebrow a" style="--d:0"><i>Why OpenClaw</i><span>最後一題</span></p>
+    <h2 class="a" style="--d:1">為什麼選龍蝦？</h2>
+  </header>
+  <ol class="why6">
+    <li class="f"><span class="n">壹</span><b>用手機就能用</b><small>住在你每天在用的 Telegram，不用裝新 App</small></li>
+    <li class="f"><span class="n">貳</span><b>會動手，不只會回答</b><small>開檔案、跑程式、上網查，做完回報</small></li>
+    <li class="f"><span class="n">參</span><b>24 小時開著</b><small>可以排好時間，每天自己跑</small></li>
+    <li class="f"><span class="n">肆</span><b>會記得你</b><small>記憶存在自己的主機，愈用愈懂你</small></li>
+    <li class="f"><span class="n">伍</span><b>不用綁定某一個模型商</b><small>Claude、GPT、Gemini 都能接，隨時可以換</small></li>
+    <li class="f"><span class="n">陸</span><b>免費、開源</b><small>軟體本身不用錢，原始碼大家都看得到</small></li>
+  </ol>
+  <aside class="notes">一張一張按出來，每張講一句就好。補充給主講（不一定要講）：龍蝦就是 OpenClaw，開源（MIT 授權）、裝在自己的主機上，可以接 Telegram、WhatsApp、Discord 等通訊軟體；它本身不是 AI 模型，要接模型商（就是前面流程圖的第 4 格），費用主要花在模型上。社群分享的 SKILL 曾出現有問題的套件，所以 ④ 裝 SKILL 前要看掃描結果，這也是資安三條的延伸。</aside>
 </section>
 
 <!-- ============ 11 下一段 ============ -->
@@ -743,6 +766,7 @@ body.idle .nav{opacity:0}
   <span class="clock" id="clock">--:--</span>
 </nav>
 
+<script>window.PREV_DECK='01-opening.html#p999';window.NEXT_DECK='03-skill.html';</script>
 <script>
 (function(){
   var world=document.getElementById('world'), vp=document.getElementById('viewport');
@@ -773,7 +797,7 @@ body.idle .nav{opacity:0}
     s.style.left=(p.x-W0/2)+'px'; s.style.top=(p.y-H0/2)+'px';
     s.style.transform='rotate('+p.r+'deg)';
     var f=document.createElement('div'); f.className='folio';
-    f.innerHTML='<span>'+(i<4?'③ AI Agent · 是什麼':(i<9?'③ AI Agent · 怎麼講':'③ AI Agent · 資安'))+'</span><span><i>'+String(i+1).padStart(2,'0')+'</i> / '+N+'</span>';
+    f.innerHTML='<span>'+(i<4?'③ AI Agent · 是什麼':(i<8?'③ AI Agent · 怎麼講':(i<10?'③ AI Agent · 資安':'③ AI Agent · 為什麼選龍蝦')))+'</span><span><i>'+String(i+1).padStart(2,'0')+'</i> / '+N+'</span>';
     s.appendChild(f);
     if(i%3!==1){var t=document.createElement('div');t.className='tape'+(i%2?' blue':'');
       t.style.setProperty('--tx',(240+(i*97)%980)+'px');t.style.setProperty('--tr',(((i*41)%11)-5)+'deg');s.appendChild(t);}
@@ -858,13 +882,13 @@ body.idle .nav{opacity:0}
     if(overview){go(cur);return;}
     var s=sheets[cur];
     if(s._at<s._steps.length) setStep(s,s._at+1,true);
-    else if(cur<N-1) go(cur+1);
+    else if(cur<N-1) go(cur+1); else if(window.NEXT_DECK) location.href=window.NEXT_DECK;
   }
   function prev(){
     if(overview){go(cur);return;}
     var s=sheets[cur];
     if(s._at>0) setStep(s,s._at-1,false);
-    else if(cur>0) go(cur-1,{back:true});
+    else if(cur>0) go(cur-1,{back:true}); else if(window.PREV_DECK) location.href=window.PREV_DECK;
   }
   function showOverview(instant){
     overview=true; document.body.classList.add('overview');

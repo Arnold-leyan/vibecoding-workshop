@@ -588,12 +588,12 @@ body.idle .nav{opacity:0}
 <section class="sheet" data-row="0">
   <header class="hd">
     <p class="eyebrow a" style="--d:0"><i>Tomorrow</i><span>明天唯一計分的專案</span></p>
-    <h2 class="a" style="--d:1">明天每個人交一個：工作流的優化</h2>
+    <h2 class="a" style="--d:1">明天每個人做兩個：工作流＋小系統</h2>
   </header>
   <div class="flow3">
-    <div class="slip f"><span class="when">上午 · 08:45</span><h3>做出會跑的一格</h3><p>最花時間的那一步交給龍蝦，兩份樣本都跑對。</p></div>
-    <div class="slip f"><span class="when">中午前 · 11:25</span><h3>寫文件、交件</h3><p>一頁說明，寫到別人照著做不用問你。</p></div>
-    <div class="slip f"><span class="when">下午 · 12:50</span><h3>發表＋投票</h3><p>講「原本幾分鐘、現在幾分鐘」，大家投出最想帶走的那一個。</p></div>
+    <div class="slip f"><span class="when">上午 · 08:30</span><h3>會自己跑的工作流</h3><p>學 VibeCoding 基礎、龍蝦指令和排程，讓你的工作流每天自己跑。</p></div>
+    <div class="slip f"><span class="when">下午 · 12:50</span><h3>做一個小系統</h3><p>說一句就記好，時間到整理好傳給你，還能畫成圖。</p></div>
+    <div class="slip f"><span class="when">傍晚 · 15:00</span><h3>發表＋投票</h3><p>講「原本幾分鐘、現在幾分鐘」，大家投出最想帶走的那一個。</p></div>
   </div>
   <p class="lede f">所以題目<em>今天傍晚就想好</em>，明天 08:30 直接開工。</p>
   <aside class="notes">今天的團隊成品不帶到明天，但今天踩過的坑明天用得上。明天是唯一計分的專案：投票 5 分、評審 5 分（評審也會照你的操作文件跑一次）。</aside>
@@ -639,7 +639,7 @@ body.idle .nav{opacity:0}
       <p class="bub f" data-step="3">決議 3 項、待辦 5 項。第 4 項沒講期限，標了問號。</p>
     </div>
   </div>
-  <aside class="notes">這次是跨部門，所以範例用每個部門都有的題目。主講若改用自己真實的工作現場，照五格把文字換掉即可。注意講法：只講要的結果和欄位，不教它怎麼做；「打問號、不要自己猜」就是一定要自己驗。時間是示意，現場改成實測的數字。失敗備案：播 T-1 錄的螢幕影片。</aside>
+  <aside class="notes">這次是跨部門，所以範例用每個部門都有的題目。主講若改用自己真實的工作現場，照五格把文字換掉即可。注意講法：只講要的結果和欄位，不教它怎麼做；「打問號、不要自己猜」是讓它把沒把握的地方標出來，你再自己查。時間是示意，現場改成實測的數字。失敗備案：播 T-1 錄的螢幕影片。</aside>
 </section>
 
 <!-- ============ 04 五格 ============ -->
@@ -659,20 +659,23 @@ body.idle .nav{opacity:0}
   <aside class="notes">這是今天傍晚最重要的一句話。下午的團隊製作其實也是：外拍素材 → 傳給龍蝦 → 龍蝦做成三件 → 一個網址 → 交件群組。</aside>
 </section>
 
-<!-- ============ 05 不同部門 ============ -->
+<!-- ============ 05 不同職位 ============ -->
 <section class="sheet" data-row="1">
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Side by side</i><span>換個部門也一樣</span></p>
-    <h2 class="a" style="--d:1">不管哪個部門，只有一格交給 AI</h2>
+    <p class="eyebrow a" style="--d:0"><i>Side by side</i><span>換個職位也一樣</span></p>
+    <h2 class="a" style="--d:1">不管哪個職位，只有一格交給 AI</h2>
   </header>
-  <div class="grid5">
+  <style>.grid5.six{grid-template-columns:150px repeat(5,minmax(0,1fr));font-size:23px;line-height:1.3}.grid5.six > *{padding:9px 12px}.grid5.six .who{font-size:25px}</style>
+  <div class="grid5 six">
     <span class="h"></span><span class="h">觸發</span><span class="h">取得資料</span><span class="h hot">AI 處理</span><span class="h">產出</span><span class="h">交給誰</span>
-    <b class="who f" data-step="0">會議</b><span class="f" data-step="0">開完會</span><span class="f" data-step="0">筆記</span><span class="hot f" data-step="0">決議＋待辦</span><span class="f" data-step="0">待辦清單</span><span class="f" data-step="0">部門群組</span>
-    <b class="who f" data-step="1">業務</b><span class="f" data-step="1">每週五</span><span class="f" data-step="1">拜訪口述</span><span class="hot f" data-step="1">整理成追蹤表</span><span class="f" data-step="1">一張表</span><span class="f" data-step="1">助理</span>
-    <b class="who f" data-step="2">會計</b><span class="f" data-step="2">月底</span><span class="f" data-step="2">拍收據</span><span class="hot f" data-step="2">讀數字、分類</span><span class="f" data-step="2">對帳表</span><span class="f" data-step="2">會計</span>
-    <b class="who f" data-step="3">客服</b><span class="f" data-step="3">每天下班前</span><span class="f" data-step="3">當天的客訴</span><span class="hot f" data-step="3">分類＋回覆草稿</span><span class="f" data-step="3">回覆清單</span><span class="f" data-step="3">主管核可</span>
+    <b class="who f" data-step="0">培訓</b><span class="f" data-step="0">每次課程結束</span><span class="f" data-step="0">學員回饋問卷</span><span class="hot f" data-step="0">整理重點＋建議</span><span class="f" data-step="0">一頁回饋摘要</span><span class="f" data-step="0">培訓主管</span>
+    <b class="who f" data-step="1">售服工程師</b><span class="f" data-step="1">每次維修完</span><span class="f" data-step="1">現場口述</span><span class="hot f" data-step="1">整理成維修報告</span><span class="f" data-step="1">一份報告</span><span class="f" data-step="1">客戶、主管</span>
+    <b class="who f" data-step="2">醫生</b><span class="f" data-step="2">每天早上</span><span class="f" data-step="2">最新醫學新聞</span><span class="hot f" data-step="2">挑三則、一句重點</span><span class="f" data-step="2">一段摘要</span><span class="f" data-step="2">自己</span>
+    <b class="who f" data-step="3">PM</b><span class="f" data-step="3">每週一</span><span class="f" data-step="3">各組進度回報</span><span class="hot f" data-step="3">整理進度＋找出風險</span><span class="f" data-step="3">週報</span><span class="f" data-step="3">老闆</span>
+    <b class="who f" data-step="4">開業顧問</b><span class="f" data-step="4">接到新客戶</span><span class="f" data-step="4">客戶的開業需求</span><span class="hot f" data-step="4">整理成檢查清單</span><span class="f" data-step="4">一份清單</span><span class="f" data-step="4">客戶</span>
+    <b class="who f" data-step="5">主管</b><span class="f" data-step="5">每週五</span><span class="f" data-step="5">部門週報</span><span class="hot f" data-step="5">重點＋要決定的事</span><span class="f" data-step="5">一頁摘要</span><span class="f" data-step="5">自己</span>
   </div>
-  <p class="lede f" data-step="4">其他四格，<em>明天先手動</em>就好。</p>
+  <p class="lede f" data-step="6">其他四格，<em>先手動</em>就好。</p>
   <aside class="notes">一列一列按出來，挑台下有的部門多講一句。觸發、取得資料、產出、交給誰都很普通，手動做一分鐘就好；真正花掉時間的只有中間那一格。</aside>
 </section>
 
@@ -687,7 +690,7 @@ body.idle .nav{opacity:0}
     <div class="card agent f"><span class="who">只做 AI 處理那一格</span><p class="say">其他先手動，</p><p class="ex">明天 10:15 有一格真的會跑，10:25 再來串其他格。</p></div>
   </div>
   <p class="lede f">觸發、取得資料、產出、交給誰，手動各只要一分鐘。<em>那一格，就是你一直沒時間、沒人手做的地方。</em></p>
-  <aside class="notes">明天的完成判準：兩份不同的樣本都跑得對，才算「會跑」。只對一份通常是碰巧。10:25 衝刺二才把手動的格子交給龍蝦。</aside>
+  <aside class="notes">明天上午做工作流（VibeCoding 基礎、龍蝦指令、排程、串成每天自己跑），下午做小系統（說一句就記好、時間到整理好傳給你），15:00 發表。</aside>
 </section>
 
 <!-- ============ 07 換你：填五格 ============ -->
@@ -740,47 +743,18 @@ body.idle .nav{opacity:0}
   <aside class="notes">明天早上 08:30 每人講題目時，太大的也是用這頁的方法當場縮小。09:30 巡場跑不動的人也一樣。</aside>
 </section>
 
-<!-- ============ 10 今晚功課 ============ -->
-<section class="sheet" data-row="2">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Homework</i><span>今晚功課</span></p>
-    <h2 class="a" style="--d:1">明天帶兩份真的樣本來</h2>
-  </header>
-  <ol class="check">
-    <li><span class="box a" style="--d:2"></span><div><b>兩份真的樣本</b><small>這件事會用到的真實資料，準備兩份不一樣的。客戶、人名先改代號</small></div><span class="seal round f stamp">一</span></li>
-    <li><span class="box a" style="--d:3"></span><div><b>明天早上那 1 分鐘</b><small>工作流是什麼、哪一格交給 AI、打算怎麼做</small></div><span class="seal round f stamp" style="--rot:8deg">二</span></li>
-  </ol>
-  <p class="warn f">假資料看不出問題。客戶資料不貼，<em>改了代號才算真的樣本</em>。</p>
-  <aside class="notes">為什麼要兩份：明天 10:15 的檢核是「兩份不同的樣本都跑對」。資安三條第一條在這裡用上：客戶姓名、電話、保單號碼一律先改代號。</aside>
-</section>
-
-<!-- ============ 11 收尾 ============ -->
-<section class="sheet" data-row="2">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>17:40</i><span>Day 1 收尾</span></p>
-  </header>
-  <div class="only">
-    <p class="huge a" style="--d:1">第＿組，<br><em>得票第一。</em></p>
-    <div class="side">
-      <p class="f">今天的投票不算進明天的十分，但掌聲算。</p>
-      <p class="f">明天 <b>08:30</b> 開始，比今天早半小時。</p>
-      <p class="skip f">龍蝦整晚開著，回家想到什麼，先在 Telegram 跟它說。</p>
-    </div>
-  </div>
-  <aside class="notes">17:40 在投票網站按「公布結果」，把組別填進這頁的空格（或直接念）。順便請得票第一的組用一句話講最卡的那件事怎麼解掉的。</aside>
-</section>
-
 <!-- ============ 12 明天見 ============ -->
 <section class="sheet end" data-row="2">
   <div class="vert a" style="--d:0">明天見</div>
   <div class="body">
     <p class="time a" style="--d:1">Day 2 · 08:30</p>
-    <p class="next a" style="--d:2">早安：每人 1 分鐘，<br>講你的題目。</p>
-    <p class="bring f">帶兩份真的樣本，客戶名字先改代號。</p>
+    <p class="next a" style="--d:2">VibeCoding 基礎、<br>龍蝦指令和排程。</p>
+    <p class="bring f">比今天早半小時。龍蝦整晚開著，想到什麼先在 Telegram 跟它說。</p>
   </div>
-  <aside class="notes">18:00 Day 1 結束。龍蝦在主機上整晚開著。前一晚請龍蝦整理本週 AI 時事 3 則，主講審過，明天 08:30 開場用。</aside>
+  <aside class="notes">17:40 收尾：預告明天的流程，18:00 Day 1 結束。龍蝦在主機上整晚開著。</aside>
 </section>
 
+<script>window.PREV_DECK='06-showcase.html#p999';window.NEXT_DECK='../day2/01-workflow.html';</script>
 <script>
 (function(){
   /* 時間表看板 */
@@ -847,7 +821,7 @@ body.idle .nav{opacity:0}
     s.style.left=(p.x-W0/2)+'px'; s.style.top=(p.y-H0/2)+'px';
     s.style.transform='rotate('+p.r+'deg)';
     var f=document.createElement('div'); f.className='folio';
-    f.innerHTML='<span>'+(i<7?'⑩ 工作流拆解':(i<11?'⑪ 想你自己的工作流':'Day 1 收尾'))+'</span><span><i>'+String(i+1).padStart(2,'0')+'</i> / '+N+'</span>';
+    f.innerHTML='<span>'+(i<7?'⑩ 工作流拆解':(i<10?'⑪ 想你自己的工作流':'Day 1 收尾'))+'</span><span><i>'+String(i+1).padStart(2,'0')+'</i> / '+N+'</span>';
     s.appendChild(f);
     if(i%3!==1){var t=document.createElement('div');t.className='tape'+(i%2?' blue':'');
       t.style.setProperty('--tx',(240+(i*97)%980)+'px');t.style.setProperty('--tr',(((i*41)%11)-5)+'deg');s.appendChild(t);}
@@ -932,13 +906,13 @@ body.idle .nav{opacity:0}
     if(overview){go(cur);return;}
     var s=sheets[cur];
     if(s._at<s._steps.length) setStep(s,s._at+1,true);
-    else if(cur<N-1) go(cur+1);
+    else if(cur<N-1) go(cur+1); else if(window.NEXT_DECK) location.href=window.NEXT_DECK;
   }
   function prev(){
     if(overview){go(cur);return;}
     var s=sheets[cur];
     if(s._at>0) setStep(s,s._at-1,false);
-    else if(cur>0) go(cur-1,{back:true});
+    else if(cur>0) go(cur-1,{back:true}); else if(window.PREV_DECK) location.href=window.PREV_DECK;
   }
   function showOverview(instant){
     overview=true; document.body.classList.add('overview');

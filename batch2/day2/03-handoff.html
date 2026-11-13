@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>早安・實作衝刺</title>
+<title>寫文件・交件</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&family=LXGW+WenKai+TC:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=JetBrains+Mono:wght@400;600&display=swap">
@@ -591,241 +591,144 @@ body.idle .nav{opacity:0}
 <body>
 <div id="viewport">
 <div id="world">
-
 <!-- ============ 00 封面 ============ -->
 <section class="sheet cover" data-row="0">
   <div class="cover-main">
-    <p class="eyebrow a" style="--d:0"><i>Day Two · 08:30</i><span>黎明 VibeCoding 工作坊</span></p>
-    <h1 class="a" style="--d:1">實作衝刺</h1>
+    <p class="eyebrow a" style="--d:0"><i>Day Two · 14:30</i><span>黎明 VibeCoding 工作坊</span></p>
+    <h1 class="a" style="--d:1">交件</h1>
     <svg class="under a" style="--d:2" viewBox="0 0 620 30" aria-hidden="true"><path class="draw" pathLength="1" d="M4 18 C 140 6, 270 26, 400 14 S 560 8, 616 18"/></svg>
-    <p class="sub a" style="--d:3">早安 · 衝刺一 · 衝刺二<br>先讓一格會跑，再串起五格<small>make one box work, then connect the rest</small></p>
-    <p class="meta a" style="--d:4"><i>08:30 – 11:25</i>每人一個　11:25 一定停手</p>
+    <p class="sub a" style="--d:3">寫文件、自我檢查、交件<small>make it something others can pick up</small></p>
+    <p class="meta a" style="--d:4"><i>14:30 – 14:50</i>二十分鐘　專心寫文件</p>
   </div>
   <div class="cover-side">
-    <div class="manuscript a" style="--d:2" data-rows="9" aria-label="兩份樣本都跑對，才算會跑。"><span class="col" data-text="兩份樣本都跑對，"></span><span class="col sub" data-text="才算會跑。"></span></div>
+    <div class="manuscript a" style="--d:2" data-rows="9" aria-label="寫到別人照著做，不用問你。"><span class="col" data-text="寫到別人照著做，"></span><span class="col sub" data-text="不用問你。"></span></div>
     <div class="seal a stampin" style="--d:6;transform:rotate(-6deg)">黎明</div>
   </div>
-  <aside class="notes">08:30 開場 15 分鐘：本週 AI 時事 3 則（3 分鐘）＋每人 1 分鐘講題目。08:45 衝刺一，10:15 檢核，10:25 衝刺二，11:25 停手寫文件。今天是個人專案，每個人做自己的。說明完停在時間表那一頁當看板。</aside>
+  <aside class="notes">14:30。這 20 分鐘只做「讓別人拿得走」的三件事：早上的工作流、下午的小系統，一起寫進文件。評審 5 分裡，有一部分是照你的操作文件跑一次。</aside>
 </section>
 
-<!-- ============ 01 本週時事 ============ -->
+<!-- ============ 02 時間表 ============ -->
 <section class="sheet" data-row="0">
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>08:30 · 3 min</i><span>早安</span></p>
-    <h2 class="a" style="--d:1">本週 AI 時事，三則</h2>
+    <p class="eyebrow a" style="--d:0"><i>Timeline</i><span>20 分鐘，三段</span></p>
+    <h2 class="a" style="--d:1">寫、檢查、交</h2>
   </header>
-  <div class="flow3">
-    <div class="slip f"><span class="when">一</span><h3>＿＿＿＿</h3><p>跟你工作的關係：＿＿＿＿</p></div>
-    <div class="slip f"><span class="when">二</span><h3>＿＿＿＿</h3><p>跟你工作的關係：＿＿＿＿</p></div>
-    <div class="slip f"><span class="when">三</span><h3>＿＿＿＿</h3><p>跟你工作的關係：＿＿＿＿</p></div>
+  <div class="tl4 tlx a" style="--d:2;grid-template-columns:10fr 4fr 6fr" id="tlB">
+    <div class="seg" data-start="14:30" data-end="14:40"><span class="t">14:30</span><b>寫操作文件</b><small>一頁，四個部分</small><span class="left"></span></div>
+    <div class="seg" data-start="14:40" data-end="14:44"><span class="t">14:40</span><b>自我檢查</b><small>量時間＋資安</small><span class="left"></span></div>
+    <div class="seg" data-start="14:44" data-end="14:50"><span class="t">14:44</span><b>交件</b><small>交件群組</small><span class="left"></span></div>
   </div>
-  <p class="lede f">這三則是<em>龍蝦昨晚自己整理的</em>，主講只審過。</p>
-  <aside class="notes">前一晚請龍蝦整理本週 AI 時事 3 則、每則一句「跟你工作的關係」，主講審過後把標題填進這頁。這本身就是一個工作流：固定時間觸發 → 上網找 → AI 整理 → 一頁摘要 → 給主講。下午開通 24hr 助理時可以拿來當例子。</aside>
+  <p class="lede f">14:50 前要交齊<em>四件東西</em>，缺一件發表時就沒得秀。</p>
+  <aside class="notes">這頁會照時鐘自動亮起現在這一段（14:30–14:50）。</aside>
 </section>
 
-<!-- ============ 02 每人 1 分鐘 ============ -->
+<!-- ============ 03 文件四部分 ============ -->
 <section class="sheet" data-row="0">
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>08:33 · 1 min each</i><span>每個人的題目定案</span></p>
-    <h2 class="a" style="--d:1">每人 1 分鐘：你的題目</h2>
+    <p class="eyebrow a" style="--d:0"><i>14:30 · 10 min</i><span>寫操作文件</span></p>
+    <h2 class="a" style="--d:1">一頁就好，四個部分</h2>
   </header>
-  <div class="two">
-    <ul class="rules">
-      <li class="f">我的工作流是：＿＿＿</li>
-      <li class="f">交給 AI 的是：＿＿＿那一格</li>
-      <li class="f">我打算這樣跟龍蝦說：＿＿＿</li>
-    </ul>
-    <blockquote class="quote f" style="margin:0"><p>題目太大的，當場縮小。</p><small>08:45 前每個題目都定案</small></blockquote>
-  </div>
-  <aside class="notes">照昨天 17:10 寫的三句講。主講聽到太大的題目當場用「先做一份、先回答 10 題」的方法縮小。每人 1 分鐘，人多就縮成 40 秒，08:45 準時開工。</aside>
-</section>
-
-<!-- ============ 03 只做一格 ============ -->
-<section class="sheet" data-row="0">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>One box</i><span>以「整理會議紀錄」為例</span></p>
-    <h2 class="a" style="--d:1">衝刺一，只做中間那一格</h2>
-  </header>
-  <div class="grid3">
-    <span class="h">五格</span><span class="h">這件事實際上是什麼</span><span class="h">衝刺一怎麼辦</span>
-    <b class="k f" data-step="0">觸發</b><span class="f" data-step="0">每次開完會</span><span class="dim f" data-step="0">先手動：你自己記得</span>
-    <b class="k f" data-step="0">取得資料</b><span class="f" data-step="0">會議筆記</span><span class="dim f" data-step="0">先手動：自己貼進去</span>
-    <b class="k hot f" data-step="1">AI 處理</b><span class="hot f" data-step="1">把筆記變成決議＋待辦清單</span><span class="hot f" data-step="1">先做這一格</span>
-    <b class="k f" data-step="2">產出</b><span class="f" data-step="2">一張待辦清單</span><span class="dim f" data-step="2">先手動：複製出來就好</span>
-    <b class="k f" data-step="2">交給誰</b><span class="f" data-step="2">貼到部門群組</span><span class="dim f" data-step="2">先手動：10:25 衝刺二再交給龍蝦</span>
-  </div>
-  <aside class="notes">其他四格手動做各只要一分鐘，AI 處理那格才是你一直做不了的地方。衝刺一（08:45–10:15）只做這一格；衝刺二（10:25–11:25）才把手動的格子交給龍蝦。</aside>
-</section>
-
-<!-- ============ 04 時間表（看板） ============ -->
-<section class="sheet" data-row="0">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Timeline</i><span>投影停在這一頁</span></p>
-    <h2 class="a" style="--d:1">兩次衝刺，11:25 一定停</h2>
-  </header>
-  <div class="tl4 tlx a" style="--d:2;grid-template-columns:45fr 45fr minmax(110px,10fr) 60fr 25fr" id="tlA">
-    <div class="seg" data-start="08:45" data-end="09:30"><span class="t">08:45</span><b>衝刺一 開工</b><small>準備樣本、跟龍蝦講第一句</small><span class="left"></span></div>
-    <div class="seg" data-start="09:30" data-end="10:15"><span class="t">09:30</span><b>讓它會跑</b><small>巡場：跑得動嗎？</small><span class="left"></span></div>
-    <div class="seg" data-start="10:15" data-end="10:25"><span class="t">10:15</span><b>休息</b><small>10 分</small><span class="left"></span></div>
-    <div class="seg" data-start="10:25" data-end="11:25"><span class="t">10:25</span><b>衝刺二 串起五格</b><small>手動的格子交給龍蝦</small><span class="left"></span></div>
-    <div class="seg" data-start="11:25" data-end="11:50"><span class="t">11:25</span><b>寫文件</b><small>一定停手</small><span class="left"></span></div>
-  </div>
-  <p class="lede f">10:15 檢核：<em>第二份樣本也跑對</em>。跑不動就把題目縮小。</p>
-  <aside class="notes">這頁會照時鐘自動標出現在是哪一段、還剩幾分鐘（08:45–11:50 之間才會亮）。助教 ×2 巡場就照這幾段。</aside>
-</section>
-
-<!-- ============ 05 五步 ============ -->
-<section class="sheet" data-row="1">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Five steps</i><span>AI 處理那一格怎麼動手</span></p>
-    <h2 class="a" style="--d:1">五步，做到會跑</h2>
-  </header>
-  <div class="split demo">
+  <div class="split">
     <div class="txt-col">
-      <ol class="steps tight">
-        <li class="f" data-step="0">拿出<b>真的</b>樣本<small>昨晚準備的那兩份，人名、客戶名已改代號</small></li>
-        <li class="f" data-step="1">跟龍蝦講你要什麼<b>結果</b></li>
-        <li class="f" data-step="2">跑一次，看哪裡不對，換句話說</li>
-        <li class="f" data-step="3">對了，<b>存成 SKILL</b></li>
-        <li class="f" data-step="4">換第二份樣本，再跑一次</li>
-      </ol>
+      <dl class="idx f" style="rotate:-.6deg">
+        <div class="fn">操作文件（一頁）</div>
+        <dt>第一行</dt><dd>這是給＿＿＿在＿＿＿時候用的。</dd>
+        <dt>先準備</dt><dd>例：記帳要用的那一句話</dd>
+        <dt>怎麼跑</dt><dd>三到五步，每步一句話</dd>
+        <dt>會跑出什麼</dt><dd>貼一張成功時的畫面</dd>
+      </dl>
     </div>
     <div class="tg big">
-      <div class="bar">龍蝦<small>例句</small></div>
-      <p class="bub me f" data-step="1">把這段會議筆記整理成兩段：決議，和待辦清單（誰、做什麼、哪天前）</p>
-      <p class="bub me f" data-step="2">它把「下週三前」放到「誰」那欄了，我要的是放在「哪天前」</p>
-      <p class="bub me f" data-step="3">對了。把這套做法存成 skill，叫「會議待辦」</p>
+      <div class="bar">龍蝦<small>請它先寫初稿</small></div>
+      <p class="bub me f">根據今天早上的工作流和下午的小系統，幫我寫一頁操作文件，四個部分：給誰在什麼時候用、要先準備什麼、三到五步怎麼跑、會跑出什麼。寫到照著做的人不用問我</p>
+      <p class="bub f">初稿在這裡⋯⋯第 3 步需要你補一張截圖。</p>
     </div>
   </div>
-  <aside class="notes">假資料看不出問題，一定要用真的樣本，但客戶姓名先改代號。講結果和欄位，不要教它怎麼做。第 4 步就是昨天 ④ 學的 SKILL。</aside>
+  <aside class="notes">初稿可以請龍蝦寫，但一定要自己從頭照著讀一遍：假裝你是第一次看到的同事，每一步都做得出來嗎？</aside>
 </section>
 
-<!-- ============ 06 講結果 ============ -->
+<!-- ============ 04 第一行 ============ -->
 <section class="sheet" data-row="1">
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Say the result</i><span>昨天的四個習慣</span></p>
-    <h2 class="a" style="--d:1">講要的結果，不教它怎麼做</h2>
+    <p class="eyebrow a" style="--d:0"><i>First line</i><span>最常見的卡點</span></p>
+    <h2 class="a" style="--d:1">文件第一行，一定是這句</h2>
   </header>
-  <div class="compare">
-    <div class="f" style="display:flex;flex-direction:column;gap:14px;min-width:0">
-      <span class="who-lab">✗ 教它怎麼做</span>
-      <div class="tg">
-        <p class="bub me">先打開檔案，一行一行讀，看到人名就記下來，再找有沒有日期⋯⋯</p>
-      </div>
-      <p class="dim" style="font-size:26px">你教的步驟不一定對，它還會照做。</p>
-    </div>
-    <div class="f" style="display:flex;flex-direction:column;gap:14px;min-width:0">
-      <span class="who-lab red">✓ 講結果、講欄位、講怎樣算做完</span>
-      <div class="tg">
-        <p class="bub me">整理成一張表：誰、做什麼、哪天前。看不出來的欄位留空，不要猜</p>
-      </div>
-      <p style="font-size:26px">它自己會拆步驟。</p>
-    </div>
-  </div>
-  <aside class="notes">接昨天 ③ AI Agent 的習慣一與習慣二。「看不出來的留空，不要猜」是最常用的一句保險。</aside>
+  <blockquote class="quote f" style="margin:30px 0 0;font-size:56px"><p>這是給＿＿＿（誰）在＿＿＿（什麼時候）用的。</p><small>例：這是給我自己在每次花錢的時候，用一句話記帳用的。</small></blockquote>
+  <p class="lede f" style="margin-top:40px">沒有這一行，照著做的人<em>第一步就愣住</em>。</p>
+  <aside class="notes">這是評審看文件時最常扣分的地方，事先講可以省掉一半的失分。</aside>
 </section>
 
-<!-- ============ 07 卡住了 ============ -->
+<!-- ============ 05 自我檢查 ============ -->
 <section class="sheet" data-row="1">
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>If stuck</i><span>卡住了怎麼辦</span></p>
-    <h2 class="a" style="--d:1">卡住了，先試這四個</h2>
+    <p class="eyebrow a" style="--d:0"><i>14:40 · 4 min</i><span>自我檢查</span></p>
+    <h2 class="a" style="--d:1">交之前，對一遍這五題</h2>
   </header>
-  <div class="trouble">
-    <div class="f"><span class="who">做的跟你要的不一樣</span><p class="sym">不要重講同一句</p><p class="fix">說「你做了 X，我要的是 Y」。</p></div>
-    <div class="f"><span class="who">它自己亂補資料</span><p class="sym">看不出來就留空</p><p class="fix">加一句「不知道的打問號，不要猜」。</p></div>
-    <div class="f"><span class="who">跑不動、太複雜</span><p class="sym">把題目縮小</p><p class="fix">一整年的資料 → 先做一份。</p></div>
-    <div class="f"><span class="who">真的不行</span><p class="sym">舉手</p><p class="fix">助教過去看。先做好的人可以當小助教。</p></div>
-  </div>
-  <aside class="notes">09:30 巡場時，跑不動的人當場縮小題目。</aside>
+  <style>.check.q5 li{padding:6px 0}.check.q5 b{font-size:34px}.check.q5 small{font-size:23px}</style>
+  <ol class="check q5">
+    <li><span class="box a" style="--d:2"></span><div><b>量時間：原本幾分鐘、現在幾分鐘</b><small>下午發表一定要講這個數字</small></div><span class="seal round f stamp">時</span></li>
+    <li><span class="box a" style="--d:3"></span><div><b>金鑰沒有給陌生人</b><small>沒貼在群組、陌生網站，也沒放上 GitHub</small></div><span class="seal round f stamp" style="--rot:8deg">一</span></li>
+    <li><span class="box a" style="--d:4"></span><div><b>隱私資料沒有送出去</b><small>記的資料、文件裡的姓名、電話、身分證都改了代號</small></div><span class="seal round f stamp" style="--rot:-3deg">二</span></li>
+    <li><span class="box a" style="--d:5"></span><div><b>沒有叫它做真實金錢交易</b><small>付款、轉帳、下單都不在流程裡</small></div><span class="seal round f stamp" style="--rot:5deg">三</span></li>
+    <li><span class="box a" style="--d:6"></span><div><b>自動跑的結果，先只傳給自己</b><small>排程沒有人在旁邊看，傳去哪裡要先想好</small></div><span class="seal round f stamp" style="--rot:-6deg">傳</span></li>
+  </ol>
+  <aside class="notes">中間三題是昨天 ③ 的黎明三條，最後一題是排程才有的：每天自動跑，沒人在旁邊看。評審 5 分裡的資安就看這幾題。</aside>
 </section>
 
-<!-- ============ 08 兩份樣本 ============ -->
+<!-- ============ 06 四件東西 ============ -->
 <section class="sheet" data-row="1">
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>10:15 · Done means</i><span>衝刺一的檢核</span></p>
-  </header>
-  <div class="only">
-    <p class="huge a" style="--d:1">兩份樣本，<br><em>都對才算。</em></p>
-    <div class="side">
-      <p class="f">只對一份，通常是碰巧。</p>
-      <p class="f">換一份<b>不一樣的</b>真資料再跑，兩份都對，才叫「會跑」。</p>
-      <p class="skip f">以後同事拿來用的，就是第三份資料。</p>
-    </div>
-  </div>
-  <aside class="notes">10:15 檢核點：第二份樣本跑對了嗎？沒有的人，休息時助教先過去看，衝刺二前把題目縮小。</aside>
-</section>
-
-<!-- ============ 09 衝刺二 ============ -->
-<section class="sheet" data-row="2">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>10:25 · 60 min</i><span>衝刺二</span></p>
-    <h2 class="a" style="--d:1">把手動的格子，交給龍蝦</h2>
-  </header>
-  <div class="split demo">
-    <div class="txt-col">
-      <ol class="steps tight">
-        <li class="f" data-step="0">先挑一格：<b>觸發</b>或<b>交給誰</b>最好下手</li>
-        <li class="f" data-step="1">觸發 →「每週五 4 點自動跑」</li>
-        <li class="f" data-step="1">交給誰 →「做完傳給我」</li>
-        <li class="f" data-step="2">試跑一次，看它真的有傳來</li>
-        <li class="f" data-step="3"><b>11:25 一定停手</b></li>
-      </ol>
-    </div>
-    <div class="tg big">
-      <div class="bar">龍蝦<small>例句</small></div>
-      <p class="bub me f" data-step="1">每週五下午 4 點，自動用「會議待辦」整理這週的會議筆記，做完傳給我</p>
-      <p class="bub f" data-step="2">設好了：每週五 16:00 執行「會議待辦」，結果傳給你。要先試跑一次嗎？</p>
-      <p class="bub me f" data-step="2">現在試跑一次</p>
-    </div>
-  </div>
-  <aside class="notes">能串幾格就串幾格，串不起來的維持手動也算完成。要連帳號，只連自己建的測試帳號。下午 14:50 開通 24hr 助理時，會把這個設成每天自動跑的第一個工作。</aside>
-</section>
-
-<!-- ============ 10 巡場 ============ -->
-<section class="sheet" data-row="2">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Check-ins</i><span>助教會來問這三題</span></p>
-    <h2 class="a" style="--d:1">三個時間點，三個問題</h2>
+    <p class="eyebrow a" style="--d:0"><i>Deliverables</i><span>14:50 前交齊</span></p>
+    <h2 class="a" style="--d:1">每人交四件東西</h2>
   </header>
   <ol class="check">
-    <li><span class="box a" style="--d:2"></span><div><b>09:30　AI 處理那格跑得動嗎？</b><small>跑不動，當場把題目縮小</small></div><span class="seal round f stamp">一</span></li>
-    <li><span class="box a" style="--d:3"></span><div><b>10:15　第二份樣本也對嗎？</b><small>衝刺一的檢核點</small></div><span class="seal round f stamp" style="--rot:8deg">二</span></li>
-    <li><span class="box a" style="--d:4"></span><div><b>11:15　收手了嗎？</b><small>11:25 一定停，要留時間寫文件</small></div><span class="seal round f stamp" style="--rot:-3deg">三</span></li>
+    <li><span class="box a" style="--d:2"></span><div><b>一頁專案卡</b><small>問題／原本流程／現在流程／省幾分鐘／資料走去哪／資安三條打勾</small></div><span class="seal round f stamp">一</span></li>
+    <li><span class="box a" style="--d:3"></span><div><b>兩個會跑的成品</b><small>早上的工作流、下午的小系統：試跑成功的畫面</small></div><span class="seal round f stamp" style="--rot:8deg">二</span></li>
+    <li><span class="box a" style="--d:4"></span><div><b>一個你在用的 SKILL</b><small>一句話就能再跑一遍</small></div><span class="seal round f stamp" style="--rot:-3deg">三</span></li>
+    <li><span class="box a" style="--d:5"></span><div><b>操作文件</b><small>一頁四段，第一行是「這是給＿＿在＿＿時候用的」</small></div><span class="seal round f stamp" style="--rot:5deg">四</span></li>
   </ol>
-  <aside class="notes">文件沒寫完，評審照著跑不動，評審分就會被扣。所以 11:25 一定要停。</aside>
+  <aside class="notes">專案卡也可以請龍蝦照這六個欄位整理初稿。缺一件，發表時就沒得秀。</aside>
 </section>
 
-<!-- ============ 11 資料 ============ -->
+<!-- ============ 07 怎麼交 ============ -->
 <section class="sheet" data-row="2">
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Data</i><span>昨天 ③ 講的資安三條</span></p>
+    <p class="eyebrow a" style="--d:0"><i>14:44 · 6 min</i><span>交件</span></p>
+    <h2 class="a" style="--d:1">整理好，傳到交件群組</h2>
   </header>
-  <div class="only">
-    <p class="huge a" style="--d:1">真的樣本，<br><em>假的名字。</em></p>
-    <div class="side">
-      <p class="f">客戶姓名、電話、身分證、保單號，貼給龍蝦之前先換成代號。</p>
-      <p class="f">金鑰、密碼不要貼進對話。</p>
-      <p class="skip f">要連帳號，只連<em>自己建的測試帳號</em>。</p>
+  <div class="split">
+    <div class="txt-col">
+      <ol class="steps">
+        <li class="f">請龍蝦把操作文件整理成一份檔案<small>記的資料不要放上公開網頁</small></li>
+        <li class="f">請龍蝦把專案卡和成品傳給你</li>
+        <li class="f">連同試跑成功的截圖，轉傳到「黎明交件」群組</li>
+      </ol>
+    </div>
+    <div class="qr-card f">
+      <span class="lab">掃這個，加入</span>
+      <b>黎明交件</b>
+      <div class="qr"><svg role="img" aria-label="黎明交件群組的 Telegram 邀請 QR code" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" shape-rendering="crispEdges"><path fill="#FBFAF6" d="M0 0h33v33H0z"/><path stroke="#272724" d="M2 2.5h7m2 0h2m1 0h4m1 0h4m1 0h7M2 3.5h1m5 0h1m6 0h5m4 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m1 0h1m3 0h2m1 0h1m6 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h2m1 0h1m2 0h1m1 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m1 0h2m2 0h1m2 0h2m1 0h3m1 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m1 0h1m2 0h2m4 0h2m1 0h1m1 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 9.5h2m2 0h1m1 0h1m1 0h1m1 0h2M2 10.5h1m1 0h5m2 0h2m5 0h1m5 0h5M2 11.5h2m1 0h3m1 0h1m2 0h6m4 0h3m1 0h1m3 0h1M2 12.5h1m2 0h2m1 0h4m2 0h5m1 0h1m3 0h3M2 13.5h1m1 0h1m1 0h2m1 0h1m1 0h2m2 0h1m1 0h1m3 0h2m1 0h4m1 0h1M2 14.5h2m1 0h1m1 0h2m3 0h3m1 0h2m1 0h2m1 0h2m3 0h2M2 15.5h1m2 0h2m2 0h1m1 0h4m2 0h2m3 0h5m3 0h1M3 16.5h2m1 0h3m3 0h2m6 0h1m2 0h6M2 17.5h4m1 0h1m1 0h3m1 0h1m2 0h1m1 0h1m3 0h1m1 0h2m3 0h1M2 18.5h2m2 0h1m1 0h2m1 0h1m1 0h2m3 0h1m8 0h2M2 19.5h3m1 0h2m1 0h2m4 0h3m1 0h1m1 0h6m1 0h1m1 0h1M2 20.5h1m1 0h2m1 0h5m3 0h6m1 0h1m1 0h1m3 0h1M2 21.5h1m3 0h2m4 0h1m1 0h2m1 0h1m2 0h1m1 0h1m2 0h1m3 0h1M2 22.5h1m1 0h1m1 0h3m2 0h2m3 0h2m1 0h1m1 0h6m1 0h3M10 23.5h1m1 0h1m1 0h1m2 0h4m1 0h1m3 0h5M2 24.5h7m5 0h1m4 0h2m1 0h1m1 0h1m1 0h3M2 25.5h1m5 0h1m1 0h2m1 0h2m1 0h1m1 0h1m1 0h3m3 0h1m2 0h2M2 26.5h1m1 0h3m1 0h1m1 0h2m1 0h1m8 0h5m1 0h1m1 0h1M2 27.5h1m1 0h3m1 0h1m1 0h1m2 0h5m1 0h2m6 0h2M2 28.5h1m1 0h3m1 0h1m1 0h3m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m1 0h4M2 29.5h1m5 0h1m3 0h4m1 0h2m1 0h1m5 0h2m1 0h1M2 30.5h7m1 0h1m2 0h2m1 0h1m2 0h1m1 0h1m1 0h6"/></svg></div>
+      <span class="url">t.me/+mvHMdVCpobQ1ZjNl</span>
     </div>
   </div>
-  <aside class="notes">評審 4 分裡有看資安：三條都過，而且說得出自己專案的資料流走到哪。</aside>
+  <aside class="notes">15:00 發表由常駐主機的 Telegram 直接從交件群組點開，全程不換投影。評審 14:50 休息時先看操作文件。</aside>
 </section>
 
 <!-- ============ 下一段 ============ -->
 <section class="sheet end" data-row="2">
-  <div class="vert a" style="--d:0">停手</div>
+  <div class="vert a" style="--d:0">休息</div>
   <div class="body">
-    <p class="time a" style="--d:1">11:25 – 11:50</p>
-    <p class="next a" style="--d:2">寫文件、自我檢查、<br>交件。</p>
-    <p class="bring f">不准再改東西，只做「讓別人拿得走」的事。</p>
+    <p class="time a" style="--d:1">14:50 – 15:00</p>
+    <p class="next a" style="--d:2">15:00 成果發表：<br>每人 4 分鐘＋提問 1 分鐘。</p>
+    <p class="bring f">休息時想一下第一句：這解決了什麼？省了幾分鐘？</p>
   </div>
-  <aside class="notes">11:25 一定要停，直接接寫文件，不休息。11:50 午餐。</aside>
+  <aside class="notes">14:50 休息 10 分鐘，評審先看操作文件。還沒交齊的人，助教 14:40 就要先預警、休息時協助補齊。</aside>
 </section>
 
+<script>window.PREV_DECK='02-system.html#p999';window.NEXT_DECK='04-showcase.html';</script>
 <script>
 (function(){
-  var segs=[].slice.call(document.querySelectorAll('#tlA .seg'));
+  var segs=[].slice.call(document.querySelectorAll('#tlB .seg'));
   function mins(s){var p=s.split(':');return +p[0]*60+ +p[1];}
   function tick(){
     var d=new Date(), m=d.getHours()*60+d.getMinutes()+d.getSeconds()/60;
@@ -888,7 +791,7 @@ body.idle .nav{opacity:0}
     s.style.left=(p.x-W0/2)+'px'; s.style.top=(p.y-H0/2)+'px';
     s.style.transform='rotate('+p.r+'deg)';
     var f=document.createElement('div'); f.className='folio';
-    f.innerHTML='<span>'+(i<3?'Day 2 · 早安':(i<9?'Day 2 · 衝刺一':'Day 2 · 衝刺二'))+'</span><span><i>'+String(i+1).padStart(2,'0')+'</i> / '+N+'</span>';
+    f.innerHTML='<span>'+'Day 2 · 寫文件交件'+'</span><span><i>'+String(i+1).padStart(2,'0')+'</i> / '+N+'</span>';
     s.appendChild(f);
     if(i%3!==1){var t=document.createElement('div');t.className='tape'+(i%2?' blue':'');
       t.style.setProperty('--tx',(240+(i*97)%980)+'px');t.style.setProperty('--tr',(((i*41)%11)-5)+'deg');s.appendChild(t);}
@@ -973,13 +876,13 @@ body.idle .nav{opacity:0}
     if(overview){go(cur);return;}
     var s=sheets[cur];
     if(s._at<s._steps.length) setStep(s,s._at+1,true);
-    else if(cur<N-1) go(cur+1);
+    else if(cur<N-1) go(cur+1); else if(window.NEXT_DECK) location.href=window.NEXT_DECK;
   }
   function prev(){
     if(overview){go(cur);return;}
     var s=sheets[cur];
     if(s._at>0) setStep(s,s._at-1,false);
-    else if(cur>0) go(cur-1,{back:true});
+    else if(cur>0) go(cur-1,{back:true}); else if(window.PREV_DECK) location.href=window.PREV_DECK;
   }
   function showOverview(instant){
     overview=true; document.body.classList.add('overview');
