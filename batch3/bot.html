@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>建 Telegram Bot 教學</title>
+<style>
+:root{--bg:#FFF6EC;--card:#fff;--ink:#1E1A17;--ink-2:#5C534C;--red:#D9482B;--line:#EADBC8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1A1512;--card:#26201C;--ink:#F5EDE6;--ink-2:#BFB3A8;--red:#F07A5E;--line:#3A312B}}
+:root[data-theme="dark"]{--bg:#1A1512;--card:#26201C;--ink:#F5EDE6;--ink-2:#BFB3A8;--red:#F07A5E;--line:#3A312B}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.7}
+main{max-width:760px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:clamp(24px,5vw,34px);margin:0 0 6px}
+.sub{color:var(--ink-2);margin:0 0 18px}
+video{display:block;width:100%;border-radius:14px;background:#000}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-top:18px}
+.card h2{font-size:18px;margin:0 0 6px}
+ol{margin:0;padding-left:1.4em}
+li{margin:4px 0}
+.warn{border-left:4px solid var(--red)}
+a{color:var(--red)}
+</style>
+</head>
+<body>
+<main>
+<h1>🦞 建立你的 Telegram Bot</h1>
+<p class="sub">黎明 VibeCoding 工作坊 · 第三梯次課前準備</p>
+<video src="telegram-bot.mp4" controls playsinline preload="metadata"></video>
+<div class="card">
+<h2>步驟</h2>
+<ol>
+<li>Telegram 搜尋 <b>@BotFather</b>（名字旁有藍勾勾的那個）</li>
+<li>按「開始」，傳 <b>/newbot</b></li>
+<li>取一個名字（中文也可以）</li>
+<li>取一個 username：英文、數字、底線，<b>結尾一定是 bot</b></li>
+<li>拿到 token（數字、冒號、一串英文）</li>
+<li>把 token 和 bot 的 username <b>私訊給主講</b></li>
+<li>主講說好了之後，點 t.me 連結、按開始、傳「你好」，它回你就完成</li>
+</ol>
+</div>
+<div class="card warn">
+<h2>⚠️ token 就是鑰匙</h2>
+<p style="margin:0">只私訊給主講，不要貼到群組、不要截圖、不要傳給隊友。不小心貼錯了，馬上告訴主講，到 BotFather 傳 <b>/revoke</b> 換一把新的。</p>
+</div>
+<p class="sub" style="margin-top:18px"><a href="./">← 第三梯次流程表</a></p>
+</main>
+</body>
+</html>
