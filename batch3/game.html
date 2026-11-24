@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>前端後端大挑戰</title>
+<style>
+:root{
+  --bg:#FFF6EC; --card:#FFFFFF; --ink:#1E1A17; --ink-2:#5C534C; --line:#EADBC8;
+  --red:#D9482B; --red-soft:#FCE3DC;
+  --fe:#2F6FDB; --fe-soft:#E1EBFC;
+  --be:#C9741A; --be-soft:#FBEBD6;
+  --db:#2E8B6B; --db-soft:#DCF1E9;
+  --ok:#2E8B6B; --bad:#C23A2A;
+  --shadow:0 10px 24px -12px rgba(60,30,10,.35);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#1A1512; --card:#26201C; --ink:#F5EDE6; --ink-2:#BFB3A8; --line:#3A312B;
+    --red:#F07A5E; --red-soft:#3A1F18;
+    --fe:#7FA8F2; --fe-soft:#1C2740;
+    --be:#F0A65A; --be-soft:#3A2A16;
+    --db:#6CCBA6; --db-soft:#163028;
+    --ok:#6CCBA6; --bad:#F07A5E;
+    --shadow:0 10px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1A1512; --card:#26201C; --ink:#F5EDE6; --ink-2:#BFB3A8; --line:#3A312B;
+  --red:#F07A5E; --red-soft:#3A1F18;
+  --fe:#7FA8F2; --fe-soft:#1C2740;
+  --be:#F0A65A; --be-soft:#3A2A16;
+  --db:#6CCBA6; --db-soft:#163028;
+  --ok:#6CCBA6; --bad:#F07A5E;
+  --shadow:0 10px 24px -12px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  font-size:17px;line-height:1.6;min-height:100vh;min-height:100dvh}
+.app{max-width:1100px;margin:0 auto;padding:16px 16px calc(24px + env(safe-area-inset-bottom));min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+h1,h2{margin:0;line-height:1.25}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+button:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.hidden{display:none!important}
+
+/* top bar */
+.bar{display:flex;align-items:center;gap:10px;font-size:clamp(14px,1.8vw,22px);color:var(--ink-2);margin-bottom:12px}
+.bar .stage{font-weight:700;color:var(--ink)}
+.bar .score{margin-left:auto;font-weight:800;font-variant-numeric:tabular-nums;color:var(--ink)}
+.prog{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin-bottom:18px}
+.prog i{display:block;height:100%;width:0;background:var(--red);border-radius:99px;transition:width .3s}
+.combo{font-weight:800;color:var(--red)}
+
+/* screens */
+.intro{flex:1;display:flex;flex-direction:column;justify-content:center;gap:18px;text-align:center}
+.intro .big{font-size:64px;line-height:1}
+.intro h1{font-size:clamp(30px,5vw,64px);font-weight:900}
+.intro p{font-size:clamp(17px,2vw,26px)}
+.intro .big{font-size:clamp(64px,9vw,120px)!important}
+.legend{max-width:640px;margin:0 auto;width:100%}
+.legend div{font-size:clamp(15px,1.8vw,22px)!important}
+.intro .go{max-width:420px;margin:0 auto}
+.intro p{margin:0;color:var(--ink-2)}
+.legend{display:grid;gap:8px;text-align:left;background:var(--card);border-radius:16px;padding:14px 16px;box-shadow:var(--shadow)}
+.legend div{display:flex;gap:10px;align-items:baseline;font-size:15px}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:13px;font-weight:800;white-space:nowrap}
+.pill.fe{background:var(--fe-soft);color:var(--fe)}
+.pill.be{background:var(--be-soft);color:var(--be)}
+.pill.db{background:var(--db-soft);color:var(--db)}
+.go{width:100%;padding:16px;border-radius:16px;background:var(--red);color:#fff;font-size:19px;font-weight:800;box-shadow:var(--shadow)}
+.go:active{transform:translateY(1px)}
+.go[disabled]{opacity:.45}
+
+.round-head{text-align:center;margin:auto 0;display:flex;flex-direction:column;gap:14px}
+.round-head .tag{font-size:14px;font-weight:800;letter-spacing:.12em;color:var(--red)}
+.round-head h2{font-size:clamp(28px,5vw,60px);font-weight:900}
+.round-head p{font-size:clamp(16px,2.2vw,28px)}
+.round-head .go{max-width:420px;margin:0 auto}
+.round-head p{margin:0;color:var(--ink-2)}
+
+.q{background:var(--card);border-radius:20px;padding:26px 20px;box-shadow:var(--shadow);text-align:center;margin-bottom:16px;
+  min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.q .emo{font-size:clamp(42px,7vw,100px);line-height:1}
+.q .txt{font-size:clamp(22px,4.2vw,54px);font-weight:800}
+.q .ask{font-size:clamp(14px,1.8vw,22px);color:var(--ink-2)}
+
+.opts{display:grid;gap:10px}
+.opt{padding:clamp(14px,1.8vw,24px);border-radius:16px;font-size:clamp(19px,2.8vw,36px);font-weight:800;display:flex;align-items:center;justify-content:center;gap:10px;border:2px solid transparent}
+.opt small{font-weight:500;font-size:13px;opacity:.85}
+.opt.fe{background:var(--fe-soft);color:var(--fe)}
+.opt.be{background:var(--be-soft);color:var(--be)}
+.opt.db{background:var(--db-soft);color:var(--db)}
+.opt.yes{background:var(--db-soft);color:var(--db)}
+.opt.no{background:var(--red-soft);color:var(--red)}
+.opts.two{grid-template-columns:1fr 1fr}
+@media (min-width:760px){.opts{grid-template-columns:repeat(3,1fr)}.opts.two{grid-template-columns:1fr 1fr}.opt{flex-direction:column;gap:4px}.opt small{font-size:clamp(13px,1.5vw,18px)}}
+@media (min-width:760px){.q{padding:18px 20px;min-height:0}.fb{display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px 24px}.fb .r,.fb p{grid-column:1}.fb .go{grid-column:2;grid-row:1/3;margin:0;width:auto;padding:14px 30px;white-space:nowrap}}
+.key{display:inline-block;min-width:1.6em;padding:0 .35em;border-radius:6px;background:rgba(0,0,0,.08);font-size:.6em;font-weight:700;margin-right:.3em}
+.opt.right{border-color:var(--ok)}
+.opt.wrong{border-color:var(--bad);opacity:.55}
+.opt[disabled]{cursor:default}
+
+.fb{margin-top:16px;border-radius:16px;padding:14px 16px;background:var(--card);box-shadow:var(--shadow)}
+.fb .r{font-weight:900;font-size:clamp(18px,2.6vw,34px)}
+.fb .r.ok{color:var(--ok)} .fb .r.bad{color:var(--bad)}
+.fb p{margin:4px 0 0;color:var(--ink-2);font-size:clamp(15px,2vw,26px)}
+.fb .go{margin-top:12px;padding:13px;font-size:clamp(17px,2vw,24px);max-width:420px;display:block;margin-left:auto;margin-right:auto}
+
+.shake{animation:shake .35s}
+@keyframes shake{20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.pop{animation:pop .3s}
+@keyframes pop{50%{transform:scale(1.04)}}
+
+.end{flex:1;display:flex;flex-direction:column;gap:16px;justify-content:center;text-align:center}
+.end .who{color:var(--ink-2)}
+.end .total{font-size:clamp(64px,10vw,140px);font-weight:900;line-height:1;font-variant-numeric:tabular-nums;color:var(--red)}
+.end .title{font-size:clamp(24px,3.6vw,44px);font-weight:900}
+.stats,.miss{max-width:760px;margin:0 auto;width:100%}
+.miss{font-size:clamp(14px,1.6vw,19px)!important}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.stats div{background:var(--card);border-radius:14px;padding:10px 6px;box-shadow:var(--shadow)}
+.stats b{display:block;font-size:22px;font-variant-numeric:tabular-nums}
+.stats span{font-size:12px;color:var(--ink-2)}
+.miss{background:var(--card);border-radius:16px;padding:12px 16px;text-align:left;box-shadow:var(--shadow);font-size:14px}
+.miss h3{margin:0 0 6px;font-size:15px}
+.miss ul{margin:0;padding-left:1.2em;color:var(--ink-2)}
+.miss li{margin:3px 0}
+.hint{font-size:14px;color:var(--ink-2)}
+.again{color:var(--ink-2);font-size:15px;text-decoration:underline;padding:6px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+
+  <!-- intro -->
+  <section id="s-intro" class="intro">
+    <div class="big">🦞</div>
+    <h1>前端後端大挑戰</h1>
+    <p>兩關、20 題，全班一起想、一起喊答案！<br>慢慢想沒關係，答對越多分數越高。</p>
+    <div class="legend">
+      <div><span class="pill fe">前端</span><span>外場：你在手機、網頁上<b>看得到、按得到</b>的</span></div>
+      <div><span class="pill be">後端</span><span>廚房：看不到、<b>真正在做事</b>的地方</span></div>
+      <div><span class="pill db">資料庫</span><span>倉庫：資料<b>存起來</b>的地方</span></div>
+    </div>
+    <button id="start" class="go">開始挑戰</button>
+    <p class="hint">主講可以用鍵盤：1 / 2 / 3 選答案，Enter 或空白鍵下一步</p>
+  </section>
+
+  <!-- game -->
+  <section id="s-game" class="hidden" style="display:flex;flex-direction:column;flex:1">
+    <div class="bar"><span class="stage" id="stage">第一關</span><span id="qn">1 / 12</span><span class="combo" id="combo"></span><span class="score" id="score">0 分</span></div>
+    <div class="prog"><i id="prog"></i></div>
+
+    <div id="round-head" class="round-head hidden">
+      <div class="tag" id="rh-tag">第一關</div>
+      <h2 id="rh-title">它放在哪裡？</h2>
+      <p id="rh-desc"></p>
+      <button class="go" id="rh-go">開始</button>
+    </div>
+
+    <div id="play" class="hidden">
+      <div class="q" id="q"><div class="emo" id="q-emo"></div><div class="txt" id="q-txt"></div><div class="ask" id="q-ask"></div></div>
+      <div class="opts" id="opts"></div>
+      <div class="fb hidden" id="fb"><div class="r" id="fb-r"></div><p id="fb-p"></p><button class="go" id="next">下一題</button></div>
+    </div>
+  </section>
+
+  <!-- end -->
+  <section id="s-end" class="end hidden">
+    <div class="who" id="e-who"></div>
+    <div class="total" id="e-total">0</div>
+    <div class="title" id="e-title"></div>
+    <div class="stats">
+      <div><b id="e-right">0</b><span>答對</span></div>
+      <div><b id="e-combo">0</b><span>最高連對</span></div>
+    </div>
+    <div class="miss hidden" id="e-miss"><h3>答錯的題目，記一下</h3><ul id="e-miss-list"></ul></div>
+    <button class="again" id="again">再玩一次</button>
+  </section>
+</div>
+
+<script>
+(function(){
+  var ROUNDS = [
+    {
+      tag: '第一關', title: '它放在哪裡？',
+      desc: '每一題選它屬於前端、後端，還是資料庫。',
+      ask: '這個東西放在哪裡？',
+      opts: [['fe','前端','看得到、按得到'],['be','後端','真正在做事'],['db','資料庫','存起來']],
+      qs: [
+        ['🔘','評分頁上的「送出」按鈕','fe','按鈕是你手機上看得到、按得到的，屬於前端。'],
+        ['🎨','網頁的顏色和字體','fe','長相都是前端負責的。'],
+        ['💬','Telegram 跟龍蝦的對話框','fe','對話框是你看得到的畫面；真正回答你的龍蝦在主機上（後端）。'],
+        ['📊','大螢幕上的排行榜畫面','fe','畫面是前端；分數是後端算好、從資料庫拿來的。'],
+        ['🔐','檢查帳號密碼對不對','be','比對密碼一定在後端做，前端做的話誰都能偷看規則。'],
+        ['⏰','每天早上 9 點自動寄提醒','be','排程在主機上跑，沒人打開網頁也會動，屬於後端。'],
+        ['🤖','把 LINE 訊息整理成表格（AI 處理）','be','AI 處理在後端，你只看到最後的結果。'],
+        ['✅','檢查你是不是每個人都評到了','be','評分網站的程式在主講電腦上檢查，這就是後端。'],
+        ['🗂️','所有人的評分紀錄','db','存起來、之後還要拿出來用的，放資料庫。'],
+        ['🧾','過去三年的請款單紀錄','db','歷史紀錄放資料庫，需要時後端再去拿。'],
+        ['📅','員工的請假紀錄','db','要保存、要查詢的資料，放資料庫。'],
+        ['📒','Google 試算表裡的客戶名單','db','試算表常被拿來當簡單的資料庫用。']
+      ]
+    },
+    {
+      tag: '第二關 · 駭客來了', title: '能放在前端嗎？',
+      desc: '前端的東西，誰都看得到——駭客也是。這個東西可以放在前端嗎？',
+      ask: '可以放在前端嗎？',
+      opts: [['yes','可以 👍',''],['no','不行 🚫','']],
+      qs: [
+        ['🏢','公司的 logo 圖片','yes','本來就是要給大家看的，放前端沒問題。'],
+        ['📝','活動報名表的題目','yes','題目要讓大家填，本來就公開。'],
+        ['🕘','公開的營業時間','yes','公開資訊，放前端可以。'],
+        ['🔑','AI 服務的 API 金鑰','no','金鑰放前端，別人就能拿你的帳號一直用，費用算你的。'],
+        ['🛡️','管理員密碼','no','密碼永遠不放前端，按 F12 就看得到。'],
+        ['🪪','員工身分證字號','no','個資絕對不放前端，連後端都要很小心。'],
+        ['🖥️','內網 IP（192.168.x.x）','no','內網位置是分享前要清掉的東西，等於告訴別人你家門牌。'],
+        ['💰','員工薪資表','no','薪資是最敏感的個資，不能出現在任何人都看得到的地方。']
+      ]
+    }
+  ];
+
+  var $ = function(id){ return document.getElementById(id); };
+  var st;
+
+  function show(id){
+    ['s-intro','s-game','s-end'].forEach(function(s){ $(s).classList.toggle('hidden', s !== id); });
+  }
+  function total(){ return ROUNDS.reduce(function(n,r){ return n + r.qs.length; }, 0); }
+  function shuffle(a){ a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+
+  $('start').addEventListener('click', start);
+  $('again').addEventListener('click', function(){ show('s-intro'); });
+  // 主講用鍵盤或簡報筆操作：1/2/3 選答案，Enter／空白鍵／→ 下一步
+  document.addEventListener('keydown', function(e){
+    var vis = function(id){ return !$(id).classList.contains('hidden'); };
+    var nextKey = e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowRight' || e.key === 'PageDown';
+    if (vis('s-intro')) { if (nextKey) { e.preventDefault(); start(); } return; }
+    if (!vis('s-game')) return;
+    if (vis('round-head')) { if (nextKey) { e.preventDefault(); $('rh-go').click(); } return; }
+    if (vis('fb')) { if (nextKey) { e.preventDefault(); $('next').click(); } return; }
+    var n = parseInt(e.key, 10), btns = $('opts').children;
+    if (n >= 1 && n <= btns.length) { e.preventDefault(); btns[n - 1].click(); }
+  });
+
+  function start(){
+    st = { r: 0, i: 0, done: 0, score: 0, right: 0, combo: 0, best: 0, miss: [],
+           order: ROUNDS.map(function(r){ return shuffle(r.qs); }) };
+    show('s-game'); roundHead();
+  }
+
+  function roundHead(){
+    var R = ROUNDS[st.r];
+    $('play').classList.add('hidden'); $('round-head').classList.remove('hidden');
+    $('rh-tag').textContent = R.tag; $('rh-title').textContent = R.title; $('rh-desc').textContent = R.desc;
+    $('stage').textContent = R.tag.split(' ')[0];
+    updateBar();
+  }
+  $('rh-go').addEventListener('click', function(){ $('round-head').classList.add('hidden'); $('play').classList.remove('hidden'); ask(); });
+
+  function updateBar(){
+    var R = ROUNDS[st.r];
+    $('qn').textContent = Math.min(st.i + 1, R.qs.length) + ' / ' + R.qs.length;
+    $('score').textContent = st.score + ' 分';
+    $('combo').textContent = st.combo >= 2 ? '🔥×' + st.combo : '';
+    $('prog').style.width = (st.done / total() * 100) + '%';
+  }
+
+  function ask(){
+    var R = ROUNDS[st.r], q = st.order[st.r][st.i];
+    $('q-emo').textContent = q[0]; $('q-txt').textContent = q[1]; $('q-ask').textContent = R.ask;
+    $('q').classList.remove('shake','pop'); void $('q').offsetWidth;
+    $('fb').classList.add('hidden');
+    var box = $('opts'); box.className = 'opts' + (R.opts.length === 2 ? ' two' : ''); box.innerHTML = '';
+    R.opts.forEach(function(o){
+      var b = document.createElement('button');
+      b.className = 'opt ' + o[0]; b.dataset.k = o[0];
+      b.innerHTML = '<span><span class="key">' + (box.children.length + 1) + '</span>' + o[1] + '</span>' + (o[2] ? ' <small>' + o[2] + '</small>' : '');
+      b.addEventListener('click', function(){ answer(o[0]); });
+      box.appendChild(b);
+    });
+    updateBar();
+  }
+
+  function answer(k){
+    var R = ROUNDS[st.r], q = st.order[st.r][st.i];
+    var ok = k === q[2];
+    [].forEach.call($('opts').children, function(b){
+      b.disabled = true;
+      if (b.dataset.k === q[2]) b.classList.add('right'); else if (b.dataset.k === k) b.classList.add('wrong');
+    });
+    var gain = 0;
+    if (ok) {
+      st.right++; st.combo++; st.best = Math.max(st.best, st.combo);
+      gain = 100 + (st.combo >= 3 ? 20 : 0);
+      st.score += gain; $('q').classList.add('pop');
+    } else {
+      st.combo = 0; st.miss.push(q); $('q').classList.add('shake');
+    }
+    st.done++;
+    var ans = R.opts.filter(function(o){ return o[0] === q[2]; })[0][1];
+    $('fb-r').className = 'r ' + (ok ? 'ok' : 'bad');
+    $('fb-r').textContent = ok ? '答對！+' + gain + (st.combo >= 3 ? '（連對加成）' : '') : '答錯，答案是「' + ans.replace(/ .*/, '') + '」';
+    $('fb-p').textContent = q[3];
+    var last = st.i === R.qs.length - 1;
+    $('next').textContent = last ? (st.r === ROUNDS.length - 1 ? '看成績' : '進入下一關') : '下一題';
+    $('fb').classList.remove('hidden');
+    updateBar();
+  }
+
+  $('next').addEventListener('click', function(){
+    var R = ROUNDS[st.r];
+    if (st.i < R.qs.length - 1) { st.i++; ask(); return; }
+    if (st.r < ROUNDS.length - 1) { st.r++; st.i = 0; roundHead(); return; }
+    finish();
+  });
+
+  function finish(){
+    var n = total(), rate = st.right / n;
+    $('e-who').textContent = '全班的成績';
+    $('e-total').textContent = st.score;
+    $('e-title').textContent = rate === 1 ? '🏆 系統架構大師' : rate >= .85 ? '🥇 資深工程師' : rate >= .7 ? '🥈 可靠的後端' : rate >= .5 ? '🥉 前端新手' : '🦞 龍蝦實習生';
+    $('e-right').textContent = st.right + '/' + n;
+    $('e-combo').textContent = st.best;
+    var list = $('e-miss-list'); list.innerHTML = '';
+    st.miss.forEach(function(q){ var li = document.createElement('li'); li.textContent = q[1] + '：' + q[3]; list.appendChild(li); });
+    $('e-miss').classList.toggle('hidden', !st.miss.length);
+    $('prog').style.width = '100%';
+    show('s-end');
+  }
+})();
+</script>
+</body>
+</html>
