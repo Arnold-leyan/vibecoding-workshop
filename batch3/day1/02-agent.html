@@ -577,47 +577,91 @@ body.idle .nav{opacity:0}
   <aside class="notes">所以跟 Agent 講話的重點，不是一步一步教，而是把「要什麼、怎樣算做完」講清楚——等一下三個習慣就是在講這個。</aside>
 </section>
 
-<!-- ============ 02b 訊息怎麼跑 ============ -->
+<!-- ============ 02b 訊息怎麼跑（會動的示意圖） ============ -->
 <section class="sheet" data-row="0">
   <style>
-    .flow8{display:grid;grid-template-columns:1fr 46px 1fr 46px 1fr 46px 1fr;grid-template-rows:auto 54px auto;
-      grid-template-areas:"a p b q c r d" ". . . . . . v" "h x g y f z e";align-items:stretch;flex:1;min-height:0}
-    .flow8 .nd{background:#FBFAF6;border-top:8px solid var(--rule);padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;
-      box-shadow:0 10px 22px -16px rgba(50,42,28,.5);min-width:0}
-    .flow8 .nd .k{font:italic 500 30px/1 var(--f-latin);color:var(--seal)}
-    .flow8 .nd b{font:600 29px/1.3 var(--f-display)}
-    .flow8 .nd small{font-size:22px;line-height:1.45;color:var(--pencil)}
-    .flow8 .nd.you{border-top-color:var(--seal)}
-    .flow8 .nd.tg{border-top-color:#5B8DB8}
-    .flow8 .nd.host{border-top-color:var(--ink)}
-    .flow8 .nd.model{border-top-color:var(--indigo);background:#EEF1F5}
-    .flow8 .nd.opt{border-top-style:dashed;border-top-color:var(--moss)}
-    .flow8 .nd.chk{border-top-color:var(--moss)}
-    .flow8 .ar{display:flex;align-items:center;justify-content:center;font:300 40px/1 var(--f-latin);color:var(--pencil)}
-  </style>
+.trip{position:relative;flex:1;min-height:0;margin:6px 10px 0}
+.trip svg.lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.trip .ln{fill:none;stroke:var(--rule);stroke-width:4;stroke-dasharray:10 12}
+.trip .st{position:absolute;transform:translate(-50%,-50%);width:250px;padding:14px 16px 16px;background:#FBFAF6;text-align:center;
+  border:2px solid var(--rule);border-radius:14px;box-shadow:0 10px 22px -16px rgba(50,42,28,.5);opacity:.42;transition:opacity .5s,border-color .5s,transform .5s,box-shadow .5s}
+.trip .st i{display:block;font-style:normal;font-size:54px;line-height:1.1}
+.trip .st b{display:block;font:600 30px/1.25 var(--f-display)}
+.trip .st small{display:block;font-size:21px;color:var(--pencil);line-height:1.35}
+.trip .st.s4{background:#EEF1F5}
+.trip .pkt{position:absolute;left:9%;top:56%;transform:translate(-50%,calc(-100% - 88px));z-index:3;max-width:460px;white-space:nowrap;
+  padding:12px 20px;border-radius:999px;background:var(--seal);color:#FBFAF6;font:600 25px/1.25 var(--f-display);
+  box-shadow:0 12px 26px -10px rgba(176,58,39,.7);transition:left .9s cubic-bezier(.5,0,.3,1),top .9s cubic-bezier(.5,0,.3,1),transform .9s}
+.trip .pkt::after{content:"";position:absolute;left:50%;bottom:-11px;margin-left:-11px;border:11px solid transparent;border-bottom:0;border-top-color:var(--seal)}
+.trip .pkt span{display:none}
+.trip .mk{position:absolute;width:0;height:0;overflow:hidden}
+.trip .loopcount{position:absolute;right:17%;top:50%;transform:translateY(-50%);font:italic 600 44px/1 var(--f-latin);color:var(--indigo);opacity:0;transition:opacity .4s}
+@keyframes pingpong{0%,100%{left:86%;top:84%;transform:translate(-50%,calc(-100% - 88px))}50%{left:86%;top:17%;transform:translate(-50%,88px)}}
+
+.trip:has(.mk[data-step="0"].on) .pkt{left:9%;top:56%;transform:translate(-50%,calc(-100% - 88px))}
+.trip:has(.mk[data-step="0"].on) .pkt::after{top:auto;bottom:-11px;border:11px solid transparent;border-bottom:0;border-top-color:var(--seal)}
+.trip:has(.mk[data-step="0"].on) .pkt span.t1,.trip:has(.mk[data-step="0"].on) .pkt span.t2,.trip:has(.mk[data-step="0"].on) .pkt span.t3,.trip:has(.mk[data-step="0"].on) .pkt span.t4,.trip:has(.mk[data-step="0"].on) .pkt span.t5,.trip:has(.mk[data-step="0"].on) .pkt span.t6{display:none}
+.trip:has(.mk[data-step="0"].on) .pkt span.t0{display:inline}
+.trip:has(.mk[data-step="0"].on) .st.s1{opacity:1;border-color:var(--seal);box-shadow:0 0 0 6px rgba(176,58,39,.12),0 14px 28px -14px rgba(50,42,28,.6);transform:translate(-50%,-50%) scale(1.04)}
+.trip:has(.mk[data-step="0"].on) .st.s2,.trip:has(.mk[data-step="0"].on) .st.s3,.trip:has(.mk[data-step="0"].on) .st.s4,.trip:has(.mk[data-step="0"].on) .st.s5{opacity:.42;border-color:var(--rule);box-shadow:0 10px 22px -16px rgba(50,42,28,.5);transform:translate(-50%,-50%)}
+.trip:has(.mk[data-step="1"].on) .pkt{left:33%;top:17%;transform:translate(-50%,88px)}
+.trip:has(.mk[data-step="1"].on) .pkt::after{top:-11px;bottom:auto;border:11px solid transparent;border-top:0;border-bottom-color:var(--seal)}
+.trip:has(.mk[data-step="1"].on) .pkt span.t0,.trip:has(.mk[data-step="1"].on) .pkt span.t2,.trip:has(.mk[data-step="1"].on) .pkt span.t3,.trip:has(.mk[data-step="1"].on) .pkt span.t4,.trip:has(.mk[data-step="1"].on) .pkt span.t5,.trip:has(.mk[data-step="1"].on) .pkt span.t6{display:none}
+.trip:has(.mk[data-step="1"].on) .pkt span.t1{display:inline}
+.trip:has(.mk[data-step="1"].on) .st.s1,.trip:has(.mk[data-step="1"].on) .st.s2{opacity:1;border-color:var(--seal);box-shadow:0 0 0 6px rgba(176,58,39,.12),0 14px 28px -14px rgba(50,42,28,.6);transform:translate(-50%,-50%) scale(1.04)}
+.trip:has(.mk[data-step="1"].on) .st.s3,.trip:has(.mk[data-step="1"].on) .st.s4,.trip:has(.mk[data-step="1"].on) .st.s5{opacity:.42;border-color:var(--rule);box-shadow:0 10px 22px -16px rgba(50,42,28,.5);transform:translate(-50%,-50%)}
+.trip:has(.mk[data-step="2"].on) .pkt{left:55%;top:56%;transform:translate(-50%,calc(-100% - 88px))}
+.trip:has(.mk[data-step="2"].on) .pkt::after{top:auto;bottom:-11px;border:11px solid transparent;border-bottom:0;border-top-color:var(--seal)}
+.trip:has(.mk[data-step="2"].on) .pkt span.t0,.trip:has(.mk[data-step="2"].on) .pkt span.t1,.trip:has(.mk[data-step="2"].on) .pkt span.t3,.trip:has(.mk[data-step="2"].on) .pkt span.t4,.trip:has(.mk[data-step="2"].on) .pkt span.t5,.trip:has(.mk[data-step="2"].on) .pkt span.t6{display:none}
+.trip:has(.mk[data-step="2"].on) .pkt span.t2{display:inline}
+.trip:has(.mk[data-step="2"].on) .st.s2,.trip:has(.mk[data-step="2"].on) .st.s3{opacity:1;border-color:var(--seal);box-shadow:0 0 0 6px rgba(176,58,39,.12),0 14px 28px -14px rgba(50,42,28,.6);transform:translate(-50%,-50%) scale(1.04)}
+.trip:has(.mk[data-step="2"].on) .st.s1,.trip:has(.mk[data-step="2"].on) .st.s4,.trip:has(.mk[data-step="2"].on) .st.s5{opacity:.42;border-color:var(--rule);box-shadow:0 10px 22px -16px rgba(50,42,28,.5);transform:translate(-50%,-50%)}
+.trip:has(.mk[data-step="3"].on) .pkt{left:86%;top:17%;transform:translate(-50%,88px)}
+.trip:has(.mk[data-step="3"].on) .pkt::after{top:-11px;bottom:auto;border:11px solid transparent;border-top:0;border-bottom-color:var(--seal)}
+.trip:has(.mk[data-step="3"].on) .pkt span.t0,.trip:has(.mk[data-step="3"].on) .pkt span.t1,.trip:has(.mk[data-step="3"].on) .pkt span.t2,.trip:has(.mk[data-step="3"].on) .pkt span.t4,.trip:has(.mk[data-step="3"].on) .pkt span.t5,.trip:has(.mk[data-step="3"].on) .pkt span.t6{display:none}
+.trip:has(.mk[data-step="3"].on) .pkt span.t3{display:inline}
+.trip:has(.mk[data-step="3"].on) .st.s3,.trip:has(.mk[data-step="3"].on) .st.s4{opacity:1;border-color:var(--seal);box-shadow:0 0 0 6px rgba(176,58,39,.12),0 14px 28px -14px rgba(50,42,28,.6);transform:translate(-50%,-50%) scale(1.04)}
+.trip:has(.mk[data-step="3"].on) .st.s1,.trip:has(.mk[data-step="3"].on) .st.s2,.trip:has(.mk[data-step="3"].on) .st.s5{opacity:.42;border-color:var(--rule);box-shadow:0 10px 22px -16px rgba(50,42,28,.5);transform:translate(-50%,-50%)}
+.trip:has(.mk[data-step="4"].on) .pkt{left:86%;top:84%;transform:translate(-50%,calc(-100% - 88px))}
+.trip:has(.mk[data-step="4"].on) .pkt::after{top:auto;bottom:-11px;border:11px solid transparent;border-bottom:0;border-top-color:var(--seal)}
+.trip:has(.mk[data-step="4"].on) .pkt span.t0,.trip:has(.mk[data-step="4"].on) .pkt span.t1,.trip:has(.mk[data-step="4"].on) .pkt span.t2,.trip:has(.mk[data-step="4"].on) .pkt span.t3,.trip:has(.mk[data-step="4"].on) .pkt span.t5,.trip:has(.mk[data-step="4"].on) .pkt span.t6{display:none}
+.trip:has(.mk[data-step="4"].on) .pkt span.t4{display:inline}
+.trip:has(.mk[data-step="4"].on) .st.s4,.trip:has(.mk[data-step="4"].on) .st.s5{opacity:1;border-color:var(--seal);box-shadow:0 0 0 6px rgba(176,58,39,.12),0 14px 28px -14px rgba(50,42,28,.6);transform:translate(-50%,-50%) scale(1.04)}
+.trip:has(.mk[data-step="4"].on) .st.s1,.trip:has(.mk[data-step="4"].on) .st.s2,.trip:has(.mk[data-step="4"].on) .st.s3{opacity:.42;border-color:var(--rule);box-shadow:0 10px 22px -16px rgba(50,42,28,.5);transform:translate(-50%,-50%)}
+.trip:has(.mk[data-step="5"].on) .pkt{left:33%;top:17%;transform:translate(-50%,88px)}
+.trip:has(.mk[data-step="5"].on) .pkt::after{top:-11px;bottom:auto;border:11px solid transparent;border-top:0;border-bottom-color:var(--seal)}
+.trip:has(.mk[data-step="5"].on) .pkt span.t0,.trip:has(.mk[data-step="5"].on) .pkt span.t1,.trip:has(.mk[data-step="5"].on) .pkt span.t2,.trip:has(.mk[data-step="5"].on) .pkt span.t3,.trip:has(.mk[data-step="5"].on) .pkt span.t4,.trip:has(.mk[data-step="5"].on) .pkt span.t6{display:none}
+.trip:has(.mk[data-step="5"].on) .pkt span.t5{display:inline}
+.trip:has(.mk[data-step="5"].on) .st.s3,.trip:has(.mk[data-step="5"].on) .st.s2{opacity:1;border-color:var(--seal);box-shadow:0 0 0 6px rgba(176,58,39,.12),0 14px 28px -14px rgba(50,42,28,.6);transform:translate(-50%,-50%) scale(1.04)}
+.trip:has(.mk[data-step="5"].on) .st.s1,.trip:has(.mk[data-step="5"].on) .st.s4,.trip:has(.mk[data-step="5"].on) .st.s5{opacity:.42;border-color:var(--rule);box-shadow:0 10px 22px -16px rgba(50,42,28,.5);transform:translate(-50%,-50%)}
+.trip:has(.mk[data-step="6"].on) .pkt{left:9%;top:56%;transform:translate(-50%,calc(-100% - 88px))}
+.trip:has(.mk[data-step="6"].on) .pkt::after{top:auto;bottom:-11px;border:11px solid transparent;border-bottom:0;border-top-color:var(--seal)}
+.trip:has(.mk[data-step="6"].on) .pkt span.t0,.trip:has(.mk[data-step="6"].on) .pkt span.t1,.trip:has(.mk[data-step="6"].on) .pkt span.t2,.trip:has(.mk[data-step="6"].on) .pkt span.t3,.trip:has(.mk[data-step="6"].on) .pkt span.t4,.trip:has(.mk[data-step="6"].on) .pkt span.t5{display:none}
+.trip:has(.mk[data-step="6"].on) .pkt span.t6{display:inline}
+.trip:has(.mk[data-step="6"].on) .st.s1{opacity:1;border-color:var(--seal);box-shadow:0 0 0 6px rgba(176,58,39,.12),0 14px 28px -14px rgba(50,42,28,.6);transform:translate(-50%,-50%) scale(1.04)}
+.trip:has(.mk[data-step="6"].on) .st.s2,.trip:has(.mk[data-step="6"].on) .st.s3,.trip:has(.mk[data-step="6"].on) .st.s4,.trip:has(.mk[data-step="6"].on) .st.s5{opacity:.42;border-color:var(--rule);box-shadow:0 10px 22px -16px rgba(50,42,28,.5);transform:translate(-50%,-50%)}
+.trip:not(:has(.mk.on)) .pkt span.t0{display:inline}
+.trip:has(.mk[data-step="4"].on):not(:has(.mk[data-step="5"].on)) .pkt{animation:pingpong 2.6s ease-in-out infinite}
+.trip:has(.mk[data-step="4"].on):not(:has(.mk[data-step="5"].on)) .loopcount{opacity:1}
+.trip:has(.mk[data-step="4"].on):not(:has(.mk[data-step="5"].on)) .pkt::after{display:none}
+.trip:has(.mk[data-step="4"].on) .ln.l45{stroke:var(--indigo);stroke-dasharray:none}</style>
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>Behind the chat</i><span>一則訊息怎麼跑</span></p>
+    <p class="eyebrow a" style="--d:0"><i>Behind the chat</i><span>一則訊息的旅行 · 每按一下走一站</span></p>
     <h2 class="a" style="--d:1">你傳一句話，背後跑了這一圈</h2>
   </header>
-  <div class="flow8">
-    <div class="nd you f" data-step="0" style="grid-area:a"><span class="k">1</span><b>你</b><small>傳訊息給 bot</small></div>
-    <span class="ar f" data-step="1" style="grid-area:p">→</span>
-    <div class="nd tg f" data-step="1" style="grid-area:b"><span class="k">2</span><b>Telegram Bot API</b><small>幫你轉送訊息</small></div>
-    <span class="ar f" data-step="2" style="grid-area:q">→</span>
-    <div class="nd host f" data-step="2" style="grid-area:c"><span class="k">3</span><b>裝龍蝦的主機</b><small>收到你的訊息</small></div>
-    <span class="ar f" data-step="3" style="grid-area:r">→</span>
-    <div class="nd model f" data-step="3" style="grid-area:d"><span class="k">4</span><b>模型商</b><small>AI 在這裡想答案</small></div>
-    <span class="ar f" data-step="4" style="grid-area:v">↓</span>
-    <div class="nd host f" data-step="4" style="grid-area:e"><span class="k">5</span><b>裝龍蝦的主機</b><small>拿到答案</small></div>
-    <span class="ar f" data-step="5" style="grid-area:z">←</span>
-    <div class="nd opt f" data-step="5" style="grid-area:f"><span class="k">6</span><b>操作裝龍蝦的主機</b><small>需要時才動手</small></div>
-    <span class="ar f" data-step="6" style="grid-area:y">←</span>
-    <div class="nd chk f" data-step="6" style="grid-area:g"><span class="k">7</span><b>驗證對不對</b><small>檢查做得對不對</small></div>
-    <span class="ar f" data-step="7" style="grid-area:x">←</span>
-    <div class="nd tg f" data-step="7" style="grid-area:h"><span class="k">8</span><b>回覆給你</b><small>透過 Telegram 傳回來</small></div>
+  <div class="trip">
+    <svg class="lines" aria-hidden="true"><line class="ln l12" x1="9%" y1="56%" x2="33%" y2="17%"/><line class="ln l23" x1="33%" y1="17%" x2="55%" y2="56%"/><line class="ln l34" x1="55%" y1="56%" x2="86%" y2="17%"/><line class="ln l45" x1="86%" y1="17%" x2="86%" y2="84%"/><line class="ln l53" x1="86%" y1="84%" x2="55%" y2="56%"/></svg>
+    <div class="st s1" style="left:9%;top:56%"><i>📱</i><b>你的手機</b><small>打字、按送出</small></div>
+    <div class="st s2" style="left:33%;top:17%"><i>✈️</i><b>Telegram</b><small>幫你收、幫你送</small></div>
+    <div class="st s3" style="left:55%;top:56%"><i>🦞</i><b>龍蝦主機</b><small>打包、跑 SKILL</small></div>
+    <div class="st s4" style="left:86%;top:17%"><i>🧠</i><b>模型商</b><small>AI 在這裡想</small></div>
+    <div class="st s5" style="left:86%;top:84%"><i>🔧</i><b>主機動手做</b><small>上網、開檔案、寫程式</small></div>
+    <div class="pkt" aria-live="polite"><span class="t0">💬 幫我做一頁景點網頁</span><span class="t1">📨 放進 bot 信箱，有 token 才拿得到</span><span class="t2">📦 打包：你的話＋聊過的＋規則＋SKILL</span><span class="t3">🧠 要上網查資料，還要寫檔案</span><span class="t4">🔁 動手做 → 回報 → 再想 → 再做</span><span class="t5">📬 做好了，答案交回 Telegram</span><span class="t6">✅ 網頁做好了！網址在這裡</span></div>
+    <span class="loopcount">來回好幾趟</span>
+    <i class="mk f" data-step="0"></i><i class="mk f" data-step="1"></i><i class="mk f" data-step="2"></i><i class="mk f" data-step="3"></i><i class="mk f" data-step="4"></i><i class="mk f" data-step="5"></i><i class="mk f" data-step="6"></i>
   </div>
-  <p class="lede f" data-step="8">訊息會經過 Telegram 和模型商，<em>所以金鑰和隱私資料不要送</em>。</p>
-  <aside class="notes">一格一格按出來，講白話就好：Telegram 是門口，模型商負責想，龍蝦主機負責做。事情越複雜，第 4 到 7 步會來回越多次，所以要等比較久。訊息會經過別家公司，這就是等一下資安三條的理由。</aside>
+  <p class="lede f" data-step="7">訊息會經過 Telegram 和模型商，<em>所以金鑰和隱私資料不要送</em>。</p>
+  <aside class="notes">每按一下，紅色的訊息就飛到下一站，上面的字會換。按之前先問全場：「你猜它下一站去哪？」第 2 站：沒有 token 拿不到信。第 3 站：主機把你的話、聊過的內容、規則一起打包。第 4 站：模型決定要用工具。第 5 步：訊息會在模型和「主機動手做」之間來回好幾趟，這就是它會自己拆步驟、為什麼有時要等比較久。最後回到 Telegram、回到你手機。明天早上會用遊戲再走一次更細的版本。</aside>
 </section>
 
 <!-- ============ 04 習慣一 ============ -->
