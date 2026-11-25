@@ -190,7 +190,7 @@ footer{margin-top:44px;padding-top:16px;border-top:2px solid var(--ink);
   </dl>
   <p class="d" style="margin-top:12px;font-size:13.5px;color:var(--ink-2)">標記：<span class="tag g">新增</span> 第三梯次新加的段落　<span class="tag w">調整</span> 跟第二梯次比改過時間或內容</p>
 </header>
-<nav class="decknav" aria-label="教材"><span>教材</span><a href="day1/">Day 1 簡報</a><a href="day2/">Day 2 簡報</a><a href="bot.html">建 Telegram Bot 教學影片</a><a href="game.html">前後端小遊戲（大螢幕）</a></nav>
+<nav class="decknav" aria-label="教材"><span>教材</span><a href="day1/">Day 1 簡報</a><a href="day2/">Day 2 簡報</a><a href="bot.html">建 Telegram Bot 教學影片</a><a href="game.html">前後端小遊戲（大螢幕）</a><a href="skills.html">SKILL 安裝頁</a></nav>
 
 
 <div class="tabs">
@@ -203,7 +203,7 @@ footer{margin-top:44px;padding-top:16px;border-top:2px solid var(--ink);
 <div class="daybar">
     <span class="dnum">DAY 1</span>
     <span class="dttl">11/26（四）· 學會怎麼做＋團隊專案</span>
-    <span class="dmeta">上午 龍蝦點名 → AI Agent → 基本指令＋模型 → SKILL → 排程 → 分組 · 中午 外拍＋午餐 · 下午 團隊製作 → 發表 → 工作流拆解＋題目把關</span>
+    <span class="dmeta">上午 龍蝦點名 → AI Agent → 基本指令＋模型 → SKILL → 排程 → 分組 · 中午 外拍＋午餐 · 下午 團隊製作 → 發表 → 工作流拆解＋龍蝦訪談</span>
   </div>
 
   <div class="run">
@@ -211,9 +211,10 @@ footer{margin-top:44px;padding-top:16px;border-top:2px solid var(--ink);
       <div class="b"><h4>報到 <span class="tag w">調整</span></h4>
         <ul>
           <li>自由入座。報到桌放 TG 群組的 QR code，先到的人先掃。</li>
-          <li>報到桌拿一份<strong>前一天盤點好的名單</strong>：誰還沒交 Bot token、誰還沒有 GitHub 帳號。只有名單上的人在報到時段當場補，其他人不用排隊。</li>
+          <li><strong>椅子先排好、桌上不放筆電</strong> <span class="tag g">新增</span>：一開始只要手機。筆電一打開就進入工作狀態，等 ④ 動手時再開</li>
+          <li>報到桌拿一份<strong>前一天盤點好的名單</strong>：誰還沒交 Bot token。只有名單上的人在報到時段當場補，其他人不用排隊。<strong>GitHub 留到 Day 2 下午才用</strong>，Day 1 不登入。</li>
         </ul>
-        <div class="meta"><span class="own">主講</span><span class="out">缺 token／GitHub 的人補完</span></div>
+        <div class="meta"><span class="own">主講</span><span class="out">缺 token 的人補完</span></div>
       </div></div>
 
     <div class="blk"><div class="t"><span class="hm">09:00</span><span class="dur">15 min</span></div>
@@ -258,7 +259,7 @@ footer{margin-top:44px;padding-top:16px;border-top:2px solid var(--ink);
     <div class="blk brk"><div class="t"><span class="hm">09:55</span></div>
       <div class="b"><h4>休息 10 min</h4></div></div>
 
-    <div class="blk"><div class="t"><span class="hm">10:05</span><span class="dur">25 min</span></div>
+    <div class="blk"><div class="t"><span class="hm">10:05</span><span class="dur">30 min</span></div>
       <div class="b"><h4>④ 龍蝦基本指令＋模型差異 <span class="tag g">新增</span></h4>
         <p class="d">在 Telegram 打「/」會跳出指令清單，點一下就好，不用背。先學這幾個，下午做專案、明天衝刺都用得到。</p>
         <div class="tw"><table>
@@ -271,40 +272,58 @@ footer{margin-top:44px;padding-top:16px;border-top:2px solid var(--ink);
             <tr><td>它現在怎麼樣</td><td><strong>/status</strong></td><td>看在用哪個模型、用了多少</td></tr>
           </tbody>
         </table></div>
-        <p class="d" style="margin-top:10px"><strong>模型差異（5 min）</strong>：大家平常用的是 GPT。打 /models 會看到好幾個，簡單講各家擅長什麼：</p>
+        <p class="d" style="margin-top:10px"><strong>模型差異（12 min）</strong> <span class="tag w">調整</span>：不排「哪家比較好」，只講兩件客觀的事。</p>
+        <ul>
+          <li><strong>你付錢給哪一家，跟你用的是哪個模型，是兩回事</strong>：同一家有好幾個等級，差很多。先打 /status 看自己現在用的是哪一個</li>
+        </ul>
         <div class="tw"><table>
-          <thead><tr><th>模型</th><th>擅長</th><th>什麼時候換它</th></tr></thead>
+          <thead><tr><th>付錢給</th><th>高：最強（難的事）</th><th>中：日常</th><th>低：最快最省（排程、簡單重複）</th></tr></thead>
           <tbody>
-            <tr><td><strong>GPT</strong>（OpenAI）</td><td>大家最熟、什麼都能做，整理、寫作、查資料都穩</td><td>預設就用它</td></tr>
-            <tr><td><strong>Claude</strong>（Anthropic）</td><td>長文件、寫程式、照規格一步一步做；中文口氣自然</td><td>做網頁、做系統、要它照很長的說明做事</td></tr>
-            <tr><td><strong>Gemini</strong>（Google）</td><td>看圖、看影片、一次讀很多資料；跟 Google 服務整合</td><td>外拍素材、整理一大包檔案</td></tr>
-            <tr><td><strong>小／快速版</strong>（mini、Haiku、Flash）</td><td>便宜、快，簡單的事做得很好</td><td>每天自動跑的排程、重複的小工作</td></tr>
+            <tr><td><strong>OpenAI</strong>（ChatGPT）</td><td>GPT-6.2 Astra</td><td>GPT-6.2 Sol</td><td>GPT-6 Luna</td></tr>
+            <tr><td><strong>Anthropic</strong>（Claude）</td><td>Fable 5.2、Opus 5.5</td><td>Sonnet 5.5</td><td>Haiku 5.5</td></tr>
+            <tr><td><strong>Google</strong>（Gemini）</td><td>Gemini 4 Carbon</td><td>Gemini 4 Argon</td><td>Gemini 3.5 Flash-Lite</td></tr>
           </tbody>
         </table></div>
         <ul>
-          <li>不是越貴越好：<strong>簡單的事用快的，難的事用強的</strong></li>
-          <li>同一件事卡住、換句話說也沒用時，<strong>換個模型再試一次</strong>常常就過了</li>
-          <li>/model 換模型只影響這個對話</li>
+          <li><strong>同一件事，各家「怎麼做」不一樣</strong>：GPT、Gemini 用擴散模型直接生圖（iPAS 考點：生成式 AI 裡的擴散模型）；Claude 不能生圖，是寫程式碼把圖畫出來，所以字最清楚、但不像照片</li>
+          <li>播一支短片：<a href="https://www.youtube.com/shorts/FnIHFGNlg8s" target="_blank" rel="noopener">GPT-6.2 來了！Astra 和 Sol 怎麼挑？</a>（YouTube Shorts），看同一家高、中兩級怎麼選</li>
+          <li>模型名稱以課前在主機打 <strong>/models</strong> 看到的為準（2026/11 查的，各家常常改名）</li>
+          <li>實例：同一句提示詞請三家畫海報（三張圖），揭曉後播短片 <a href="https://www.youtube.com/shorts/NQ5uOXHZMlo" target="_blank" rel="noopener">AI 怎麼畫圖？</a>（擴散模型）；影片是「一家直接生成，兩家間接做」：Google 直接生成影片（Veo 官方範例）；Claude 寫程式做動畫，適合流程、圖表（就是 ③ 那張訊息旅程動畫，再播短片 <a href="https://www.youtube.com/shorts/87r833Y2a4Q" target="_blank" rel="noopener">Claude 自己做出一支影片</a>）；GPT 先生分鏡圖，再交給圖生影片工具，適合有畫面感的短片（再播短片 <a href="https://www.youtube.com/shorts/NQ7bn9S6cVw" target="_blank" rel="noopener">ChatGPT 會做 GIF 了</a>）</li>
+          <li><strong>換你（5 min）</strong>：用自己的龍蝦下同一句海報提示詞，跟三家的結果比一比</li>
         </ul>
         <ol>
           <li>主講示範指令一輪（8 min）</li>
           <li>每人照順序打一次：/status → /models → /new → 叫它做一件事，跑到一半 /btw 問一句 → 再 /stop</li>
         </ol>
-        <div class="meta"><span class="own">主講示範 → 同組互相確認</span><span class="out">每人每個指令都打過</span></div>
+        <div class="meta"><span class="own">主講示範 → 同組互相確認</span><span class="out">每人每個指令都打過＋自己下過一次海報提示詞</span></div>
       </div></div>
 
-    <div class="blk"><div class="t"><span class="hm">10:30</span><span class="dur">35 min</span></div>
-      <div class="b"><h4>⑤ SKILL 用法</h4>
+    <div class="blk"><div class="t"><span class="hm">10:35</span><span class="dur">35 min</span></div>
+      <div class="b"><h4>⑤ SKILL：直接裝好五張必備卡 <span class="tag w">調整</span></h4>
+        <p class="d">第二梯次讓大家自己去 ClawHub 找，效果不好。這次<strong>觀念講 5 分鐘，其他時間直接裝、直接跑</strong>：大家原本覺得很難的簡報、生圖、影片，15 分鐘就做得出來。</p>
+        <ol>
+          <li><strong>觀念（5 min）</strong>：SKILL 是一張寫好的工作卡，講過一次的做法存起來，下次一句話再跑</li>
+          <li><strong>裝卡（5 min）</strong>：群組置頂「SKILL 安裝頁」網址（<a href="skills.html">SKILL 安裝頁</a>），複製「一次裝好」那則訊息貼給龍蝦；裝不起來就一張一張貼。裝好傳 /new</li>
+          <li><strong>命題（20 min）</strong>：每人做出三樣東西
+            <div class="tw"><table>
+              <thead><tr><th>SKILL</th><th>做什麼</th><th>命題</th></tr></thead>
+              <tbody>
+                <tr><td>簡報・標準款</td><td>PPT 檔，用 PowerPoint 打開再改</td><td rowspan="3">三款挑一款：介紹你的部門，5 頁（做得快的人三款都試，比一比）</td></tr>
+                <tr><td>簡報・炫款</td><td>黑白大字、換頁有動畫的網頁簡報</td></tr>
+                <tr><td>簡報・圖文款</td><td>每頁配一張插圖（能生圖就生，不能就用程式碼畫）</td></tr>
+                <tr><td>生圖卡</td><td>先整理成六欄提示詞再畫</td><td>你部門的歡迎海報，直式</td></tr>
+                <tr><td>影片卡</td><td>腳本、分鏡、每個鏡頭的 AI 影片提示詞</td><td>15 秒介紹你的辦公桌，直式</td></tr>
+              </tbody>
+            </table></div></li>
+          <li><strong>收斂（5 min）</strong>：每組挑一個最好的放大螢幕；「自己去 ClawHub 找」「叫龍蝦學起來」留到回家再試（安裝頁和簡報裡都有）</li>
+        </ol>
         <ul>
-          <li>什麼是 SKILL：講過一次的做法存起來，下次一句話再跑</li>
-          <li>用 Skill Finder 找一個現成的、裝起來、跑一次</li>
-          <li>「學起來」：看到好用的做法，叫龍蝦整理成自己的 SKILL</li>
-          <li>SKILL 要有<strong>名稱＋一句話怎麼再跑</strong></li>
+          <li><strong>課前必做</strong>：在主機上用一隻測試龍蝦把五張卡實際裝過、跑過一次；確認主機有 python-pptx（標準款要用）、有沒有生圖工具（沒有的話，生圖卡和圖文款會改用程式碼畫）</li>
         </ul>
-        <div class="meta"><span class="own">主講示範 → 同組互相確認</span><span class="out">每人 1 個跑得動的 SKILL</span></div>
+        <div class="meta"><span class="own">主講示範 → 同組互相確認</span><span class="out">每人一份簡報＋一張圖＋一份影片腳本</span></div>
       </div></div>
 
-    <div class="blk"><div class="t"><span class="hm">11:05</span><span class="dur">20 min</span></div>
+    <div class="blk"><div class="t"><span class="hm">11:10</span><span class="dur">15 min</span></div>
       <div class="b"><h4>⑥ 排程：讓龍蝦固定時間自己做事 <span class="tag g">新增</span></h4>
         <p class="d">SKILL 是「一句話再跑一次」，排程是「時間到了自己跑」。兩個合起來，就是明天要做的<strong>每天自動跑的工作流</strong>。第一天就先練起來。</p>
         <ul>
@@ -314,7 +333,7 @@ footer{margin-top:44px;padding-top:16px;border-top:2px solid var(--ink);
           <li>不要設太頻繁（例如每分鐘），每跑一次都會用到額度</li>
         </ul>
         <ol>
-          <li>主講示範一個（5 min）：例如「每天下午 5 點提醒我寫今天的工作日誌」</li>
+          <li>主講示範一個（3 min）：例如「每天下午 5 點提醒我寫今天的工作日誌」</li>
           <li>每人設一個<strong>2 分鐘後</strong>就會跑的排程，等它真的傳訊息來</li>
           <li>跑到了就問「我有哪些排程」，再把它取消</li>
         </ol>
@@ -323,7 +342,7 @@ footer{margin-top:44px;padding-top:16px;border-top:2px solid var(--ink);
 
     <div class="blk"><div class="t"><span class="hm">11:25</span><span class="dur">15 min</span></div>
       <div class="b"><h4>⑦ 分組 <span class="tag w">調整</span></h4>
-        <p class="d">依報名表的小測驗事先分好（創意／實作／查核角色互補、跨部門），現場公布、換座位。11 人分 <strong>4 組：3／3／3／2</strong>，2 人那組由主講多照顧一點，網頁負責人兼做遊戲。同組隊友就是彼此的「助教」：卡住先問隊友。各組決定誰做<strong>影片、網頁、遊戲</strong>。</p>
+        <p class="d">依報名表的小測驗事先分好（創意／實作／查核角色互補、跨部門），現場公布、換座位。11 人分 <strong>4 組：3／3／3／2</strong>，2 人那組由主講多照顧一點，網頁負責人兼做遊戲。同組隊友就是彼此的「助教」：卡住先問隊友。各組決定誰做<strong>影片、網頁、遊戲</strong>。迪士尼策略（夢想家／實踐家／評論家）這次<strong>不刻意帶</strong>，留到之後的專案課程。</p>
         <div class="meta"><span class="own">主講</span><span class="out">4 組＋分工</span></div>
       </div></div>
 
@@ -340,9 +359,9 @@ footer{margin-top:44px;padding-top:16px;border-top:2px solid var(--ink);
           <li>13:05 主講 5 分鐘示範：一句話 → 影片／網頁／小遊戲各一個</li>
           <li>13:10 各自做自己負責的媒材。影片用 AI 生成，失敗就改手機拍＋剪輯</li>
           <li>14:20 巡場：三件都有第一版了嗎？沒有的組當場縮小範圍</li>
-          <li>14:20–15:00 網頁負責人把影片和遊戲放進網頁，<strong>一個網址看完整組成果</strong></li>
+          <li>14:20–15:00 網頁負責人把影片和遊戲放進網頁，<strong>壓縮成一個檔案傳到交件群組，一個網頁看完整組成果</strong>（今天不放上 GitHub，Day 2 下午再教）</li>
         </ul>
-        <div class="meta"><span class="own">主講巡場</span><span class="out">各組一個網址</span></div>
+        <div class="meta"><span class="own">主講巡場</span><span class="out">各組一個網頁檔</span></div>
       </div></div>
 
     <div class="blk brk"><div class="t"><span class="hm">15:00</span></div>
@@ -350,30 +369,36 @@ footer{margin-top:44px;padding-top:16px;border-top:2px solid var(--ink);
 
     <div class="blk"><div class="t"><span class="hm">15:10</span><span class="dur">35 min</span></div>
       <div class="b"><h4>⑩ 各組發表＋投票</h4>
-        <p class="d">每組 6 分鐘：放成品網址、組員各講 1 分鐘「我怎麼跟 AI 對話」、一件最卡的事。4 組發完立刻手機投票（不投自己組）。</p>
+        <p class="d">每組 6 分鐘：打開成品網頁、組員各講 1 分鐘「我怎麼跟 AI 對話」、<strong>一件最驚喜的事</strong> <span class="tag w">調整</span>（前兩梯次幾乎沒人卡住，AI 都幫忙解掉了，所以不再問「最卡的事」，改問「它做到什麼讓你意外」）。4 組發完立刻手機投票（不投自己組）。</p>
         <div class="meta"><span class="own">主講＋場控計時</span><span class="out">Day 1 得票</span></div>
       </div></div>
 
     <div class="blk brk"><div class="t"><span class="hm">15:45</span></div>
       <div class="b"><h4>休息 10 min</h4></div></div>
 
-    <div class="blk"><div class="t"><span class="hm">15:55</span><span class="dur">30 min</span></div>
+    <div class="blk"><div class="t"><span class="hm">15:55</span><span class="dur">25 min</span></div>
       <div class="b"><h4>⑪ 示範工作流程拆解 <span class="tag w">調整</span></h4>
-        <p class="d">主講拿一個真實工作現場跑一次，拆成五格：<strong>觸發 → 取得資料 → AI 處理 → 產出 → 交給誰</strong>。重點：不是叫 AI 做完整件事，是讓它做中間最花時間的那一格。講「原本幾分鐘、現在幾分鐘」。</p>
+        <p class="d">先講清楚最重要的一件事：<strong>這個工作流要達到什麼、要解決什麼</strong>——很多人卡在這裡，不是卡在 AI。再拆成五格：<strong>觸發 → 取得資料 → AI 處理 → 產出 → 交給誰</strong>。不是叫 AI 做完整件事，是讓它做中間最花時間的那一格。</p>
         <ul>
-          <li><strong>示範用報名表裡最多人寫的煩事：維護紀錄整理</strong> <span class="tag w">調整</span>：有 4 個人寫到（每天寫日誌約 40 分鐘、值班打一則維護訊息約 3 分鐘、事後要回 LINE@ 翻找再整理）。示範「把零散的對話丟給龍蝦 → 照固定格式整理成維護紀錄」，再設成每天下班前自動整理。可以接 11/23 共學「一句話讓 Claude 把 @LINE 上的維護打好」</li>
-          <li>示範完點名一下：「這跟誰的煩事很像？」讓學員看到是自己寫的事</li>
+          <li><strong>示範用報名表裡最多人寫的煩事：維護紀錄整理</strong>：有 4 個人寫到（每天寫日誌約 40 分鐘、值班打一則維護訊息約 3 分鐘、事後要回 LINE@ 翻找再整理）。示範「把零散的對話丟給龍蝦 → 照固定格式整理成維護紀錄」，再設成每天下班前自動整理</li>
+          <li><strong>再舉一兩個前兩梯次同事的例子</strong> <span class="tag g">新增</span>：講他的「目的 → 想改變 → 做到了什麼」，讓大家看到身邊的人做得到（舉例前先問過本人）</li>
           <li>示範裡的「觸發」<strong>一定用排程</strong>（每天幾點自動跑），不要用手動</li>
-          <li>最後 3 分鐘預告明天的<strong>交件檢查表</strong>（見 Day 2），讓大家知道終點長什麼樣</li>
+          <li>最後 2 分鐘預告明天的<strong>交件檢查表</strong>（見 Day 2），讓大家知道終點長什麼樣</li>
         </ul>
         <div class="meta"><span class="own">主講</span></div>
       </div></div>
 
-    <div class="blk"><div class="t"><span class="hm">16:25</span><span class="dur">75 min</span></div>
-      <div class="b"><h4>⑫ 想自己的工作流＋題目把關 <span class="tag w">調整</span></h4>
+    <div class="blk"><div class="t"><span class="hm">16:20</span><span class="dur">80 min</span></div>
+      <div class="b"><h4>⑫ 讓龍蝦訪談你的工作流＋每人 3 分鐘 <span class="tag w">調整</span></h4>
+        <p class="d">上次一人 10 分鐘、主講聽每個人說，11 人太久。這次把五格做成「工作流訪談」SKILL：<strong>龍蝦一題一題問你，整理成一張工作流卡</strong>，再照卡片講，一人 3 分鐘＋回應 2 分鐘。</p>
+        <ol>
+          <li><strong>16:20 裝 SKILL（5 min）</strong>：安裝頁的「工作流訪談」貼給龍蝦，傳 /new，再說「工作流訪談：我想整理＿＿這件事」</li>
+          <li><strong>16:25 龍蝦訪談（15 min）</strong>：它會依序問——這件事多久做一次、幾分鐘；<strong>目的</strong>（為了誰、讓他得到什麼）；<strong>想改變</strong>什麼；<strong>想達到</strong>什麼效果；資料從哪來、交給誰。最後拆成五格、圈出交給 AI 的一格、縮到明天做得完，輸出工作流卡</li>
+          <li><strong>16:40 每人 3 分鐘＋回應 2 分鐘（55 min）</strong>：照工作流卡講，主講和全場回應，當場把關題目。標準只有一條：<strong>明天上午能讓「AI 處理」那一格跑通、兩份樣本都對</strong>。做不到的當場縮小（例：「整套派工系統」→「把 LINE 報修訊息整理成派工單」）</li>
+          <li><strong>17:35 收卡（5 min）</strong>：工作流卡轉傳到交件群組。卡上「誰也用得到」那一行，明天下午連連看會用到</li>
+        </ol>
         <ul>
-          <li>從報名時寫的煩事挑一件，照剛才的五格拆開</li>
-          <li><strong>想不到怎麼拆的人，對照「大家的煩事」挑一類</strong> <span class="tag g">新增</span>（整理自報名表，大多不用做網站，兩小時內比較容易跑通）：
+          <li><strong>想不到題目的人，對照「大家的煩事」挑一類</strong>（整理自報名表，大多不用做網站，兩小時內比較容易跑通）：
             <div class="tw"><table>
               <thead><tr><th>類型</th><th>報名表裡的煩事</th><th>可以交給 AI 的那一格</th></tr></thead>
               <tbody>
@@ -384,18 +409,16 @@ footer{margin-top:44px;padding-top:16px;border-top:2px solid var(--ink);
                 <tr><td>待辦提醒（2 人）</td><td>提醒團隊待辦、一直要回想待辦</td><td>用 Day 1 學的排程，每天早上自動把待辦傳到群組</td></tr>
               </tbody>
             </table></div></li>
-          <li>寫下「哪一格可以交給 AI、打算怎麼做」、「原本要幾分鐘」</li>
-          <li><strong>先同組三人互看一輪，主講再逐一把關題目</strong>（11 人，每人約 5 分鐘），標準只有一條：<strong>明天上午兩小時內，能讓「AI 處理」那一格跑通、兩份樣本都對</strong>。做不到的當場縮小（例：「整套派工系統」→「把 LINE 報修訊息整理成派工單」）</li>
-          <li>煩事寫得比較大或比較模糊的（例如「工程師溝通協調」「客戶問題無法預測結案時間」），主講優先過去陪他縮小成一格，例如「把討論串整理成待辦和負責人」</li>
+          <li>煩事寫得比較大或比較模糊的（例如「工程師溝通協調」「客戶問題無法預測結案時間」），訪談時主講先過去陪他縮小成一格</li>
           <li>報名表上有寫時間的人（40 分鐘、3 分鐘、5–10 分鐘、60 分鐘），直接沿用當「原本幾分鐘」</li>
           <li>今晚功課：準備兩份樣本（客戶名、員工名改代號）</li>
         </ul>
-        <div class="meta"><span class="own">主講巡場＋同組互看</span><span class="out">11 個題目定案＋五格</span></div>
+        <div class="meta"><span class="own">主講把關＋全場回應</span><span class="out">11 張工作流卡＋題目定案</span></div>
       </div></div>
 
     <div class="blk"><div class="t"><span class="hm">17:40</span><span class="dur">20 min</span></div>
       <div class="b"><h4>收尾</h4>
-        <p class="d">公布 Day 1 得票第一的組。提醒明天 <strong>09:00 開始</strong>，帶兩份樣本。</p>
+        <p class="d">公布 Day 1 得票第一的組。提醒明天 <strong>09:00 開始</strong>，帶兩份樣本和自己的工作流卡。</p>
         <div class="meta"><span class="own">主講</span></div>
       </div></div>
 
@@ -408,24 +431,19 @@ footer{margin-top:44px;padding-top:16px;border-top:2px solid var(--ink);
 <div class="daybar">
     <span class="dnum">DAY 2</span>
     <span class="dttl">11/27（五）· 個人專案：一個屬於你自己的工作流優化</span>
-    <span class="dmeta">上午 前端與後端（小遊戲＋訊息旅程）→ 衝刺一 → 衝刺二＋設排程 → 交件 · 下午 發表 → 評分 → 助理規格 → 頒獎 · 16:45 合照</span>
+    <span class="dmeta">上午 前端後端資料庫（自己的小遊戲＋排行榜）→ 衝刺 → 規格化交件 → 發表＋評分 · 下午 連連看 → 頒獎 → 共學 · 16:05 合照</span>
   </div>
 
   <div class="run">
     <div class="blk"><div class="t"><span class="hm">09:00</span><span class="dur">40 min</span></div>
-      <div class="b"><h4>前端與後端：你做的東西跑在哪裡 <span class="tag w">調整</span></h4>
-        <p class="d">第二梯次學員回饋想多聽系統的前端、後端；當時放在下午 14:20、交件之後才講，來不及用在作品上。這次<strong>擴充成 40 分鐘、放在衝刺前</strong>。</p>
+      <div class="b"><h4>前端、後端、資料庫：從你自己的小遊戲講起 <span class="tag w">調整</span></h4>
+        <p class="d">第二梯次學員回饋想多聽系統的前端、後端。這次不只是問答：<strong>每個人先做一個自己的小遊戲</strong>，再問「想給朋友玩、想要排行榜，要怎麼做？」——自然就講到後端和資料庫。整個工作坊的主軸不變：<strong>每一段硬的內容，手上都要有一個自己做出來的東西</strong>。</p>
         <ol>
           <li><strong>餐廳比喻（3 min）</strong>：前端＝外場和菜單，客人看得到；後端＝廚房，真正做事的地方；資料庫＝倉庫；API＝點菜單，把外場的需求送進廚房</li>
-          <li><strong>網頁小遊戲「前端後端大挑戰」（10 min）</strong> <span class="tag g">新增</span>：直接在主講電腦打開、<strong>投影到大螢幕全班一起玩</strong>，不用掃 QR code、不用輸入名字（<a href="game.html">打開小遊戲</a>）
-            <ul>
-              <li><strong>第一關・它放在哪裡？</strong>（12 題）：送出按鈕、每天 9 點自動寄提醒、請款單紀錄⋯⋯分到前端／後端／資料庫</li>
-              <li><strong>第二關・駭客來了</strong>（8 題）：API 金鑰、管理員密碼、身分證字號、公司 logo⋯⋯能不能放前端？</li>
-              <li>不限時間，慢慢想；答對越多分數越高，連對 3 題以上有加成；每題答完馬上有一句解釋</li>
-              <li>每題全班一起喊答案（或舉手表決），主講按下多數人的答案，畫面馬上揭曉對錯和解釋；主講可用鍵盤或簡報筆操作（1／2／3 選答案，Enter 下一步）</li>
-              <li>玩完看全班總分，再挑一兩題大家吵最久的講解（7 min 玩、3 min 講）</li>
-            </ul></li>
-          <li><strong>一則訊息的旅程：你傳給龍蝦的話去了哪裡？（15 min）</strong> <span class="tag g">新增</span>：用學員每天在用的龍蝦，把前端、後端、外部服務串成一條線。主講在白板（或投影）畫出五站，一站一站講：
+          <li><strong>大螢幕小遊戲「前端後端大挑戰」（8 min）</strong>：主講電腦打開、投影全班一起玩（<a href="game.html">打開小遊戲</a>）。第一關「它放在哪裡？」12 題、第二關「駭客來了」8 題，全班喊答案、主講按多數人的</li>
+          <li><strong>動手：做你自己的小遊戲（10 min）</strong> <span class="tag g">新增</span>：跟龍蝦說「幫我做一個網頁小遊戲：＿＿＿（賽車、接水果、猜數字都可以），手機可以玩」。玩得動就好——<strong>這就是前端</strong></li>
+          <li><strong>想給朋友玩、要排行榜？（5 min）</strong> <span class="tag g">新增</span>：再問龍蝦「我想讓同事一起玩、有一個排行榜，要多做什麼？畫出前端、後端、資料庫各放什麼」。重點：分數只存在自己手機＝只有前端；大家看得到同一張排行榜＝要有後端收分數、資料庫存分數</li>
+          <li><strong>一則訊息的旅程：你傳給龍蝦的話去了哪裡？（12 min）</strong> <span class="tag g">新增</span>：用學員每天在用的龍蝦，把前端、後端、外部服務串成一條線。主講在白板（或投影）畫出五站，一站一站講：
             <div class="tw"><table>
               <thead><tr><th>#</th><th>在哪裡</th><th>發生什麼事</th><th>跟你有什麼關係</th></tr></thead>
               <tbody>
@@ -443,49 +461,34 @@ footer{margin-top:44px;padding-top:16px;border-top:2px solid var(--ink);
               <li><strong>前後端對照</strong>：Telegram＝前端，OpenClaw＝後端，模型商＝別家公司的後端（我們付錢用它），主機上的對話紀錄、SKILL 檔＝資料</li>
               <li>主講講完，請學員用一句話回答：「我傳『幫我整理這份請款單』之後，經過了哪幾站？」答對的人可以加入下一段的小練習</li>
             </ul></li>
-          <li><strong>資安重點（4 min）</strong>：遊戲的駭客關和訊息旅程都講到了——前端的東西誰都看得到；資料一傳出去就經過好幾家公司。所以<strong>金鑰、密碼、客戶資料、員工個資一律不放前端、不貼給龍蝦</strong>。預告交件前的<strong>分享前清理</strong>：內網 IP、本機路徑（/Users/…、C:\Users\…）、金鑰、真實姓名</li>
-          <li><strong>小練習（5 min）</strong>：問龍蝦「我的工作流哪一格是前端、哪一格是後端、資料存在哪、會經過哪些外部服務」，請它畫成一張簡單的圖——這張圖直接放進操作文件，就是交件檢查表第 7 項「資料去哪」</li>
+          <li><strong>回頭看昨天的工作流（2 min）</strong>：問龍蝦「我的工作流哪一格是前端、哪一格是後端、資料存在哪、會經過哪些外部服務」，請它畫成一張簡單的圖。<strong>缺了哪一塊，等一下衝刺就補上</strong>；這張圖也直接放進操作文件，就是交件檢查表第 7 項「資料去哪」</li>
         </ol>
-        <div class="meta"><span class="own">主講</span><span class="out">全班玩過遊戲＋每人一張自己工作流的前後端圖</span></div>
+        <div class="meta"><span class="own">主講</span><span class="out">每人一個自己的小遊戲＋一張自己工作流的前後端圖</span></div>
       </div></div>
 
-    <div class="blk"><div class="t"><span class="hm">09:40</span><span class="dur">80 min</span></div>
-      <div class="b"><h4>衝刺一 · 先把「AI 處理」那一格做到會跑</h4>
+    <div class="blk"><div class="t"><span class="hm">09:40</span><span class="dur">70 min</span></div>
+      <div class="b"><h4>衝刺 · 補上缺的那一塊，讓 AI 那一格跑對、排程跑一次 <span class="tag w">調整</span></h4>
+        <p class="d">第二梯次第二天早上大家的完成度已經很高，衝刺和下午發表有點重複。這次合成一段，<strong>個人作品在上午做完、發表完</strong>。</p>
         <ol>
-          <li>準備一份樣本（客戶姓名改代號）</li>
-          <li>跟龍蝦講你要的結果和欄位，不要教它怎麼做</li>
-          <li>跑一次，看哪裡不對，換句話說再跑</li>
-          <li>對得上了，存成 SKILL</li>
-          <li>換第二份樣本再跑——<strong>兩份都對才算會跑</strong></li>
+          <li><strong>先補洞</strong>：看剛剛那張前後端圖，昨天做的東西缺了哪一塊（資料存哪、誰看得到、要不要後端），請龍蝦補上</li>
+          <li><strong>AI 那一格跑對</strong>：準備一份樣本（客戶姓名改代號），跟龍蝦講結果和欄位，不要教它怎麼做；對得上了存成 SKILL，換第二份樣本再跑——<strong>兩份都對才算會跑</strong></li>
+          <li><strong>設排程、跑一次</strong>：設一個固定時間自動跑的排程，時間設在幾分鐘後，<strong>等它真的跑一次</strong>，截圖存證</li>
+          <li><strong>實測時間</strong>：用新做法實際跑一次、計時。原本幾分鐘用昨天工作流卡上的數字，現在幾分鐘用實測的</li>
         </ol>
         <ul>
-          <li>10:20 巡場：跑得動了嗎？跑不動就把題目縮小</li>
-          <li>10:55 檢核：第二份樣本跑對</li>
+          <li>10:10 巡場：兩份樣本跑對了嗎？跑不動就把題目縮小</li>
+          <li>10:40 巡場：排程跑過一次了嗎？</li>
+          <li><strong>10:50 一定停手</strong></li>
         </ul>
-        <div class="meta"><span class="own">主講巡場</span><span class="out">兩份樣本跑對</span></div>
+        <div class="meta"><span class="own">主講巡場</span><span class="out">兩份樣本跑對＋排程試跑截圖＋實測分鐘數</span></div>
       </div></div>
 
-    <div class="blk brk"><div class="t"><span class="hm">11:00</span></div>
+    <div class="blk brk"><div class="t"><span class="hm">10:50</span></div>
       <div class="b"><h4>休息 10 min</h4></div></div>
 
-    <div class="blk"><div class="t"><span class="hm">11:10</span><span class="dur">70 min</span></div>
-      <div class="b"><h4>衝刺二 · 串起五格＋設好排程＋實測時間 <span class="tag w">調整</span></h4>
-        <p class="d"><strong>第一個排程直接在這裡設</strong>，試跑截圖就是交件的一部分。</p>
-        <ol>
-          <li>把手動的格子盡量交給龍蝦：<strong>設一個固定時間自動跑的排程</strong>（Day 1 ⑥ 練過的做法），產出自動傳到群組或自己</li>
-          <li>排程時間設在幾分鐘後，<strong>等它真的跑一次</strong>，截圖存證</li>
-          <li><strong>實測時間</strong>：用新做法實際跑一次、計時。原本幾分鐘用昨天寫的數字，現在幾分鐘用實測的，不要用估的</li>
-        </ol>
-        <ul>
-          <li>11:45 巡場：排程設好了嗎？</li>
-          <li><strong>12:20 一定停手</strong>，剩下的時間寫文件——文件沒寫完，別人看不懂怎麼用，可用性分數會吃虧</li>
-        </ul>
-        <div class="meta"><span class="own">主講巡場</span><span class="out">排程試跑截圖＋實測分鐘數</span></div>
-      </div></div>
-
-    <div class="blk"><div class="t"><span class="hm">12:20</span><span class="dur">30 min</span></div>
-      <div class="b"><h4>寫文件＋交件檢查表＋交件 <span class="tag g">新增</span></h4>
-        <p class="d">把下面這張表貼給龍蝦，<strong>叫它逐條檢查你的交件，缺的補上</strong>。</p>
+    <div class="blk"><div class="t"><span class="hm">11:00</span><span class="dur">30 min</span></div>
+      <div class="b"><h4>規格化：請 AI 寫文件、照檢查表交件 <span class="tag w">調整</span></h4>
+        <p class="d">往前移到發表之前：<strong>請龍蝦回頭看你寫的東西，整理成一頁操作文件</strong>（規格化），再把下面這張表貼給它，叫它逐條檢查、缺的補上。文件好了才上台分享。</p>
         <div class="tw"><table>
           <thead><tr><th>#</th><th>檢查項目</th><th>怎樣算過</th></tr></thead>
           <tbody>
@@ -495,78 +498,83 @@ footer{margin-top:44px;padding-top:16px;border-top:2px solid var(--ink);
             <tr><td>4</td><td>SKILL</td><td>名稱＋一句話怎麼再跑，而且跟這個工作流有關</td></tr>
             <tr><td>5</td><td>資安三條</td><td>客戶資料、金鑰、連的是不是測試帳號，三條都勾</td></tr>
             <tr><td>6</td><td>分享前清理</td><td>沒有內網 IP、本機路徑、金鑰、真實姓名</td></tr>
-            <tr><td>7</td><td>資料去哪</td><td>寫出資料從哪來、存在哪、傳給誰</td></tr>
+            <tr><td>7</td><td>資料去哪</td><td>寫出資料從哪來、存在哪、傳給誰（就是早上那張前後端圖）</td></tr>
           </tbody>
         </table></div>
         <ul>
-          <li>龍蝦推上 GitHub，成品與專案卡轉傳交件群組。<strong>產出是文件、表格、LINE 訊息的人</strong>（這次多數人是這樣），不用硬做網頁：交 Google 試算表連結，或「龍蝦傳到群組的產出截圖＋操作文件」都可以</li>
+          <li>成品與專案卡請龍蝦傳給你，再轉傳交件群組。<strong>產出是文件、表格、LINE 訊息的人</strong>不用硬做網頁：交 Google 試算表連結，或「龍蝦傳到群組的產出截圖＋操作文件」都可以</li>
+          <li>評審在發表前先看交件群組裡的操作文件</li>
         </ul>
         <div class="meta"><span class="own">同組互查</span><span class="out">四件交齊＋檢查表 7 項都過</span></div>
       </div></div>
 
-    <div class="blk brk"><div class="t"><span class="hm">12:50</span></div>
-      <div class="b"><h4>午餐 60 min · 評審午餐時先看操作文件</h4></div></div>
-
-    <div class="blk"><div class="t"><span class="hm">13:50</span><span class="dur">75 min</span></div>
-      <div class="b"><h4>成果發表 <span class="tag w">調整</span></h4>
-        <p class="d">每人 <strong>4 分＋提問 1 分</strong>，11 人分兩輪：6 人＋5 人。必講四件：<strong>原本怎麼做／現在怎麼做／省下幾分鐘（實測）／資料走去哪</strong>。計時器硬切。</p>
+    <div class="blk"><div class="t"><span class="hm">11:30</span><span class="dur">55 min</span></div>
+      <div class="b"><h4>成果發表：每人 3＋2 分鐘 <span class="tag w">調整</span></h4>
+        <p class="d">11 人一輪，每人 <strong>3 分鐘＋回應 2 分鐘</strong>，計時器硬切。必講四件：<strong>原本怎麼做／現在怎麼做／省下幾分鐘（實測）／資料走去哪</strong>，最後加一句：<strong>「我做的這個，誰也用得到？我還需要誰？」</strong>——下午連連看就從這句開始。</p>
         <ul>
-          <li>13:50 第一輪 6 人（30 min）</li>
-          <li>14:20 伸展換場（5 min）</li>
-          <li>14:25 第二輪 5 人（25 min），14:50 起留給補充提問與緩衝</li>
+          <li>台下每人拿一張便利貼（或手機記事），聽到「我想跟他接起來」的人就記下名字</li>
         </ul>
         <div class="meta"><span class="own">主講＋場控計時</span><span class="out">11 份發表</span></div>
       </div></div>
 
-    <div class="blk"><div class="t"><span class="hm">15:05</span><span class="dur">10 min</span></div>
+    <div class="blk"><div class="t"><span class="hm">12:25</span><span class="dur">5 min</span></div>
       <div class="b"><h4>手機評分 <span class="tag a">評分關卡</span></h4>
-        <p class="d">學員和評審都用手機替每個人的作品打兩項分數：<strong>可用性</strong>、<strong>AI 使用程度</strong>，學員不評自己。<strong>評審分數佔 50%、全體學員佔 50%</strong>，評分網站會自動算好（names.txt 裡評審名字後面加「 評審」）。判準 30 秒重講：可用性就是「你明天就想拿去用嗎？」</p>
+        <p class="d">發表一結束馬上評，趁記憶還新。學員和評審都用手機替每個人的作品打兩項分數：<strong>可用性</strong>、<strong>AI 使用程度</strong>，學員不評自己。<strong>評審分數佔 50%、全體學員佔 50%</strong>，評分網站會自動算好。判準一句話：可用性就是「你明天就想拿去用嗎？」</p>
         <div class="meta"><span class="own">場控＋評審</span><span class="out">評審 50%＋全體 50% → 名次</span></div>
       </div></div>
 
-    <div class="blk brk"><div class="t"><span class="hm">15:15</span></div>
-      <div class="b"><h4>休息 10 min</h4></div></div>
+    <div class="blk brk"><div class="t"><span class="hm">12:30</span></div>
+      <div class="b"><h4>午餐 60 min · 13:30 回座</h4></div></div>
 
-    <div class="blk"><div class="t"><span class="hm">15:25</span><span class="dur">20 min</span></div>
-      <div class="b"><h4>帶得走 · 你的 24hr AI 工作助理 <span class="tag w">調整</span></h4>
-        <p class="d">排程上午已經設好，這段只講規格和規則，從 40 分鐘縮成 20 分鐘。評審同時確認自己的評分都交了，場控整理評分網站的結果。</p>
-        <ul>
-          <li>說明規格：<strong>在職期間都有、費用公司付</strong>；第一個月不設上限，之後依用量訂每月上限</li>
-          <li><strong>連公司帳號要主管核准</strong>：說明申請方式；核准前只連測試與個人帳號</li>
-          <li>出事找誰：主講的聯絡方式寫進每隻龍蝦的自我介紹</li>
-        </ul>
-        <div class="meta"><span class="own">主講</span><span class="out">11 隻助理開通</span></div>
+    <div class="blk"><div class="t"><span class="hm">13:30</span><span class="dur">120 min</span></div>
+      <div class="b"><h4>連連看：把你的工作流，接到別人身上 <span class="tag g">新增</span></h4>
+        <p class="d">大家一開始都是先搞定自己，所以做出來的東西大多只有自己能用。下午讓大家<strong>交換作品、把彼此的工作流接起來</strong>，順便學會怎麼把東西交給別人用。</p>
+        <ol>
+          <li><strong>13:30 自己找夥伴（15 min）</strong>：看早上記下的名字，自己去找——<strong>我需要誰、誰能幫我、我想偷學誰</strong>。2–3 人一組，同部門、不同部門都可以；主講只幫落單的人牽線</li>
+          <li><strong>13:45 教三件事（20 min）</strong>：
+            <ul>
+              <li><strong>GitHub 第一次登場</strong>：GitHub、repo、Pages 是什麼；裝「GitHub 小幫手」（<a href="skills.html">SKILL 安裝頁</a>），說「放上 GitHub，給我網址」，昨天的團隊網頁、早上的小遊戲都能變成手機打得開的網址</li>
+              <li><strong>把 SKILL 打包給別人</strong>：裝「分享 SKILL」（<a href="skills.html">SKILL 安裝頁</a>），說「把我的＿＿ skill 做成可以分享的安裝訊息」，它會先清掉金鑰和真實姓名，再整理成一則別人貼了就能裝的訊息</li>
+              <li><strong>GitHub 邀請協作</strong>：跟龍蝦說「把這個 repo 加我隊友＿＿當協作者」，對方收到邀請信、按接受就能一起改；只要看的人，給公開網址就好</li>
+            </ul></li>
+          <li><strong>14:05 動手接起來（70 min，中間自由休息）</strong>：三種接法挑一種——
+            <ul>
+              <li><strong>交換用</strong>：裝對方的 SKILL，用在自己的工作上，改成適合自己的版本</li>
+              <li><strong>串起來</strong>：A 的產出，變成 B 的輸入（例：維護紀錄整理好 → 自動變成給業務的週報）</li>
+              <li><strong>合成一個</strong>：兩個人做的是同一類事，合成一個大家都能用的版本</li>
+            </ul></li>
+          <li><strong>15:15 每組 2 分鐘分享（15 min）</strong>：我們接了什麼、現在誰可以用</li>
+        </ol>
+        <div class="meta"><span class="own">主講巡場</span><span class="out">每組一個「別人也能用」的版本（分享訊息或協作 repo）</span></div>
       </div></div>
 
-    <div class="blk"><div class="t"><span class="hm">15:45</span><span class="dur">20 min</span></div>
-      <div class="b"><h4>回饋問卷＋全場 AI 摘要</h4>
-        <p class="d">學員手機填<strong>回饋問卷</strong>（3 min）；大螢幕放全場摘要（省下的總時數，這次是實測加總）與分數表（評審、全體各佔一半）。</p>
-        <div class="meta"><span class="own">主講＋場控</span></div>
-      </div></div>
-
-    <div class="blk"><div class="t"><span class="hm">16:05</span><span class="dur">25 min</span></div>
-      <div class="b"><h4>頒獎</h4>
+    <div class="blk"><div class="t"><span class="hm">15:30</span><span class="dur">15 min</span></div>
+      <div class="b"><h4>頒獎（濃縮） <span class="tag w">調整</span></h4>
         <p class="d">第一名 AI 服務帳號（得獎者自選），<strong>唸出評審分數和全體分數</strong>讓規則透明。評分網站公布結果後，在主講畫面按 → 從第三名、第二名逐一揭曉，第三下暗場鼓聲後揭曉第一名、放煙火（M 鍵開關音效）。接著全員「助理開通證書」。</p>
         <div class="meta"><span class="own">主講＋主管</span></div>
       </div></div>
 
-    <div class="blk"><div class="t"><span class="hm">16:30</span><span class="dur">15 min</span></div>
-      <div class="b"><h4>後續共學說明＋收尾</h4>
-        <p class="d">共學時每人要能展示、講「原本／現在／省幾分鐘」。邀請 1–2 位有意願的人當下一梯次助教。</p>
-        <div class="meta"><span class="own">主講</span></div>
+    <div class="blk"><div class="t"><span class="hm">15:45</span><span class="dur">20 min</span></div>
+      <div class="b"><h4>帶得走：24hr 助理規格＋問卷＋共學說明 <span class="tag w">調整</span></h4>
+        <ul>
+          <li><strong>助理規格（5 min）</strong>：在職期間都有、費用公司付；第一個月不設上限，之後依用量訂每月上限。<strong>連公司帳號要主管核准</strong>，核准前只連測試與個人帳號；出事找誰，主講的聯絡方式寫進每隻龍蝦的自我介紹</li>
+          <li><strong>回饋問卷（5 min）</strong>：學員手機填；大螢幕放全場摘要（省下的總時數，實測加總）</li>
+          <li><strong>後續共學（10 min）</strong>：共學時每人要能展示、講「原本／現在／省幾分鐘」；連連看接起來的組，下次共學報告「第二個人用得怎麼樣」。邀請 1–2 位有意願的人當下一梯次助教</li>
+        </ul>
+        <div class="meta"><span class="own">主講＋場控</span><span class="out">11 隻助理開通</span></div>
       </div></div>
 
-    <div class="blk"><div class="t"><span class="hm">16:45</span><span class="dur">30 min</span></div>
+    <div class="blk"><div class="t"><span class="hm">16:05</span><span class="dur">30 min</span></div>
       <div class="b"><h4>合照</h4>
-        <p class="d"><strong>16:45 一定收</strong>，合照有完整 30 分鐘。</p>
+        <p class="d">合照有完整 30 分鐘。</p>
         <div class="meta"><span class="own">場控</span></div>
       </div></div>
 
-    <div class="blk"><div class="t"><span class="hm">17:15</span><span class="dur">45 min</span></div>
-      <div class="b"><h4>開放時間（自由參加） <span class="tag g">新增</span></h4>
+    <div class="blk"><div class="t"><span class="hm">16:35</span><span class="dur">85 min</span></div>
+      <div class="b"><h4>開放時間（自由參加）</h4>
         <ul>
           <li>想把工作流接到公司帳號的人：現場跟主講談申請要準備什麼</li>
-          <li>排程沒跑起來、想再調整的人：主講陪著補（不影響已打完的分數）</li>
+          <li>排程沒跑起來、連連看還沒接完的人：主講陪著補（不影響已打完的分數）</li>
           <li>其他人可以先走</li>
         </ul>
         <div class="meta"><span class="own">主講</span></div>
@@ -578,8 +586,8 @@ footer{margin-top:44px;padding-top:16px;border-top:2px solid var(--ink);
 </section>
 
 <div class="rules">
-  <div><b>計時</b>Day 1 各組發表 6 分鐘、Day 2 個人 4＋1 分鐘，計時器<strong>硬性切斷</strong>。Day 2 16:45 一定收。</div>
-  <div><b>課前盤點</b>11/25 前確認：誰還沒交 Bot token、誰沒有 GitHub，名單交給報到桌。前後端小遊戲在主講電腦先打開測一次投影。</div>
+  <div><b>計時</b>Day 1 各組發表 6 分鐘、工作流卡每人 3＋2 分鐘、Day 2 個人發表 3＋2 分鐘，計時器<strong>硬性切斷</strong>。</div>
+  <div><b>課前盤點</b>11/25 前確認：誰還沒交 Bot token，名單交給報到桌；GitHub 帳號 Day 2 中午前確認就好。前後端小遊戲在主講電腦先打開測一次投影。<strong>SKILL 安裝頁的每一張卡都用測試龍蝦裝過、跑過一次</strong>（標準款簡報要主機有 python-pptx）。</div>
   <div><b>Bot token</b>token <strong>只私訊給主講</strong>，不貼群組、不截圖外傳。</div>
   <div><b>龍蝦</b>② 的 <strong>09:30 收斂</strong>：還沒串好的人先跟隊友共用，主講在主機處理，不要卡在原地。</div>
   <div><b>資料</b>不碰客戶真實資料，也不碰薪資、身分證字號、銀行帳號等員工個資。工作坊兩天只連自己建的 bot 與測試帳號；結業後連公司帳號要主管核准。</div>
