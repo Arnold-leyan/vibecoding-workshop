@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<title>龍蝦過馬路</title>
+<title>龍蝦衝衝衝</title>
 <style>
 /* 範例小遊戲：只有前端。分數和排行榜都只存在這台手機／電腦裡，用來帶出「要跟大家比，就需要後端」 */
 :root{--bg:#F4F2EC;--ink:#272724;--pencil:#7A776F;--seal:#B03A27;--road:#3A3936;--lane:#6E6C66;--card:#FBFAF6;--moss:#5E6B4E}
@@ -34,13 +34,13 @@ canvas{position:absolute;inset:0;width:100%;height:100%;border-radius:14px;backg
 </head>
 <body>
 <div class="wrap">
-  <div class="top"><h1>🦞 龍蝦過馬路</h1><div class="st">分數 <b id="sc">0</b>　剩 <b id="tm">30</b> 秒</div></div>
+  <div class="top"><h1>🦞 龍蝦衝衝衝</h1><div class="st"><span id="hp" aria-label="生命">❤️❤️❤️</span>　分數 <b id="sc">0</b></div></div>
   <div class="stage">
     <canvas id="cv"></canvas>
     <span class="tag">前端：只在你這台跑</span>
     <div class="ov" id="ov">
-      <h2 id="ovT">龍蝦過馬路</h2>
-      <p id="ovP">左右閃開車子，吃到 🍤 加 5 分。<br>撐 30 秒，看你拿幾分。</p>
+      <h2 id="ovT">龍蝦衝衝衝</h2>
+      <p id="ovP">左右閃開車子，吃到 🍤 加 5 分。<br>有 3 條命，撞到車子 3 次就結束。越跑越快！</p>
       <div class="board" id="board" hidden><h3>排行榜</h3><ol id="list"></ol><p class="note">這個排行榜只存在你這支手機裡，別人看不到。<br>想跟大家比？就需要「後端」。</p></div>
       <button id="go" type="button">開始</button>
     </div>
@@ -50,9 +50,9 @@ canvas{position:absolute;inset:0;width:100%;height:100%;border-radius:14px;backg
 <script>
 (function(){
   var cv = document.getElementById('cv'), g = cv.getContext('2d'), ov = document.getElementById('ov');
-  var scEl = document.getElementById('sc'), tmEl = document.getElementById('tm');
+  var scEl = document.getElementById('sc'), hpEl = document.getElementById('hp'), LIVES = 3, lives = 3, inv = 0;
   var LANES = 3, W = 0, H = 0, DPR = 1, lane = 1, px = 0, items = [], score = 0, left = 30, running = false, last = 0, spawn = 0, speed = 0, roadY = 0, hitFlash = 0, t0 = 0;
-  var KEY = 'lobster-road-best';
+  var KEY = 'lobster-dash-best';
   function size(){
     DPR = Math.min(2, window.devicePixelRatio || 1);
     var r = cv.getBoundingClientRect(); W = r.width; H = r.height;
@@ -70,13 +70,13 @@ canvas{position:absolute;inset:0;width:100%;height:100%;border-radius:14px;backg
     return b;
   }
   function start(){
-    lane = 1; px = laneX(1); items = []; score = 0; left = 30; spawn = 0; speed = H * .45; hitFlash = 0;
+    lane = 1; px = laneX(1); items = []; score = 0; spawn = 0; speed = H * .45; hitFlash = 0; lives = LIVES; inv = 0; drawHp();
     running = true; ov.hidden = true; last = t0 = performance.now(); requestAnimationFrame(loop);
   }
   function end(){
     running = false;
     var b = save(score);
-    document.getElementById('ovT').textContent = '時間到！你拿了 ' + score + ' 分';
+    document.getElementById('ovT').textContent = 'Game Over！你拿了 ' + score + ' 分';
     document.getElementById('ovP').textContent = '';
     document.getElementById('list').innerHTML = b.map(function(x){ return '<li>' + x.s + ' 分 <small style="color:#7A776F">' + x.t + '</small></li>'; }).join('');
     document.getElementById('board').hidden = false;
@@ -90,8 +90,9 @@ canvas{position:absolute;inset:0;width:100%;height:100%;border-radius:14px;backg
   function loop(now){
     if (!running) return;
     var dt = Math.min(.05, (now - last) / 1000); last = now;
-    left = 30 - (now - t0) / 1000; speed += H * .012 * dt * 10;   // 倒數用真實時間，手機卡頓也準
-    spawn -= dt; if (spawn <= 0) { add(); spawn = Math.max(.35, .9 - (30 - left) * .018); }
+    var el = (now - t0) / 1000;   // 跑了幾秒（真實時間），越久越快、車越多
+    speed = H * (.45 + Math.min(1.1, el * .03));
+    spawn -= dt; if (spawn <= 0) { add(); spawn = Math.max(.32, .9 - el * .015); }
     px += (laneX(lane) - px) * Math.min(1, dt * 14);
     roadY = (roadY + speed * dt) % 60;
     var ly = H - 70, hit = laneW() * .32;
@@ -99,15 +100,15 @@ canvas{position:absolute;inset:0;width:100%;height:100%;border-radius:14px;backg
       it.y += speed * dt;
       if (!it.done && Math.abs(it.y - ly) < 38 && Math.abs(laneX(it.lane) - px) < hit) {
         it.done = true;
-        if (it.car) { score = Math.max(0, score - 3); hitFlash = .25; if (navigator.vibrate) navigator.vibrate(60); }
+        if (it.car) { if (inv > 0) { it.done = false; return; } lives--; inv = 1.2; hitFlash = .3; drawHp(); if (navigator.vibrate) navigator.vibrate(80); }
         else score += 5;
       } else if (!it.done && it.car && it.y > ly + 40) { it.done = true; it.passed = true; score += 1; }
     });
     items = items.filter(function(it){ return it.y < H + 80 && !(it.done && !it.car) && !(it.done && !it.passed && it.car); });
-    hitFlash = Math.max(0, hitFlash - dt);
+    hitFlash = Math.max(0, hitFlash - dt); inv = Math.max(0, inv - dt);
     draw();
-    scEl.textContent = score; tmEl.textContent = Math.max(0, Math.ceil(left));
-    if (left <= 0) return end();
+    scEl.textContent = score;
+    if (lives <= 0) return end();
     requestAnimationFrame(loop);
   }
   function draw(){
@@ -128,9 +129,10 @@ canvas{position:absolute;inset:0;width:100%;height:100%;border-radius:14px;backg
       }
     });
     g.font = Math.round(cw * .95) + 'px serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    g.fillText('🦞', px, H - 70);
+    if (!(inv > 0 && Math.floor(inv * 10) % 2)) g.fillText('🦞', px, H - 70);   // 撞到後閃爍 1 秒，這段時間不會再扣命
     if (hitFlash > 0) { g.fillStyle = 'rgba(217,72,43,' + (hitFlash * 1.6) + ')'; g.fillRect(0, 0, W, H); }
   }
+  function drawHp(){ var s = ''; for (var i = 0; i < LIVES; i++) s += i < lives ? '❤️' : '🖤'; hpEl.textContent = s; }
   function roundRect(x, y, w, h, r){ g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); }
   document.getElementById('go').onclick = start;
   document.getElementById('L').addEventListener('pointerdown', function(e){ e.preventDefault(); move(-1); });
