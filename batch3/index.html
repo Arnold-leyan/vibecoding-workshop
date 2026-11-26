@@ -443,26 +443,9 @@ footer{margin-top:44px;padding-top:16px;border-top:2px solid var(--ink);
           <li><strong>餐廳比喻（3 min）</strong>：前端＝外場和菜單，客人看得到；後端＝廚房，真正做事的地方；資料庫＝倉庫；API＝點菜單，把外場的需求送進廚房</li>
           <li><strong>大螢幕小遊戲「前端後端大挑戰」（8 min）</strong>：主講電腦打開、投影全班一起玩（<a href="game.html">打開小遊戲</a>）。第一關「它放在哪裡？」12 題、第二關「駭客來了」8 題，全班喊答案、主講按多數人的</li>
           <li><strong>動手：做你自己的小遊戲（10 min）</strong> <span class="tag g">新增</span>：先在大螢幕玩一局主講做的範例「龍蝦衝衝衝」（<a href="demo-game.html">打開範例</a>，只有前端，排行榜只存在自己的手機）。再跟龍蝦說「幫我做一個網頁小遊戲：＿＿＿（賽車、接水果、猜數字都可以），手機可以玩，做好放上 GitHub，給我網址」——學員的工作區已經連上自己的 GitHub，先從安裝頁裝「GitHub 小幫手」。手機打得開、玩得動就好——<strong>這就是前端</strong></li>
-          <li><strong>想給朋友玩、要排行榜？（5 min）</strong> <span class="tag g">新增</span>：再問龍蝦「我想讓同事一起玩、有一個排行榜，要多做什麼？畫出前端、後端、資料庫各放什麼」。重點：分數只存在自己手機＝只有前端；大家看得到同一張排行榜＝要有後端收分數、資料庫存分數。<strong>接著示範第三版</strong>：打開 <a href="board-v3.html">大螢幕排行榜</a>，旁邊並排 Google 試算表「龍蝦衝衝衝 排行榜」，全班掃 QR code 一起玩、送出分數，排行榜和試算表同時多一筆——前端是 GitHub Pages、後端是 Google Apps Script（擋掉不合理的分數）、資料庫是試算表。示範前清空「分數」工作表第 2 列以後的資料。備案：主講電腦雙擊「現場網站／排行榜遊戲／開排行榜遊戲.bat」開第二版</li>
-          <li><strong>一則訊息的旅程：你傳給龍蝦的話去了哪裡？（12 min）</strong> <span class="tag g">新增</span>：用學員每天在用的龍蝦，把前端、後端、外部服務串成一條線。主講在白板（或投影）畫出五站，一站一站講：
-            <div class="tw"><table>
-              <thead><tr><th>#</th><th>在哪裡</th><th>發生什麼事</th><th>跟你有什麼關係</th></tr></thead>
-              <tbody>
-                <tr><td>1</td><td><strong>你的手機</strong><br>Telegram App（前端）</td><td>你打字、按送出。訊息<strong>不是直接傳到龍蝦</strong>，而是先送到 Telegram 公司的伺服器</td><td>Telegram 只是「櫃台」，它本身不會思考，只負責收、送訊息</td></tr>
-                <tr><td>2</td><td><strong>Telegram 伺服器</strong></td><td>訊息放在你那支 Bot 的信箱裡，等人來拿。只有<strong>拿著 Bot token 的程式</strong>才能打開這個信箱</td><td>這就是為什麼 token 只能私訊給主講：<strong>拿到 token 的人可以冒充你的龍蝦</strong>，看到所有傳給它的訊息</td></tr>
-                <tr><td>3</td><td><strong>OpenClaw</strong><br>（主機上的龍蝦，後端）</td><td>用 token 把新訊息拿回來，然後<strong>打包</strong>：你這句話＋這個對話前面聊過的內容＋龍蝦的自我介紹和規則＋裝好的 SKILL 清單</td><td><strong>/new</strong> 就是把「前面聊過的內容」清空，所以它會「忘記」；<strong>/status</strong> 看的就是這一包有多大</td></tr>
-                <tr><td>4</td><td><strong>模型商</strong><br>（OpenAI 的 GPT 等，外部服務）</td><td>OpenClaw 用<strong>API 金鑰</strong>把整包送到模型商。模型讀完整包，決定要直接回答，還是要「用工具」（讀檔案、上網查、跑程式、設排程）</td><td>費用是依<strong>送出去＋傳回來的字數</strong>算的。對話越長、每次送的包越大，就越慢、越貴——這是常用 /new 的另一個理由。<strong>/model</strong> 換的就是這一站要送去哪家</td></tr>
-                <tr><td>5</td><td><strong>回到 OpenClaw</strong></td><td>如果模型說要用工具，OpenClaw 就在主機上<strong>真的去做</strong>，把結果再送回模型；這樣可能來回好幾次，直到模型給出最後答案</td><td>這就是 Agent「會自己拆步驟、動手做」的真面目。<strong>/stop</strong> 就是叫這個來回停下來</td></tr>
-                <tr><td>6</td><td><strong>Telegram → 你的手機</strong></td><td>OpenClaw 用 Bot token 把最後答案交給 Telegram，Telegram 再推播到你的手機</td><td>你看到「正在輸入⋯⋯」的時候，通常就是第 4、5 站在來回</td></tr>
-              </tbody>
-            </table></div>
-            <ul>
-              <li><strong>你貼出去的資料經過了三個地方</strong>：Telegram 的伺服器、我們的主機、模型商。這就是為什麼<strong>客戶資料、員工個資不能貼給龍蝦</strong>——不是龍蝦會亂講，是資料已經離開公司、到了別人的伺服器</li>
-              <li><strong>排程是怎麼跑的</strong>：排程沒有第 1、2 站。時間一到，OpenClaw 自己從第 3 站開始打包、送給模型，最後從第 6 站把結果傳給你——所以你的手機沒開，它照樣會做</li>
-              <li><strong>前後端對照</strong>：Telegram＝前端，OpenClaw＝後端，模型商＝別家公司的後端（我們付錢用它），主機上的對話紀錄、SKILL 檔＝資料</li>
-              <li>主講講完，請學員用一句話回答：「我傳『幫我整理這份請款單』之後，經過了哪幾站？」答對的人可以加入下一段的小練習</li>
-            </ul></li>
-          <li><strong>回頭看昨天的工作流（2 min）</strong>：問龍蝦「我的工作流哪一格是前端、哪一格是後端、資料存在哪、會經過哪些外部服務」，請它畫成一張簡單的圖。<strong>缺了哪一塊，等一下衝刺就補上</strong>；這張圖也直接放進操作文件，就是交件檢查表第 7 項「資料去哪」</li>
+          <li><strong>想給朋友玩、要排行榜？（9 min）</strong> <span class="tag g">新增</span>：再問龍蝦「我想讓同事一起玩、有一個排行榜，要多做什麼？畫出前端、後端、資料庫各放什麼」。重點：分數只存在自己手機＝只有前端；大家看得到同一張排行榜＝要有後端收分數、資料庫存分數。<strong>接著示範第三版</strong>：打開 <a href="board-v3.html">大螢幕排行榜</a>，旁邊並排 Google 試算表「龍蝦衝衝衝 排行榜」，全班掃 QR code 一起玩、送出分數，排行榜和試算表同時多一筆——前端是 GitHub Pages、後端是 Google Apps Script（擋掉不合理的分數）、資料庫是試算表。示範前清空「分數」工作表第 2 列以後的資料。備案：主講電腦雙擊「現場網站／排行榜遊戲／開排行榜遊戲.bat」開第二版</li>
+          <li><strong>龍蝦的前端、後端、資料庫＋資安（6 min）</strong>：前端＝Telegram，後端＝主機上的 OpenClaw（再去叫 AI 模型），資料庫＝主機上的資料夾（對話紀錄、SKILL、記憶、排程）。所以傳 /new 只是開新對話，SKILL 和記憶還在。再講一次「前端的東西誰都看得到」：金鑰、密碼、客戶資料、員工個資一律不放前端、不貼給龍蝦。訊息怎麼從 Telegram 跑到模型商再回來，Day 1 ③ 已經講過，這裡不重講</li>
+          <li><strong>回頭看昨天的工作流（4 min）</strong>：問龍蝦「我的工作流哪一格是前端、哪一格是後端、資料存在哪、會經過哪些外部服務」，請它畫成一張簡單的圖。<strong>缺了哪一塊，等一下衝刺就補上</strong>；這張圖也直接放進操作文件，就是交件檢查表第 7 項「資料去哪」</li>
         </ol>
         <div class="meta"><span class="own">主講</span><span class="out">每人一個自己的小遊戲＋一張自己工作流的前後端圖</span></div>
       </div></div>

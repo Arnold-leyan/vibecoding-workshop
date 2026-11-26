@@ -615,7 +615,7 @@ body.idle .nav{opacity:0}
     <div class="manuscript a" style="--d:2" data-rows="9" aria-label="看得到的在前面，看不到的在後面。"><span class="col" data-text="看得到的在前面，"></span><span class="col sub" data-text="看不到的在後面。"></span></div>
     <div class="seal a stampin" style="--d:6;transform:rotate(-6deg)">黎明</div>
   </div>
-  <aside class="notes">09:00，40 分鐘。這次不只是問答：每個人先做一個自己的小遊戲（前端），再問「想給朋友玩、要排行榜怎麼辦」，自然講到後端和資料庫。整個工作坊的主軸：每段硬的內容，手上都要有一個自己做出來的東西。順序：餐廳比喻 3 分 → 大螢幕小遊戲 8 分 → 做自己的小遊戲 10 分 → 排行榜 5 分 → 一則訊息的旅程＋資安 12 分 → 回頭看昨天的工作流 2 分。</aside>
+  <aside class="notes">09:00，40 分鐘。這次不只是問答：每個人先做一個自己的小遊戲（前端），再問「想給朋友玩、要排行榜怎麼辦」，自然講到後端和資料庫。整個工作坊的主軸：每段硬的內容，手上都要有一個自己做出來的東西。順序：餐廳比喻 3 分 → 大螢幕小遊戲 8 分 → 做自己的小遊戲 10 分 → 排行榜＋第三版一起玩 9 分 → 龍蝦的前端後端資料庫＋資安 6 分 → 回頭看昨天的工作流 4 分。訊息怎麼從 Telegram 跑到模型商再回來，Day 1 ③ 已經講過，這裡不重講。</aside>
 </section>
 
 <!-- ============ 01 時間表（看板） ============ -->
@@ -624,13 +624,13 @@ body.idle .nav{opacity:0}
     <p class="eyebrow a" style="--d:0"><i>Timeline</i><span>投影停在這一頁</span></p>
     <h2 class="a" style="--d:1">四十分鐘，六段</h2>
   </header>
-  <div class="tl4 tlx a" style="--d:2;grid-template-columns:minmax(100px,5fr) 12fr 16fr minmax(110px,9fr) 18fr minmax(110px,6fr)" id="tlA">
+  <div class="tl4 tlx a" style="--d:2;grid-template-columns:minmax(100px,5fr) 12fr 16fr 14fr 10fr minmax(110px,7fr)" id="tlA">
     <div class="seg" data-start="09:00" data-end="09:03"><span class="t">09:00</span><b>比喻</b><small>餐廳</small><span class="left"></span></div>
     <div class="seg" data-start="09:03" data-end="09:11"><span class="t">09:03</span><b>大挑戰</b><small>全班一起玩</small><span class="left"></span></div>
     <div class="seg" data-start="09:11" data-end="09:21"><span class="t">09:11</span><b>你的小遊戲</b><small>前端</small><span class="left"></span></div>
-    <div class="seg" data-start="09:21" data-end="09:26"><span class="t">09:21</span><b>排行榜</b><small>後端＋資料庫</small><span class="left"></span></div>
-    <div class="seg" data-start="09:26" data-end="09:38"><span class="t">09:26</span><b>訊息的旅程</b><small>Telegram → 模型商 → 回來</small><span class="left"></span></div>
-    <div class="seg" data-start="09:38" data-end="09:40"><span class="t">09:38</span><b>回頭看</b><small>你的工作流</small><span class="left"></span></div>
+    <div class="seg" data-start="09:21" data-end="09:30"><span class="t">09:21</span><b>排行榜</b><small>後端＋資料庫・一起玩</small><span class="left"></span></div>
+    <div class="seg" data-start="09:30" data-end="09:36"><span class="t">09:30</span><b>龍蝦＋資安</b><small>前端、後端、資料庫</small><span class="left"></span></div>
+    <div class="seg" data-start="09:36" data-end="09:40"><span class="t">09:36</span><b>回頭看</b><small>你的工作流</small><span class="left"></span></div>
   </div>
   <p class="lede f">09:40 前：<em>手上一個自己的小遊戲，說得出你的工作流缺哪一塊</em>。</p>
   <aside class="notes">這頁會照時鐘自動標出現在是哪一段、還剩幾分鐘（09:00–09:40 之間才會亮）。</aside>
@@ -740,55 +740,6 @@ body.idle .nav{opacity:0}
   <aside class="notes">一格一格按出來。資料庫不一定是很複雜的系統：龍蝦的資料庫，就是主機上的一個資料夾（工作區），裡面放對話紀錄、SKILL 檔、記憶、排程設定。所以傳 /new 只是開新對話，SKILL 和記憶還在；換手機、換電腦登入 Telegram，龍蝦也一樣認得你。對照前面的排行榜：第三版的資料庫是 Google 試算表，龍蝦的資料庫是主機上的資料夾，都是「大家看得到同一份」的那個地方。後端還可以再去叫別的後端，這就是為什麼一個服務要用到好幾把金鑰：每一把都代表「可以去叫某個服務」。</aside>
 </section>
 
-<!-- ============ 訊息的旅程 ============ -->
-<section class="sheet" data-row="1">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>09:13 · Stations 1–3</i><span>一則訊息的旅程</span></p>
-    <h2 class="a" style="--d:1">你按下送出，訊息先去了哪裡</h2>
-  </header>
-  <div class="pipe" style="grid-template-columns:1fr auto 1fr auto 1fr">
-    <div class="pcard f"><span class="when">1 · 前端</span><h3>你的手機</h3><p>打字、按送出。訊息<b>不是直接傳到龍蝦</b>，先送到 Telegram 的伺服器。</p></div>
-    <span class="pipe-arrow f">→</span>
-    <div class="pcard f"><span class="when">2 · 櫃台</span><h3>Telegram 伺服器</h3><p>訊息放在你那支 bot 的信箱，只有<b>拿著 token</b> 的程式能打開。</p></div>
-    <span class="pipe-arrow f">→</span>
-    <div class="pcard last f"><span class="when">3 · 後端</span><h3>OpenClaw 打包</h3><p>把你這句話＋前面聊過的＋龍蝦的規則＋SKILL 清單，包成一包。</p></div>
-  </div>
-  <p class="lede f">拿到 token 的人，就能冒充你的龍蝦。<em>/new 就是把「前面聊過的」清空。</em></p>
-  <aside class="notes">一站一站講，白話就好。第 2 站：這就是為什麼 token 只能私訊給主講。第 3 站：/new 清掉前面聊的，所以它會「忘記」；/status 看的就是這一包有多大。</aside>
-</section>
-
-<!-- ============ 訊息的旅程 ============ -->
-<section class="sheet" data-row="1">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>09:20 · Stations 4–6</i><span>一則訊息的旅程</span></p>
-    <h2 class="a" style="--d:1">送去模型商，再回到你手上</h2>
-  </header>
-  <div class="pipe" style="grid-template-columns:1fr auto 1fr auto 1fr">
-    <div class="pcard f"><span class="when">4 · 外部服務</span><h3>模型商（GPT 等）</h3><p>OpenClaw 用 <b>API 金鑰</b>把整包送去。模型決定直接回答，還是要用工具。</p></div>
-    <span class="pipe-arrow f">→</span>
-    <div class="pcard f"><span class="when">5 · 後端</span><h3>回到 OpenClaw</h3><p>要用工具，就在主機上<b>真的去做</b>，結果再送回模型，可能來回好幾次。</p></div>
-    <span class="pipe-arrow f">→</span>
-    <div class="pcard last f"><span class="when">6 · 前端</span><h3>Telegram → 手機</h3><p>最後的答案交給 Telegram，推播到你的手機。</p></div>
-  </div>
-  <p class="lede f">費用照<b>送出去＋傳回來的字數</b>算：對話越長越慢、越貴。<em>/stop 就是叫第 5 站的來回停下來。</em></p>
-  <aside class="notes">第 4 站：/model 換的就是這一站送去哪家；常用 /new 也是為了讓每次送出去的包小一點。第 5 站：這就是 Agent「會自己拆步驟、動手做」的真面目。你看到「正在輸入⋯⋯」的時候，通常就是第 4、5 站在來回。</aside>
-</section>
-
-<!-- ============ 旅程的三個重點 ============ -->
-<section class="sheet" data-row="1">
-  <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>So what</i><span>跟你有什麼關係</span></p>
-    <h2 class="a" style="--d:1">走完這一圈，記三件事</h2>
-  </header>
-  <ol class="three">
-    <li class="f"><span class="num">壹</span><h3>資料經過三個地方</h3><p>Telegram 的伺服器、我們的主機、模型商。所以客戶資料、員工個資不能貼——資料已經離開公司了。</p></li>
-    <li class="f"><span class="num">貳</span><h3>排程沒有第 1、2 站</h3><p>時間一到，OpenClaw 自己從第 3 站開始打包，最後從第 6 站傳給你。手機沒開，它照樣做。</p></li>
-    <li class="f"><span class="num">參</span><h3>前端、後端、別家的後端</h3><p>Telegram＝前端，OpenClaw＝後端，模型商＝我們付錢用的別家後端，對話紀錄和 SKILL＝資料。</p></li>
-  </ol>
-  <p class="lede f">考一題：<em>我傳「幫我整理這份請款單」之後，經過了哪幾站？</em></p>
-  <aside class="notes">講完請學員用一句話回答最下面那題，答對的人可以先開始下一段的小練習。</aside>
-</section>
-
 <!-- ============ 11 金鑰不放前端 ============ -->
 <section class="sheet" data-row="2">
   <header class="hd">
@@ -802,13 +753,13 @@ body.idle .nav{opacity:0}
       <p class="skip f">交件前做分享前清理：內網 IP、本機路徑、金鑰、真實姓名。</p>
     </div>
   </div>
-  <aside class="notes">09:35 前帶過，併在訊息旅程的 12 分鐘裡。遊戲的駭客關和訊息旅程都講到了：前端的東西誰都看得到，資料一傳出去就經過好幾家公司。現場可以示範按 F12。AI 為了讓你「快點能動」，常常把金鑰直接寫進網頁，這是最常見的漏洞。</aside>
+  <aside class="notes">09:33 左右，跟龍蝦那頁一起 6 分鐘。遊戲的駭客關講過：前端的東西誰都看得到；昨天 ③ 的訊息旅程也講過：資料一傳出去就經過好幾家公司。現場可以示範按 F12。AI 為了讓你「快點能動」，常常把金鑰直接寫進網頁，這是最常見的漏洞。</aside>
 </section>
 
 <!-- ============ 11 檢查自己的 ============ -->
 <section class="sheet" data-row="3">
   <header class="hd">
-    <p class="eyebrow a" style="--d:0"><i>09:38 · Look back</i><span>拿昨天的工作流卡來看</span></p>
+    <p class="eyebrow a" style="--d:0"><i>09:36 · Look back</i><span>拿昨天的工作流卡來看</span></p>
     <h2 class="a" style="--d:1">回頭看：你昨天的工作流，缺哪一塊</h2>
   </header>
   <div class="split demo">
@@ -826,7 +777,7 @@ body.idle .nav{opacity:0}
       <p class="bub me f" data-step="2">裡面有沒有個資、金鑰或跟錢有關的步驟？有的話告訴我怎麼改</p>
     </div>
   </div>
-  <aside class="notes">09:38，2 分鐘先丟問題，衝刺時再看答案。缺了哪一塊（資料沒地方存、別人看不到、要有後端），衝刺的前 10 分鐘就補上。這張圖直接放進操作文件，就是交件檢查表第 7 項「資料去哪」，上台也要講。</aside>
+  <aside class="notes">09:36，4 分鐘：先丟問題，衝刺時再看答案。缺了哪一塊（資料沒地方存、別人看不到、要有後端），衝刺的前 10 分鐘就補上。這張圖直接放進操作文件，就是交件檢查表第 7 項「資料去哪」，上台也要講。</aside>
 </section>
 
 <!-- ============ 下一段 ============ -->
@@ -907,7 +858,7 @@ body.idle .nav{opacity:0}
     s.style.left=(p.x-W0/2)+'px'; s.style.top=(p.y-H0/2)+'px';
     s.style.transform='rotate('+p.r+'deg)';
     var f=document.createElement('div'); f.className='folio';
-    f.innerHTML='<span>'+(i<6?'Day 2 · 前端、後端、資料庫':(i<10?'Day 2 · 一則訊息的旅程':(i<12?'Day 2 · 回頭看':'接下來')))+'</span><span><i>'+String(i+1).padStart(2,'0')+'</i> / '+N+'</span>';
+    f.innerHTML='<span>'+(i<6?'Day 2 · 前端、後端、資料庫':(i<8?'Day 2 · 龍蝦與資安':(i<9?'Day 2 · 回頭看':'接下來')))+'</span><span><i>'+String(i+1).padStart(2,'0')+'</i> / '+N+'</span>';
     s.appendChild(f);
     if(i%3!==1){var t=document.createElement('div');t.className='tape'+(i%2?' blue':'');
       t.style.setProperty('--tx',(240+(i*97)%980)+'px');t.style.setProperty('--tr',(((i*41)%11)-5)+'deg');s.appendChild(t);}
