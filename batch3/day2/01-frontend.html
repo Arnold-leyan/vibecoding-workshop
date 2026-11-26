@@ -725,17 +725,19 @@ body.idle .nav{opacity:0}
 <section class="sheet" data-row="1">
   <header class="hd">
     <p class="eyebrow a" style="--d:0"><i>Your lobster</i><span>龍蝦也是這樣</span></p>
-    <h2 class="a" style="--d:1">龍蝦：前端是 Telegram，後端在主機上</h2>
+    <h2 class="a" style="--d:1">龍蝦的前端、後端、資料庫</h2>
   </header>
-  <div class="pipe" style="grid-template-columns:1fr auto 1fr auto 1fr">
-    <div class="pcard f"><span class="when">前端</span><h3>Telegram</h3><p>你打字、傳照片的地方。</p></div>
-    <span class="pipe-arrow f">→</span>
-    <div class="pcard f"><span class="when">後端</span><h3>主機上的 OpenClaw</h3><p>收到訊息、跑 skill、存檔案。</p></div>
-    <span class="pipe-arrow f">→</span>
-    <div class="pcard last f"><span class="when">另一個服務</span><h3>AI 模型</h3><p>後端再去問 AI，答案送回來給你。</p></div>
+  <div class="pipe" style="grid-template-columns:1fr auto 1fr auto 1fr;grid-template-rows:auto auto auto;row-gap:6px">
+    <div class="pcard f" style="grid-column:1;grid-row:1"><span class="when">前端</span><h3>Telegram</h3><p>你打字、傳照片的地方。</p></div>
+    <span class="pipe-arrow f" style="grid-column:2;grid-row:1">→</span>
+    <div class="pcard f" style="grid-column:3;grid-row:1"><span class="when">後端</span><h3>主機上的 OpenClaw</h3><p>收到訊息、跑 skill、決定要做什麼。</p></div>
+    <span class="pipe-arrow f" style="grid-column:4;grid-row:1">→</span>
+    <div class="pcard last f" style="grid-column:5;grid-row:1"><span class="when">另一個服務</span><h3>AI 模型</h3><p>後端再去問 AI，答案送回來給你。</p></div>
+    <span class="pipe-arrow f" style="grid-column:3;grid-row:2;justify-self:center;line-height:1">↕</span>
+    <div class="pcard f" style="grid-column:3 / span 3;grid-row:3;border-color:var(--indigo)"><span class="when" style="color:var(--indigo)">資料庫</span><h3>主機上的資料夾</h3><p>你的對話紀錄、SKILL 檔、龍蝦的記憶、排程設定，都存在這裡。</p></div>
   </div>
-  <p class="lede f">所以你的電腦關機，龍蝦照樣在做事：<em>它的後端不在你身上</em>。</p>
-  <aside class="notes">後端還可以再去叫別的後端，這就是為什麼一個服務要用到好幾把金鑰：每一把都代表「可以去叫某個服務」。</aside>
+  <p class="lede f">所以你的手機關機，龍蝦照樣在做事、也記得你：<em>後端和資料庫都不在你身上</em>。</p>
+  <aside class="notes">一格一格按出來。資料庫不一定是很複雜的系統：龍蝦的資料庫，就是主機上的一個資料夾（工作區），裡面放對話紀錄、SKILL 檔、記憶、排程設定。所以傳 /new 只是開新對話，SKILL 和記憶還在；換手機、換電腦登入 Telegram，龍蝦也一樣認得你。對照前面的排行榜：第三版的資料庫是 Google 試算表，龍蝦的資料庫是主機上的資料夾，都是「大家看得到同一份」的那個地方。後端還可以再去叫別的後端，這就是為什麼一個服務要用到好幾把金鑰：每一把都代表「可以去叫某個服務」。</aside>
 </section>
 
 <!-- ============ 訊息的旅程 ============ -->

@@ -48,7 +48,7 @@ canvas{position:absolute;inset:0;width:100%;height:100%;border-radius:14px;backg
   <div class="top"><h1>🦞 龍蝦衝衝衝</h1><div class="st"><span id="hp" aria-label="生命">❤️❤️❤️</span>　分數 <b id="sc">0</b></div></div>
   <div class="stage">
     <canvas id="cv"></canvas>
-    <span class="tag">前端 GitHub・後端＋資料庫 Google 試算表</span>
+    <span class="tag" id="tag">前端 GitHub・後端＋資料庫 Google 試算表</span>
     <div class="ov" id="ov">
       <h2 id="ovT">龍蝦衝衝衝</h2>
       <p id="ovP">左右閃開車子，吃到 🍤 加 5 分。<br>3 條命，撞 3 次就被煮成龍蝦料理。<br>會越來越快，撐得過 30 秒算你厲害！</p>
@@ -108,10 +108,24 @@ canvas{position:absolute;inset:0;width:100%;height:100%;border-radius:14px;backg
     return fetch(API, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(body)})
       .then(function(r){ return r.json(); }).then(back);
   }
+  // 開局向後端登記；Google 偶爾慢或忙，失敗就隔一下再試（最多 4 次）
+  var round = 0, tagEl = document.getElementById('tag'), TAG0 = tagEl.textContent;
+  function register(r, n){
+    tagEl.textContent = '後端連線中⋯';
+    apiGet('start').then(function(j){
+      if (r !== round) return;
+      play = j.play; tagEl.textContent = '後端已連線 ✓';
+      setTimeout(function(){ if (r === round) tagEl.textContent = TAG0; }, 2500);
+    }, function(){
+      if (r !== round) return;
+      if (n < 3) { setTimeout(function(){ register(r, n + 1); }, 1500 * (n + 1)); }
+      else tagEl.textContent = '後端沒連上（分數會送不出去）';
+    });
+  }
   function start(){
     play = null; sent = false; document.getElementById('msg').textContent = '';
     document.getElementById('namef').hidden = true;
-    apiGet('start').then(function(j){ play = j.play; }, function(){ play = null; });
+    register(++round, 0);
     lane = 1; px = laneX(1); items = []; score = 0; spawn = 0; speed = H * .45; hitFlash = 0; lives = LIVES; inv = 0; drawHp();
     lose.hidden = true; lose.style.display = 'none';
     running = true; ov.hidden = true; last = t0 = performance.now(); requestAnimationFrame(loop);
@@ -140,7 +154,7 @@ canvas{position:absolute;inset:0;width:100%;height:100%;border-radius:14px;backg
     var nm = document.getElementById('nm').value.trim(), msg = document.getElementById('msg');
     if (!nm) { msg.textContent = '先取一個暱稱'; return; }
     if (sent) return;
-    if (!play) { msg.textContent = READY ? '這一局沒連上後端，分數送不出去。再玩一次試試' : '後端還沒接上，請主講把 Google 試算表的網址設定好'; return; }
+    if (!play) { msg.textContent = READY ? '這一局沒連上後端，分數送不出去。檢查一下網路，再玩一次試試' : '後端還沒接上，請主講把 Google 試算表的網址設定好'; return; }
     try { localStorage.setItem(NAMEKEY, nm); } catch(e) {}
     sent = true; msg.textContent = '送出中⋯⋯';
     apiPost({play: play, name: nm, score: score}).then(function(st){
