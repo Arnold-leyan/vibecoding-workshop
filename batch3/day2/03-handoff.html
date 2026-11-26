@@ -683,11 +683,12 @@ body.idle .nav{opacity:0}
     <p class="eyebrow a" style="--d:0"><i>Deliverables</i><span>11:30 前交齊</span></p>
     <h2 class="a" style="--d:1">每人交四件東西</h2>
   </header>
-  <ol class="check">
-    <li><span class="box a" style="--d:2"></span><div><b>一頁專案卡</b><small>問題／原本流程／現在流程／省幾分鐘／資料走去哪／資安三條打勾</small></div><span class="seal round f stamp">一</span></li>
-    <li><span class="box a" style="--d:3"></span><div><b>一個會跑的工作流</b><small>排程試跑成功的畫面＋資料走去哪</small></div><span class="seal round f stamp" style="--rot:8deg">二</span></li>
-    <li><span class="box a" style="--d:4"></span><div><b>一個你在用的 SKILL</b><small>一句話就能再跑一遍</small></div><span class="seal round f stamp" style="--rot:-3deg">三</span></li>
-    <li><span class="box a" style="--d:5"></span><div><b>操作文件</b><small>一頁四段，第一行是「這是給＿＿在＿＿時候用的」</small></div><span class="seal round f stamp" style="--rot:5deg">四</span></li>
+  <style>.check.eg4{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;column-gap:56px;flex:none;margin-top:4px}.check.eg4 li{grid-template-columns:48px 1fr 64px;gap:18px;padding:14px 0;align-items:start}.check.eg4 .box{width:40px;height:40px;margin-top:6px}.check.eg4 b{font-size:32px;line-height:1.25}.check.eg4 small{display:block;font-size:21px;line-height:1.4;margin-top:2px}.check.eg4 .eg{margin:10px 0 0;font-size:21px;line-height:1.5;color:var(--ink);background:rgba(0,0,0,.04);border-left:4px solid var(--seal);padding:6px 12px}.check.eg4 .eg i{font-style:normal;font-weight:700;margin-right:8px;color:var(--seal)}.check.eg4 .seal{transform:scale(.62);transform-origin:center top}</style>
+  <ol class="check eg4">
+    <li><span class="box a" style="--d:2"></span><div><b>一頁專案卡</b><small>問題／原本流程／現在流程／省幾分鐘／資料走去哪／資安三條打勾</small><p class="eg"><i>例</i>問題：每天下班前手動整理客戶對話成維護紀錄<br>原本 30 分鐘 → 現在 5 分鐘<br>資料：只在公司電腦和龍蝦主機，客戶名字改代號</p></div><span class="seal round f stamp">一</span></li>
+    <li><span class="box a" style="--d:3"></span><div><b>一個會跑的工作流</b><small>排程試跑成功的畫面＋資料走去哪</small><p class="eg"><i>例</i>每天 17:30 排程自動跑，整理好的維護紀錄傳到 LINE 群組＋試跑成功那則訊息的截圖</p></div><span class="seal round f stamp" style="--rot:8deg">二</span></li>
+    <li><span class="box a" style="--d:4"></span><div><b>一個你在用的 SKILL</b><small>一句話就能再跑一遍</small><p class="eg"><i>例</i>「維護紀錄」SKILL：只要說「跑一下維護紀錄」，就照同一套格式整理</p></div><span class="seal round f stamp" style="--rot:-3deg">三</span></li>
+    <li><span class="box a" style="--d:5"></span><div><b>操作文件</b><small>一頁四段，第一行是「這是給＿＿在＿＿時候用的」</small><p class="eg"><i>例</i>第一行「這是給值班的同事每天下班前，整理維護紀錄用的」，下面接：先準備／怎麼跑／會跑出什麼</p></div><span class="seal round f stamp" style="--rot:5deg">四</span></li>
   </ol>
   <aside class="notes">專案卡也可以請龍蝦照這六個欄位整理初稿。缺一件，發表時就沒得秀。產出是文件、表格、LINE 訊息的人（這次多數人是這樣），不用硬做網頁。</aside>
 </section>
