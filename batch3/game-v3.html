@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>龍蝦衝衝衝 · 雲端排行榜</title>
+<style>
+/* 第三版：前端在 GitHub Pages，後端是 Google Apps Script，資料庫是 Google 試算表。網址固定，不用開本機程式 */
+:root{--bg:#F4F2EC;--ink:#272724;--pencil:#7A776F;--seal:#B03A27;--road:#3A3936;--lane:#6E6C66;--card:#FBFAF6;--moss:#5E6B4E}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;overflow:hidden;touch-action:manipulation}
+.wrap{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
+.top{width:100%;max-width:480px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.top h1{margin:0;font-size:22px;letter-spacing:.06em}
+.top .st{font-size:15px;color:var(--pencil);white-space:nowrap}
+.top .st b{color:var(--seal);font-size:20px}
+.stage{position:relative;flex:1;width:100%;max-width:480px;margin-top:10px;min-height:0}
+canvas{position:absolute;inset:0;width:100%;height:100%;border-radius:14px;background:var(--road);display:block}
+.ov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:20px;
+  background:rgba(39,39,36,.72);color:#fff;border-radius:14px}
+.ov[hidden]{display:none}
+.ov{overflow:auto;justify-content:safe center}
+.ov h2{margin:0;font-size:28px}
+.ov p{margin:0;font-size:16px;line-height:1.6;opacity:.92}
+.ov button{font:700 20px/1 inherit;padding:14px 28px;border-radius:999px;border:0;background:var(--seal);color:#fff;cursor:pointer}
+.dish{width:min(260px,70%);height:auto;display:block}
+.dishimg[hidden]{display:none!important}
+.dishimg{width:min(260px,70%);max-height:170px;object-fit:cover;border-radius:12px;border:4px solid #fff;display:block}
+.ov .cap2{font-size:20px;font-weight:700}
+.board{width:100%;max-width:260px;background:var(--card);color:var(--ink);border-radius:10px;padding:10px 14px;text-align:left}
+.board h3{margin:0 0 6px;font-size:15px;color:var(--pencil);font-weight:600}
+.board ol{margin:0;padding-left:1.3em;font-size:16px;line-height:1.6}
+.board .note{margin:8px 0 0;font-size:13px;color:var(--seal);line-height:1.5}
+.pad{width:100%;max-width:480px;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.pad button{font:700 22px/1 inherit;padding:16px 0;border-radius:12px;border:2px solid var(--ink);background:var(--card);color:var(--ink);cursor:pointer;user-select:none}
+.pad button:active{background:#E7E3D8}
+.namef[hidden]{display:none}
+.namef{display:flex;gap:8px;width:100%;max-width:260px}
+.namef input{flex:1;min-width:0;font:600 18px/1.2 inherit;padding:12px;border-radius:10px;border:0}
+.namef button{font-size:17px;padding:12px 16px}
+.msg{min-height:1.3em;font-size:14px;color:#FFD9CF}
+.board li.me{color:var(--seal);font-weight:700}
+.tag{position:absolute;left:10px;top:10px;font-size:12px;color:#fff;background:rgba(0,0,0,.45);padding:4px 8px;border-radius:999px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><h1>🦞 龍蝦衝衝衝</h1><div class="st"><span id="hp" aria-label="生命">❤️❤️❤️</span>　分數 <b id="sc">0</b></div></div>
+  <div class="stage">
+    <canvas id="cv"></canvas>
+    <span class="tag">前端 GitHub・後端＋資料庫 Google 試算表</span>
+    <div class="ov" id="ov">
+      <h2 id="ovT">龍蝦衝衝衝</h2>
+      <p id="ovP">左右閃開車子，吃到 🍤 加 5 分。<br>3 條命，撞 3 次就被煮成龍蝦料理。<br>會越來越快，撐得過 30 秒算你厲害！</p>
+      <div id="lose" hidden style="display:flex;flex-direction:column;align-items:center;gap:6px"><img class="dishimg" id="dishImg" src="lobster-dish.jpg" alt="龍蝦料理" hidden><svg class="dish" viewBox="0 0 320 210" role="img" aria-label="一盤清蒸龍蝦">
+        <g stroke="#fff" stroke-width="4" stroke-linecap="round" fill="none" opacity=".8"><path d="M120 34 q-10 -14 0 -26"/><path d="M160 30 q-10 -14 0 -26"/><path d="M200 34 q-10 -14 0 -26"/></g>
+        <ellipse cx="160" cy="150" rx="150" ry="52" fill="#E9E4D8"/><ellipse cx="160" cy="144" rx="132" ry="42" fill="#FBFAF6"/>
+        <g fill="#6E9A4B"><ellipse cx="80" cy="140" rx="34" ry="14" transform="rotate(-18 80 140)"/><ellipse cx="236" cy="140" rx="34" ry="14" transform="rotate(18 236 140)"/><ellipse cx="160" cy="160" rx="44" ry="12"/></g>
+        <g fill="#D9482B" stroke="#A8321C" stroke-width="2">
+          <ellipse cx="160" cy="124" rx="26" ry="20"/>
+          <ellipse cx="160" cy="146" rx="22" ry="11"/><ellipse cx="160" cy="160" rx="18" ry="9"/><ellipse cx="160" cy="171" rx="14" ry="7"/>
+          <path d="M146 178 q14 18 28 0 z"/>
+          <path d="M138 112 q-30 -16 -46 -6 q-10 10 4 16 q16 4 42 -4 z"/><path d="M182 112 q30 -16 46 -6 q10 10 -4 16 q-16 4 -42 -4 z"/>
+          <ellipse cx="92" cy="104" rx="16" ry="11"/><ellipse cx="228" cy="104" rx="16" ry="11"/>
+        </g>
+        <g stroke="#A8321C" stroke-width="2.5" fill="none" stroke-linecap="round"><path d="M152 106 q-30 -40 -70 -48"/><path d="M168 106 q30 -40 70 -48"/></g>
+        <circle cx="152" cy="116" r="3" fill="#272724"/><circle cx="168" cy="116" r="3" fill="#272724"/>
+        <g><path d="M250 150 l34 -10 a20 20 0 0 1 -26 26 z" fill="#F2C94C" stroke="#C7A12F" stroke-width="2"/></g>
+      </svg><p class="cap2">🍽️ 你被煮成龍蝦料理了！</p></div>
+      <form class="namef" id="namef" hidden><input id="nm" maxlength="10" placeholder="你的暱稱" autocomplete="off" aria-label="暱稱"><button type="submit">送出分數</button></form>
+      <p class="msg" id="msg"></p>
+      <div class="board" id="board" hidden><h3>大家的排行榜</h3><ol id="list"></ol><p class="note">分數存在一份 Google 試算表（資料庫），<br>每個人看到的都是同一份。</p></div>
+      <button id="go" type="button">開始</button>
+    </div>
+  </div>
+  <div class="pad"><button id="L" type="button" aria-label="往左">◀ 左</button><button id="R" type="button" aria-label="往右">右 ▶</button></div>
+</div>
+<script>
+(function(){
+  var cv = document.getElementById('cv'), g = cv.getContext('2d'), ov = document.getElementById('ov');
+  var scEl = document.getElementById('sc'), hpEl = document.getElementById('hp'), LIVES = 3, lives = 3, inv = 0;
+  var LANES = 3, W = 0, H = 0, DPR = 1, lane = 1, px = 0, items = [], score = 0, left = 30, running = false, last = 0, spawn = 0, speed = 0, roadY = 0, hitFlash = 0, t0 = 0;
+  var lose = document.getElementById('lose');
+  lose.style.display = 'none';
+  // 同一個資料夾放一張 lobster-dish.jpg，就會改用那張照片；沒有就用畫的這盤
+  var di = document.getElementById('dishImg');
+  di.onload = function(){ di.hidden = false; var s = lose.querySelector('.dish'); if (s) s.remove(); };
+  function size(){
+    DPR = Math.min(2, window.devicePixelRatio || 1);
+    var r = cv.getBoundingClientRect(); W = r.width; H = r.height;
+    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR); g.setTransform(DPR, 0, 0, DPR, 0, 0);
+    px = laneX(lane);
+  }
+  function laneW(){ return W / LANES; }
+  function laneX(i){ return laneW() * (i + .5); }
+  function move(d){ if (!running) return; lane = Math.max(0, Math.min(LANES - 1, lane + d)); }
+  // 後端網址：Google Apps Script 部署出來的「網頁應用程式」網址（建置時自動填入）
+  var API = 'https://script.google.com/macros/s/AKfycbzKz-VgxScsyuEbE-B7ik9I6mVBSas4UBl5joZAolxt2TC_GhVbsUUvsL5WwnPjqSk/exec', READY = /^https:\/\/script\.google\.com\//.test(API);
+  var play = null, sent = false, NAMEKEY = 'lobster-dash-name';
+  function back(j){ if (j && j.error) throw new Error(j.error); return j; }
+  function apiGet(action){
+    if (!READY) return Promise.reject(new Error('後端還沒接上'));
+    return fetch(API + '?action=' + action, {cache:'no-store'}).then(function(r){ return r.json(); }).then(back);
+  }
+  function apiPost(body){
+    if (!READY) return Promise.reject(new Error('後端還沒接上'));
+    // 用 text/plain 送，瀏覽器才不會先問一次（Apps Script 不回那個預檢）
+    return fetch(API, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(body)})
+      .then(function(r){ return r.json(); }).then(back);
+  }
+  function start(){
+    play = null; sent = false; document.getElementById('msg').textContent = '';
+    document.getElementById('namef').hidden = true;
+    apiGet('start').then(function(j){ play = j.play; }, function(){ play = null; });
+    lane = 1; px = laneX(1); items = []; score = 0; spawn = 0; speed = H * .45; hitFlash = 0; lives = LIVES; inv = 0; drawHp();
+    lose.hidden = true; lose.style.display = 'none';
+    running = true; ov.hidden = true; last = t0 = performance.now(); requestAnimationFrame(loop);
+  }
+  function showTop(st, me){
+    var list = document.getElementById('list');
+    list.innerHTML = (st.top || []).map(function(x){ return '<li' + (x.name === me ? ' class="me"' : '') + '>' + esc(x.name) + '　' + x.score + ' 分</li>'; }).join('') || '<li>還沒有人上榜</li>';
+    document.getElementById('board').hidden = false;
+  }
+  function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function end(){
+    running = false;
+    document.getElementById('ovT').textContent = 'Game Over！你拿了 ' + score + ' 分';
+    document.getElementById('ovP').textContent = '';
+    lose.hidden = false; lose.style.display = 'flex';
+    var f = document.getElementById('namef'), nm = document.getElementById('nm');
+    try { nm.value = localStorage.getItem(NAMEKEY) || ''; } catch(e) {}
+    f.hidden = false;
+    document.getElementById('board').hidden = true;
+    apiGet('top').then(function(st){ if (!sent) showTop(st, nm.value); }, function(e){ document.getElementById('msg').textContent = e.message; });
+    document.getElementById('go').textContent = '再玩一次';
+    ov.hidden = false;
+  }
+  document.getElementById('namef').onsubmit = function(e){
+    e.preventDefault();
+    var nm = document.getElementById('nm').value.trim(), msg = document.getElementById('msg');
+    if (!nm) { msg.textContent = '先取一個暱稱'; return; }
+    if (sent) return;
+    if (!play) { msg.textContent = READY ? '這一局沒連上後端，分數送不出去。再玩一次試試' : '後端還沒接上，請主講把 Google 試算表的網址設定好'; return; }
+    try { localStorage.setItem(NAMEKEY, nm); } catch(e) {}
+    sent = true; msg.textContent = '送出中⋯⋯';
+    apiPost({play: play, name: nm, score: score}).then(function(st){
+      msg.textContent = '後端收到了，已經寫進試算表！'; document.getElementById('namef').hidden = true; showTop(st, nm);
+    }, function(err){ sent = false; msg.textContent = err.message; });
+  };
+  var COLORS = ['#D9482B', '#2F4C66', '#C7891F', '#5E6B4E'];
+  function add(el){
+    var car = Math.random() < .82, l = Math.floor(Math.random() * LANES);
+    items.push({lane: l, y: -60, car: car, c: COLORS[Math.floor(Math.random() * 4)]});
+    // 10 秒後開始有機會一次來兩台（一定留一條路）
+    if (car && el > 10 && Math.random() < Math.min(.55, (el - 10) * .03)) {
+      var l2 = (l + 1 + Math.floor(Math.random() * (LANES - 1))) % LANES;
+      items.push({lane: l2, y: -60, car: true, c: COLORS[Math.floor(Math.random() * 4)]});
+    }
+  }
+  function loop(now){
+    if (!running) return;
+    var dt = Math.min(.05, (now - last) / 1000); last = now;
+    var el = (now - t0) / 1000;   // 跑了幾秒（真實時間），越久越快、車越多
+    speed = H * (.6 + Math.min(2.2, el * .07));             // 越跑越快：大約 30 秒後快到很難閃
+    spawn -= dt; if (spawn <= 0) { add(el); spawn = Math.max(.2, .7 - el * .022); }
+    px += (laneX(lane) - px) * Math.min(1, dt * 14);
+    roadY = (roadY + speed * dt) % 60;
+    var ly = H - 70, hit = laneW() * .32;
+    items.forEach(function(it){
+      it.y += speed * dt;
+      if (!it.done && Math.abs(it.y - ly) < 38 && Math.abs(laneX(it.lane) - px) < hit) {
+        it.done = true;
+        if (it.car) { if (inv > 0) { it.done = false; return; } lives--; inv = .9; hitFlash = .3; drawHp(); if (navigator.vibrate) navigator.vibrate(80); }
+        else score += 5;
+      } else if (!it.done && it.car && it.y > ly + 40) { it.done = true; it.passed = true; score += 1; }
+    });
+    items = items.filter(function(it){ return it.y < H + 80 && !(it.done && !it.car) && !(it.done && !it.passed && it.car); });
+    hitFlash = Math.max(0, hitFlash - dt); inv = Math.max(0, inv - dt);
+    draw();
+    scEl.textContent = score;
+    if (lives <= 0) return end();
+    requestAnimationFrame(loop);
+  }
+  function draw(){
+    g.clearRect(0, 0, W, H);
+    g.fillStyle = '#3A3936'; g.fillRect(0, 0, W, H);
+    g.strokeStyle = '#6E6C66'; g.lineWidth = 4; g.setLineDash([28, 32]); g.lineDashOffset = -roadY;
+    for (var i = 1; i < LANES; i++) { g.beginPath(); g.moveTo(laneW() * i, 0); g.lineTo(laneW() * i, H); g.stroke(); }
+    g.setLineDash([]);
+    var cw = Math.min(70, laneW() * .55);
+    items.forEach(function(it){
+      var x = laneX(it.lane);
+      if (it.car) {
+        g.fillStyle = it.c; roundRect(x - cw / 2, it.y - 40, cw, 80, 12); g.fill();
+        g.fillStyle = 'rgba(255,255,255,.75)'; roundRect(x - cw / 2 + 8, it.y - 28, cw - 16, 18, 5); g.fill();
+        g.fillStyle = '#FFE9A8'; g.fillRect(x - cw / 2 + 6, it.y + 30, 10, 6); g.fillRect(x + cw / 2 - 16, it.y + 30, 10, 6);
+      } else {
+        g.font = Math.round(cw * .7) + 'px serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('🍤', x, it.y);
+      }
+    });
+    g.font = Math.round(cw * .95) + 'px serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
+    if (!(inv > 0 && Math.floor(inv * 10) % 2)) g.fillText('🦞', px, H - 70);   // 撞到後閃爍 1 秒，這段時間不會再扣命
+    if (hitFlash > 0) { g.fillStyle = 'rgba(217,72,43,' + (hitFlash * 1.6) + ')'; g.fillRect(0, 0, W, H); }
+  }
+  function drawHp(){ var s = ''; for (var i = 0; i < LIVES; i++) s += i < lives ? '❤️' : '🖤'; hpEl.textContent = s; }
+  function roundRect(x, y, w, h, r){ g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); }
+  document.getElementById('go').onclick = start;
+  document.getElementById('L').addEventListener('pointerdown', function(e){ e.preventDefault(); move(-1); });
+  document.getElementById('R').addEventListener('pointerdown', function(e){ e.preventDefault(); move(1); });
+  cv.addEventListener('pointerdown', function(e){ var r = cv.getBoundingClientRect(); move(e.clientX - r.left < r.width / 2 ? -1 : 1); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowLeft' || e.key === 'a') move(-1);
+    else if (e.key === 'ArrowRight' || e.key === 'd') move(1);
+    else if ((e.key === 'Enter' || e.key === ' ') && !running && e.target.tagName !== 'INPUT') { e.preventDefault(); start(); }
+  });
+  window.addEventListener('resize', function(){ size(); if (!running) draw(); });
+  size(); draw();
+})();
+</script>
+</body>
+</html>

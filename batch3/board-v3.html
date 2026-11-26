@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>龍蝦衝衝衝 · 雲端排行榜</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<style>
+:root{--bg:#F4F2EC;--ink:#272724;--pencil:#7A776F;--seal:#B03A27;--card:#FBFAF6;--rule:#D9D4C8;--indigo:#2F4C66;--u:min(1vw,1.78vh)}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#D3CFC5;color:var(--ink);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;overflow:hidden}
+.sheet{position:absolute;inset:calc(var(--u)*2.4);background:var(--bg);padding:calc(var(--u)*3) calc(var(--u)*4);display:grid;grid-template-columns:calc(var(--u)*26) 1fr;gap:calc(var(--u)*4)}
+h1{margin:0;font-size:calc(var(--u)*3.2);letter-spacing:.02em;white-space:nowrap}
+.join{display:flex;flex-direction:column;align-items:center;gap:calc(var(--u)*1);text-align:center;min-height:0}
+.qr{width:calc(var(--u)*19);height:calc(var(--u)*19);background:var(--card);padding:calc(var(--u)*1.2);border:1.5px solid var(--rule)}
+.qr svg{width:100%;height:100%;display:block}
+.join p{margin:0;font-size:calc(var(--u)*1.9);line-height:1.5}
+.url{font:500 calc(var(--u)*1.2)/1.4 ui-monospace,Consolas,monospace;color:var(--pencil);word-break:break-all}
+.arch{margin-top:auto;font-size:calc(var(--u)*1.25);color:var(--pencil);line-height:1.6;text-align:left;background:var(--card);padding:calc(var(--u)*1.2) calc(var(--u)*1.5);border-left:4px solid var(--seal)}
+.arch b{color:var(--ink)}
+.right{display:flex;flex-direction:column;min-height:0}
+.meta{font-size:calc(var(--u)*1.8);color:var(--pencil);margin-bottom:calc(var(--u)*1.5)}
+.meta b{color:var(--seal)}
+ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:calc(var(--u)*.6)}
+li{display:grid;grid-template-columns:calc(var(--u)*6) 1fr auto;align-items:center;padding:calc(var(--u)*.9) calc(var(--u)*1.6);background:var(--card);border-radius:calc(var(--u)*1);font-size:calc(var(--u)*2.6)}
+li .rk{font-weight:900;color:var(--pencil)}
+li:nth-child(1){background:#FCE6DF}li:nth-child(1) .rk{color:var(--seal)}
+li .sc{font-weight:900;color:var(--seal)}
+li.new{animation:pop 1.2s ease}
+@keyframes pop{0%{transform:scale(1.06);background:#FFF2C2}100%{transform:none}}
+.empty{font-size:calc(var(--u)*2.4);color:var(--pencil);padding-top:calc(var(--u)*6);text-align:center}
+.last{margin-top:auto;font-size:calc(var(--u)*1.9);color:var(--indigo);min-height:1.5em}
+.reset{position:fixed;right:12px;bottom:10px;font-size:12px;opacity:.4;background:none;border:1px solid var(--rule);border-radius:999px;padding:5px 10px;cursor:pointer}
+.reset:hover{opacity:1}
+</style>
+</head>
+<body>
+<main class="sheet">
+  <div class="join">
+    <h1>🦞 龍蝦衝衝衝</h1>
+    <div class="qr" id="qr"></div>
+    <p>手機掃這個，<br>玩完送出分數</p>
+    <div class="url" id="url"></div>
+    <div class="arch"><b>前端</b>：遊戲畫面，放在 GitHub Pages<br><b>後端</b>：Google Apps Script，收分數、擋作弊<br><b>資料庫</b>：Google 試算表，記大家的分數</div>
+  </div>
+  <div class="right">
+    <div class="meta" id="meta">連線中⋯⋯</div>
+    <ol id="list"></ol>
+    <div class="last" id="last"></div>
+  </div>
+</main>
+<script>
+(function(){
+  var API = 'https://script.google.com/macros/s/AKfycbzKz-VgxScsyuEbE-B7ik9I6mVBSas4UBl5joZAolxt2TC_GhVbsUUvsL5WwnPjqSk/exec', READY = /^https:\/\/script\.google\.com\//.test(API), prev = {}, shown = false;
+  var GAME = new URL('game-v3.html', location.href).href;
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function qrSvg(text){
+    if (typeof qrcode !== 'function') return '<p style="font-size:14px;color:#7A776F;padding:20%">QR code 載入不了，請直接輸入下面的網址</p>';
+    var q = qrcode(0, 'M'); q.addData(text); q.make();
+    var n = q.getModuleCount(), d = '';
+    for (var r = 0; r < n; r++) for (var c = 0; c < n; c++) if (q.isDark(r, c)) d += 'M' + c + ' ' + r + 'h1v1h-1z';
+    return '<svg viewBox="0 0 ' + n + ' ' + n + '" shape-rendering="crispEdges" role="img" aria-label="遊戲網址 QR code"><path fill="#272724" d="' + d + '"/></svg>';
+  }
+  document.getElementById('qr').innerHTML = qrSvg(GAME);
+  document.getElementById('url').textContent = GAME;
+  function tick(){
+    if (!READY) { document.getElementById('meta').textContent = '後端還沒接上：請把 Google Apps Script 的網址設定好'; return; }
+    fetch(API + '?action=top', {cache:'no-store'}).then(function(r){ return r.json(); }).then(function(S){
+      if (S.error) { document.getElementById('meta').textContent = S.error; return; }
+      document.getElementById('meta').innerHTML = '已經有 <b>' + S.players + '</b> 人、玩了 <b>' + S.plays + '</b> 局';
+      var now = {};
+      document.getElementById('list').innerHTML = S.top.length ? S.top.map(function(x, i){
+        var k = x.name + ':' + x.score; now[k] = 1;
+        return '<li class="' + (shown && !prev[k] ? 'new' : '') + '"><span class="rk">' + (i + 1) + '</span><span>' + esc(x.name) + '</span><span class="sc">' + x.score + ' 分</span></li>';
+      }).join('') : '<p class="empty">還沒有人上榜，掃左邊的 QR code 開始玩</p>';
+      prev = now; shown = true;
+      document.getElementById('last').textContent = S.last ? '剛剛：' + S.last.name + ' 拿了 ' + S.last.score + ' 分' : '';
+    }).catch(function(){ document.getElementById('meta').textContent = '連不上 Google 試算表，等一下會自動再試'; });
+  }
+  tick(); setInterval(tick, 3000);
+})();
+</script>
+</body>
+</html>
